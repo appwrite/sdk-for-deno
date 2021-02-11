@@ -6,8 +6,8 @@ export class Users extends Service {
     /**
      * List Users
      *
-     * Get a list of all the project users. You can use the query params to filter
-     * your results.
+     * Get a list of all the project's users. You can use the query params to
+     * filter your results.
      *
      * @param string search
      * @param number limit
@@ -57,7 +57,7 @@ export class Users extends Service {
     /**
      * Get User
      *
-     * Get user by its unique ID.
+     * Get a user by its unique ID.
      *
      * @param string userId
      * @throws Exception
@@ -74,9 +74,28 @@ export class Users extends Service {
     }
 
     /**
+     * Delete User
+     *
+     * Delete a user by its unique ID.
+     *
+     * @param string userId
+     * @throws Exception
+     * @return Promise<string>
+     */
+    async deleteUser(userId: string): Promise<string> {
+        let path = '/users/{userId}'.replace(new RegExp('{userId}', 'g'), userId);
+        
+        return await this.client.call('delete', path, {
+                    'content-type': 'application/json',
+               },
+               {
+            });
+    }
+
+    /**
      * Get User Logs
      *
-     * Get user activity logs list by its unique ID.
+     * Get a user activity logs list by its unique ID.
      *
      * @param string userId
      * @throws Exception
@@ -95,7 +114,7 @@ export class Users extends Service {
     /**
      * Get User Preferences
      *
-     * Get user preferences by its unique ID.
+     * Get the user preferences by its unique ID.
      *
      * @param string userId
      * @throws Exception
@@ -114,8 +133,8 @@ export class Users extends Service {
     /**
      * Update User Preferences
      *
-     * Update user preferences by its unique ID. You can pass only the specific
-     * settings you wish to update.
+     * Update the user preferences by its unique ID. You can pass only the
+     * specific settings you wish to update.
      *
      * @param string userId
      * @param DocumentData prefs
@@ -136,7 +155,7 @@ export class Users extends Service {
     /**
      * Get User Sessions
      *
-     * Get user sessions list by its unique ID.
+     * Get the user sessions list by its unique ID.
      *
      * @param string userId
      * @throws Exception
@@ -155,7 +174,7 @@ export class Users extends Service {
     /**
      * Delete User Sessions
      *
-     * Delete all user sessions by its unique ID.
+     * Delete all user's sessions by using the user's unique ID.
      *
      * @param string userId
      * @throws Exception
@@ -174,7 +193,7 @@ export class Users extends Service {
     /**
      * Delete User Session
      *
-     * Delete user sessions by its unique ID.
+     * Delete a user sessions by its unique ID.
      *
      * @param string userId
      * @param string sessionId
@@ -194,7 +213,7 @@ export class Users extends Service {
     /**
      * Update User Status
      *
-     * Update user status by its unique ID.
+     * Update the user status by its unique ID.
      *
      * @param string userId
      * @param string status

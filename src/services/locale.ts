@@ -105,15 +105,34 @@ export class Locale extends Service {
     /**
      * List Currencies
      *
-     * List of all currencies, including currency symol, name, plural, and decimal
-     * digits for all major and minor currencies. You can use the locale header to
-     * get the data in a supported language.
+     * List of all currencies, including currency symbol, name, plural, and
+     * decimal digits for all major and minor currencies. You can use the locale
+     * header to get the data in a supported language.
      *
      * @throws Exception
      * @return Promise<string>
      */
     async getCurrencies(): Promise<string> {
         let path = '/locale/currencies';
+        
+        return await this.client.call('get', path, {
+                    'content-type': 'application/json',
+               },
+               {
+            });
+    }
+
+    /**
+     * List Languages
+     *
+     * List of all languages classified by ISO 639-1 including 2-letter code, name
+     * in English, and name in the respective language.
+     *
+     * @throws Exception
+     * @return Promise<string>
+     */
+    async getLanguages(): Promise<string> {
+        let path = '/locale/languages';
         
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
