@@ -1,4 +1,6 @@
 import { Client } from "./src/client.ts";
+import { AppwriteException } from "./src/exception.ts";
+import { Account } from "./src/services/account.ts";
 import { Avatars } from "./src/services/avatars.ts";
 import { Database } from "./src/services/database.ts";
 import { Functions } from "./src/services/functions.ts";
@@ -10,6 +12,8 @@ import { Users } from "./src/services/users.ts";
 
 export {
     Client,
+    AppwriteException,
+    Account,
     Avatars,
     Database,
     Functions,

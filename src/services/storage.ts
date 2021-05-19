@@ -44,7 +44,7 @@ export class Storage extends Service {
      * @throws Exception
      * @return Promise<string>
      */
-    async createFile(file: File | Blob, read: Array<any>, write: Array<any>): Promise<string> {
+    async createFile(file: File | Blob, read: Array<any> = [], write: Array<any> = []): Promise<string> {
         let path = '/storage/files';
         
         return await this.client.call('post', path, {
@@ -154,12 +154,17 @@ export class Storage extends Service {
      * @param number width
      * @param number height
      * @param number quality
+     * @param number borderWidth
+     * @param string borderColor
+     * @param number borderRadius
+     * @param number opacity
+     * @param number rotation
      * @param string background
      * @param string output
      * @throws Exception
      * @return Promise<string>
      */
-    async getFilePreview(fileId: string, width: number = 0, height: number = 0, quality: number = 100, background: string = '', output: string = ''): Promise<string> {
+    async getFilePreview(fileId: string, width: number = 0, height: number = 0, quality: number = 100, borderWidth: number = 0, borderColor: string = '', borderRadius: number = 0, opacity: number = 1, rotation: number = 0, background: string = '', output: string = ''): Promise<string> {
         let path = '/storage/files/{fileId}/preview'.replace(new RegExp('{fileId}', 'g'), fileId);
         
         return await this.client.call('get', path, {
@@ -169,6 +174,11 @@ export class Storage extends Service {
                 'width': width,
                 'height': height,
                 'quality': quality,
+                'borderWidth': borderWidth,
+                'borderColor': borderColor,
+                'borderRadius': borderRadius,
+                'opacity': opacity,
+                'rotation': rotation,
                 'background': background,
                 'output': output
             });

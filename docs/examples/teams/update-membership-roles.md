@@ -3,7 +3,7 @@ import * as sdk from "https://deno.land/x/appwrite/mod.ts";
 // Init SDK
 let client = new sdk.Client();
 
-let database = new sdk.Database(client);
+let teams = new sdk.Teams(client);
 
 client
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = database.updateCollection('[COLLECTION_ID]', '[NAME]');
+let promise = teams.updateMembershipRoles('[TEAM_ID]', '[MEMBERSHIP_ID]', []);
 
 promise.then(function (response) {
     console.log(response);

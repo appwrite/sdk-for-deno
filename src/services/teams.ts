@@ -187,6 +187,26 @@ export class Teams extends Service {
     }
 
     /**
+     * Update Membership Roles
+     *
+     * @param string teamId
+     * @param string membershipId
+     * @param Array<any> roles
+     * @throws Exception
+     * @return Promise<string>
+     */
+    async updateMembershipRoles(teamId: string, membershipId: string, roles: Array<any>): Promise<string> {
+        let path = '/teams/{teamId}/memberships/{membershipId}'.replace(new RegExp('{teamId}', 'g'), teamId).replace(new RegExp('{membershipId}', 'g'), membershipId);
+        
+        return await this.client.call('patch', path, {
+                    'content-type': 'application/json',
+               },
+               {
+                'roles': roles
+            });
+    }
+
+    /**
      * Delete Team Membership
      *
      * This endpoint allows a user to leave a team or for a team owner to delete
@@ -194,17 +214,43 @@ export class Teams extends Service {
      * delete a user membership even if it is not accepted.
      *
      * @param string teamId
-     * @param string inviteId
+     * @param string membershipId
      * @throws Exception
      * @return Promise<string>
      */
-    async deleteMembership(teamId: string, inviteId: string): Promise<string> {
-        let path = '/teams/{teamId}/memberships/{inviteId}'.replace(new RegExp('{teamId}', 'g'), teamId).replace(new RegExp('{inviteId}', 'g'), inviteId);
+    async deleteMembership(teamId: string, membershipId: string): Promise<string> {
+        let path = '/teams/{teamId}/memberships/{membershipId}'.replace(new RegExp('{teamId}', 'g'), teamId).replace(new RegExp('{membershipId}', 'g'), membershipId);
         
         return await this.client.call('delete', path, {
                     'content-type': 'application/json',
                },
                {
+            });
+    }
+
+    /**
+     * Update Team Membership Status
+     *
+     * Use this endpoint to allow a user to accept an invitation to join a team
+     * after being redirected back to your app from the invitation email recieved
+     * by the user.
+     *
+     * @param string teamId
+     * @param string membershipId
+     * @param string userId
+     * @param string secret
+     * @throws Exception
+     * @return Promise<string>
+     */
+    async updateMembershipStatus(teamId: string, membershipId: string, userId: string, secret: string): Promise<string> {
+        let path = '/teams/{teamId}/memberships/{membershipId}/status'.replace(new RegExp('{teamId}', 'g'), teamId).replace(new RegExp('{membershipId}', 'g'), membershipId);
+        
+        return await this.client.call('patch', path, {
+                    'content-type': 'application/json',
+               },
+               {
+                'userId': userId,
+                'secret': secret
             });
     }
 }

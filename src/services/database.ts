@@ -91,7 +91,7 @@ export class Database extends Service {
      * @throws Exception
      * @return Promise<string>
      */
-    async updateCollection(collectionId: string, name: string, read: Array<any>, write: Array<any>, rules: Array<any> = []): Promise<string> {
+    async updateCollection(collectionId: string, name: string, read: Array<any> = [], write: Array<any> = [], rules: Array<any> = []): Promise<string> {
         let path = '/database/collections/{collectionId}'.replace(new RegExp('{collectionId}', 'g'), collectionId);
         
         return await this.client.call('put', path, {
@@ -179,7 +179,7 @@ export class Database extends Service {
      * @throws Exception
      * @return Promise<string>
      */
-    async createDocument(collectionId: string, data: DocumentData, read: Array<any>, write: Array<any>, parentDocument: string = '', parentProperty: string = '', parentPropertyType: string = 'assign'): Promise<string> {
+    async createDocument(collectionId: string, data: DocumentData, read: Array<any> = [], write: Array<any> = [], parentDocument: string = '', parentProperty: string = '', parentPropertyType: string = 'assign'): Promise<string> {
         let path = '/database/collections/{collectionId}/documents'.replace(new RegExp('{collectionId}', 'g'), collectionId);
         
         return await this.client.call('post', path, {
@@ -230,7 +230,7 @@ export class Database extends Service {
      * @throws Exception
      * @return Promise<string>
      */
-    async updateDocument(collectionId: string, documentId: string, data: DocumentData, read: Array<any>, write: Array<any>): Promise<string> {
+    async updateDocument(collectionId: string, documentId: string, data: DocumentData, read: Array<any> = [], write: Array<any> = []): Promise<string> {
         let path = '/database/collections/{collectionId}/documents/{documentId}'.replace(new RegExp('{collectionId}', 'g'), collectionId).replace(new RegExp('{documentId}', 'g'), documentId);
         
         return await this.client.call('patch', path, {

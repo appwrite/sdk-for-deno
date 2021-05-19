@@ -1,3 +1,5 @@
+import { AppwriteException } from './exception.ts';
+
 export interface DocumentData {
     [key: string]: any;
 }
@@ -7,7 +9,8 @@ export class Client {
     endpoint: string = 'https://appwrite.io/v1';
     headers: DocumentData = {
         'content-type': '',
-        'x-sdk-version': 'appwrite:deno:0.1.0',
+        'x-sdk-version': 'appwrite:deno:0.2.0',
+        'X-Appwrite-Response-Format':'0.8.0',
     };
     
     /**
@@ -36,6 +39,21 @@ export class Client {
      */
     setKey(value: string): this {
         this.addHeader('X-Appwrite-Key', value);
+
+        return this;
+    }
+
+    /**
+     * Set JWT
+     *
+     * Your secret JSON Web Token
+     *
+     * @param string value
+     *
+     * @return self
+     */
+    setJWT(value: string): this {
+        this.addHeader('X-Appwrite-JWT', value);
 
         return this;
     }
@@ -108,14 +126,27 @@ export class Client {
             body: body,
         };
 
-        let response = await fetch(url.toString(), options);
-        const contentType = response.headers.get('content-type');
+        try {
+            let response = await fetch(url.toString(), options);
+            const contentType = response.headers.get('content-type');
 
-        if (contentType && contentType.includes('application/json')) {
-            return response.json()
+            if (contentType && contentType.includes('application/json')) {
+                if(response.status >= 400) {
+                    let res = await response.json();
+                    throw new AppwriteException(res.message, res.status, res);
+                }
+
+                return response.json()
+            } else {
+                if(response.status >= 400) {
+                    let res = await response.text();
+                    throw new AppwriteException(res, response.status, null);
+                }
+                return response;
+            }
+        } catch(error) {
+            throw new AppwriteException(error?.response?.message || error.message, error?.response?.code, error.response);
         }
-
-        return response;
     }
 
     flatten(data: DocumentData, prefix = '') {

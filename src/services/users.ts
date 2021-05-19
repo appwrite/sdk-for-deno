@@ -82,7 +82,7 @@ export class Users extends Service {
      * @throws Exception
      * @return Promise<string>
      */
-    async deleteUser(userId: string): Promise<string> {
+    async delete(userId: string): Promise<string> {
         let path = '/users/{userId}'.replace(new RegExp('{userId}', 'g'), userId);
         
         return await this.client.call('delete', path, {
@@ -216,11 +216,11 @@ export class Users extends Service {
      * Update the user status by its unique ID.
      *
      * @param string userId
-     * @param string status
+     * @param number status
      * @throws Exception
      * @return Promise<string>
      */
-    async updateStatus(userId: string, status: string): Promise<string> {
+    async updateStatus(userId: string, status: number): Promise<string> {
         let path = '/users/{userId}/status'.replace(new RegExp('{userId}', 'g'), userId);
         
         return await this.client.call('patch', path, {
