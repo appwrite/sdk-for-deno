@@ -9,7 +9,7 @@ export class Client {
     endpoint: string = 'https://appwrite.io/v1';
     headers: DocumentData = {
         'content-type': '',
-        'x-sdk-version': 'appwrite:deno:0.2.0',
+        'x-sdk-version': 'appwrite:deno:0.2.1',
         'X-Appwrite-Response-Format':'0.8.0',
     };
     
@@ -87,7 +87,7 @@ export class Client {
      * @param value string
      */
     addHeader(key: string, value: string): this {
-        this.headers[key.toLowerCase()] = value.toLowerCase();
+        this.headers[key.toLowerCase()] = value;
         
         return this;
     }

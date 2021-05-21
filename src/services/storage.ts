@@ -38,13 +38,13 @@ export class Storage extends Service {
      * assigned to read and write access unless he has passed custom values for
      * read and write arguments.
      *
-     * @param File | Blob file
+     * @param string file
      * @param Array<any> read
      * @param Array<any> write
      * @throws Exception
      * @return Promise<string>
      */
-    async createFile(file: File | Blob, read: Array<any> = [], write: Array<any> = []): Promise<string> {
+    async createFile(file: string, read: Array<any> = [], write: Array<any> = []): Promise<string> {
         let path = '/storage/files';
         
         return await this.client.call('post', path, {
