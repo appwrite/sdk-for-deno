@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = functions.createTag('[FUNCTION_ID]', '[COMMAND]', '');
+let promise = functions.createTag('[FUNCTION_ID]', '[COMMAND]', new File([fileBlob], 'file.png'));
 
 promise.then(function (response) {
     console.log(response);

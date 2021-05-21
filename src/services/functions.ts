@@ -274,11 +274,11 @@ export class Functions extends Service {
      *
      * @param string functionId
      * @param string command
-     * @param string code
+     * @param File | Blob code
      * @throws Exception
      * @return Promise<string>
      */
-    async createTag(functionId: string, command: string, code: string): Promise<string> {
+    async createTag(functionId: string, command: string, code: File | Blob): Promise<string> {
         let path = '/functions/{functionId}/tags'.replace(new RegExp('{functionId}', 'g'), functionId);
         
         return await this.client.call('post', path, {
