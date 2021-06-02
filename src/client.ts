@@ -1,15 +1,14 @@
 import { AppwriteException } from './exception.ts';
 
-export interface DocumentData {
+export interface Payload {
     [key: string]: any;
 }
 
 export class Client {
-
     endpoint: string = 'https://appwrite.io/v1';
-    headers: DocumentData = {
+    headers: Payload = {
         'content-type': '',
-        'x-sdk-version': 'appwrite:deno:0.2.1',
+        'x-sdk-version': 'appwrite:deno:0.2.2',
         'X-Appwrite-Response-Format':'0.8.0',
     };
     
@@ -92,32 +91,32 @@ export class Client {
         return this;
     }
 
-    withoutHeader(key: string, headers: DocumentData): DocumentData {
-        return Object.keys(headers).reduce((acc: DocumentData, cv) => {
-            if (cv == 'content-type') return acc
-            acc[cv] = headers[cv]
-            return acc
+    withoutHeader(key: string, headers: Payload): Payload {
+        return Object.keys(headers).reduce((acc: Payload, cv) => {
+            if (cv == 'content-type') return acc;
+            acc[cv] = headers[cv];
+            return acc;
         }, {})
     }
 
-    async call(method: string, path: string = '', headers: DocumentData = {}, params: DocumentData = {}) {
-        headers = Object.assign(this.headers, headers);
+    async call(method: string, path: string = '', headers: Payload = {}, params: Payload = {}) {
+        headers = { ...this.headers, ...headers };
 
         let body;
-        const url = new URL(this.endpoint + path)
+        const url = new URL(this.endpoint + path);
         if (method.toUpperCase() === 'GET') {
-            url.search = new URLSearchParams(this.flatten(params)).toString()
-            body = null
+            url.search = new URLSearchParams(this.flatten(params)).toString();
+            body = null;
         } else if (headers['content-type'].toLowerCase().startsWith('multipart/form-data')) {
-            headers = this.withoutHeader('content-type', headers)
-            const formData = new FormData()
-            const flatParams = this.flatten(params)
+            headers = this.withoutHeader('content-type', headers);
+            const formData = new FormData();
+            const flatParams = this.flatten(params);
             for (const key in flatParams) {
                 formData.append(key, flatParams[key]);
             }
-            body = formData
+            body = formData;
         } else {
-            body = JSON.stringify(params)
+            body = JSON.stringify(params);
         }
         
         const options = {
@@ -136,7 +135,7 @@ export class Client {
                     throw new AppwriteException(res.message, res.status, res);
                 }
 
-                return response.json()
+                return response.json();
             } else {
                 if(response.status >= 400) {
                     let res = await response.text();
@@ -149,15 +148,15 @@ export class Client {
         }
     }
 
-    flatten(data: DocumentData, prefix = '') {
-        let output: DocumentData = {};
+    flatten(data: Payload, prefix = '') {
+        let output: Payload = {};
 
         for (const key in data) {
             let value = data[key];
             let finalKey = prefix ? prefix + '[' + key +']' : key;
 
             if (Array.isArray(value)) {
-                output = Object.assign(output, this.flatten(value, finalKey)); // @todo: handle name collision here if needed
+                output = { ...output, ...this.flatten(value, finalKey) }; // @todo: handle name collision here if needed
             }
             else {
                 output[finalKey] = value;

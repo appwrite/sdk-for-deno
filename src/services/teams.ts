@@ -1,5 +1,6 @@
-import { Service } from "../service.ts";
-import { DocumentData } from '../client.ts'
+import { Service } from '../service.ts';
+import { Payload } from '../client.ts';
+import { AppwriteException } from '../exception.ts';
 
 export class Teams extends Service {
 
@@ -11,25 +12,36 @@ export class Teams extends Service {
      * of the project's teams. [Learn more about different API
      * modes](/docs/admin).
      *
-     * @param string search
-     * @param number limit
-     * @param number offset
-     * @param string orderType
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} search
+     * @param {number} limit
+     * @param {number} offset
+     * @param {string} orderType
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async list(search: string = '', limit: number = 25, offset: number = 0, orderType: string = 'ASC'): Promise<string> {
+    async list<T extends unknown>(search?: string, limit?: number, offset?: number, orderType?: string): Promise<T> {
         let path = '/teams';
-        
+        let payload: Payload = {};
+
+        if (typeof search !== 'undefined') {
+            payload['search'] = search;
+        }
+
+        if (typeof limit !== 'undefined') {
+            payload['limit'] = limit;
+        }
+
+        if (typeof offset !== 'undefined') {
+            payload['offset'] = offset;
+        }
+
+        if (typeof orderType !== 'undefined') {
+            payload['orderType'] = orderType;
+        }
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'search': search,
-                'limit': limit,
-                'offset': offset,
-                'orderType': orderType
-            });
+               }, payload);
     }
 
     /**
@@ -40,21 +52,30 @@ export class Teams extends Service {
      * who will be able add new owners and update or delete the team from your
      * project.
      *
-     * @param string name
-     * @param Array<any> roles
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} name
+     * @param {string[]} roles
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async create(name: string, roles: Array<any> = ["owner"]): Promise<string> {
+    async create<T extends unknown>(name: string, roles?: string[]): Promise<T> {
+        if (typeof name === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
+
         let path = '/teams';
-        
+        let payload: Payload = {};
+
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+
+        if (typeof roles !== 'undefined') {
+            payload['roles'] = roles;
+        }
+
         return await this.client.call('post', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'name': name,
-                'roles': roles
-            });
+               }, payload);
     }
 
     /**
@@ -63,18 +84,21 @@ export class Teams extends Service {
      * Get a team by its unique ID. All team members have read access for this
      * resource.
      *
-     * @param string teamId
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} teamId
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async get(teamId: string): Promise<string> {
-        let path = '/teams/{teamId}'.replace(new RegExp('{teamId}', 'g'), teamId);
-        
+    async get<T extends unknown>(teamId: string): Promise<T> {
+        if (typeof teamId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        let path = '/teams/{teamId}'.replace('{teamId}', teamId);
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -83,20 +107,30 @@ export class Teams extends Service {
      * Update a team by its unique ID. Only team owners have write access for this
      * resource.
      *
-     * @param string teamId
-     * @param string name
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} teamId
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async update(teamId: string, name: string): Promise<string> {
-        let path = '/teams/{teamId}'.replace(new RegExp('{teamId}', 'g'), teamId);
-        
+    async update<T extends unknown>(teamId: string, name: string): Promise<T> {
+        if (typeof teamId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if (typeof name === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
+
+        let path = '/teams/{teamId}'.replace('{teamId}', teamId);
+        let payload: Payload = {};
+
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+
         return await this.client.call('put', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'name': name
-            });
+               }, payload);
     }
 
     /**
@@ -105,18 +139,21 @@ export class Teams extends Service {
      * Delete a team by its unique ID. Only team owners have write access for this
      * resource.
      *
-     * @param string teamId
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} teamId
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async delete(teamId: string): Promise<string> {
-        let path = '/teams/{teamId}'.replace(new RegExp('{teamId}', 'g'), teamId);
-        
+    async delete<T extends unknown>(teamId: string): Promise<T> {
+        if (typeof teamId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        let path = '/teams/{teamId}'.replace('{teamId}', teamId);
+        let payload: Payload = {};
+
         return await this.client.call('delete', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -125,26 +162,41 @@ export class Teams extends Service {
      * Get a team members by the team unique ID. All team members have read access
      * for this list of resources.
      *
-     * @param string teamId
-     * @param string search
-     * @param number limit
-     * @param number offset
-     * @param string orderType
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} teamId
+     * @param {string} search
+     * @param {number} limit
+     * @param {number} offset
+     * @param {string} orderType
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getMemberships(teamId: string, search: string = '', limit: number = 25, offset: number = 0, orderType: string = 'ASC'): Promise<string> {
-        let path = '/teams/{teamId}/memberships'.replace(new RegExp('{teamId}', 'g'), teamId);
-        
+    async getMemberships<T extends unknown>(teamId: string, search?: string, limit?: number, offset?: number, orderType?: string): Promise<T> {
+        if (typeof teamId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        let path = '/teams/{teamId}/memberships'.replace('{teamId}', teamId);
+        let payload: Payload = {};
+
+        if (typeof search !== 'undefined') {
+            payload['search'] = search;
+        }
+
+        if (typeof limit !== 'undefined') {
+            payload['limit'] = limit;
+        }
+
+        if (typeof offset !== 'undefined') {
+            payload['offset'] = offset;
+        }
+
+        if (typeof orderType !== 'undefined') {
+            payload['orderType'] = orderType;
+        }
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'search': search,
-                'limit': limit,
-                'offset': offset,
-                'orderType': orderType
-            });
+               }, payload);
     }
 
     /**
@@ -164,46 +216,87 @@ export class Teams extends Service {
      * the only valid redirect URL's are the once from domains you have set when
      * added your platforms in the console interface.
      *
-     * @param string teamId
-     * @param string email
-     * @param Array<any> roles
-     * @param string url
-     * @param string name
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} teamId
+     * @param {string} email
+     * @param {string[]} roles
+     * @param {string} url
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async createMembership(teamId: string, email: string, roles: Array<any>, url: string, name: string = ''): Promise<string> {
-        let path = '/teams/{teamId}/memberships'.replace(new RegExp('{teamId}', 'g'), teamId);
-        
+    async createMembership<T extends unknown>(teamId: string, email: string, roles: string[], url: string, name?: string): Promise<T> {
+        if (typeof teamId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if (typeof email === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (typeof roles === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "roles"');
+        }
+
+        if (typeof url === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "url"');
+        }
+
+        let path = '/teams/{teamId}/memberships'.replace('{teamId}', teamId);
+        let payload: Payload = {};
+
+        if (typeof email !== 'undefined') {
+            payload['email'] = email;
+        }
+
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+
+        if (typeof roles !== 'undefined') {
+            payload['roles'] = roles;
+        }
+
+        if (typeof url !== 'undefined') {
+            payload['url'] = url;
+        }
+
         return await this.client.call('post', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'email': email,
-                'name': name,
-                'roles': roles,
-                'url': url
-            });
+               }, payload);
     }
 
     /**
      * Update Membership Roles
      *
-     * @param string teamId
-     * @param string membershipId
-     * @param Array<any> roles
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} teamId
+     * @param {string} membershipId
+     * @param {string[]} roles
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async updateMembershipRoles(teamId: string, membershipId: string, roles: Array<any>): Promise<string> {
-        let path = '/teams/{teamId}/memberships/{membershipId}'.replace(new RegExp('{teamId}', 'g'), teamId).replace(new RegExp('{membershipId}', 'g'), membershipId);
-        
+    async updateMembershipRoles<T extends unknown>(teamId: string, membershipId: string, roles: string[]): Promise<T> {
+        if (typeof teamId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if (typeof membershipId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
+        if (typeof roles === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "roles"');
+        }
+
+        let path = '/teams/{teamId}/memberships/{membershipId}'.replace('{teamId}', teamId).replace('{membershipId}', membershipId);
+        let payload: Payload = {};
+
+        if (typeof roles !== 'undefined') {
+            payload['roles'] = roles;
+        }
+
         return await this.client.call('patch', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'roles': roles
-            });
+               }, payload);
     }
 
     /**
@@ -213,19 +306,26 @@ export class Teams extends Service {
      * the membership of any other team member. You can also use this endpoint to
      * delete a user membership even if it is not accepted.
      *
-     * @param string teamId
-     * @param string membershipId
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} teamId
+     * @param {string} membershipId
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async deleteMembership(teamId: string, membershipId: string): Promise<string> {
-        let path = '/teams/{teamId}/memberships/{membershipId}'.replace(new RegExp('{teamId}', 'g'), teamId).replace(new RegExp('{membershipId}', 'g'), membershipId);
-        
+    async deleteMembership<T extends unknown>(teamId: string, membershipId: string): Promise<T> {
+        if (typeof teamId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if (typeof membershipId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
+        let path = '/teams/{teamId}/memberships/{membershipId}'.replace('{teamId}', teamId).replace('{membershipId}', membershipId);
+        let payload: Payload = {};
+
         return await this.client.call('delete', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -235,22 +335,43 @@ export class Teams extends Service {
      * after being redirected back to your app from the invitation email recieved
      * by the user.
      *
-     * @param string teamId
-     * @param string membershipId
-     * @param string userId
-     * @param string secret
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} teamId
+     * @param {string} membershipId
+     * @param {string} userId
+     * @param {string} secret
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async updateMembershipStatus(teamId: string, membershipId: string, userId: string, secret: string): Promise<string> {
-        let path = '/teams/{teamId}/memberships/{membershipId}/status'.replace(new RegExp('{teamId}', 'g'), teamId).replace(new RegExp('{membershipId}', 'g'), membershipId);
-        
+    async updateMembershipStatus<T extends unknown>(teamId: string, membershipId: string, userId: string, secret: string): Promise<T> {
+        if (typeof teamId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if (typeof membershipId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof secret === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+
+        let path = '/teams/{teamId}/memberships/{membershipId}/status'.replace('{teamId}', teamId).replace('{membershipId}', membershipId);
+        let payload: Payload = {};
+
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
+        }
+
+        if (typeof secret !== 'undefined') {
+            payload['secret'] = secret;
+        }
+
         return await this.client.call('patch', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'userId': userId,
-                'secret': secret
-            });
+               }, payload);
     }
 }

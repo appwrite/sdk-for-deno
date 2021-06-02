@@ -1,5 +1,6 @@
-import { Service } from "../service.ts";
-import { DocumentData } from '../client.ts'
+import { Service } from '../service.ts';
+import { Payload } from '../client.ts';
+import { AppwriteException } from '../exception.ts';
 
 export class Health extends Service {
 
@@ -8,17 +9,16 @@ export class Health extends Service {
      *
      * Check the Appwrite HTTP server is up and responsive.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async get(): Promise<string> {
+    async get<T extends unknown>(): Promise<T> {
         let path = '/health';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -26,17 +26,16 @@ export class Health extends Service {
      *
      * Check the Appwrite Anti Virus server is up and connection is successful.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getAntiVirus(): Promise<string> {
+    async getAntiVirus<T extends unknown>(): Promise<T> {
         let path = '/health/anti-virus';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -45,17 +44,16 @@ export class Health extends Service {
      * Check the Appwrite in-memory cache server is up and connection is
      * successful.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getCache(): Promise<string> {
+    async getCache<T extends unknown>(): Promise<T> {
         let path = '/health/cache';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -63,17 +61,16 @@ export class Health extends Service {
      *
      * Check the Appwrite database server is up and connection is successful.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getDB(): Promise<string> {
+    async getDB<T extends unknown>(): Promise<T> {
         let path = '/health/db';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -83,33 +80,31 @@ export class Health extends Service {
      * [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
      * server.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getQueueCertificates(): Promise<string> {
+    async getQueueCertificates<T extends unknown>(): Promise<T> {
         let path = '/health/queue/certificates';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
      * Get Functions Queue
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getQueueFunctions(): Promise<string> {
+    async getQueueFunctions<T extends unknown>(): Promise<T> {
         let path = '/health/queue/functions';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -118,17 +113,16 @@ export class Health extends Service {
      * Get the number of logs that are waiting to be processed in the Appwrite
      * internal queue server.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getQueueLogs(): Promise<string> {
+    async getQueueLogs<T extends unknown>(): Promise<T> {
         let path = '/health/queue/logs';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -137,17 +131,16 @@ export class Health extends Service {
      * Get the number of tasks that are waiting to be processed in the Appwrite
      * internal queue server.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getQueueTasks(): Promise<string> {
+    async getQueueTasks<T extends unknown>(): Promise<T> {
         let path = '/health/queue/tasks';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -156,17 +149,16 @@ export class Health extends Service {
      * Get the number of usage stats that are waiting to be processed in the
      * Appwrite internal queue server.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getQueueUsage(): Promise<string> {
+    async getQueueUsage<T extends unknown>(): Promise<T> {
         let path = '/health/queue/usage';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -175,17 +167,16 @@ export class Health extends Service {
      * Get the number of webhooks that are waiting to be processed in the Appwrite
      * internal queue server.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getQueueWebhooks(): Promise<string> {
+    async getQueueWebhooks<T extends unknown>(): Promise<T> {
         let path = '/health/queue/webhooks';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -193,17 +184,16 @@ export class Health extends Service {
      *
      * Check the Appwrite local storage device is up and connection is successful.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getStorageLocal(): Promise<string> {
+    async getStorageLocal<T extends unknown>(): Promise<T> {
         let path = '/health/storage/local';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -217,16 +207,15 @@ export class Health extends Service {
      * clocks over the Internet. If your computer sets its own clock, it likely
      * uses NTP.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getTime(): Promise<string> {
+    async getTime<T extends unknown>(): Promise<T> {
         let path = '/health/time';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 }

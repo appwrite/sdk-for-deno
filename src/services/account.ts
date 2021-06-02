@@ -1,5 +1,6 @@
-import { Service } from "../service.ts";
-import { DocumentData } from '../client.ts'
+import { Service } from '../service.ts';
+import { Payload } from '../client.ts';
+import { AppwriteException } from '../exception.ts';
 
 export class Account extends Service {
 
@@ -8,17 +9,16 @@ export class Account extends Service {
      *
      * Get currently logged in user data as JSON object.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async get(): Promise<string> {
+    async get<T extends unknown>(): Promise<T> {
         let path = '/account';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -30,17 +30,16 @@ export class Account extends Service {
      * address. Any user-related resources like documents or storage files should
      * be deleted separately.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async delete(): Promise<string> {
+    async delete<T extends unknown>(): Promise<T> {
         let path = '/account';
-        
+        let payload: Payload = {};
+
         return await this.client.call('delete', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -53,21 +52,34 @@ export class Account extends Service {
      * This endpoint can also be used to convert an anonymous account to a normal
      * one, by passing an email address and a new password.
      *
-     * @param string email
-     * @param string password
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} email
+     * @param {string} password
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async updateEmail(email: string, password: string): Promise<string> {
+    async updateEmail<T extends unknown>(email: string, password: string): Promise<T> {
+        if (typeof email === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (typeof password === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
         let path = '/account/email';
-        
+        let payload: Payload = {};
+
+        if (typeof email !== 'undefined') {
+            payload['email'] = email;
+        }
+
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+
         return await this.client.call('patch', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'email': email,
-                'password': password
-            });
+               }, payload);
     }
 
     /**
@@ -76,17 +88,16 @@ export class Account extends Service {
      * Get currently logged in user list of latest security activity logs. Each
      * log returns user IP address, location and date and time of log.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getLogs(): Promise<string> {
+    async getLogs<T extends unknown>(): Promise<T> {
         let path = '/account/logs';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -94,19 +105,25 @@ export class Account extends Service {
      *
      * Update currently logged in user account name.
      *
-     * @param string name
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async updateName(name: string): Promise<string> {
+    async updateName<T extends unknown>(name: string): Promise<T> {
+        if (typeof name === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
+
         let path = '/account/name';
-        
+        let payload: Payload = {};
+
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+
         return await this.client.call('patch', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'name': name
-            });
+               }, payload);
     }
 
     /**
@@ -116,21 +133,30 @@ export class Account extends Service {
      * to pass in the new password, and the old password. For users created with
      * OAuth and Team Invites, oldPassword is optional.
      *
-     * @param string password
-     * @param string oldPassword
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} password
+     * @param {string} oldPassword
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async updatePassword(password: string, oldPassword: string = ''): Promise<string> {
+    async updatePassword<T extends unknown>(password: string, oldPassword?: string): Promise<T> {
+        if (typeof password === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
         let path = '/account/password';
-        
+        let payload: Payload = {};
+
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+
+        if (typeof oldPassword !== 'undefined') {
+            payload['oldPassword'] = oldPassword;
+        }
+
         return await this.client.call('patch', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'password': password,
-                'oldPassword': oldPassword
-            });
+               }, payload);
     }
 
     /**
@@ -138,17 +164,16 @@ export class Account extends Service {
      *
      * Get currently logged in user preferences as a key-value object.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getPrefs(): Promise<string> {
+    async getPrefs<T extends unknown>(): Promise<T> {
         let path = '/account/prefs';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -157,19 +182,25 @@ export class Account extends Service {
      * Update currently logged in user account preferences. You can pass only the
      * specific settings you wish to update.
      *
-     * @param DocumentData prefs
-     * @throws Exception
-     * @return Promise<string>
+     * @param {object} prefs
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async updatePrefs(prefs: DocumentData): Promise<string> {
+    async updatePrefs<T extends unknown>(prefs: object): Promise<T> {
+        if (typeof prefs === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "prefs"');
+        }
+
         let path = '/account/prefs';
-        
+        let payload: Payload = {};
+
+        if (typeof prefs !== 'undefined') {
+            payload['prefs'] = prefs;
+        }
+
         return await this.client.call('patch', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'prefs': prefs
-            });
+               }, payload);
     }
 
     /**
@@ -184,21 +215,34 @@ export class Account extends Service {
      * complete the process. The verification link sent to the user's email
      * address is valid for 1 hour.
      *
-     * @param string email
-     * @param string url
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} email
+     * @param {string} url
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async createRecovery(email: string, url: string): Promise<string> {
+    async createRecovery<T extends unknown>(email: string, url: string): Promise<T> {
+        if (typeof email === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (typeof url === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "url"');
+        }
+
         let path = '/account/recovery';
-        
+        let payload: Payload = {};
+
+        if (typeof email !== 'undefined') {
+            payload['email'] = email;
+        }
+
+        if (typeof url !== 'undefined') {
+            payload['url'] = url;
+        }
+
         return await this.client.call('post', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'email': email,
-                'url': url
-            });
+               }, payload);
     }
 
     /**
@@ -214,25 +258,52 @@ export class Account extends Service {
      * the only valid redirect URLs are the ones from domains you have set when
      * adding your platforms in the console interface.
      *
-     * @param string userId
-     * @param string secret
-     * @param string password
-     * @param string passwordAgain
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} userId
+     * @param {string} secret
+     * @param {string} password
+     * @param {string} passwordAgain
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async updateRecovery(userId: string, secret: string, password: string, passwordAgain: string): Promise<string> {
+    async updateRecovery<T extends unknown>(userId: string, secret: string, password: string, passwordAgain: string): Promise<T> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof secret === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+
+        if (typeof password === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
+        if (typeof passwordAgain === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "passwordAgain"');
+        }
+
         let path = '/account/recovery';
-        
+        let payload: Payload = {};
+
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
+        }
+
+        if (typeof secret !== 'undefined') {
+            payload['secret'] = secret;
+        }
+
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+
+        if (typeof passwordAgain !== 'undefined') {
+            payload['passwordAgain'] = passwordAgain;
+        }
+
         return await this.client.call('put', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'userId': userId,
-                'secret': secret,
-                'password': password,
-                'passwordAgain': passwordAgain
-            });
+               }, payload);
     }
 
     /**
@@ -241,17 +312,16 @@ export class Account extends Service {
      * Get currently logged in user list of active sessions across different
      * devices.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async getSessions(): Promise<string> {
+    async getSessions<T extends unknown>(): Promise<T> {
         let path = '/account/sessions';
-        
+        let payload: Payload = {};
+
         return await this.client.call('get', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -260,17 +330,16 @@ export class Account extends Service {
      * Delete all sessions from the user account and remove any sessions cookies
      * from the end client.
      *
-     * @throws Exception
-     * @return Promise<string>
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async deleteSessions(): Promise<string> {
+    async deleteSessions<T extends unknown>(): Promise<T> {
         let path = '/account/sessions';
-        
+        let payload: Payload = {};
+
         return await this.client.call('delete', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -280,18 +349,21 @@ export class Account extends Service {
      * account sessions across all of their different devices. When using the
      * option id argument, only the session unique ID provider will be deleted.
      *
-     * @param string sessionId
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} sessionId
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async deleteSession(sessionId: string): Promise<string> {
-        let path = '/account/sessions/{sessionId}'.replace(new RegExp('{sessionId}', 'g'), sessionId);
-        
+    async deleteSession<T extends unknown>(sessionId: string): Promise<T> {
+        if (typeof sessionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
+        let path = '/account/sessions/{sessionId}'.replace('{sessionId}', sessionId);
+        let payload: Payload = {};
+
         return await this.client.call('delete', path, {
                     'content-type': 'application/json',
-               },
-               {
-            });
+               }, payload);
     }
 
     /**
@@ -313,19 +385,25 @@ export class Account extends Service {
      * adding your platforms in the console interface.
      * 
      *
-     * @param string url
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} url
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async createVerification(url: string): Promise<string> {
+    async createVerification<T extends unknown>(url: string): Promise<T> {
+        if (typeof url === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "url"');
+        }
+
         let path = '/account/verification';
-        
+        let payload: Payload = {};
+
+        if (typeof url !== 'undefined') {
+            payload['url'] = url;
+        }
+
         return await this.client.call('post', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'url': url
-            });
+               }, payload);
     }
 
     /**
@@ -336,20 +414,33 @@ export class Account extends Service {
      * to verify the user email ownership. If confirmed this route will return a
      * 200 status code.
      *
-     * @param string userId
-     * @param string secret
-     * @throws Exception
-     * @return Promise<string>
+     * @param {string} userId
+     * @param {string} secret
+     * @throws {AppwriteException}
+     * @returns {Promise}
      */
-    async updateVerification(userId: string, secret: string): Promise<string> {
+    async updateVerification<T extends unknown>(userId: string, secret: string): Promise<T> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof secret === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+
         let path = '/account/verification';
-        
+        let payload: Payload = {};
+
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
+        }
+
+        if (typeof secret !== 'undefined') {
+            payload['secret'] = secret;
+        }
+
         return await this.client.call('put', path, {
                     'content-type': 'application/json',
-               },
-               {
-                'userId': userId,
-                'secret': secret
-            });
+               }, payload);
     }
 }
