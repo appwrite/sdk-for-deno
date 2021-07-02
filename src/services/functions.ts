@@ -51,7 +51,7 @@ export class Functions extends Service {
      *
      * @param {string} name
      * @param {string[]} execute
-     * @param {string} env
+     * @param {string} runtime
      * @param {object} vars
      * @param {string[]} events
      * @param {string} schedule
@@ -59,7 +59,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create<T extends unknown>(name: string, execute: string[], env: string, vars?: object, events?: string[], schedule?: string, timeout?: number): Promise<T> {
+    async create<T extends unknown>(name: string, execute: string[], runtime: string, vars?: object, events?: string[], schedule?: string, timeout?: number): Promise<T> {
         if (typeof name === 'undefined') {
             throw new AppwriteException('Missing required parameter: "name"');
         }
@@ -68,8 +68,8 @@ export class Functions extends Service {
             throw new AppwriteException('Missing required parameter: "execute"');
         }
 
-        if (typeof env === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "env"');
+        if (typeof runtime === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "runtime"');
         }
 
         let path = '/functions';
@@ -83,8 +83,8 @@ export class Functions extends Service {
             payload['execute'] = execute;
         }
 
-        if (typeof env !== 'undefined') {
-            payload['env'] = env;
+        if (typeof runtime !== 'undefined') {
+            payload['runtime'] = runtime;
         }
 
         if (typeof vars !== 'undefined') {

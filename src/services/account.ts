@@ -343,6 +343,29 @@ export class Account extends Service {
     }
 
     /**
+     * Get Session By ID
+     *
+     * Use this endpoint to get a logged in user's session using a Session ID.
+     * Inputting 'current' will return the current session being used.
+     *
+     * @param {string} sessionId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getSession<T extends unknown>(sessionId: string): Promise<T> {
+        if (typeof sessionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
+        let path = '/account/sessions/{sessionId}'.replace('{sessionId}', sessionId);
+        let payload: Payload = {};
+
+        return await this.client.call('get', path, {
+                    'content-type': 'application/json',
+               }, payload);
+    }
+
+    /**
      * Delete Account Session
      *
      * Use this endpoint to log out the currently logged in user from all their
