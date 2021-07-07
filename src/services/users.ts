@@ -303,4 +303,35 @@ export class Users extends Service {
                     'content-type': 'application/json',
                }, payload);
     }
+
+    /**
+     * Update Email Verification
+     *
+     * Update the user email verification status by its unique ID.
+     *
+     * @param {string} userId
+     * @param {boolean} emailVerification
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateVerification<T extends unknown>(userId: string, emailVerification: boolean): Promise<T> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof emailVerification === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "emailVerification"');
+        }
+
+        let path = '/users/{userId}/verification'.replace('{userId}', userId);
+        let payload: Payload = {};
+
+        if (typeof emailVerification !== 'undefined') {
+            payload['emailVerification'] = emailVerification;
+        }
+
+        return await this.client.call('patch', path, {
+                    'content-type': 'application/json',
+               }, payload);
+    }
 }

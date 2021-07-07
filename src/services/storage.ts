@@ -203,6 +203,7 @@ export class Storage extends Service {
      * @param {string} fileId
      * @param {number} width
      * @param {number} height
+     * @param {string} gravity
      * @param {number} quality
      * @param {number} borderWidth
      * @param {string} borderColor
@@ -214,7 +215,7 @@ export class Storage extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFilePreview(fileId: string, width?: number, height?: number, quality?: number, borderWidth?: number, borderColor?: string, borderRadius?: number, opacity?: number, rotation?: number, background?: string, output?: string): Promise<Response> {
+    async getFilePreview(fileId: string, width?: number, height?: number, gravity?: string, quality?: number, borderWidth?: number, borderColor?: string, borderRadius?: number, opacity?: number, rotation?: number, background?: string, output?: string): Promise<Response> {
         if (typeof fileId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
@@ -228,6 +229,10 @@ export class Storage extends Service {
 
         if (typeof height !== 'undefined') {
             payload['height'] = height;
+        }
+
+        if (typeof gravity !== 'undefined') {
+            payload['gravity'] = gravity;
         }
 
         if (typeof quality !== 'undefined') {
