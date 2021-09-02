@@ -8,8 +8,8 @@ export class Client {
     endpoint: string = 'https://appwrite.io/v1';
     headers: Payload = {
         'content-type': '',
-        'x-sdk-version': 'appwrite:deno:0.3.0',
-        'X-Appwrite-Response-Format':'0.9.0',
+        'x-sdk-version': 'appwrite:deno:0.4.0',
+        'X-Appwrite-Response-Format':'0.10.0',
     };
     
     /**
