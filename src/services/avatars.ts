@@ -1,9 +1,9 @@
 import { Service } from '../service.ts';
 import { Payload } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
+import type { Models } from '../models.d.ts'
 
 export class Avatars extends Service {
-
     /**
      * Get Browser Icon
      *
@@ -40,10 +40,9 @@ export class Avatars extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Credit Card Icon
      *
@@ -79,10 +78,9 @@ export class Avatars extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Favicon
      *
@@ -107,10 +105,9 @@ export class Avatars extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Country Flag
      *
@@ -146,10 +143,9 @@ export class Avatars extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Image from URL
      *
@@ -185,10 +181,9 @@ export class Avatars extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get User Initials
      *
@@ -236,10 +231,9 @@ export class Avatars extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get QR Code
      *
@@ -278,7 +272,7 @@ export class Avatars extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
 }

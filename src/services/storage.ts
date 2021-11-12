@@ -1,9 +1,9 @@
 import { Service } from '../service.ts';
 import { Payload } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
+import type { Models } from '../models.d.ts'
 
 export class Storage extends Service {
-
     /**
      * List Files
      *
@@ -18,7 +18,7 @@ export class Storage extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listFiles<T extends unknown>(search?: string, limit?: number, offset?: number, orderType?: string): Promise<T> {
+    async listFiles(search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.FileList> {
         let path = '/storage/files';
         let payload: Payload = {};
 
@@ -39,10 +39,9 @@ export class Storage extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Create File
      *
@@ -56,7 +55,7 @@ export class Storage extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createFile<T extends unknown>(file: File | Blob, read?: string[], write?: string[]): Promise<T> {
+    async createFile(file: File | Blob, read?: string[], write?: string[]): Promise<Models.File> {
         if (typeof file === 'undefined') {
             throw new AppwriteException('Missing required parameter: "file"');
         }
@@ -77,10 +76,9 @@ export class Storage extends Service {
         }
 
         return await this.client.call('post', path, {
-                    'content-type': 'multipart/form-data',
-               }, payload);
+            'content-type': 'multipart/form-data',
+        }, payload);
     }
-
     /**
      * Get File
      *
@@ -91,7 +89,7 @@ export class Storage extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFile<T extends unknown>(fileId: string): Promise<T> {
+    async getFile(fileId: string): Promise<Models.File> {
         if (typeof fileId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
@@ -100,10 +98,9 @@ export class Storage extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update File
      *
@@ -116,7 +113,7 @@ export class Storage extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateFile<T extends unknown>(fileId: string, read: string[], write: string[]): Promise<T> {
+    async updateFile(fileId: string, read: string[], write: string[]): Promise<Models.File> {
         if (typeof fileId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
@@ -141,10 +138,9 @@ export class Storage extends Service {
         }
 
         return await this.client.call('put', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Delete File
      *
@@ -155,7 +151,7 @@ export class Storage extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async deleteFile<T extends unknown>(fileId: string): Promise<T> {
+    async deleteFile(fileId: string): Promise<Response> {
         if (typeof fileId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
@@ -164,10 +160,9 @@ export class Storage extends Service {
         let payload: Payload = {};
 
         return await this.client.call('delete', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get File for Download
      *
@@ -188,10 +183,9 @@ export class Storage extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get File Preview
      *
@@ -268,10 +262,9 @@ export class Storage extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get File for View
      *
@@ -292,7 +285,7 @@ export class Storage extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
 }

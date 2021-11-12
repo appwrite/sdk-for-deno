@@ -1,9 +1,9 @@
 import { Service } from '../service.ts';
 import { Payload } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
+import type { Models } from '../models.d.ts'
 
 export class Locale extends Service {
-
     /**
      * Get User Locale
      *
@@ -17,15 +17,14 @@ export class Locale extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async get<T extends unknown>(): Promise<T> {
+    async get(): Promise<Models.Locale> {
         let path = '/locale';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * List Continents
      *
@@ -35,15 +34,14 @@ export class Locale extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getContinents<T extends unknown>(): Promise<T> {
+    async getContinents(): Promise<Models.ContinentList> {
         let path = '/locale/continents';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * List Countries
      *
@@ -53,15 +51,14 @@ export class Locale extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getCountries<T extends unknown>(): Promise<T> {
+    async getCountries(): Promise<Models.CountryList> {
         let path = '/locale/countries';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * List EU Countries
      *
@@ -71,15 +68,14 @@ export class Locale extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getCountriesEU<T extends unknown>(): Promise<T> {
+    async getCountriesEU(): Promise<Models.CountryList> {
         let path = '/locale/countries/eu';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * List Countries Phone Codes
      *
@@ -89,15 +85,14 @@ export class Locale extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getCountriesPhones<T extends unknown>(): Promise<T> {
+    async getCountriesPhones(): Promise<Models.PhoneList> {
         let path = '/locale/countries/phones';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * List Currencies
      *
@@ -108,15 +103,14 @@ export class Locale extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getCurrencies<T extends unknown>(): Promise<T> {
+    async getCurrencies(): Promise<Models.CurrencyList> {
         let path = '/locale/currencies';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * List Languages
      *
@@ -126,12 +120,12 @@ export class Locale extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getLanguages<T extends unknown>(): Promise<T> {
+    async getLanguages(): Promise<Models.LanguageList> {
         let path = '/locale/languages';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
 }

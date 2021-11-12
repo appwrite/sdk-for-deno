@@ -1,9 +1,9 @@
 import { Service } from '../service.ts';
 import { Payload } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
+import type { Models } from '../models.d.ts'
 
 export class Users extends Service {
-
     /**
      * List Users
      *
@@ -17,7 +17,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async list<T extends unknown>(search?: string, limit?: number, offset?: number, orderType?: string): Promise<T> {
+    async list<Preferences extends Models.Preferences>(search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.UserList<Preferences>> {
         let path = '/users';
         let payload: Payload = {};
 
@@ -38,10 +38,9 @@ export class Users extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Create User
      *
@@ -53,7 +52,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create<T extends unknown>(email: string, password: string, name?: string): Promise<T> {
+    async create<Preferences extends Models.Preferences>(email: string, password: string, name?: string): Promise<Models.User<Preferences>> {
         if (typeof email === 'undefined') {
             throw new AppwriteException('Missing required parameter: "email"');
         }
@@ -78,10 +77,9 @@ export class Users extends Service {
         }
 
         return await this.client.call('post', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get User
      *
@@ -91,7 +89,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async get<T extends unknown>(userId: string): Promise<T> {
+    async get<Preferences extends Models.Preferences>(userId: string): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -100,10 +98,9 @@ export class Users extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Delete User
      *
@@ -113,7 +110,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async delete<T extends unknown>(userId: string): Promise<T> {
+    async delete(userId: string): Promise<Response> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -122,10 +119,9 @@ export class Users extends Service {
         let payload: Payload = {};
 
         return await this.client.call('delete', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update Email
      *
@@ -136,7 +132,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateEmail<T extends unknown>(userId: string, email: string): Promise<T> {
+    async updateEmail<Preferences extends Models.Preferences>(userId: string, email: string): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -153,10 +149,9 @@ export class Users extends Service {
         }
 
         return await this.client.call('patch', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get User Logs
      *
@@ -166,7 +161,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getLogs<T extends unknown>(userId: string): Promise<T> {
+    async getLogs(userId: string): Promise<Models.LogList> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -175,10 +170,9 @@ export class Users extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update Name
      *
@@ -189,7 +183,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateName<T extends unknown>(userId: string, name: string): Promise<T> {
+    async updateName<Preferences extends Models.Preferences>(userId: string, name: string): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -206,10 +200,9 @@ export class Users extends Service {
         }
 
         return await this.client.call('patch', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update Password
      *
@@ -220,7 +213,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updatePassword<T extends unknown>(userId: string, password: string): Promise<T> {
+    async updatePassword<Preferences extends Models.Preferences>(userId: string, password: string): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -237,10 +230,9 @@ export class Users extends Service {
         }
 
         return await this.client.call('patch', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get User Preferences
      *
@@ -250,7 +242,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getPrefs<T extends unknown>(userId: string): Promise<T> {
+    async getPrefs<Preferences extends Models.Preferences>(userId: string): Promise<Preferences> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -259,10 +251,9 @@ export class Users extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update User Preferences
      *
@@ -274,7 +265,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updatePrefs<T extends unknown>(userId: string, prefs: object): Promise<T> {
+    async updatePrefs<Preferences extends Models.Preferences>(userId: string, prefs: object): Promise<Preferences> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -291,10 +282,9 @@ export class Users extends Service {
         }
 
         return await this.client.call('patch', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get User Sessions
      *
@@ -304,7 +294,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getSessions<T extends unknown>(userId: string): Promise<T> {
+    async getSessions(userId: string): Promise<Models.SessionList> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -313,10 +303,9 @@ export class Users extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Delete User Sessions
      *
@@ -326,7 +315,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async deleteSessions<T extends unknown>(userId: string): Promise<T> {
+    async deleteSessions(userId: string): Promise<Response> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -335,10 +324,9 @@ export class Users extends Service {
         let payload: Payload = {};
 
         return await this.client.call('delete', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Delete User Session
      *
@@ -349,7 +337,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async deleteSession<T extends unknown>(userId: string, sessionId: string): Promise<T> {
+    async deleteSession(userId: string, sessionId: string): Promise<Response> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -362,10 +350,9 @@ export class Users extends Service {
         let payload: Payload = {};
 
         return await this.client.call('delete', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update User Status
      *
@@ -376,7 +363,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateStatus<T extends unknown>(userId: string, status: number): Promise<T> {
+    async updateStatus<Preferences extends Models.Preferences>(userId: string, status: number): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -393,10 +380,9 @@ export class Users extends Service {
         }
 
         return await this.client.call('patch', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update Email Verification
      *
@@ -407,7 +393,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateVerification<T extends unknown>(userId: string, emailVerification: boolean): Promise<T> {
+    async updateVerification<Preferences extends Models.Preferences>(userId: string, emailVerification: boolean): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -424,7 +410,7 @@ export class Users extends Service {
         }
 
         return await this.client.call('patch', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
 }

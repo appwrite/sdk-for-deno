@@ -1,9 +1,9 @@
 import { Service } from '../service.ts';
 import { Payload } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
+import type { Models } from '../models.d.ts'
 
 export class Teams extends Service {
-
     /**
      * List Teams
      *
@@ -19,7 +19,7 @@ export class Teams extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async list<T extends unknown>(search?: string, limit?: number, offset?: number, orderType?: string): Promise<T> {
+    async list(search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.TeamList> {
         let path = '/teams';
         let payload: Payload = {};
 
@@ -40,10 +40,9 @@ export class Teams extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Create Team
      *
@@ -57,7 +56,7 @@ export class Teams extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create<T extends unknown>(name: string, roles?: string[]): Promise<T> {
+    async create(name: string, roles?: string[]): Promise<Models.Team> {
         if (typeof name === 'undefined') {
             throw new AppwriteException('Missing required parameter: "name"');
         }
@@ -74,10 +73,9 @@ export class Teams extends Service {
         }
 
         return await this.client.call('post', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Team
      *
@@ -88,7 +86,7 @@ export class Teams extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async get<T extends unknown>(teamId: string): Promise<T> {
+    async get(teamId: string): Promise<Models.Team> {
         if (typeof teamId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
@@ -97,10 +95,9 @@ export class Teams extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update Team
      *
@@ -112,7 +109,7 @@ export class Teams extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async update<T extends unknown>(teamId: string, name: string): Promise<T> {
+    async update(teamId: string, name: string): Promise<Models.Team> {
         if (typeof teamId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
@@ -129,10 +126,9 @@ export class Teams extends Service {
         }
 
         return await this.client.call('put', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Delete Team
      *
@@ -143,7 +139,7 @@ export class Teams extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async delete<T extends unknown>(teamId: string): Promise<T> {
+    async delete(teamId: string): Promise<Response> {
         if (typeof teamId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
@@ -152,10 +148,9 @@ export class Teams extends Service {
         let payload: Payload = {};
 
         return await this.client.call('delete', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Team Memberships
      *
@@ -170,7 +165,7 @@ export class Teams extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getMemberships<T extends unknown>(teamId: string, search?: string, limit?: number, offset?: number, orderType?: string): Promise<T> {
+    async getMemberships(teamId: string, search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.MembershipList> {
         if (typeof teamId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
@@ -195,10 +190,9 @@ export class Teams extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Create Team Membership
      *
@@ -227,7 +221,7 @@ export class Teams extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createMembership<T extends unknown>(teamId: string, email: string, roles: string[], url: string, name?: string): Promise<T> {
+    async createMembership(teamId: string, email: string, roles: string[], url: string, name?: string): Promise<Models.Membership> {
         if (typeof teamId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
@@ -264,10 +258,9 @@ export class Teams extends Service {
         }
 
         return await this.client.call('post', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update Membership Roles
      *
@@ -277,7 +270,7 @@ export class Teams extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateMembershipRoles<T extends unknown>(teamId: string, membershipId: string, roles: string[]): Promise<T> {
+    async updateMembershipRoles(teamId: string, membershipId: string, roles: string[]): Promise<Models.Membership> {
         if (typeof teamId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
@@ -298,10 +291,9 @@ export class Teams extends Service {
         }
 
         return await this.client.call('patch', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Delete Team Membership
      *
@@ -314,7 +306,7 @@ export class Teams extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async deleteMembership<T extends unknown>(teamId: string, membershipId: string): Promise<T> {
+    async deleteMembership(teamId: string, membershipId: string): Promise<Response> {
         if (typeof teamId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
@@ -327,10 +319,9 @@ export class Teams extends Service {
         let payload: Payload = {};
 
         return await this.client.call('delete', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update Team Membership Status
      *
@@ -345,7 +336,7 @@ export class Teams extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateMembershipStatus<T extends unknown>(teamId: string, membershipId: string, userId: string, secret: string): Promise<T> {
+    async updateMembershipStatus(teamId: string, membershipId: string, userId: string, secret: string): Promise<Models.Membership> {
         if (typeof teamId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
@@ -374,7 +365,7 @@ export class Teams extends Service {
         }
 
         return await this.client.call('patch', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
 }

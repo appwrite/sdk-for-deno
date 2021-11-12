@@ -1,9 +1,9 @@
 import { Service } from '../service.ts';
 import { Payload } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
+import type { Models } from '../models.d.ts'
 
 export class Functions extends Service {
-
     /**
      * List Functions
      *
@@ -17,7 +17,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async list<T extends unknown>(search?: string, limit?: number, offset?: number, orderType?: string): Promise<T> {
+    async list(search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.FunctionList> {
         let path = '/functions';
         let payload: Payload = {};
 
@@ -38,10 +38,9 @@ export class Functions extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Create Function
      *
@@ -59,7 +58,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create<T extends unknown>(name: string, execute: string[], runtime: string, vars?: object, events?: string[], schedule?: string, timeout?: number): Promise<T> {
+    async create(name: string, execute: string[], runtime: string, vars?: object, events?: string[], schedule?: string, timeout?: number): Promise<Models.Function> {
         if (typeof name === 'undefined') {
             throw new AppwriteException('Missing required parameter: "name"');
         }
@@ -104,10 +103,9 @@ export class Functions extends Service {
         }
 
         return await this.client.call('post', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Function
      *
@@ -117,7 +115,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async get<T extends unknown>(functionId: string): Promise<T> {
+    async get(functionId: string): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -126,10 +124,9 @@ export class Functions extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update Function
      *
@@ -145,7 +142,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async update<T extends unknown>(functionId: string, name: string, execute: string[], vars?: object, events?: string[], schedule?: string, timeout?: number): Promise<T> {
+    async update(functionId: string, name: string, execute: string[], vars?: object, events?: string[], schedule?: string, timeout?: number): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -186,10 +183,9 @@ export class Functions extends Service {
         }
 
         return await this.client.call('put', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Delete Function
      *
@@ -199,7 +195,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async delete<T extends unknown>(functionId: string): Promise<T> {
+    async delete(functionId: string): Promise<Response> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -208,10 +204,9 @@ export class Functions extends Service {
         let payload: Payload = {};
 
         return await this.client.call('delete', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * List Executions
      *
@@ -228,7 +223,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listExecutions<T extends unknown>(functionId: string, search?: string, limit?: number, offset?: number, orderType?: string): Promise<T> {
+    async listExecutions(functionId: string, search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.ExecutionList> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -253,10 +248,9 @@ export class Functions extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Create Execution
      *
@@ -270,7 +264,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createExecution<T extends unknown>(functionId: string, data?: string): Promise<T> {
+    async createExecution(functionId: string, data?: string): Promise<Models.Execution> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -283,10 +277,9 @@ export class Functions extends Service {
         }
 
         return await this.client.call('post', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Execution
      *
@@ -297,7 +290,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getExecution<T extends unknown>(functionId: string, executionId: string): Promise<T> {
+    async getExecution(functionId: string, executionId: string): Promise<Models.Execution> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -310,10 +303,9 @@ export class Functions extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update Function Tag
      *
@@ -326,7 +318,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateTag<T extends unknown>(functionId: string, tag: string): Promise<T> {
+    async updateTag(functionId: string, tag: string): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -343,10 +335,9 @@ export class Functions extends Service {
         }
 
         return await this.client.call('patch', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * List Tags
      *
@@ -361,7 +352,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listTags<T extends unknown>(functionId: string, search?: string, limit?: number, offset?: number, orderType?: string): Promise<T> {
+    async listTags(functionId: string, search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.TagList> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -386,10 +377,9 @@ export class Functions extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Create Tag
      *
@@ -410,7 +400,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createTag<T extends unknown>(functionId: string, command: string, code: File | Blob): Promise<T> {
+    async createTag(functionId: string, command: string, code: File | Blob): Promise<Models.Tag> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -435,10 +425,9 @@ export class Functions extends Service {
         }
 
         return await this.client.call('post', path, {
-                    'content-type': 'multipart/form-data',
-               }, payload);
+            'content-type': 'multipart/form-data',
+        }, payload);
     }
-
     /**
      * Get Tag
      *
@@ -449,7 +438,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getTag<T extends unknown>(functionId: string, tagId: string): Promise<T> {
+    async getTag(functionId: string, tagId: string): Promise<Models.Tag> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -462,10 +451,9 @@ export class Functions extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Delete Tag
      *
@@ -476,7 +464,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async deleteTag<T extends unknown>(functionId: string, tagId: string): Promise<T> {
+    async deleteTag(functionId: string, tagId: string): Promise<Response> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -489,7 +477,7 @@ export class Functions extends Service {
         let payload: Payload = {};
 
         return await this.client.call('delete', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
 }

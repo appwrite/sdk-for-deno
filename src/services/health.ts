@@ -1,9 +1,9 @@
 import { Service } from '../service.ts';
 import { Payload } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
+import type { Models } from '../models.d.ts'
 
 export class Health extends Service {
-
     /**
      * Get HTTP
      *
@@ -12,15 +12,14 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async get<T extends unknown>(): Promise<T> {
+    async get(): Promise<Response> {
         let path = '/health';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Anti virus
      *
@@ -29,15 +28,14 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getAntiVirus<T extends unknown>(): Promise<T> {
+    async getAntiVirus(): Promise<Response> {
         let path = '/health/anti-virus';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Cache
      *
@@ -47,15 +45,14 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getCache<T extends unknown>(): Promise<T> {
+    async getCache(): Promise<Response> {
         let path = '/health/cache';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get DB
      *
@@ -64,15 +61,14 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getDB<T extends unknown>(): Promise<T> {
+    async getDB(): Promise<Response> {
         let path = '/health/db';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Certificate Queue
      *
@@ -83,30 +79,28 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueCertificates<T extends unknown>(): Promise<T> {
+    async getQueueCertificates(): Promise<Response> {
         let path = '/health/queue/certificates';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Functions Queue
      *
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueFunctions<T extends unknown>(): Promise<T> {
+    async getQueueFunctions(): Promise<Response> {
         let path = '/health/queue/functions';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Logs Queue
      *
@@ -116,15 +110,14 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueLogs<T extends unknown>(): Promise<T> {
+    async getQueueLogs(): Promise<Response> {
         let path = '/health/queue/logs';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Tasks Queue
      *
@@ -134,15 +127,14 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueTasks<T extends unknown>(): Promise<T> {
+    async getQueueTasks(): Promise<Response> {
         let path = '/health/queue/tasks';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Usage Queue
      *
@@ -152,15 +144,14 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueUsage<T extends unknown>(): Promise<T> {
+    async getQueueUsage(): Promise<Response> {
         let path = '/health/queue/usage';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Webhooks Queue
      *
@@ -170,15 +161,14 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueWebhooks<T extends unknown>(): Promise<T> {
+    async getQueueWebhooks(): Promise<Response> {
         let path = '/health/queue/webhooks';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Local Storage
      *
@@ -187,15 +177,14 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getStorageLocal<T extends unknown>(): Promise<T> {
+    async getStorageLocal(): Promise<Response> {
         let path = '/health/storage/local';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Time
      *
@@ -210,12 +199,12 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getTime<T extends unknown>(): Promise<T> {
+    async getTime(): Promise<Response> {
         let path = '/health/time';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
 }

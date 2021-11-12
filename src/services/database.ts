@@ -1,9 +1,9 @@
 import { Service } from '../service.ts';
 import { Payload } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
+import type { Models } from '../models.d.ts'
 
 export class Database extends Service {
-
     /**
      * List Collections
      *
@@ -19,7 +19,7 @@ export class Database extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listCollections<T extends unknown>(search?: string, limit?: number, offset?: number, orderType?: string): Promise<T> {
+    async listCollections(search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.CollectionList> {
         let path = '/database/collections';
         let payload: Payload = {};
 
@@ -40,10 +40,9 @@ export class Database extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Create Collection
      *
@@ -56,7 +55,7 @@ export class Database extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createCollection<T extends unknown>(name: string, read: string[], write: string[], rules: string[]): Promise<T> {
+    async createCollection(name: string, read: string[], write: string[], rules: string[]): Promise<Models.Collection> {
         if (typeof name === 'undefined') {
             throw new AppwriteException('Missing required parameter: "name"');
         }
@@ -93,10 +92,9 @@ export class Database extends Service {
         }
 
         return await this.client.call('post', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Collection
      *
@@ -107,7 +105,7 @@ export class Database extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getCollection<T extends unknown>(collectionId: string): Promise<T> {
+    async getCollection(collectionId: string): Promise<Models.Collection> {
         if (typeof collectionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
@@ -116,10 +114,9 @@ export class Database extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update Collection
      *
@@ -133,7 +130,7 @@ export class Database extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateCollection<T extends unknown>(collectionId: string, name: string, read?: string[], write?: string[], rules?: string[]): Promise<T> {
+    async updateCollection(collectionId: string, name: string, read?: string[], write?: string[], rules?: string[]): Promise<Models.Collection> {
         if (typeof collectionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
@@ -162,10 +159,9 @@ export class Database extends Service {
         }
 
         return await this.client.call('put', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Delete Collection
      *
@@ -176,7 +172,7 @@ export class Database extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async deleteCollection<T extends unknown>(collectionId: string): Promise<T> {
+    async deleteCollection(collectionId: string): Promise<Response> {
         if (typeof collectionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
@@ -185,10 +181,9 @@ export class Database extends Service {
         let payload: Payload = {};
 
         return await this.client.call('delete', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * List Documents
      *
@@ -208,7 +203,7 @@ export class Database extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listDocuments<T extends unknown>(collectionId: string, filters?: string[], limit?: number, offset?: number, orderField?: string, orderType?: string, orderCast?: string, search?: string): Promise<T> {
+    async listDocuments<Document extends Models.Document>(collectionId: string, filters?: string[], limit?: number, offset?: number, orderField?: string, orderType?: string, orderCast?: string, search?: string): Promise<Models.DocumentList<Document>> {
         if (typeof collectionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
@@ -245,10 +240,9 @@ export class Database extends Service {
         }
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Create Document
      *
@@ -267,7 +261,7 @@ export class Database extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createDocument<T extends unknown>(collectionId: string, data: object, read?: string[], write?: string[], parentDocument?: string, parentProperty?: string, parentPropertyType?: string): Promise<T> {
+    async createDocument<Document extends Models.Document>(collectionId: string, data: object, read?: string[], write?: string[], parentDocument?: string, parentProperty?: string, parentPropertyType?: string): Promise<Document> {
         if (typeof collectionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
@@ -304,10 +298,9 @@ export class Database extends Service {
         }
 
         return await this.client.call('post', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Get Document
      *
@@ -319,7 +312,7 @@ export class Database extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getDocument<T extends unknown>(collectionId: string, documentId: string): Promise<T> {
+    async getDocument<Document extends Models.Document>(collectionId: string, documentId: string): Promise<Document> {
         if (typeof collectionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
@@ -332,10 +325,9 @@ export class Database extends Service {
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Update Document
      *
@@ -350,7 +342,7 @@ export class Database extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateDocument<T extends unknown>(collectionId: string, documentId: string, data: object, read?: string[], write?: string[]): Promise<T> {
+    async updateDocument<Document extends Models.Document>(collectionId: string, documentId: string, data: object, read?: string[], write?: string[]): Promise<Document> {
         if (typeof collectionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
@@ -379,10 +371,9 @@ export class Database extends Service {
         }
 
         return await this.client.call('patch', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
-
     /**
      * Delete Document
      *
@@ -395,7 +386,7 @@ export class Database extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async deleteDocument<T extends unknown>(collectionId: string, documentId: string): Promise<T> {
+    async deleteDocument(collectionId: string, documentId: string): Promise<Response> {
         if (typeof collectionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
@@ -408,7 +399,7 @@ export class Database extends Service {
         let payload: Payload = {};
 
         return await this.client.call('delete', path, {
-                    'content-type': 'application/json',
-               }, payload);
+            'content-type': 'application/json',
+        }, payload);
     }
 }

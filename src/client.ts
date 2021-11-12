@@ -8,10 +8,10 @@ export class Client {
     endpoint: string = 'https://appwrite.io/v1';
     headers: Payload = {
         'content-type': '',
-        'x-sdk-version': 'appwrite:deno:0.4.1',
+        'x-sdk-version': 'appwrite:deno:1.0.0',
         'X-Appwrite-Response-Format':'0.11.0',
     };
-    
+
     /**
      * Set Project
      *
@@ -87,7 +87,7 @@ export class Client {
      */
     addHeader(key: string, value: string): this {
         this.headers[key.toLowerCase()] = value;
-        
+
         return this;
     }
 
@@ -118,7 +118,7 @@ export class Client {
         } else {
             body = JSON.stringify(params);
         }
-        
+
         const options = {
             method: method.toUpperCase(),
             headers: headers,

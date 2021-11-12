@@ -23,3 +23,5 @@ export {
     Teams,
     Users,
 };
+
+export type { Models } from "./src/models.d.ts";
