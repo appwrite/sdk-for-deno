@@ -34,7 +34,6 @@ client
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
     .setSelfSigned() // Use only on dev mode with a self-signed SSL cert
 ;
-
 ```
 
 ### Make your first request
@@ -44,13 +43,7 @@ Once your SDK object is set, create any of the Appwrite service objects and choo
 ```typescript
 let users = new sdk.Users(client);
 
-let promise = users.create('email@example.com', 'password');
-
-promise.then(function (response) {
-    console.log(response);
-}, function (error) {
-    console.log(error);
-});
+let user = await users.create('email@example.com', 'password');
 ```
 
 ### Full Example
@@ -67,13 +60,7 @@ client
     .setSelfSigned() // Use only on dev mode with a self-signed SSL cert
 ;
 
-let promise = users.create('email@example.com', 'password');
-
-promise.then(function (response) {
-    console.log(response);
-}, function (error) {
-    console.log(error);
-});
+let user = await users.create('email@example.com', 'password');
 ```
 
 ### Error Handling
