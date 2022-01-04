@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = database.updateCollection('[COLLECTION_ID]', '[NAME]');
+let promise = database.updateCollection('[COLLECTION_ID]', '[NAME]', 'document');
 
 promise.then(function (response) {
     console.log(response);

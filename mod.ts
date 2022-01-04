@@ -1,4 +1,5 @@
 import { Client } from "./src/client.ts";
+import { Query } from "./src/query.ts";
 import { AppwriteException } from "./src/exception.ts";
 import { Account } from "./src/services/account.ts";
 import { Avatars } from "./src/services/avatars.ts";
@@ -12,6 +13,7 @@ import { Users } from "./src/services/users.ts";
 
 export {
     Client,
+    Query,
     AppwriteException,
     Account,
     Avatars,
@@ -25,3 +27,4 @@ export {
 };
 
 export type { Models } from "./src/models.d.ts";
+export type { QueryTypes, QueryTypesList } from "./src/query.ts";

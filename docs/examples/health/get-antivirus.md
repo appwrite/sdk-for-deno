@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = health.getQueueTasks();
+let promise = health.getAntivirus();
 
 promise.then(function (response) {
     console.log(response);

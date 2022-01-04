@@ -14,11 +14,13 @@ export class Storage extends Service {
      * @param {string} search
      * @param {number} limit
      * @param {number} offset
+     * @param {string} cursor
+     * @param {string} cursorDirection
      * @param {string} orderType
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listFiles(search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.FileList> {
+    async listFiles(search?: string, limit?: number, offset?: number, cursor?: string, cursorDirection?: string, orderType?: string): Promise<Models.FileList> {
         let path = '/storage/files';
         let payload: Payload = {};
 
@@ -32,6 +34,14 @@ export class Storage extends Service {
 
         if (typeof offset !== 'undefined') {
             payload['offset'] = offset;
+        }
+
+        if (typeof cursor !== 'undefined') {
+            payload['cursor'] = cursor;
+        }
+
+        if (typeof cursorDirection !== 'undefined') {
+            payload['cursorDirection'] = cursorDirection;
         }
 
         if (typeof orderType !== 'undefined') {
@@ -49,19 +59,28 @@ export class Storage extends Service {
      * assigned to read and write access unless he has passed custom values for
      * read and write arguments.
      *
+     * @param {string} fileId
      * @param {File | Blob} file
      * @param {string[]} read
      * @param {string[]} write
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createFile(file: File | Blob, read?: string[], write?: string[]): Promise<Models.File> {
+    async createFile(fileId: string, file: File | Blob, read?: string[], write?: string[]): Promise<Models.File> {
+        if (typeof fileId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "fileId"');
+        }
+
         if (typeof file === 'undefined') {
             throw new AppwriteException('Missing required parameter: "file"');
         }
 
         let path = '/storage/files';
         let payload: Payload = {};
+
+        if (typeof fileId !== 'undefined') {
+            payload['fileId'] = fileId;
+        }
 
         if (typeof file !== 'undefined') {
             payload['file'] = file;

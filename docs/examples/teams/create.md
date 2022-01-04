@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = teams.create('[NAME]');
+let promise = teams.create('', '[NAME]');
 
 promise.then(function (response) {
     console.log(response);

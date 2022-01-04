@@ -9,7 +9,7 @@ export class Client {
     headers: Payload = {
         'content-type': '',
         'x-sdk-version': 'appwrite:deno:1.0.0',
-        'X-Appwrite-Response-Format':'0.11.0',
+        'X-Appwrite-Response-Format':'0.12.0',
     };
 
     /**

@@ -13,6 +13,19 @@ export namespace Models {
         collections: Collection[];
     }
     /**
+     * Indexes List
+     */
+    export type IndexList = { 
+        /**
+         * Total number of items available on the server.
+         */
+        sum: number;
+        /**
+         * List of indexes.
+         */
+        indexes: Index[];
+    }
+    /**
      * Documents List
      */
     export type DocumentList<Document extends Models.Document> = { 
@@ -55,6 +68,10 @@ export namespace Models {
      * Logs List
      */
     export type LogList = { 
+        /**
+         * Total number of items available on the server.
+         */
+        sum: number;
         /**
          * List of logs.
          */
@@ -111,6 +128,19 @@ export namespace Models {
          * List of functions.
          */
         functions: Function[];
+    }
+    /**
+     * Runtimes List
+     */
+    export type RuntimeList = { 
+        /**
+         * Total number of items available on the server.
+         */
+        sum: number;
+        /**
+         * List of runtimes.
+         */
+        runtimes: Runtime[];
     }
     /**
      * Tags List
@@ -204,19 +234,6 @@ export namespace Models {
         phones: Phone[];
     }
     /**
-     * Permissions
-     */
-    export type Permissions = { 
-        /**
-         * Read permissions.
-         */
-        read: string[];
-        /**
-         * Write permissions.
-         */
-        write: string[];
-    }
-    /**
      * Collection
      */
     export type Collection = { 
@@ -225,25 +242,343 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Collection permissions.
+         * Collection read permissions.
          */
-        $permissions: Permissions;
+        $read: string[];
+        /**
+         * Collection write permissions.
+         */
+        $write: string[];
         /**
          * Collection name.
          */
         name: string;
         /**
-         * Collection creation date in Unix timestamp.
+         * Collection enabled.
          */
-        dateCreated: number;
+        enabled: boolean;
         /**
-         * Collection creation date in Unix timestamp.
+         * Collection permission model. Possible values: `document` or `collection`
          */
-        dateUpdated: number;
+        permission: string;
         /**
-         * Collection rules.
+         * Collection attributes.
          */
-        rules: Rule[];
+        attributes: string[];
+        /**
+         * Collection indexes.
+         */
+        indexes: Index[];
+    }
+    /**
+     * Attributes List
+     */
+    export type AttributeList = { 
+        /**
+         * Total sum of items in the list.
+         */
+        sum: number;
+        /**
+         * List of attributes.
+         */
+        attributes: string[];
+    }
+    /**
+     * AttributeString
+     */
+    export type AttributeString = { 
+        /**
+         * Attribute Key.
+         */
+        key: string;
+        /**
+         * Attribute type.
+         */
+        type: string;
+        /**
+         * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+         */
+        status: string;
+        /**
+         * Is attribute required?
+         */
+        required: boolean;
+        /**
+         * Is attribute an array?
+         */
+        array?: boolean;
+        /**
+         * Attribute size.
+         */
+        size: string;
+        /**
+         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         */
+        xdefault?: string;
+    }
+    /**
+     * AttributeInteger
+     */
+    export type AttributeInteger = { 
+        /**
+         * Attribute Key.
+         */
+        key: string;
+        /**
+         * Attribute type.
+         */
+        type: string;
+        /**
+         * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+         */
+        status: string;
+        /**
+         * Is attribute required?
+         */
+        required: boolean;
+        /**
+         * Is attribute an array?
+         */
+        array?: boolean;
+        /**
+         * Minimum value to enforce for new documents.
+         */
+        min?: number;
+        /**
+         * Maximum value to enforce for new documents.
+         */
+        max?: number;
+        /**
+         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         */
+        xdefault?: number;
+    }
+    /**
+     * AttributeFloat
+     */
+    export type AttributeFloat = { 
+        /**
+         * Attribute Key.
+         */
+        key: string;
+        /**
+         * Attribute type.
+         */
+        type: string;
+        /**
+         * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+         */
+        status: string;
+        /**
+         * Is attribute required?
+         */
+        required: boolean;
+        /**
+         * Is attribute an array?
+         */
+        array?: boolean;
+        /**
+         * Minimum value to enforce for new documents.
+         */
+        min?: number;
+        /**
+         * Maximum value to enforce for new documents.
+         */
+        max?: number;
+        /**
+         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         */
+        xdefault?: number;
+    }
+    /**
+     * AttributeBoolean
+     */
+    export type AttributeBoolean = { 
+        /**
+         * Attribute Key.
+         */
+        key: string;
+        /**
+         * Attribute type.
+         */
+        type: string;
+        /**
+         * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+         */
+        status: string;
+        /**
+         * Is attribute required?
+         */
+        required: boolean;
+        /**
+         * Is attribute an array?
+         */
+        array?: boolean;
+        /**
+         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         */
+        xdefault?: boolean;
+    }
+    /**
+     * AttributeEmail
+     */
+    export type AttributeEmail = { 
+        /**
+         * Attribute Key.
+         */
+        key: string;
+        /**
+         * Attribute type.
+         */
+        type: string;
+        /**
+         * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+         */
+        status: string;
+        /**
+         * Is attribute required?
+         */
+        required: boolean;
+        /**
+         * Is attribute an array?
+         */
+        array?: boolean;
+        /**
+         * String format.
+         */
+        format: string;
+        /**
+         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         */
+        xdefault?: string;
+    }
+    /**
+     * AttributeEnum
+     */
+    export type AttributeEnum = { 
+        /**
+         * Attribute Key.
+         */
+        key: string;
+        /**
+         * Attribute type.
+         */
+        type: string;
+        /**
+         * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+         */
+        status: string;
+        /**
+         * Is attribute required?
+         */
+        required: boolean;
+        /**
+         * Is attribute an array?
+         */
+        array?: boolean;
+        /**
+         * Array of elements in enumerated type.
+         */
+        elements: string[];
+        /**
+         * String format.
+         */
+        format: string;
+        /**
+         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         */
+        xdefault?: string;
+    }
+    /**
+     * AttributeIP
+     */
+    export type AttributeIp = { 
+        /**
+         * Attribute Key.
+         */
+        key: string;
+        /**
+         * Attribute type.
+         */
+        type: string;
+        /**
+         * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+         */
+        status: string;
+        /**
+         * Is attribute required?
+         */
+        required: boolean;
+        /**
+         * Is attribute an array?
+         */
+        array?: boolean;
+        /**
+         * String format.
+         */
+        format: string;
+        /**
+         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         */
+        xdefault?: string;
+    }
+    /**
+     * AttributeURL
+     */
+    export type AttributeUrl = { 
+        /**
+         * Attribute Key.
+         */
+        key: string;
+        /**
+         * Attribute type.
+         */
+        type: string;
+        /**
+         * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+         */
+        status: string;
+        /**
+         * Is attribute required?
+         */
+        required: boolean;
+        /**
+         * Is attribute an array?
+         */
+        array?: boolean;
+        /**
+         * String format.
+         */
+        format: string;
+        /**
+         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         */
+        xdefault?: string;
+    }
+    /**
+     * Index
+     */
+    export type Index = { 
+        /**
+         * Index Key.
+         */
+        key: string;
+        /**
+         * Index type.
+         */
+        type: string;
+        /**
+         * Index status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+         */
+        status: string;
+        /**
+         * Index attributes.
+         */
+        attributes: string[];
+        /**
+         * Index orders.
+         */
+        orders: string[];
     }
     /**
      * Document
@@ -258,50 +593,13 @@ export namespace Models {
          */
         $collection: string;
         /**
-         * Document permissions.
+         * Document read permissions.
          */
-        $permissions: Permissions;
-    }
-    /**
-     * Rule
-     */
-    export type Rule = { 
+        $read: string[];
         /**
-         * Rule ID.
+         * Document write permissions.
          */
-        $id: string;
-        /**
-         * Rule Collection.
-         */
-        $collection: string;
-        /**
-         * Rule type. Possible values: 
-         */
-        type: string;
-        /**
-         * Rule key.
-         */
-        key: string;
-        /**
-         * Rule label.
-         */
-        label: string;
-        /**
-         * Rule default value.
-         */
-        xdefault: string;
-        /**
-         * Is array?
-         */
-        array: boolean;
-        /**
-         * Is required?
-         */
-        required: boolean;
-        /**
-         * List of allowed values
-         */
-        list: string[];
+        $write: string[];
     }
     /**
      * Log
@@ -311,6 +609,22 @@ export namespace Models {
          * Event name.
          */
         event: string;
+        /**
+         * User ID.
+         */
+        userId: string;
+        /**
+         * User Email.
+         */
+        userEmail: string;
+        /**
+         * User Name.
+         */
+        userName: string;
+        /**
+         * API mode when event triggered.
+         */
+        mode: string;
         /**
          * IP session in use when the session was created.
          */
@@ -393,9 +707,9 @@ export namespace Models {
          */
         registration: number;
         /**
-         * User status. 0 for Unactivated, 1 for active and 2 is blocked.
+         * User status. Pass `true` for enabled and `false` for disabled.
          */
-        status: number;
+        status: boolean;
         /**
          * Unix timestamp of the most recent password update
          */
@@ -574,9 +888,13 @@ export namespace Models {
          */
         $id: string;
         /**
-         * File permissions.
+         * File read permissions.
          */
-        $permissions: Permissions;
+        $read: string[];
+        /**
+         * File write permissions.
+         */
+        $write: string[];
         /**
          * File name.
          */
@@ -669,9 +987,9 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Function permissions.
+         * Execution permissions.
          */
-        $permissions: Permissions;
+        execute: string;
         /**
          * Function name.
          */
@@ -685,7 +1003,7 @@ export namespace Models {
          */
         dateUpdated: number;
         /**
-         * Function status. Possible values: disabled, enabled
+         * Function status. Possible values: `disabled`, `enabled`
          */
         status: string;
         /**
@@ -722,6 +1040,39 @@ export namespace Models {
         timeout: number;
     }
     /**
+     * Runtime
+     */
+    export type Runtime = { 
+        /**
+         * Runtime ID.
+         */
+        $id: string;
+        /**
+         * Runtime Name.
+         */
+        name: string;
+        /**
+         * Runtime version.
+         */
+        version: string;
+        /**
+         * Base Docker image used to build the runtime.
+         */
+        base: string;
+        /**
+         * Image name of Docker Hub.
+         */
+        image: string;
+        /**
+         * Name of the logo image.
+         */
+        logo: string;
+        /**
+         * List of supported architectures.
+         */
+        supports: string[];
+    }
+    /**
      * Tag
      */
     export type Tag = { 
@@ -755,9 +1106,9 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Execution permissions.
+         * Execution read permissions.
          */
-        $permissions: Permissions;
+        $read: string[];
         /**
          * Function ID.
          */
@@ -883,5 +1234,57 @@ export namespace Models {
          * Country name.
          */
         countryName: string;
+    }
+    /**
+     * Health Antivirus
+     */
+    export type HealthAntivirus = { 
+        /**
+         * Antivirus version.
+         */
+        version: string;
+        /**
+         * Antivirus status. Possible values can are: `disabled`, `offline`, `online`
+         */
+        status: string;
+    }
+    /**
+     * Health Queue
+     */
+    export type HealthQueue = { 
+        /**
+         * Amount of actions in the queue.
+         */
+        size: number;
+    }
+    /**
+     * Health Status
+     */
+    export type HealthStatus = { 
+        /**
+         * Duration in milliseconds how long the health check took.
+         */
+        ping: number;
+        /**
+         * Service status. Possible values can are: `pass`, `fail`
+         */
+        status: string;
+    }
+    /**
+     * Health Time
+     */
+    export type HealthTime = { 
+        /**
+         * Current unix timestamp on trustful remote server.
+         */
+        remoteTime: number;
+        /**
+         * Current unix timestamp of local server where Appwrite runs.
+         */
+        localTime: number;
+        /**
+         * Difference of unix remote and local timestamps in milliseconds.
+         */
+        diff: number;
     }
 }

@@ -12,7 +12,7 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async get(): Promise<Response> {
+    async get(): Promise<Models.HealthStatus> {
         let path = '/health';
         let payload: Payload = {};
 
@@ -21,14 +21,14 @@ export class Health extends Service {
         }, payload);
     }
     /**
-     * Get Anti virus
+     * Get Antivirus
      *
-     * Check the Appwrite Anti Virus server is up and connection is successful.
+     * Check the Appwrite Antivirus server is up and connection is successful.
      *
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getAntiVirus(): Promise<Response> {
+    async getAntivirus(): Promise<Models.HealthAntivirus> {
         let path = '/health/anti-virus';
         let payload: Payload = {};
 
@@ -45,7 +45,7 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getCache(): Promise<Response> {
+    async getCache(): Promise<Models.HealthStatus> {
         let path = '/health/cache';
         let payload: Payload = {};
 
@@ -61,7 +61,7 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getDB(): Promise<Response> {
+    async getDB(): Promise<Models.HealthStatus> {
         let path = '/health/db';
         let payload: Payload = {};
 
@@ -70,7 +70,7 @@ export class Health extends Service {
         }, payload);
     }
     /**
-     * Get Certificate Queue
+     * Get Certificates Queue
      *
      * Get the number of certificates that are waiting to be issued against
      * [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
@@ -79,7 +79,7 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueCertificates(): Promise<Response> {
+    async getQueueCertificates(): Promise<Models.HealthQueue> {
         let path = '/health/queue/certificates';
         let payload: Payload = {};
 
@@ -93,7 +93,7 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueFunctions(): Promise<Response> {
+    async getQueueFunctions(): Promise<Models.HealthQueue> {
         let path = '/health/queue/functions';
         let payload: Payload = {};
 
@@ -110,25 +110,8 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueLogs(): Promise<Response> {
+    async getQueueLogs(): Promise<Models.HealthQueue> {
         let path = '/health/queue/logs';
-        let payload: Payload = {};
-
-        return await this.client.call('get', path, {
-            'content-type': 'application/json',
-        }, payload);
-    }
-    /**
-     * Get Tasks Queue
-     *
-     * Get the number of tasks that are waiting to be processed in the Appwrite
-     * internal queue server.
-     *
-     * @throws {AppwriteException}
-     * @returns {Promise}
-     */
-    async getQueueTasks(): Promise<Response> {
-        let path = '/health/queue/tasks';
         let payload: Payload = {};
 
         return await this.client.call('get', path, {
@@ -144,7 +127,7 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueUsage(): Promise<Response> {
+    async getQueueUsage(): Promise<Models.HealthQueue> {
         let path = '/health/queue/usage';
         let payload: Payload = {};
 
@@ -161,7 +144,7 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueWebhooks(): Promise<Response> {
+    async getQueueWebhooks(): Promise<Models.HealthQueue> {
         let path = '/health/queue/webhooks';
         let payload: Payload = {};
 
@@ -177,7 +160,7 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getStorageLocal(): Promise<Response> {
+    async getStorageLocal(): Promise<Models.HealthStatus> {
         let path = '/health/storage/local';
         let payload: Payload = {};
 
@@ -199,7 +182,7 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getTime(): Promise<Response> {
+    async getTime(): Promise<Models.HealthTime> {
         let path = '/health/time';
         let payload: Payload = {};
 

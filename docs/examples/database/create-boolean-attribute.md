@@ -3,7 +3,7 @@ import * as sdk from "https://deno.land/x/appwrite/mod.ts";
 // Init SDK
 let client = new sdk.Client();
 
-let users = new sdk.Users(client);
+let database = new sdk.Database(client);
 
 client
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = users.create('', 'email@example.com', 'password');
+let promise = database.createBooleanAttribute('[COLLECTION_ID]', '', false);
 
 promise.then(function (response) {
     console.log(response);

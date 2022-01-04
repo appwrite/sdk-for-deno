@@ -13,11 +13,13 @@ export class Functions extends Service {
      * @param {string} search
      * @param {number} limit
      * @param {number} offset
+     * @param {string} cursor
+     * @param {string} cursorDirection
      * @param {string} orderType
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async list(search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.FunctionList> {
+    async list(search?: string, limit?: number, offset?: number, cursor?: string, cursorDirection?: string, orderType?: string): Promise<Models.FunctionList> {
         let path = '/functions';
         let payload: Payload = {};
 
@@ -31,6 +33,14 @@ export class Functions extends Service {
 
         if (typeof offset !== 'undefined') {
             payload['offset'] = offset;
+        }
+
+        if (typeof cursor !== 'undefined') {
+            payload['cursor'] = cursor;
+        }
+
+        if (typeof cursorDirection !== 'undefined') {
+            payload['cursorDirection'] = cursorDirection;
         }
 
         if (typeof orderType !== 'undefined') {
@@ -48,6 +58,7 @@ export class Functions extends Service {
      * [permissions](/docs/permissions) to allow different project users or team
      * with access to execute the function using the client API.
      *
+     * @param {string} functionId
      * @param {string} name
      * @param {string[]} execute
      * @param {string} runtime
@@ -58,7 +69,11 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create(name: string, execute: string[], runtime: string, vars?: object, events?: string[], schedule?: string, timeout?: number): Promise<Models.Function> {
+    async create(functionId: string, name: string, execute: string[], runtime: string, vars?: object, events?: string[], schedule?: string, timeout?: number): Promise<Models.Function> {
+        if (typeof functionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         if (typeof name === 'undefined') {
             throw new AppwriteException('Missing required parameter: "name"');
         }
@@ -73,6 +88,10 @@ export class Functions extends Service {
 
         let path = '/functions';
         let payload: Payload = {};
+
+        if (typeof functionId !== 'undefined') {
+            payload['functionId'] = functionId;
+        }
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -103,6 +122,22 @@ export class Functions extends Service {
         }
 
         return await this.client.call('post', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * List the currently active function runtimes.
+     *
+     * Get a list of all runtimes that are currently active in your project.
+     *
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async listRuntimes(): Promise<Models.RuntimeList> {
+        let path = '/functions/runtimes';
+        let payload: Payload = {};
+
+        return await this.client.call('get', path, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -216,24 +251,21 @@ export class Functions extends Service {
      * different API modes](/docs/admin).
      *
      * @param {string} functionId
-     * @param {string} search
      * @param {number} limit
      * @param {number} offset
-     * @param {string} orderType
+     * @param {string} search
+     * @param {string} cursor
+     * @param {string} cursorDirection
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listExecutions(functionId: string, search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.ExecutionList> {
+    async listExecutions(functionId: string, limit?: number, offset?: number, search?: string, cursor?: string, cursorDirection?: string): Promise<Models.ExecutionList> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
         let path = '/functions/{functionId}/executions'.replace('{functionId}', functionId);
         let payload: Payload = {};
-
-        if (typeof search !== 'undefined') {
-            payload['search'] = search;
-        }
 
         if (typeof limit !== 'undefined') {
             payload['limit'] = limit;
@@ -243,8 +275,16 @@ export class Functions extends Service {
             payload['offset'] = offset;
         }
 
-        if (typeof orderType !== 'undefined') {
-            payload['orderType'] = orderType;
+        if (typeof search !== 'undefined') {
+            payload['search'] = search;
+        }
+
+        if (typeof cursor !== 'undefined') {
+            payload['cursor'] = cursor;
+        }
+
+        if (typeof cursorDirection !== 'undefined') {
+            payload['cursorDirection'] = cursorDirection;
         }
 
         return await this.client.call('get', path, {
@@ -348,11 +388,13 @@ export class Functions extends Service {
      * @param {string} search
      * @param {number} limit
      * @param {number} offset
+     * @param {string} cursor
+     * @param {string} cursorDirection
      * @param {string} orderType
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listTags(functionId: string, search?: string, limit?: number, offset?: number, orderType?: string): Promise<Models.TagList> {
+    async listTags(functionId: string, search?: string, limit?: number, offset?: number, cursor?: string, cursorDirection?: string, orderType?: string): Promise<Models.TagList> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -370,6 +412,14 @@ export class Functions extends Service {
 
         if (typeof offset !== 'undefined') {
             payload['offset'] = offset;
+        }
+
+        if (typeof cursor !== 'undefined') {
+            payload['cursor'] = cursor;
+        }
+
+        if (typeof cursorDirection !== 'undefined') {
+            payload['cursorDirection'] = cursorDirection;
         }
 
         if (typeof orderType !== 'undefined') {

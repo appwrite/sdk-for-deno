@@ -44,11 +44,13 @@ export class Account extends Service {
      * Update Account Email
      *
      * Update currently logged in user account email address. After changing user
-     * address, user confirmation status is being reset and a new confirmation
-     * mail is sent. For security measures, user password is required to complete
-     * this request.
+     * address, the user confirmation status will get reset. A new confirmation
+     * email is not sent automatically however you can use the send confirmation
+     * email endpoint again to send the confirmation email. For security measures,
+     * user password is required to complete this request.
      * This endpoint can also be used to convert an anonymous account to a normal
      * one, by passing an email address and a new password.
+     * 
      *
      * @param {string} email
      * @param {string} password
@@ -85,12 +87,22 @@ export class Account extends Service {
      * Get currently logged in user list of latest security activity logs. Each
      * log returns user IP address, location and date and time of log.
      *
+     * @param {number} limit
+     * @param {number} offset
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getLogs(): Promise<Models.LogList> {
+    async getLogs(limit?: number, offset?: number): Promise<Models.LogList> {
         let path = '/account/logs';
         let payload: Payload = {};
+
+        if (typeof limit !== 'undefined') {
+            payload['limit'] = limit;
+        }
+
+        if (typeof offset !== 'undefined') {
+            payload['offset'] = offset;
+        }
 
         return await this.client.call('get', path, {
             'content-type': 'application/json',
