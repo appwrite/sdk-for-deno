@@ -9,4 +9,7 @@ export class AppwriteException {
         this.response = response;
     }
 
+    public toString(): String {
+        return `${this.message} - ${this.code} - ${JSON.stringify(this.response)}`;
+    }
 }
