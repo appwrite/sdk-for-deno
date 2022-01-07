@@ -310,7 +310,7 @@ export namespace Models {
         /**
          * Attribute size.
          */
-        size: string;
+        size: number;
         /**
          * Default value for attribute when not provided. Cannot be set when attribute is required.
          */
