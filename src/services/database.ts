@@ -1,7 +1,16 @@
+import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
-import { Payload } from '../client.ts';
+import { Payload, Client } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
-import type { Models } from '../models.d.ts'
+import type { Models } from '../models.d.ts';
+
+export type UploadProgress = {
+    $id: string;
+    progress: number;
+    sizeUploaded: number;
+    chunksTotal: number;
+    chunksUploaded: number;
+}
 
 export class Database extends Service {
     /**
@@ -93,23 +102,18 @@ export class Database extends Service {
         if (typeof collectionId !== 'undefined') {
             payload['collectionId'] = collectionId;
         }
-
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-
         if (typeof permission !== 'undefined') {
             payload['permission'] = permission;
         }
-
         if (typeof read !== 'undefined') {
             payload['read'] = read;
         }
-
         if (typeof write !== 'undefined') {
             payload['write'] = write;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -169,23 +173,18 @@ export class Database extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-
         if (typeof permission !== 'undefined') {
             payload['permission'] = permission;
         }
-
         if (typeof read !== 'undefined') {
             payload['read'] = read;
         }
-
         if (typeof write !== 'undefined') {
             payload['write'] = write;
         }
-
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-
         return await this.client.call('put', path, {
             'content-type': 'application/json',
         }, payload);
@@ -264,19 +263,15 @@ export class Database extends Service {
         if (typeof key !== 'undefined') {
             payload['key'] = key;
         }
-
         if (typeof required !== 'undefined') {
             payload['required'] = required;
         }
-
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -314,19 +309,15 @@ export class Database extends Service {
         if (typeof key !== 'undefined') {
             payload['key'] = key;
         }
-
         if (typeof required !== 'undefined') {
             payload['required'] = required;
         }
-
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -366,23 +357,18 @@ export class Database extends Service {
         if (typeof key !== 'undefined') {
             payload['key'] = key;
         }
-
         if (typeof elements !== 'undefined') {
             payload['elements'] = elements;
         }
-
         if (typeof required !== 'undefined') {
             payload['required'] = required;
         }
-
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -397,14 +383,14 @@ export class Database extends Service {
      * @param {string} collectionId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} min
-     * @param {string} max
-     * @param {string} xdefault
+     * @param {number} min
+     * @param {number} max
+     * @param {number} xdefault
      * @param {boolean} array
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createFloatAttribute(collectionId: string, key: string, required: boolean, min?: string, max?: string, xdefault?: string, array?: boolean): Promise<Models.AttributeFloat> {
+    async createFloatAttribute(collectionId: string, key: string, required: boolean, min?: number, max?: number, xdefault?: number, array?: boolean): Promise<Models.AttributeFloat> {
         if (typeof collectionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
@@ -423,27 +409,21 @@ export class Database extends Service {
         if (typeof key !== 'undefined') {
             payload['key'] = key;
         }
-
         if (typeof required !== 'undefined') {
             payload['required'] = required;
         }
-
         if (typeof min !== 'undefined') {
             payload['min'] = min;
         }
-
         if (typeof max !== 'undefined') {
             payload['max'] = max;
         }
-
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -484,27 +464,21 @@ export class Database extends Service {
         if (typeof key !== 'undefined') {
             payload['key'] = key;
         }
-
         if (typeof required !== 'undefined') {
             payload['required'] = required;
         }
-
         if (typeof min !== 'undefined') {
             payload['min'] = min;
         }
-
         if (typeof max !== 'undefined') {
             payload['max'] = max;
         }
-
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -542,19 +516,15 @@ export class Database extends Service {
         if (typeof key !== 'undefined') {
             payload['key'] = key;
         }
-
         if (typeof required !== 'undefined') {
             payload['required'] = required;
         }
-
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -597,23 +567,18 @@ export class Database extends Service {
         if (typeof key !== 'undefined') {
             payload['key'] = key;
         }
-
         if (typeof size !== 'undefined') {
             payload['size'] = size;
         }
-
         if (typeof required !== 'undefined') {
             payload['required'] = required;
         }
-
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -651,19 +616,15 @@ export class Database extends Service {
         if (typeof key !== 'undefined') {
             payload['key'] = key;
         }
-
         if (typeof required !== 'undefined') {
             payload['required'] = required;
         }
-
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -810,19 +771,15 @@ export class Database extends Service {
         if (typeof documentId !== 'undefined') {
             payload['documentId'] = documentId;
         }
-
         if (typeof data !== 'undefined') {
             payload['data'] = data;
         }
-
         if (typeof read !== 'undefined') {
             payload['read'] = read;
         }
-
         if (typeof write !== 'undefined') {
             payload['write'] = write;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -887,15 +844,12 @@ export class Database extends Service {
         if (typeof data !== 'undefined') {
             payload['data'] = data;
         }
-
         if (typeof read !== 'undefined') {
             payload['read'] = read;
         }
-
         if (typeof write !== 'undefined') {
             payload['write'] = write;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
@@ -981,19 +935,15 @@ export class Database extends Service {
         if (typeof key !== 'undefined') {
             payload['key'] = key;
         }
-
         if (typeof type !== 'undefined') {
             payload['type'] = type;
         }
-
         if (typeof attributes !== 'undefined') {
             payload['attributes'] = attributes;
         }
-
         if (typeof orders !== 'undefined') {
             payload['orders'] = orders;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);

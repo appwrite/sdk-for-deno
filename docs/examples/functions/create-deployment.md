@@ -3,7 +3,7 @@ import * as sdk from "https://deno.land/x/appwrite/mod.ts";
 // Init SDK
 let client = new sdk.Client();
 
-let storage = new sdk.Storage(client);
+let functions = new sdk.Functions(client);
 
 client
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = storage.listFiles('[BUCKET_ID]');
+let promise = functions.createDeployment('[FUNCTION_ID]', '[ENTRYPOINT]', new File([fileBlob], 'file.png'), false);
 
 promise.then(function (response) {
     console.log(response);

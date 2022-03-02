@@ -1,12 +1,25 @@
 export namespace Models {
     /**
+     * Documents List
+     */
+    export type DocumentList<Document extends Models.Document> = { 
+        /**
+         * Total number of documents documents that matched your query.
+         */
+        total: number;
+        /**
+         * List of documents.
+         */
+        documents: Document[];
+    }
+    /**
      * Collections List
      */
     export type CollectionList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of collections documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of collections.
          */
@@ -17,35 +30,22 @@ export namespace Models {
      */
     export type IndexList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of indexes documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of indexes.
          */
         indexes: Index[];
     }
     /**
-     * Documents List
-     */
-    export type DocumentList<Document extends Models.Document> = { 
-        /**
-         * Total number of items available on the server.
-         */
-        sum: number;
-        /**
-         * List of documents.
-         */
-        documents: Document[];
-    }
-    /**
      * Users List
      */
     export type UserList<Preferences extends Models.Preferences> = { 
         /**
-         * Total number of items available on the server.
+         * Total number of users documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of users.
          */
@@ -56,9 +56,9 @@ export namespace Models {
      */
     export type SessionList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of sessions documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of sessions.
          */
@@ -69,9 +69,9 @@ export namespace Models {
      */
     export type LogList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of logs documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of logs.
          */
@@ -82,22 +82,35 @@ export namespace Models {
      */
     export type FileList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of files documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of files.
          */
         files: File[];
     }
     /**
+     * Buckets List
+     */
+    export type BucketList = { 
+        /**
+         * Total number of buckets documents that matched your query.
+         */
+        total: number;
+        /**
+         * List of buckets.
+         */
+        buckets: Bucket[];
+    }
+    /**
      * Teams List
      */
     export type TeamList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of teams documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of teams.
          */
@@ -108,9 +121,9 @@ export namespace Models {
      */
     export type MembershipList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of memberships documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of memberships.
          */
@@ -121,9 +134,9 @@ export namespace Models {
      */
     export type FunctionList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of functions documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of functions.
          */
@@ -134,35 +147,35 @@ export namespace Models {
      */
     export type RuntimeList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of runtimes documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of runtimes.
          */
         runtimes: Runtime[];
     }
     /**
-     * Tags List
+     * Deployments List
      */
-    export type TagList = { 
+    export type DeploymentList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of deployments documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
-         * List of tags.
+         * List of deployments.
          */
-        tags: Tag[];
+        deployments: Deployment[];
     }
     /**
      * Executions List
      */
     export type ExecutionList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of executions documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of executions.
          */
@@ -173,9 +186,9 @@ export namespace Models {
      */
     export type CountryList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of countries documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of countries.
          */
@@ -186,9 +199,9 @@ export namespace Models {
      */
     export type ContinentList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of continents documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of continents.
          */
@@ -199,9 +212,9 @@ export namespace Models {
      */
     export type LanguageList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of languages documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of languages.
          */
@@ -212,9 +225,9 @@ export namespace Models {
      */
     export type CurrencyList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of currencies documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of currencies.
          */
@@ -225,9 +238,9 @@ export namespace Models {
      */
     export type PhoneList = { 
         /**
-         * Total number of items available on the server.
+         * Total number of phones documents that matched your query.
          */
-        sum: number;
+        total: number;
         /**
          * List of phones.
          */
@@ -275,9 +288,9 @@ export namespace Models {
      */
     export type AttributeList = { 
         /**
-         * Total sum of items in the list.
+         * Total number of attributes in the given collection.
          */
-        sum: number;
+        total: number;
         /**
          * List of attributes.
          */
@@ -757,9 +770,17 @@ export namespace Models {
          */
         providerUid: string;
         /**
-         * Session Provider Token.
+         * Session Provider Access Token.
          */
-        providerToken: string;
+        providerAccessToken: string;
+        /**
+         * Date, the Unix timestamp of when the access token expires.
+         */
+        providerAccessTokenExpiry: number;
+        /**
+         * Session Provider Refresh Token.
+         */
+        providerRefreshToken: string;
         /**
          * IP in use when the session was created.
          */
@@ -888,6 +909,10 @@ export namespace Models {
          */
         $id: string;
         /**
+         * Bucket ID.
+         */
+        bucketId: string;
+        /**
          * File read permissions.
          */
         $read: string[];
@@ -915,6 +940,67 @@ export namespace Models {
          * File original size in bytes.
          */
         sizeOriginal: number;
+        /**
+         * Total number of chunks available
+         */
+        chunksTotal: number;
+        /**
+         * Total number of chunks uploaded
+         */
+        chunksUploaded: number;
+    }
+    /**
+     * Bucket
+     */
+    export type Bucket = { 
+        /**
+         * Bucket ID.
+         */
+        $id: string;
+        /**
+         * File read permissions.
+         */
+        $read: string[];
+        /**
+         * File write permissions.
+         */
+        $write: string[];
+        /**
+         * Bucket permission model. Possible values: `bucket` or `file`
+         */
+        permission: string;
+        /**
+         * Bucket creation date in Unix timestamp.
+         */
+        dateCreated: number;
+        /**
+         * Bucket update date in Unix timestamp.
+         */
+        dateUpdated: number;
+        /**
+         * Bucket name.
+         */
+        name: string;
+        /**
+         * Bucket enabled.
+         */
+        enabled: boolean;
+        /**
+         * Maximum file size supported.
+         */
+        maximumFileSize: number;
+        /**
+         * Allowed file extensions.
+         */
+        allowedFileExtensions: string[];
+        /**
+         * Bucket is encrypted.
+         */
+        encryption: boolean;
+        /**
+         * Virus scanning is enabled.
+         */
+        antivirus: boolean;
     }
     /**
      * Team
@@ -933,9 +1019,9 @@ export namespace Models {
          */
         dateCreated: number;
         /**
-         * Total sum of team members.
+         * Total number of team members.
          */
-        sum: number;
+        total: number;
     }
     /**
      * Membership
@@ -989,7 +1075,7 @@ export namespace Models {
         /**
          * Execution permissions.
          */
-        execute: string;
+        execute: string[];
         /**
          * Function name.
          */
@@ -1011,13 +1097,13 @@ export namespace Models {
          */
         runtime: string;
         /**
-         * Function active tag ID.
+         * Function&#039;s active deployment ID.
          */
-        tag: string;
+        deployment: string;
         /**
          * Function environment variables.
          */
-        vars: string;
+        vars: object;
         /**
          * Function trigger events.
          */
@@ -1073,29 +1159,53 @@ export namespace Models {
         supports: string[];
     }
     /**
-     * Tag
+     * Deployment
      */
-    export type Tag = { 
+    export type Deployment = { 
         /**
-         * Tag ID.
+         * Deployment ID.
          */
         $id: string;
         /**
-         * Function ID.
+         * Resource ID.
          */
-        functionId: string;
+        resourceId: string;
         /**
-         * The tag creation date in Unix timestamp.
+         * Resource type.
+         */
+        resourceType: string;
+        /**
+         * The deployment creation date in Unix timestamp.
          */
         dateCreated: number;
         /**
-         * The entrypoint command in use to execute the tag code.
+         * The entrypoint file to use to execute the deployment code.
          */
-        command: string;
+        entrypoint: string;
         /**
          * The code size in bytes.
          */
-        size: string;
+        size: number;
+        /**
+         * The current build ID.
+         */
+        buildId: string;
+        /**
+         * Whether the deployment should be automatically activated.
+         */
+        activate: boolean;
+        /**
+         * The deployment status.
+         */
+        status: string;
+        /**
+         * The build stdout.
+         */
+        buildStdout: string;
+        /**
+         * The build stderr.
+         */
+        buildStderr: string;
     }
     /**
      * Execution
@@ -1126,9 +1236,9 @@ export namespace Models {
          */
         status: string;
         /**
-         * The script exit code.
+         * The script status code.
          */
-        exitCode: number;
+        statusCode: number;
         /**
          * The script stdout output string. Logs the last 4,000 characters of the execution stdout output.
          */

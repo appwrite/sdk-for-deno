@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = storage.getFilePreview('[FILE_ID]');
+let promise = storage.getFilePreview('[BUCKET_ID]', '[FILE_ID]');
 
 promise.then(function (response) {
     console.log(response);

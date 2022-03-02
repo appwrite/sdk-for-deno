@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = storage.deleteFile('[FILE_ID]');
+let promise = storage.deleteFile('[BUCKET_ID]', '[FILE_ID]');
 
 promise.then(function (response) {
     console.log(response);

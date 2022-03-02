@@ -1,7 +1,16 @@
+import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
-import { Payload } from '../client.ts';
+import { Payload, Client } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
-import type { Models } from '../models.d.ts'
+import type { Models } from '../models.d.ts';
+
+export type UploadProgress = {
+    $id: string;
+    progress: number;
+    sizeUploaded: number;
+    chunksTotal: number;
+    chunksUploaded: number;
+}
 
 export class Teams extends Service {
     /**
@@ -82,15 +91,12 @@ export class Teams extends Service {
         if (typeof teamId !== 'undefined') {
             payload['teamId'] = teamId;
         }
-
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-
         if (typeof roles !== 'undefined') {
             payload['roles'] = roles;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -142,7 +148,6 @@ export class Teams extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-
         return await this.client.call('put', path, {
             'content-type': 'application/json',
         }, payload);
@@ -271,19 +276,15 @@ export class Teams extends Service {
         if (typeof email !== 'undefined') {
             payload['email'] = email;
         }
-
         if (typeof roles !== 'undefined') {
             payload['roles'] = roles;
         }
-
         if (typeof url !== 'undefined') {
             payload['url'] = url;
         }
-
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -347,7 +348,6 @@ export class Teams extends Service {
         if (typeof roles !== 'undefined') {
             payload['roles'] = roles;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
@@ -386,6 +386,10 @@ export class Teams extends Service {
      * Use this endpoint to allow a user to accept an invitation to join a team
      * after being redirected back to your app from the invitation email received
      * by the user.
+     * 
+     * If the request is successful, a session for the user is automatically
+     * created.
+     * 
      *
      * @param {string} teamId
      * @param {string} membershipId
@@ -417,11 +421,9 @@ export class Teams extends Service {
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
         }
-
         if (typeof secret !== 'undefined') {
             payload['secret'] = secret;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);

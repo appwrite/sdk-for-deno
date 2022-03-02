@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = storage.updateFile('[FILE_ID]', [], []);
+let promise = storage.updateFile('[BUCKET_ID]', '[FILE_ID]');
 
 promise.then(function (response) {
     console.log(response);

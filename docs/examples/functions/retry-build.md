@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = functions.createTag('[FUNCTION_ID]', '[COMMAND]', new File([fileBlob], 'file.png'));
+let promise = functions.retryBuild('[FUNCTION_ID]', '[DEPLOYMENT_ID]', '[BUILD_ID]');
 
 promise.then(function (response) {
     console.log(response);

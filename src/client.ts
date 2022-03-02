@@ -5,11 +5,14 @@ export interface Payload {
 }
 
 export class Client {
+    static CHUNK_SIZE = 5*1024*1024; // 5MB
+    static DENO_READ_CHUNK_SIZE = 16384; // 16kb; refference: https://github.com/denoland/deno/discussions/9906
+    
     endpoint: string = 'https://appwrite.io/v1';
     headers: Payload = {
         'content-type': '',
         'x-sdk-version': 'appwrite:deno:2.0.2',
-        'X-Appwrite-Response-Format':'0.12.0',
+        'X-Appwrite-Response-Format':'0.13.0',
     };
 
     /**
@@ -100,7 +103,7 @@ export class Client {
     }
 
     async call(method: string, path: string = '', headers: Payload = {}, params: Payload = {}) {
-        headers = { ...this.headers, ...headers };
+        headers = Object.assign({}, this.headers, headers);
 
         let body;
         const url = new URL(this.endpoint + path);
@@ -130,21 +133,21 @@ export class Client {
             const contentType = response.headers.get('content-type');
 
             if (contentType && contentType.includes('application/json')) {
-                if(response.status >= 400) {
+                if (response.status >= 400) {
                     let res = await response.json();
-                    throw new AppwriteException(res.message, res.status, res);
+                    throw new AppwriteException(res.message, res.status, res.type ?? "", res);
                 }
 
                 return response.json();
             } else {
-                if(response.status >= 400) {
+                if (response.status >= 400) {
                     let res = await response.text();
-                    throw new AppwriteException(res, response.status, null);
+                    throw new AppwriteException(res, response.status, "", null);
                 }
                 return response;
             }
         } catch(error) {
-            throw new AppwriteException(error?.response?.message || error.message, error?.response?.code, error.response);
+            throw new AppwriteException(error?.response?.message || error.message, error?.response?.code, error?.response?.type, error.response);
         }
     }
 

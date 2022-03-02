@@ -3,7 +3,7 @@ import * as sdk from "https://deno.land/x/appwrite/mod.ts";
 // Init SDK
 let client = new sdk.Client();
 
-let functions = new sdk.Functions(client);
+let storage = new sdk.Storage(client);
 
 client
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = functions.deleteTag('[FUNCTION_ID]', '[TAG_ID]');
+let promise = storage.deleteBucket('[BUCKET_ID]');
 
 promise.then(function (response) {
     console.log(response);

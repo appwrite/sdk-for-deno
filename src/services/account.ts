@@ -1,7 +1,16 @@
+import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
-import { Payload } from '../client.ts';
+import { Payload, Client } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
-import type { Models } from '../models.d.ts'
+import type { Models } from '../models.d.ts';
+
+export type UploadProgress = {
+    $id: string;
+    progress: number;
+    sizeUploaded: number;
+    chunksTotal: number;
+    chunksUploaded: number;
+}
 
 export class Account extends Service {
     /**
@@ -72,11 +81,9 @@ export class Account extends Service {
         if (typeof email !== 'undefined') {
             payload['email'] = email;
         }
-
         if (typeof password !== 'undefined') {
             payload['password'] = password;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
@@ -128,7 +135,6 @@ export class Account extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
@@ -156,11 +162,9 @@ export class Account extends Service {
         if (typeof password !== 'undefined') {
             payload['password'] = password;
         }
-
         if (typeof oldPassword !== 'undefined') {
             payload['oldPassword'] = oldPassword;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
@@ -203,7 +207,6 @@ export class Account extends Service {
         if (typeof prefs !== 'undefined') {
             payload['prefs'] = prefs;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
@@ -240,11 +243,9 @@ export class Account extends Service {
         if (typeof email !== 'undefined') {
             payload['email'] = email;
         }
-
         if (typeof url !== 'undefined') {
             payload['url'] = url;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -292,19 +293,15 @@ export class Account extends Service {
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
         }
-
         if (typeof secret !== 'undefined') {
             payload['secret'] = secret;
         }
-
         if (typeof password !== 'undefined') {
             payload['password'] = password;
         }
-
         if (typeof passwordAgain !== 'undefined') {
             payload['passwordAgain'] = passwordAgain;
         }
-
         return await this.client.call('put', path, {
             'content-type': 'application/json',
         }, payload);
@@ -366,11 +363,31 @@ export class Account extends Service {
         }, payload);
     }
     /**
+     * Update Session (Refresh Tokens)
+     *
+     * @param {string} sessionId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateSession(sessionId: string): Promise<Models.Session> {
+        if (typeof sessionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
+        let path = '/account/sessions/{sessionId}'.replace('{sessionId}', sessionId);
+        let payload: Payload = {};
+
+        return await this.client.call('patch', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
      * Delete Account Session
      *
      * Use this endpoint to log out the currently logged in user from all their
      * account sessions across all of their different devices. When using the
-     * option id argument, only the session unique ID provider will be deleted.
+     * Session ID argument, only the unique session ID provided is deleted.
+     * 
      *
      * @param {string} sessionId
      * @throws {AppwriteException}
@@ -422,7 +439,6 @@ export class Account extends Service {
         if (typeof url !== 'undefined') {
             payload['url'] = url;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -455,11 +471,9 @@ export class Account extends Service {
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
         }
-
         if (typeof secret !== 'undefined') {
             payload['secret'] = secret;
         }
-
         return await this.client.call('put', path, {
             'content-type': 'application/json',
         }, payload);

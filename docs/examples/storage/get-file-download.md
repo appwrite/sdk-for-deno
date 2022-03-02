@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = storage.getFileDownload('[FILE_ID]');
+let promise = storage.getFileDownload('[BUCKET_ID]', '[FILE_ID]');
 
 promise.then(function (response) {
     console.log(response);

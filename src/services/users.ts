@@ -1,7 +1,16 @@
+import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
-import { Payload } from '../client.ts';
+import { Payload, Client } from '../client.ts';
 import { AppwriteException } from '../exception.ts';
-import type { Models } from '../models.d.ts'
+import type { Models } from '../models.d.ts';
+
+export type UploadProgress = {
+    $id: string;
+    progress: number;
+    sizeUploaded: number;
+    chunksTotal: number;
+    chunksUploaded: number;
+}
 
 export class Users extends Service {
     /**
@@ -82,19 +91,15 @@ export class Users extends Service {
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
         }
-
         if (typeof email !== 'undefined') {
             payload['email'] = email;
         }
-
         if (typeof password !== 'undefined') {
             payload['password'] = password;
         }
-
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-
         return await this.client.call('post', path, {
             'content-type': 'application/json',
         }, payload);
@@ -166,7 +171,6 @@ export class Users extends Service {
         if (typeof email !== 'undefined') {
             payload['email'] = email;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
@@ -227,7 +231,6 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
@@ -257,7 +260,6 @@ export class Users extends Service {
         if (typeof password !== 'undefined') {
             payload['password'] = password;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
@@ -310,7 +312,6 @@ export class Users extends Service {
         if (typeof prefs !== 'undefined') {
             payload['prefs'] = prefs;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
@@ -408,7 +409,6 @@ export class Users extends Service {
         if (typeof status !== 'undefined') {
             payload['status'] = status;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
@@ -438,7 +438,6 @@ export class Users extends Service {
         if (typeof emailVerification !== 'undefined') {
             payload['emailVerification'] = emailVerification;
         }
-
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);

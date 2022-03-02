@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = functions.updateTag('[FUNCTION_ID]', '[TAG]');
+let promise = functions.getDeployment('[FUNCTION_ID]', '[DEPLOYMENT_ID]');
 
 promise.then(function (response) {
     console.log(response);
