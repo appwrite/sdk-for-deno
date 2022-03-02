@@ -11,7 +11,7 @@ export class Client {
     endpoint: string = 'https://appwrite.io/v1';
     headers: Payload = {
         'content-type': '',
-        'x-sdk-version': 'appwrite:deno:2.0.2',
+        'x-sdk-version': 'appwrite:deno:3.0.0',
         'X-Appwrite-Response-Format':'0.13.0',
     };
 
