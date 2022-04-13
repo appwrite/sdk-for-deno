@@ -361,53 +361,64 @@ export class Storage extends Service {
             let id = undefined;
             let response = undefined;
 
+            let counter = 0;
             const totalCounters = Math.ceil(size / Client.CHUNK_SIZE);
 
-            for (let counter = 0; counter < totalCounters; counter++) {
-                    const start = (counter * Client.CHUNK_SIZE);
-                    const end = Math.min((((counter * Client.CHUNK_SIZE) + Client.CHUNK_SIZE) - 1), size);
-                    const headers: { [header: string]: string } = {
-                            'content-type': 'multipart/form-data',
-                            'content-range': 'bytes ' + start + '-' + end + '/' + size
-                    };
+            const headers: { [header: string]: string } = {
+                    'content-type': 'multipart/form-data',
+            };
 
-                    if (id) {
-                            headers['x-appwrite-id'] = id;
-                    }
-                    
-                    const totalBuffer = new Uint8Array(Client.CHUNK_SIZE);
+            if(fileId != 'unique()') {
+                try {
+                    response = await this.client.call('get', path + '/' + fileId, headers);
+                    counter = response.chunksUploaded;
+                } catch(e) {
+                }
+            }
 
-                    for (let blockIndex = 0; blockIndex < Client.CHUNK_SIZE / Client.DENO_READ_CHUNK_SIZE; blockIndex++) {
-                            const buf = new Uint8Array(Client.DENO_READ_CHUNK_SIZE);
-                            const cursorPosition = await Deno.seek(stream.rid, start + (blockIndex * 16384), Deno.SeekMode.Start);
-                            const numberOfBytesRead = await Deno.read(stream.rid, buf);
+            for (counter; counter < totalCounters; counter++) {
+                const start = (counter * Client.CHUNK_SIZE);
+                const end = Math.min((((counter * Client.CHUNK_SIZE) + Client.CHUNK_SIZE) - 1), size);
+                
+                headers['content-range'] = 'bytes ' + start + '-' + end + '/' + size
 
-                            if (!numberOfBytesRead) {
-                                    break;
-                            }
+                if (id) {
+                    headers['x-appwrite-id'] = id;
+                }
+                
+                const totalBuffer = new Uint8Array(Client.CHUNK_SIZE);
 
-                            for (let byteIndex = 0; byteIndex < Client.DENO_READ_CHUNK_SIZE; byteIndex++) {
-                                    totalBuffer[(blockIndex * Client.DENO_READ_CHUNK_SIZE) + byteIndex] = buf[byteIndex];
-                            }
-                    }
-                    
-                    payload['file'] = new File([totalBuffer], basename(file));
+                for (let blockIndex = 0; blockIndex < Client.CHUNK_SIZE / Client.DENO_READ_CHUNK_SIZE; blockIndex++) {
+                    const buf = new Uint8Array(Client.DENO_READ_CHUNK_SIZE);
+                    const cursorPosition = await Deno.seek(stream.rid, start + (blockIndex * 16384), Deno.SeekMode.Start);
+                    const numberOfBytesRead = await Deno.read(stream.rid, buf);
 
-                    response = await this.client.call('post', path, headers, payload);
-
-                    if (!id) {
-                            id = response['$id'];
+                    if (!numberOfBytesRead) {
+                        break;
                     }
 
-                    if (onProgress !== null) {
-                        onProgress({
-                            $id: response['$id'],
-                            progress: Math.min((counter+1) * Client.CHUNK_SIZE, size) / size * 100,
-                            sizeUploaded: end+1,
-                            chunksTotal: response['chunksTotal'],
-                            chunksUploaded: response['chunksUploaded']
-                        });
+                    for (let byteIndex = 0; byteIndex < Client.DENO_READ_CHUNK_SIZE; byteIndex++) {
+                        totalBuffer[(blockIndex * Client.DENO_READ_CHUNK_SIZE) + byteIndex] = buf[byteIndex];
                     }
+                }
+                
+                payload['file'] = new File([totalBuffer], basename(file));
+
+                response = await this.client.call('post', path, headers, payload);
+
+                if (!id) {
+                    id = response['$id'];
+                }
+
+                if (onProgress !== null) {
+                    onProgress({
+                        $id: response['$id'],
+                        progress: Math.min((counter+1) * Client.CHUNK_SIZE, size) / size * 100,
+                        sizeUploaded: end+1,
+                        chunksTotal: response['chunksTotal'],
+                        chunksUploaded: response['chunksUploaded']
+                    });
+                }
             }
 
             return response;
