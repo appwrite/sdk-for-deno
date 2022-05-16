@@ -128,23 +128,6 @@ export class Health extends Service {
         }, payload);
     }
     /**
-     * Get Usage Queue
-     *
-     * Get the number of usage stats that are waiting to be processed in the
-     * Appwrite internal queue server.
-     *
-     * @throws {AppwriteException}
-     * @returns {Promise}
-     */
-    async getQueueUsage(): Promise<Models.HealthQueue> {
-        let path = '/health/queue/usage';
-        let payload: Payload = {};
-
-        return await this.client.call('get', path, {
-            'content-type': 'application/json',
-        }, payload);
-    }
-    /**
      * Get Webhooks Queue
      *
      * Get the number of webhooks that are waiting to be processed in the Appwrite

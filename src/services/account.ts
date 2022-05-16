@@ -30,26 +30,6 @@ export class Account extends Service {
         }, payload);
     }
     /**
-     * Delete Account
-     *
-     * Delete a currently logged in user account. Behind the scene, the user
-     * record is not deleted but permanently blocked from any access. This is done
-     * to avoid deleted accounts being overtaken by new users with the same email
-     * address. Any user-related resources like documents or storage files should
-     * be deleted separately.
-     *
-     * @throws {AppwriteException}
-     * @returns {Promise}
-     */
-    async delete(): Promise<Response> {
-        let path = '/account';
-        let payload: Payload = {};
-
-        return await this.client.call('delete', path, {
-            'content-type': 'application/json',
-        }, payload);
-    }
-    /**
      * Update Account Email
      *
      * Update currently logged in user account email address. After changing user
@@ -144,7 +124,7 @@ export class Account extends Service {
      *
      * Update currently logged in user password. For validation, user is required
      * to pass in the new password, and the old password. For users created with
-     * OAuth and Team Invites, oldPassword is optional.
+     * OAuth, Team Invites and Magic URL, oldPassword is optional.
      *
      * @param {string} password
      * @param {string} oldPassword
@@ -365,6 +345,10 @@ export class Account extends Service {
     /**
      * Update Session (Refresh Tokens)
      *
+     * Access tokens have limited lifespan and expire to mitigate security risks.
+     * If session was created using an OAuth provider, this route can be used to
+     * "refresh" the access token.
+     *
      * @param {string} sessionId
      * @throws {AppwriteException}
      * @returns {Promise}
@@ -402,6 +386,24 @@ export class Account extends Service {
         let payload: Payload = {};
 
         return await this.client.call('delete', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Update Account Status
+     *
+     * Block the currently logged in user account. Behind the scene, the user
+     * record is not deleted but permanently blocked from any access. To
+     * completely delete a user, use the Users API instead.
+     *
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateStatus<Preferences extends Models.Preferences>(): Promise<Models.User<Preferences>> {
+        let path = '/account/status';
+        let payload: Payload = {};
+
+        return await this.client.call('patch', path, {
             'content-type': 'application/json',
         }, payload);
     }

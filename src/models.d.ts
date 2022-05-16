@@ -1036,17 +1036,21 @@ export namespace Models {
          */
         userId: string;
         /**
+         * User name.
+         */
+        userName: string;
+        /**
+         * User email address.
+         */
+        userEmail: string;
+        /**
          * Team ID.
          */
         teamId: string;
         /**
-         * User name.
+         * Team name.
          */
-        name: string;
-        /**
-         * User email address.
-         */
-        email: string;
+        teamName: string;
         /**
          * Date, the user has been invited to join the team in Unix timestamp.
          */
@@ -1240,9 +1244,9 @@ export namespace Models {
          */
         statusCode: number;
         /**
-         * The script stdout output string. Logs the last 4,000 characters of the execution stdout output.
+         * The script response output string. Logs the last 4,000 characters of the execution response output.
          */
-        stdout: string;
+        response: string;
         /**
          * The script stderr output string. Logs the last 4,000 characters of the execution stderr output
          */
