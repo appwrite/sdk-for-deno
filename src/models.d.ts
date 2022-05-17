@@ -277,7 +277,7 @@ export namespace Models {
         /**
          * Collection attributes.
          */
-        attributes: string[];
+        attributes: (AttributeBoolean | AttributeInteger | AttributeFloat | AttributeEmail | AttributeEnum | AttributeUrl | AttributeIp | AttributeString)[];
         /**
          * Collection indexes.
          */
@@ -294,7 +294,7 @@ export namespace Models {
         /**
          * List of attributes.
          */
-        attributes: string[];
+        attributes: (AttributeBoolean | AttributeInteger | AttributeFloat | AttributeEmail | AttributeEnum | AttributeUrl | AttributeIp | AttributeString)[];
     }
     /**
      * AttributeString

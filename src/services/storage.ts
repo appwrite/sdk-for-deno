@@ -386,7 +386,8 @@ export class Storage extends Service {
                     headers['x-appwrite-id'] = id;
                 }
                 
-                const totalBuffer = new Uint8Array(Client.CHUNK_SIZE);
+                let totalBuffer = new Uint8Array(Client.CHUNK_SIZE);
+                let lastBufferIndex = -1;
 
                 for (let blockIndex = 0; blockIndex < Client.CHUNK_SIZE / Client.DENO_READ_CHUNK_SIZE; blockIndex++) {
                     const buf = new Uint8Array(Client.DENO_READ_CHUNK_SIZE);
@@ -399,7 +400,20 @@ export class Storage extends Service {
 
                     for (let byteIndex = 0; byteIndex < Client.DENO_READ_CHUNK_SIZE; byteIndex++) {
                         totalBuffer[(blockIndex * Client.DENO_READ_CHUNK_SIZE) + byteIndex] = buf[byteIndex];
+
+                        if(buf[byteIndex] !== 0) {
+                            lastBufferIndex = (blockIndex * Client.DENO_READ_CHUNK_SIZE) + byteIndex;
+                        }
                     }
+                }
+
+                // Shrink empty bytes
+                if(lastBufferIndex !== -1) {
+                    const newTotalBuffer = new Uint8Array(lastBufferIndex + 1);
+                    for(let index = 0; index <= lastBufferIndex; index++) {
+                        newTotalBuffer[index] = totalBuffer[index];
+                    }
+                    totalBuffer = newTotalBuffer;
                 }
                 
                 payload['file'] = new File([totalBuffer], basename(file));
