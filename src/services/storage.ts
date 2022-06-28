@@ -1,6 +1,7 @@
 import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
 import { Payload, Client } from '../client.ts';
+import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 
@@ -313,13 +314,13 @@ export class Storage extends Service {
      *
      * @param {string} bucketId
      * @param {string} fileId
-     * @param {string} file
+     * @param {InputFile} file
      * @param {string[]} read
      * @param {string[]} write
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createFile(bucketId: string, fileId: string, file: string, read?: string[], write?: string[], onProgress = (progress: UploadProgress) => {}): Promise<Models.File> {
+    async createFile(bucketId: string, fileId: string, file: InputFile, read?: string[], write?: string[], onProgress = (progress: UploadProgress) => {}): Promise<Models.File> {
         if (typeof bucketId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -339,7 +340,7 @@ export class Storage extends Service {
             payload['fileId'] = fileId;
         }
         if (typeof file !== 'undefined') {
-            payload['file'] = file.toString();
+            payload['file'] = file;
         }
         if (typeof read !== 'undefined') {
             payload['read'] = read;
@@ -347,96 +348,98 @@ export class Storage extends Service {
         if (typeof write !== 'undefined') {
             payload['write'] = write;
         }
-        const {size: size} = await Deno.stat(file);
 
-        if (size <= Client.CHUNK_SIZE) {
-            payload['file'] = new File([await Deno.readFile(file)], basename(file));
+        const size = file.size;
+        
+        const headers: { [header: string]: string } = {
+            'content-type': 'multipart/form-data',
+        };
 
-            return await this.client.call('post', path, {
-                'content-type': 'multipart/form-data',
-            }, payload);
-        } else {
-            const stream = await Deno.open(file, { read: true });
+        let id: string | undefined = undefined;
+        let response: any = undefined;
 
-            let id = undefined;
-            let response = undefined;
+        let chunksUploaded = 0;
 
-            let counter = 0;
-            const totalCounters = Math.ceil(size / Client.CHUNK_SIZE);
-
-            const headers: { [header: string]: string } = {
-                    'content-type': 'multipart/form-data',
-            };
-
-            if(fileId != 'unique()') {
-                try {
-                    response = await this.client.call('get', path + '/' + fileId, headers);
-                    counter = response.chunksUploaded;
-                } catch(e) {
-                }
+        if(fileId != 'unique()') {
+            try {
+                response = await this.client.call('get', path + '/' + fileId, headers);
+                chunksUploaded = response.chunksUploaded;
+            } catch(e) {
             }
-
-            for (counter; counter < totalCounters; counter++) {
-                const start = (counter * Client.CHUNK_SIZE);
-                const end = Math.min((((counter * Client.CHUNK_SIZE) + Client.CHUNK_SIZE) - 1), size);
-                
-                headers['content-range'] = 'bytes ' + start + '-' + end + '/' + size
-
-                if (id) {
-                    headers['x-appwrite-id'] = id;
-                }
-                
-                let totalBuffer = new Uint8Array(Client.CHUNK_SIZE);
-                let lastBufferIndex = -1;
-
-                for (let blockIndex = 0; blockIndex < Client.CHUNK_SIZE / Client.DENO_READ_CHUNK_SIZE; blockIndex++) {
-                    const buf = new Uint8Array(Client.DENO_READ_CHUNK_SIZE);
-                    const cursorPosition = await Deno.seek(stream.rid, start + (blockIndex * 16384), Deno.SeekMode.Start);
-                    const numberOfBytesRead = await Deno.read(stream.rid, buf);
-
-                    if (!numberOfBytesRead) {
-                        break;
-                    }
-
-                    for (let byteIndex = 0; byteIndex < Client.DENO_READ_CHUNK_SIZE; byteIndex++) {
-                        totalBuffer[(blockIndex * Client.DENO_READ_CHUNK_SIZE) + byteIndex] = buf[byteIndex];
-
-                        if(buf[byteIndex] !== 0) {
-                            lastBufferIndex = (blockIndex * Client.DENO_READ_CHUNK_SIZE) + byteIndex;
-                        }
-                    }
-                }
-
-                // Shrink empty bytes
-                if(lastBufferIndex !== -1) {
-                    const newTotalBuffer = new Uint8Array(lastBufferIndex + 1);
-                    for(let index = 0; index <= lastBufferIndex; index++) {
-                        newTotalBuffer[index] = totalBuffer[index];
-                    }
-                    totalBuffer = newTotalBuffer;
-                }
-                
-                payload['file'] = new File([totalBuffer], basename(file));
-
-                response = await this.client.call('post', path, headers, payload);
-
-                if (!id) {
-                    id = response['$id'];
-                }
-
-                if (onProgress !== null) {
-                    onProgress({
-                        $id: response['$id'],
-                        progress: Math.min((counter+1) * Client.CHUNK_SIZE, size) / size * 100,
-                        sizeUploaded: end+1,
-                        chunksTotal: response['chunksTotal'],
-                        chunksUploaded: response['chunksUploaded']
-                    });
-                }
-            }
-
-            return response;
         }
+
+        let currentChunk = 1;
+        let currentPosition = 0;
+        let uploadableChunk = new Uint8Array(Client.CHUNK_SIZE);
+
+        const uploadChunk = async (lastUpload = false) => {
+            if(currentChunk <= chunksUploaded) {
+                return;
+            }
+
+            const start = ((currentChunk - 1) * Client.CHUNK_SIZE);
+            const end = start + currentPosition;
+
+            if(!lastUpload || currentChunk !== 1) {
+                headers['content-range'] = 'bytes ' + start + '-' + end + '/' + size;
+            }
+
+            let uploadableChunkTrimmed: Uint8Array;
+            
+            if(currentPosition + 1 >= Client.CHUNK_SIZE) {
+                uploadableChunkTrimmed = uploadableChunk;
+            } else {
+                uploadableChunkTrimmed = new Uint8Array(currentPosition);
+                for(let i = 0; i <= currentPosition; i++) {
+                    uploadableChunkTrimmed[i] = uploadableChunk[i];
+                }
+            }
+
+            if (id) {
+                headers['x-appwrite-id'] = id;
+            }
+
+            payload['file'] = { type: 'file', file: new File([uploadableChunkTrimmed], file.filename), filename: file.filename };
+
+            response = await this.client.call('post', path, headers, payload);
+
+            if (!id) {
+                id = response['$id'];
+            }
+
+            if (onProgress !== null) {
+                onProgress({
+                    $id: response['$id'],
+                    progress: Math.min((currentChunk) * Client.CHUNK_SIZE, size) / size * 100,
+                    sizeUploaded: end+1,
+                    chunksTotal: response['chunksTotal'],
+                    chunksUploaded: response['chunksUploaded']
+                });
+            }
+
+            uploadableChunk = new Uint8Array(Client.CHUNK_SIZE);
+            currentPosition = 0;
+            currentChunk++;
+        }
+
+        for await (const chunk of file.stream) {
+            let i = 0;
+            for(const b of chunk) {
+                uploadableChunk[currentPosition] = chunk[i];
+
+                if(currentPosition + 1 >= Client.CHUNK_SIZE) {
+                    await uploadChunk();
+                    currentPosition--;
+                }
+
+                i++;
+                currentPosition++;
+            }
+        }
+
+        await uploadChunk(true);
+
+        return response;
     }
     /**
      * Get File

@@ -1,6 +1,7 @@
 import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
 import { Payload, Client } from '../client.ts';
+import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 
@@ -144,6 +145,41 @@ export class Account extends Service {
         }
         if (typeof oldPassword !== 'undefined') {
             payload['oldPassword'] = oldPassword;
+        }
+        return await this.client.call('patch', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Update Account Phone
+     *
+     * Update currently logged in user account phone number. After changing phone
+     * number, the user confirmation status will get reset. A new confirmation SMS
+     * is not sent automatically however you can use the phone confirmation
+     * endpoint again to send the confirmation SMS.
+     *
+     * @param {string} number
+     * @param {string} password
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updatePhone<Preferences extends Models.Preferences>(number: string, password: string): Promise<Models.User<Preferences>> {
+        if (typeof number === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "number"');
+        }
+
+        if (typeof password === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
+        let path = '/account/phone';
+        let payload: Payload = {};
+
+        if (typeof number !== 'undefined') {
+            payload['number'] = number;
+        }
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
         }
         return await this.client.call('patch', path, {
             'content-type': 'application/json',
@@ -417,8 +453,8 @@ export class Account extends Service {
      * should redirect the user back to your app and allow you to complete the
      * verification process by verifying both the **userId** and **secret**
      * parameters. Learn more about how to [complete the verification
-     * process](/docs/client/account#accountUpdateVerification). The verification
-     * link sent to the user's email address is valid for 7 days.
+     * process](/docs/client/account#accountUpdateEmailVerification). The
+     * verification link sent to the user's email address is valid for 7 days.
      * 
      * Please note that in order to avoid a [Redirect
      * Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
@@ -468,6 +504,63 @@ export class Account extends Service {
         }
 
         let path = '/account/verification';
+        let payload: Payload = {};
+
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
+        }
+        if (typeof secret !== 'undefined') {
+            payload['secret'] = secret;
+        }
+        return await this.client.call('put', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Create Phone Verification
+     *
+     * Use this endpoint to send a verification message to your user's phone
+     * number to confirm they are the valid owners of that address. The provided
+     * secret should allow you to complete the verification process by verifying
+     * both the **userId** and **secret** parameters. Learn more about how to
+     * [complete the verification
+     * process](/docs/client/account#accountUpdatePhoneVerification). The
+     * verification link sent to the user's phone number is valid for 15 minutes.
+     *
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createPhoneVerification(): Promise<Models.Token> {
+        let path = '/account/verification/phone';
+        let payload: Payload = {};
+
+        return await this.client.call('post', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Create Phone Verification (confirmation)
+     *
+     * Use this endpoint to complete the user phone verification process. Use the
+     * **userId** and **secret** that were sent to your user's phone number to
+     * verify the user email ownership. If confirmed this route will return a 200
+     * status code.
+     *
+     * @param {string} userId
+     * @param {string} secret
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updatePhoneVerification(userId: string, secret: string): Promise<Models.Token> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof secret === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+
+        let path = '/account/verification/phone';
         let payload: Payload = {};
 
         if (typeof userId !== 'undefined') {

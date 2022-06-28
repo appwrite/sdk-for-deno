@@ -1,6 +1,7 @@
 import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
 import { Payload, Client } from '../client.ts';
+import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 
@@ -290,6 +291,35 @@ export class Users extends Service {
         }, payload);
     }
     /**
+     * Update Phone
+     *
+     * Update the user phone by its unique ID.
+     *
+     * @param {string} userId
+     * @param {string} number
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updatePhone<Preferences extends Models.Preferences>(userId: string, number: string): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof number === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "number"');
+        }
+
+        let path = '/users/{userId}/phone'.replace('{userId}', userId);
+        let payload: Payload = {};
+
+        if (typeof number !== 'undefined') {
+            payload['number'] = number;
+        }
+        return await this.client.call('patch', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
      * Get User Preferences
      *
      * Get the user preferences by its unique ID.
@@ -449,7 +479,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateVerification<Preferences extends Models.Preferences>(userId: string, emailVerification: boolean): Promise<Models.User<Preferences>> {
+    async updateEmailVerification<Preferences extends Models.Preferences>(userId: string, emailVerification: boolean): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -463,6 +493,35 @@ export class Users extends Service {
 
         if (typeof emailVerification !== 'undefined') {
             payload['emailVerification'] = emailVerification;
+        }
+        return await this.client.call('patch', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Update Phone Verification
+     *
+     * Update the user phone verification status by its unique ID.
+     *
+     * @param {string} userId
+     * @param {boolean} phoneVerification
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updatePhoneVerification<Preferences extends Models.Preferences>(userId: string, phoneVerification: boolean): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof phoneVerification === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "phoneVerification"');
+        }
+
+        let path = '/users/{userId}/verification/phone'.replace('{userId}', userId);
+        let payload: Payload = {};
+
+        if (typeof phoneVerification !== 'undefined') {
+            payload['phoneVerification'] = phoneVerification;
         }
         return await this.client.call('patch', path, {
             'content-type': 'application/json',

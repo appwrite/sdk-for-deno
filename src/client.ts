@@ -11,8 +11,8 @@ export class Client {
     endpoint: string = 'https://appwrite.io/v1';
     headers: Payload = {
         'content-type': '',
-        'x-sdk-version': 'appwrite:deno:4.0.0',
-        'X-Appwrite-Response-Format':'0.14.0',
+        'x-sdk-version': 'appwrite:deno:5.0.0',
+        'X-Appwrite-Response-Format':'0.15.0',
     };
 
     /**
@@ -115,7 +115,13 @@ export class Client {
             const formData = new FormData();
             const flatParams = this.flatten(params);
             for (const key in flatParams) {
-                formData.append(key, flatParams[key]);
+                const value = flatParams[key];
+
+                if(value && value.type && value.type === 'file') {
+                    formData.append(key, value.file, value.filename);
+                } else {
+                    formData.append(key, flatParams[key]);
+                }
             }
             body = formData;
         } else {
