@@ -19,7 +19,7 @@ export class Databases extends Service {
      {
         this.databaseId = databaseId;
      }
-     public getDatabaseId(databaseId: string): string
+     public getDatabaseId(): string
      {
         return this.databaseId;
      }
