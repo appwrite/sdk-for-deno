@@ -260,6 +260,19 @@ export namespace Models {
         phones: Phone[];
     }
     /**
+     * Variables List
+     */
+    export type VariableList = { 
+        /**
+         * Total number of variables documents that matched your query.
+         */
+        total: number;
+        /**
+         * List of variables.
+         */
+        variables: Variable[];
+    }
+    /**
      * Database
      */
     export type Database = { 
@@ -271,6 +284,14 @@ export namespace Models {
          * Database name.
          */
         name: string;
+        /**
+         * Database creation date in ISO 8601 format.
+         */
+        $createdAt: string;
+        /**
+         * Database update date in ISO 8601 format.
+         */
+        $updatedAt: string;
     }
     /**
      * Collection
@@ -281,21 +302,17 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Collection creation date in Unix timestamp.
+         * Collection creation date in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
-         * Collection update date in Unix timestamp.
+         * Collection update date in ISO 8601 format.
          */
-        $updatedAt: number;
+        $updatedAt: string;
         /**
-         * Collection read permissions.
+         * Collection permissions. [Learn more about permissions](/docs/permissions).
          */
-        $read: string[];
-        /**
-         * Collection write permissions.
-         */
-        $write: string[];
+        $permissions: string[];
         /**
          * Database ID.
          */
@@ -309,13 +326,13 @@ export namespace Models {
          */
         enabled: boolean;
         /**
-         * Collection permission model. Possible values: `document` or `collection`
+         * Whether document-level permissions are enabled. [Learn more about permissions](/docs/permissions).
          */
-        permission: string;
+        documentSecurity: boolean;
         /**
          * Collection attributes.
          */
-        attributes: (AttributeBoolean | AttributeInteger | AttributeFloat | AttributeEmail | AttributeEnum | AttributeUrl | AttributeIp | AttributeString)[];
+        attributes: (AttributeBoolean | AttributeInteger | AttributeFloat | AttributeEmail | AttributeEnum | AttributeUrl | AttributeIp | AttributeDatetime | AttributeString)[];
         /**
          * Collection indexes.
          */
@@ -332,7 +349,7 @@ export namespace Models {
         /**
          * List of attributes.
          */
-        attributes: (AttributeBoolean | AttributeInteger | AttributeFloat | AttributeEmail | AttributeEnum | AttributeUrl | AttributeIp | AttributeString)[];
+        attributes: (AttributeBoolean | AttributeInteger | AttributeFloat | AttributeEmail | AttributeEnum | AttributeUrl | AttributeIp | AttributeDatetime | AttributeString)[];
     }
     /**
      * AttributeString
@@ -607,6 +624,39 @@ export namespace Models {
         xdefault?: string;
     }
     /**
+     * AttributeDatetime
+     */
+    export type AttributeDatetime = { 
+        /**
+         * Attribute Key.
+         */
+        key: string;
+        /**
+         * Attribute type.
+         */
+        type: string;
+        /**
+         * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+         */
+        status: string;
+        /**
+         * Is attribute required?
+         */
+        required: boolean;
+        /**
+         * Is attribute an array?
+         */
+        array?: boolean;
+        /**
+         * ISO 8601 format.
+         */
+        format: string;
+        /**
+         * Default value for attribute when not provided. Only null is optional
+         */
+        xdefault?: string;
+    }
+    /**
      * Index
      */
     export type Index = { 
@@ -629,7 +679,7 @@ export namespace Models {
         /**
          * Index orders.
          */
-        orders: string[];
+        orders?: string[];
     }
     /**
      * Document
@@ -644,21 +694,17 @@ export namespace Models {
          */
         $collection: string;
         /**
-         * Document creation date in Unix timestamp.
+         * Document creation date in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
-         * Document update date in Unix timestamp.
+         * Document update date in ISO 8601 format.
          */
-        $updatedAt: number;
+        $updatedAt: string;
         /**
-         * Document read permissions.
+         * Document permissions. [Learn more about permissions](/docs/permissions).
          */
-        $read: string[];
-        /**
-         * Document write permissions.
-         */
-        $write: string[];
+        $permissions: string[];
     }
     /**
      * Log
@@ -689,9 +735,9 @@ export namespace Models {
          */
         ip: string;
         /**
-         * Log creation time in Unix timestamp.
+         * Log creation date in ISO 8601 format.
          */
-        time: number;
+        time: string;
         /**
          * Operating system code name. View list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/os.json).
          */
@@ -758,29 +804,169 @@ export namespace Models {
          */
         $id: string;
         /**
-         * User creation date in Unix timestamp.
+         * User creation date in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
-         * User update date in Unix timestamp.
+         * User update date in ISO 8601 format.
          */
-        $updatedAt: number;
+        $updatedAt: string;
         /**
          * User name.
          */
         name: string;
         /**
-         * User registration date in Unix timestamp.
+         * Hashed user password.
          */
-        registration: number;
+        password: string;
+        /**
+         * Password hashing algorithm.
+         */
+        hash: string;
+        /**
+         * Password hashing algorithm configuration.
+         */
+        hashOptions: (AlgoArgon2 | AlgoScrypt | AlgoScryptModified | AlgoBcrypt | AlgoPhpass | AlgoSha | AlgoMd5);
+        /**
+         * User registration date in ISO 8601 format.
+         */
+        registration: string;
         /**
          * User status. Pass `true` for enabled and `false` for disabled.
          */
         status: boolean;
         /**
-         * Unix timestamp of the most recent password update
+         * Password update time in ISO 8601 format.
          */
-        passwordUpdate: number;
+        passwordUpdate: string;
+        /**
+         * User email address.
+         */
+        email: string;
+        /**
+         * User phone number in E.164 format.
+         */
+        phone: string;
+        /**
+         * Email verification status.
+         */
+        emailVerification: boolean;
+        /**
+         * Phone verification status.
+         */
+        phoneVerification: boolean;
+        /**
+         * User preferences as a key-value object
+         */
+        prefs: Preferences;
+    }
+    /**
+     * AlgoMD5
+     */
+    export type AlgoMd5 = { 
+    }
+    /**
+     * AlgoSHA
+     */
+    export type AlgoSha = { 
+    }
+    /**
+     * AlgoPHPass
+     */
+    export type AlgoPhpass = { 
+    }
+    /**
+     * AlgoBcrypt
+     */
+    export type AlgoBcrypt = { 
+    }
+    /**
+     * AlgoScrypt
+     */
+    export type AlgoScrypt = { 
+        /**
+         * CPU complexity of computed hash.
+         */
+        costCpu: number;
+        /**
+         * Memory complexity of computed hash.
+         */
+        costMemory: number;
+        /**
+         * Parallelization of computed hash.
+         */
+        costParallel: number;
+        /**
+         * Length used to compute hash.
+         */
+        length: number;
+    }
+    /**
+     * AlgoScryptModified
+     */
+    export type AlgoScryptModified = { 
+        /**
+         * Salt used to compute hash.
+         */
+        salt: string;
+        /**
+         * Separator used to compute hash.
+         */
+        saltSeparator: string;
+        /**
+         * Key used to compute hash.
+         */
+        signerKey: string;
+    }
+    /**
+     * AlgoArgon2
+     */
+    export type AlgoArgon2 = { 
+        /**
+         * Memory used to compute hash.
+         */
+        memoryCost: number;
+        /**
+         * Amount of time consumed to compute hash
+         */
+        timeCost: number;
+        /**
+         * Number of threads used to compute hash.
+         */
+        threads: number;
+    }
+    /**
+     * Account
+     */
+    export type Account<Preferences extends Models.Preferences> = { 
+        /**
+         * User ID.
+         */
+        $id: string;
+        /**
+         * User creation date in ISO 8601 format.
+         */
+        $createdAt: string;
+        /**
+         * User update date in ISO 8601 format.
+         */
+        $updatedAt: string;
+        /**
+         * User name.
+         */
+        name: string;
+        /**
+         * User registration date in ISO 8601 format.
+         */
+        registration: string;
+        /**
+         * User status. Pass `true` for enabled and `false` for disabled.
+         */
+        status: boolean;
+        /**
+         * Password update time in ISO 8601 format.
+         */
+        passwordUpdate: string;
         /**
          * User email address.
          */
@@ -816,17 +1002,17 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Session creation date in Unix timestamp.
+         * Session creation date in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
          * User ID.
          */
         userId: string;
         /**
-         * Session expiration date in Unix timestamp.
+         * Session expiration date in ISO 8601 format.
          */
-        expire: number;
+        expire: string;
         /**
          * Session Provider.
          */
@@ -840,9 +1026,9 @@ export namespace Models {
          */
         providerAccessToken: string;
         /**
-         * Date, the Unix timestamp of when the access token expires.
+         * The date of when the access token expires in ISO 8601 format.
          */
-        providerAccessTokenExpiry: number;
+        providerAccessTokenExpiry: string;
         /**
          * Session Provider Refresh Token.
          */
@@ -921,9 +1107,9 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Token creation date in Unix timestamp.
+         * Token creation date in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
          * User ID.
          */
@@ -933,9 +1119,9 @@ export namespace Models {
          */
         secret: string;
         /**
-         * Token expiration date in Unix timestamp.
+         * Token expiration date in ISO 8601 format.
          */
-        expire: number;
+        expire: string;
     }
     /**
      * Locale
@@ -983,21 +1169,17 @@ export namespace Models {
          */
         bucketId: string;
         /**
-         * File creation date in Unix timestamp.
+         * File creation date in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
-         * File update date in Unix timestamp.
+         * File update date in ISO 8601 format.
          */
-        $updatedAt: number;
+        $updatedAt: string;
         /**
-         * File read permissions.
+         * File permissions. [Learn more about permissions](/docs/permissions).
          */
-        $read: string[];
-        /**
-         * File write permissions.
-         */
-        $write: string[];
+        $permissions: string[];
         /**
          * File name.
          */
@@ -1032,25 +1214,21 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Bucket creation date in Unix timestamp.
+         * Bucket creation time in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
-         * Bucket update date in Unix timestamp.
+         * Bucket update date in ISO 8601 format.
          */
-        $updatedAt: number;
+        $updatedAt: string;
         /**
-         * File read permissions.
+         * Bucket permissions. [Learn more about permissions](/docs/permissions).
          */
-        $read: string[];
+        $permissions: string[];
         /**
-         * File write permissions.
+         * Whether file-level security is enabled. [Learn more about permissions](/docs/permissions).
          */
-        $write: string[];
-        /**
-         * Bucket permission model. Possible values: `bucket` or `file`
-         */
-        permission: string;
+        fileSecurity: string;
         /**
          * Bucket name.
          */
@@ -1067,6 +1245,10 @@ export namespace Models {
          * Allowed file extensions.
          */
         allowedFileExtensions: string[];
+        /**
+         * Compression algorithm choosen for compression. Will be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd).
+         */
+        compression: string;
         /**
          * Bucket is encrypted.
          */
@@ -1085,13 +1267,13 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Team creation date in Unix timestamp.
+         * Team creation date in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
-         * Team update date in Unix timestamp.
+         * Team update date in ISO 8601 format.
          */
-        $updatedAt: number;
+        $updatedAt: string;
         /**
          * Team name.
          */
@@ -1110,13 +1292,13 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Membership creation date in Unix timestamp.
+         * Membership creation date in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
-         * Membership update date in Unix timestamp.
+         * Membership update date in ISO 8601 format.
          */
-        $updatedAt: number;
+        $updatedAt: string;
         /**
          * User ID.
          */
@@ -1138,13 +1320,13 @@ export namespace Models {
          */
         teamName: string;
         /**
-         * Date, the user has been invited to join the team in Unix timestamp.
+         * Date, the user has been invited to join the team in ISO 8601 format.
          */
-        invited: number;
+        invited: string;
         /**
-         * Date, the user has accepted the invitation to join the team in Unix timestamp.
+         * Date, the user has accepted the invitation to join the team in ISO 8601 format.
          */
-        joined: number;
+        joined: string;
         /**
          * User confirmation status, true if the user has joined the team or false otherwise.
          */
@@ -1163,13 +1345,13 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Function creation date in Unix timestamp.
+         * Function creation date in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
-         * Function update date in Unix timestamp.
+         * Function update date in ISO 8601 format.
          */
-        $updatedAt: number;
+        $updatedAt: string;
         /**
          * Execution permissions.
          */
@@ -1191,9 +1373,9 @@ export namespace Models {
          */
         deployment: string;
         /**
-         * Function environment variables.
+         * Function variables.
          */
-        vars: object;
+        vars: Variable[];
         /**
          * Function trigger events.
          */
@@ -1203,13 +1385,13 @@ export namespace Models {
          */
         schedule: string;
         /**
-         * Function next scheduled execution date in Unix timestamp.
+         * Function&#039;s next scheduled execution time in ISO 8601 format.
          */
-        scheduleNext: number;
+        scheduleNext: string;
         /**
-         * Function next scheduled execution date in Unix timestamp.
+         * Function&#039;s previous scheduled execution time in ISO 8601 format.
          */
-        schedulePrevious: number;
+        schedulePrevious: string;
         /**
          * Function execution timeout in seconds.
          */
@@ -1257,13 +1439,13 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Deployment creation date in Unix timestamp.
+         * Deployment creation date in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
-         * Deployment update date in Unix timestamp.
+         * Deployment update date in ISO 8601 format.
          */
-        $updatedAt: number;
+        $updatedAt: string;
         /**
          * Resource ID.
          */
@@ -1289,7 +1471,7 @@ export namespace Models {
          */
         activate: boolean;
         /**
-         * The deployment status.
+         * The deployment status. Possible values are &quot;processing&quot;, &quot;building&quot;, &quot;pending&quot;, &quot;ready&quot;, and &quot;failed&quot;.
          */
         status: string;
         /**
@@ -1310,17 +1492,17 @@ export namespace Models {
          */
         $id: string;
         /**
-         * Execution creation date in Unix timestamp.
+         * Execution creation date in ISO 8601 format.
          */
-        $createdAt: number;
+        $createdAt: string;
         /**
-         * Execution update date in Unix timestamp.
+         * Execution upate date in ISO 8601 format.
          */
-        $updatedAt: number;
+        $updatedAt: string;
         /**
-         * Execution read permissions.
+         * Execution roles.
          */
-        $read: string[];
+        $permissions: string[];
         /**
          * Function ID.
          */
@@ -1342,13 +1524,46 @@ export namespace Models {
          */
         response: string;
         /**
-         * The script stderr output string. Logs the last 4,000 characters of the execution stderr output
+         * The script stdout output string. Logs the last 4,000 characters of the execution stdout output. This will return an empty string unless the response is returned using an API key or as part of a webhook payload.
+         */
+        stdout: string;
+        /**
+         * The script stderr output string. Logs the last 4,000 characters of the execution stderr output. This will return an empty string unless the response is returned using an API key or as part of a webhook payload.
          */
         stderr: string;
         /**
          * The script execution time in seconds.
          */
         time: number;
+    }
+    /**
+     * Variable
+     */
+    export type Variable = { 
+        /**
+         * Variable ID.
+         */
+        $id: string;
+        /**
+         * Variable creation date in ISO 8601 format.
+         */
+        $createdAt: string;
+        /**
+         * Variable creation date in ISO 8601 format.
+         */
+        $updatedAt: string;
+        /**
+         * Variable key.
+         */
+        key: string;
+        /**
+         * Variable value.
+         */
+        value: string;
+        /**
+         * Function ID.
+         */
+        functionId: string;
     }
     /**
      * Country

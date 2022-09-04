@@ -1,5 +1,8 @@
 import { Client } from "./src/client.ts";
 import { Query } from "./src/query.ts";
+import { Permission } from "./src/permission.ts";
+import { Role } from "./src/role.ts";
+import { ID } from "./src/id.ts";
 import { InputFile } from "./src/inputFile.ts";
 import { AppwriteException } from "./src/exception.ts";
 import { Account } from "./src/services/account.ts";
@@ -15,6 +18,9 @@ import { Users } from "./src/services/users.ts";
 export {
     Client,
     Query,
+    Permission,
+    Role,
+    ID,
     InputFile,
     AppwriteException,
     Account,

@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = users.create('[USER_ID]');
+let promise = users.createArgon2User('[USER_ID]', 'email@example.com', 'password');
 
 promise.then(function (response) {
     console.log(response);

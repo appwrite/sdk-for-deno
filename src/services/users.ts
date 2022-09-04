@@ -14,47 +14,33 @@ export type UploadProgress = {
 }
 
 export class Users extends Service {
+
+     constructor(client: Client)
+     {
+        super(client);
+     }
+
     /**
      * List Users
      *
      * Get a list of all the project's users. You can use the query params to
      * filter your results.
      *
+     * @param {string[]} queries
      * @param {string} search
-     * @param {number} limit
-     * @param {number} offset
-     * @param {string} cursor
-     * @param {string} cursorDirection
-     * @param {string} orderType
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async list<Preferences extends Models.Preferences>(search?: string, limit?: number, offset?: number, cursor?: string, cursorDirection?: string, orderType?: string): Promise<Models.UserList<Preferences>> {
+    async list<Preferences extends Models.Preferences>(queries?: string[], search?: string): Promise<Models.UserList<Preferences>> {
         let path = '/users';
         let payload: Payload = {};
 
+        if (typeof queries !== 'undefined') {
+            payload['queries'] = queries;
+        }
+
         if (typeof search !== 'undefined') {
             payload['search'] = search;
-        }
-
-        if (typeof limit !== 'undefined') {
-            payload['limit'] = limit;
-        }
-
-        if (typeof offset !== 'undefined') {
-            payload['offset'] = offset;
-        }
-
-        if (typeof cursor !== 'undefined') {
-            payload['cursor'] = cursor;
-        }
-
-        if (typeof cursorDirection !== 'undefined') {
-            payload['cursorDirection'] = cursorDirection;
-        }
-
-        if (typeof orderType !== 'undefined') {
-            payload['orderType'] = orderType;
         }
 
         return await this.client.call('get', path, {
@@ -68,12 +54,55 @@ export class Users extends Service {
      *
      * @param {string} userId
      * @param {string} email
+     * @param {string} phone
      * @param {string} password
      * @param {string} name
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create<Preferences extends Models.Preferences>(userId: string, email: string, password: string, name?: string): Promise<Models.User<Preferences>> {
+    async create<Preferences extends Models.Preferences>(userId: string, email?: string, phone?: string, password?: string, name?: string): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        let path = '/users';
+        let payload: Payload = {};
+
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
+        }
+        if (typeof email !== 'undefined') {
+            payload['email'] = email;
+        }
+        if (typeof phone !== 'undefined') {
+            payload['phone'] = phone;
+        }
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        return await this.client.call('post', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Create User with Argon2 Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [Argon2](https://en.wikipedia.org/wiki/Argon2) algorithm. Use the [POST
+     * /users](/docs/server/users#usersCreate) endpoint to create users with a
+     * plain text password.
+     *
+     * @param {string} userId
+     * @param {string} email
+     * @param {string} password
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createArgon2User<Preferences extends Models.Preferences>(userId: string, email: string, password: string, name?: string): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -86,7 +115,7 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
-        let path = '/users';
+        let path = '/users/argon2';
         let payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
@@ -97,6 +126,356 @@ export class Users extends Service {
         }
         if (typeof password !== 'undefined') {
             payload['password'] = password;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        return await this.client.call('post', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Create User with Bcrypt Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm. Use the [POST
+     * /users](/docs/server/users#usersCreate) endpoint to create users with a
+     * plain text password.
+     *
+     * @param {string} userId
+     * @param {string} email
+     * @param {string} password
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createBcryptUser<Preferences extends Models.Preferences>(userId: string, email: string, password: string, name?: string): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof email === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (typeof password === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
+        let path = '/users/bcrypt';
+        let payload: Payload = {};
+
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
+        }
+        if (typeof email !== 'undefined') {
+            payload['email'] = email;
+        }
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        return await this.client.call('post', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Create User with MD5 Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [MD5](https://en.wikipedia.org/wiki/MD5) algorithm. Use the [POST
+     * /users](/docs/server/users#usersCreate) endpoint to create users with a
+     * plain text password.
+     *
+     * @param {string} userId
+     * @param {string} email
+     * @param {string} password
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createMD5User<Preferences extends Models.Preferences>(userId: string, email: string, password: string, name?: string): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof email === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (typeof password === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
+        let path = '/users/md5';
+        let payload: Payload = {};
+
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
+        }
+        if (typeof email !== 'undefined') {
+            payload['email'] = email;
+        }
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        return await this.client.call('post', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Create User with PHPass Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [PHPass](https://www.openwall.com/phpass/) algorithm. Use the [POST
+     * /users](/docs/server/users#usersCreate) endpoint to create users with a
+     * plain text password.
+     *
+     * @param {string} userId
+     * @param {string} email
+     * @param {string} password
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createPHPassUser<Preferences extends Models.Preferences>(userId: string, email: string, password: string, name?: string): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof email === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (typeof password === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
+        let path = '/users/phpass';
+        let payload: Payload = {};
+
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
+        }
+        if (typeof email !== 'undefined') {
+            payload['email'] = email;
+        }
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        return await this.client.call('post', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Create User with Scrypt Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [Scrypt](https://github.com/Tarsnap/scrypt) algorithm. Use the [POST
+     * /users](/docs/server/users#usersCreate) endpoint to create users with a
+     * plain text password.
+     *
+     * @param {string} userId
+     * @param {string} email
+     * @param {string} password
+     * @param {string} passwordSalt
+     * @param {number} passwordCpu
+     * @param {number} passwordMemory
+     * @param {number} passwordParallel
+     * @param {number} passwordLength
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createScryptUser<Preferences extends Models.Preferences>(userId: string, email: string, password: string, passwordSalt: string, passwordCpu: number, passwordMemory: number, passwordParallel: number, passwordLength: number, name?: string): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof email === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (typeof password === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
+        if (typeof passwordSalt === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "passwordSalt"');
+        }
+
+        if (typeof passwordCpu === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "passwordCpu"');
+        }
+
+        if (typeof passwordMemory === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "passwordMemory"');
+        }
+
+        if (typeof passwordParallel === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "passwordParallel"');
+        }
+
+        if (typeof passwordLength === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "passwordLength"');
+        }
+
+        let path = '/users/scrypt';
+        let payload: Payload = {};
+
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
+        }
+        if (typeof email !== 'undefined') {
+            payload['email'] = email;
+        }
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+        if (typeof passwordSalt !== 'undefined') {
+            payload['passwordSalt'] = passwordSalt;
+        }
+        if (typeof passwordCpu !== 'undefined') {
+            payload['passwordCpu'] = passwordCpu;
+        }
+        if (typeof passwordMemory !== 'undefined') {
+            payload['passwordMemory'] = passwordMemory;
+        }
+        if (typeof passwordParallel !== 'undefined') {
+            payload['passwordParallel'] = passwordParallel;
+        }
+        if (typeof passwordLength !== 'undefined') {
+            payload['passwordLength'] = passwordLength;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        return await this.client.call('post', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Create User with Scrypt Modified Password
+     *
+     * Create a new user. Password provided must be hashed with the [Scrypt
+     * Modified](https://gist.github.com/Meldiron/eecf84a0225eccb5a378d45bb27462cc)
+     * algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint
+     * to create users with a plain text password.
+     *
+     * @param {string} userId
+     * @param {string} email
+     * @param {string} password
+     * @param {string} passwordSalt
+     * @param {string} passwordSaltSeparator
+     * @param {string} passwordSignerKey
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createScryptModifiedUser<Preferences extends Models.Preferences>(userId: string, email: string, password: string, passwordSalt: string, passwordSaltSeparator: string, passwordSignerKey: string, name?: string): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof email === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (typeof password === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
+        if (typeof passwordSalt === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "passwordSalt"');
+        }
+
+        if (typeof passwordSaltSeparator === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "passwordSaltSeparator"');
+        }
+
+        if (typeof passwordSignerKey === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "passwordSignerKey"');
+        }
+
+        let path = '/users/scrypt-modified';
+        let payload: Payload = {};
+
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
+        }
+        if (typeof email !== 'undefined') {
+            payload['email'] = email;
+        }
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+        if (typeof passwordSalt !== 'undefined') {
+            payload['passwordSalt'] = passwordSalt;
+        }
+        if (typeof passwordSaltSeparator !== 'undefined') {
+            payload['passwordSaltSeparator'] = passwordSaltSeparator;
+        }
+        if (typeof passwordSignerKey !== 'undefined') {
+            payload['passwordSignerKey'] = passwordSignerKey;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        return await this.client.call('post', path, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Create User with SHA Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) algorithm. Use
+     * the [POST /users](/docs/server/users#usersCreate) endpoint to create users
+     * with a plain text password.
+     *
+     * @param {string} userId
+     * @param {string} email
+     * @param {string} password
+     * @param {string} passwordVersion
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createSHAUser<Preferences extends Models.Preferences>(userId: string, email: string, password: string, passwordVersion?: string, name?: string): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof email === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (typeof password === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
+        let path = '/users/sha';
+        let payload: Payload = {};
+
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
+        }
+        if (typeof email !== 'undefined') {
+            payload['email'] = email;
+        }
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+        if (typeof passwordVersion !== 'undefined') {
+            payload['passwordVersion'] = passwordVersion;
         }
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -186,12 +565,11 @@ export class Users extends Service {
      * Get the user activity logs list by its unique ID.
      *
      * @param {string} userId
-     * @param {number} limit
-     * @param {number} offset
+     * @param {string[]} queries
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getLogs(userId: string, limit?: number, offset?: number): Promise<Models.LogList> {
+    async getLogs(userId: string, queries?: string[]): Promise<Models.LogList> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -199,12 +577,8 @@ export class Users extends Service {
         let path = '/users/{userId}/logs'.replace('{userId}', userId);
         let payload: Payload = {};
 
-        if (typeof limit !== 'undefined') {
-            payload['limit'] = limit;
-        }
-
-        if (typeof offset !== 'undefined') {
-            payload['offset'] = offset;
+        if (typeof queries !== 'undefined') {
+            payload['queries'] = queries;
         }
 
         return await this.client.call('get', path, {

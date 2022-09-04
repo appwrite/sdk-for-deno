@@ -8,11 +8,14 @@ export class Client {
     static CHUNK_SIZE = 5*1024*1024; // 5MB
     static DENO_READ_CHUNK_SIZE = 16384; // 16kb; refference: https://github.com/denoland/deno/discussions/9906
     
-    endpoint: string = 'https://appwrite.io/v1';
+    endpoint: string = 'https://HOSTNAME/v1';
     headers: Payload = {
         'content-type': '',
-        'x-sdk-version': 'appwrite:deno:5.0.1',
-        'X-Appwrite-Response-Format':'0.15.0',
+        'x-sdk-name': 'Deno',
+        'x-sdk-platform': 'server',
+        'x-sdk-language': 'deno',
+        'x-sdk-version': '5.1.0-RC1',
+        'X-Appwrite-Response-Format':'1.0.0-RC1',
     };
 
     /**
