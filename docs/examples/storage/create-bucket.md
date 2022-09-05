@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = storage.createBucket('[BUCKET_ID]', '[NAME]', 'file');
+let promise = storage.createBucket('[BUCKET_ID]', '[NAME]');
 
 promise.then(function (response) {
     console.log(response);

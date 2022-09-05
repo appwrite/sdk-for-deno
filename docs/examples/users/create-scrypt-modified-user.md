@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = users.create('[USER_ID]');
+let promise = users.createScryptModifiedUser('[USER_ID]', 'email@example.com', 'password', '[PASSWORD_SALT]', '[PASSWORD_SALT_SEPARATOR]', '[PASSWORD_SIGNER_KEY]');
 
 promise.then(function (response) {
     console.log(response);

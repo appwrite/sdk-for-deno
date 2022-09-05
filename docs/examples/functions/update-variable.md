@@ -3,7 +3,7 @@ import * as sdk from "https://deno.land/x/appwrite/mod.ts";
 // Init SDK
 let client = new sdk.Client();
 
-let users = new sdk.Users(client);
+let functions = new sdk.Functions(client);
 
 client
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = users.create('[USER_ID]');
+let promise = functions.updateVariable('[FUNCTION_ID]', '[VARIABLE_ID]', '[KEY]');
 
 promise.then(function (response) {
     console.log(response);

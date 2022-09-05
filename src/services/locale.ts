@@ -14,6 +14,12 @@ export type UploadProgress = {
 }
 
 export class Locale extends Service {
+
+     constructor(client: Client)
+     {
+        super(client);
+     }
+
     /**
      * Get User Locale
      *

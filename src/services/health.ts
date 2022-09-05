@@ -14,6 +14,12 @@ export type UploadProgress = {
 }
 
 export class Health extends Service {
+
+     constructor(client: Client)
+     {
+        super(client);
+     }
+
     /**
      * Get HTTP
      *
