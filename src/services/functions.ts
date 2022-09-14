@@ -61,10 +61,11 @@ export class Functions extends Service {
      * @param {string[]} events
      * @param {string} schedule
      * @param {number} timeout
+     * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create(functionId: string, name: string, execute: string[], runtime: string, events?: string[], schedule?: string, timeout?: number): Promise<Models.Function> {
+    async create(functionId: string, name: string, execute: string[], runtime: string, events?: string[], schedule?: string, timeout?: number, enabled?: boolean): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -104,6 +105,9 @@ export class Functions extends Service {
         }
         if (typeof timeout !== 'undefined') {
             payload['timeout'] = timeout;
+        }
+        if (typeof enabled !== 'undefined') {
+            payload['enabled'] = enabled;
         }
         return await this.client.call('post', path, {
             'content-type': 'application/json',
@@ -157,10 +161,11 @@ export class Functions extends Service {
      * @param {string[]} events
      * @param {string} schedule
      * @param {number} timeout
+     * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async update(functionId: string, name: string, execute: string[], events?: string[], schedule?: string, timeout?: number): Promise<Models.Function> {
+    async update(functionId: string, name: string, execute: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -190,6 +195,9 @@ export class Functions extends Service {
         }
         if (typeof timeout !== 'undefined') {
             payload['timeout'] = timeout;
+        }
+        if (typeof enabled !== 'undefined') {
+            payload['enabled'] = enabled;
         }
         return await this.client.call('put', path, {
             'content-type': 'application/json',
@@ -591,26 +599,16 @@ export class Functions extends Service {
      * Get a list of all variables of a specific function.
      *
      * @param {string} functionId
-     * @param {string[]} queries
-     * @param {string} search
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listVariables(functionId: string, queries?: string[], search?: string): Promise<Models.VariableList> {
+    async listVariables(functionId: string): Promise<Models.VariableList> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
         let path = '/functions/{functionId}/variables'.replace('{functionId}', functionId);
         let payload: Payload = {};
-
-        if (typeof queries !== 'undefined') {
-            payload['queries'] = queries;
-        }
-
-        if (typeof search !== 'undefined') {
-            payload['search'] = search;
-        }
 
         return await this.client.call('get', path, {
             'content-type': 'application/json',

@@ -76,7 +76,7 @@ export class Account extends Service {
         }, payload);
     }
     /**
-     * Get Account Logs
+     * List Account Logs
      *
      * Get currently logged in user list of latest security activity logs. Each
      * log returns user IP address, location and date and time of log.
@@ -85,7 +85,7 @@ export class Account extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getLogs(queries?: string[]): Promise<Models.LogList> {
+    async listLogs(queries?: string[]): Promise<Models.LogList> {
         let path = '/account/logs';
         let payload: Payload = {};
 
@@ -325,7 +325,7 @@ export class Account extends Service {
         }, payload);
     }
     /**
-     * Get Account Sessions
+     * List Account Sessions
      *
      * Get currently logged in user list of active sessions across different
      * devices.
@@ -333,7 +333,7 @@ export class Account extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getSessions(): Promise<Models.SessionList> {
+    async listSessions(): Promise<Models.SessionList> {
         let path = '/account/sessions';
         let payload: Payload = {};
 

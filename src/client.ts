@@ -14,8 +14,8 @@ export class Client {
         'x-sdk-name': 'Deno',
         'x-sdk-platform': 'server',
         'x-sdk-language': 'deno',
-        'x-sdk-version': '6.0.0-RC1',
-        'X-Appwrite-Response-Format':'1.0.0-RC1',
+        'x-sdk-version': '6.0.0',
+        'X-Appwrite-Response-Format':'1.0.0',
     };
 
     /**
