@@ -560,7 +560,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Get User Logs
+     * List User Logs
      *
      * Get the user activity logs list by its unique ID.
      *
@@ -569,7 +569,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getLogs(userId: string, queries?: string[]): Promise<Models.LogList> {
+    async listLogs(userId: string, queries?: string[]): Promise<Models.LogList> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -586,7 +586,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Get User Memberships
+     * List User Memberships
      *
      * Get the user membership list by its unique ID.
      *
@@ -594,7 +594,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getMemberships(userId: string): Promise<Models.MembershipList> {
+    async listMemberships(userId: string): Promise<Models.MembershipList> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -746,7 +746,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Get User Sessions
+     * List User Sessions
      *
      * Get the user sessions list by its unique ID.
      *
@@ -754,7 +754,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getSessions(userId: string): Promise<Models.SessionList> {
+    async listSessions(userId: string): Promise<Models.SessionList> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }

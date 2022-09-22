@@ -692,7 +692,11 @@ export namespace Models {
         /**
          * Collection ID.
          */
-        $collection: string;
+        $collectionId: string;
+        /**
+         * Database ID.
+         */
+        $databaseId: string;
         /**
          * Document creation date in ISO 8601 format.
          */
@@ -1228,7 +1232,7 @@ export namespace Models {
         /**
          * Whether file-level security is enabled. [Learn more about permissions](/docs/permissions).
          */
-        fileSecurity: string;
+        fileSecurity: boolean;
         /**
          * Bucket name.
          */
@@ -1361,9 +1365,9 @@ export namespace Models {
          */
         name: string;
         /**
-         * Function status. Possible values: `disabled`, `enabled`
+         * Function enabled.
          */
-        status: string;
+        enabled: boolean;
         /**
          * Function execution runtime.
          */
@@ -1532,9 +1536,9 @@ export namespace Models {
          */
         stderr: string;
         /**
-         * The script execution time in seconds.
+         * The script execution duration in seconds.
          */
-        time: number;
+        duration: number;
     }
     /**
      * Variable

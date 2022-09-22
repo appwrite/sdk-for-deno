@@ -162,7 +162,7 @@ export class Teams extends Service {
         }, payload);
     }
     /**
-     * Get Team Memberships
+     * List Team Memberships
      *
      * Use this endpoint to list a team's members using the team's ID. All team
      * members have read access to this endpoint.
@@ -173,7 +173,7 @@ export class Teams extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getMemberships(teamId: string, queries?: string[], search?: string): Promise<Models.MembershipList> {
+    async listMemberships(teamId: string, queries?: string[], search?: string): Promise<Models.MembershipList> {
         if (typeof teamId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
