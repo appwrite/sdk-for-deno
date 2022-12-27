@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = account.updatePhone('', 'password');
+let promise = account.updatePhone('+12065550100', 'password');
 
 promise.then(function (response) {
     console.log(response);

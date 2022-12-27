@@ -868,26 +868,46 @@ export namespace Models {
      * AlgoMD5
      */
     export type AlgoMd5 = { 
+        /**
+         * Algo type.
+         */
+        type: string;
     }
     /**
      * AlgoSHA
      */
     export type AlgoSha = { 
+        /**
+         * Algo type.
+         */
+        type: string;
     }
     /**
      * AlgoPHPass
      */
     export type AlgoPhpass = { 
+        /**
+         * Algo type.
+         */
+        type: string;
     }
     /**
      * AlgoBcrypt
      */
     export type AlgoBcrypt = { 
+        /**
+         * Algo type.
+         */
+        type: string;
     }
     /**
      * AlgoScrypt
      */
     export type AlgoScrypt = { 
+        /**
+         * Algo type.
+         */
+        type: string;
         /**
          * CPU complexity of computed hash.
          */
@@ -910,6 +930,10 @@ export namespace Models {
      */
     export type AlgoScryptModified = { 
         /**
+         * Algo type.
+         */
+        type: string;
+        /**
          * Salt used to compute hash.
          */
         salt: string;
@@ -926,6 +950,10 @@ export namespace Models {
      * AlgoArgon2
      */
     export type AlgoArgon2 = { 
+        /**
+         * Algo type.
+         */
+        type: string;
         /**
          * Memory used to compute hash.
          */
@@ -1486,6 +1514,10 @@ export namespace Models {
          * The build stderr.
          */
         buildStderr: string;
+        /**
+         * The current build time in seconds.
+         */
+        buildTime: number;
     }
     /**
      * Execution
