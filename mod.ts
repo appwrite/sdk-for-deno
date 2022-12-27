@@ -9,6 +9,7 @@ import { Account } from "./src/services/account.ts";
 import { Avatars } from "./src/services/avatars.ts";
 import { Databases } from "./src/services/databases.ts";
 import { Functions } from "./src/services/functions.ts";
+import { Graphql } from "./src/services/graphql.ts";
 import { Health } from "./src/services/health.ts";
 import { Locale } from "./src/services/locale.ts";
 import { Storage } from "./src/services/storage.ts";
@@ -27,6 +28,7 @@ export {
     Avatars,
     Databases,
     Functions,
+    Graphql,
     Health,
     Locale,
     Storage,

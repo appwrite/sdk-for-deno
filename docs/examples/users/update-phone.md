@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = users.updatePhone('[USER_ID]', '');
+let promise = users.updatePhone('[USER_ID]', '+12065550100');
 
 promise.then(function (response) {
     console.log(response);

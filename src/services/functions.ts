@@ -473,7 +473,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Retry Build
+     * Create Build
      *
      * @param {string} functionId
      * @param {string} deploymentId
@@ -481,7 +481,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async retryBuild(functionId: string, deploymentId: string, buildId: string): Promise<Response> {
+    async createBuild(functionId: string, deploymentId: string, buildId: string): Promise<Response> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -505,9 +505,7 @@ export class Functions extends Service {
      * List Executions
      *
      * Get a list of all the current user function execution logs. You can use the
-     * query params to filter your results. On admin mode, this endpoint will
-     * return a list of all of the project's executions. [Learn more about
-     * different API modes](/docs/admin).
+     * query params to filter your results.
      *
      * @param {string} functionId
      * @param {string[]} queries
