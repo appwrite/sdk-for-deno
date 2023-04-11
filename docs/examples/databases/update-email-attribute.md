@@ -3,7 +3,7 @@ import * as sdk from "https://deno.land/x/appwrite/mod.ts";
 // Init SDK
 let client = new sdk.Client();
 
-let functions = new sdk.Functions(client);
+let databases = new sdk.Databases(client);
 
 client
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = functions.create('[FUNCTION_ID]', '[NAME]', 'node-14.5');
+let promise = databases.updateEmailAttribute('[DATABASE_ID]', '[COLLECTION_ID]', '', false, 'email@example.com');
 
 promise.then(function (response) {
     console.log(response);

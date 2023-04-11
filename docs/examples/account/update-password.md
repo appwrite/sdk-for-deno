@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = account.updatePassword('password');
+let promise = account.updatePassword('');
 
 promise.then(function (response) {
     console.log(response);

@@ -119,7 +119,7 @@ export namespace Models {
     /**
      * Teams List
      */
-    export type TeamList = { 
+    export type TeamList<Preferences extends Models.Preferences> = { 
         /**
          * Total number of teams documents that matched your query.
          */
@@ -127,7 +127,7 @@ export namespace Models {
         /**
          * List of teams.
          */
-        teams: Team[];
+        teams: Team<Preferences>[];
     }
     /**
      * Memberships List
@@ -332,7 +332,7 @@ export namespace Models {
         /**
          * Collection attributes.
          */
-        attributes: (AttributeBoolean | AttributeInteger | AttributeFloat | AttributeEmail | AttributeEnum | AttributeUrl | AttributeIp | AttributeDatetime | AttributeString)[];
+        attributes: (AttributeBoolean | AttributeInteger | AttributeFloat | AttributeEmail | AttributeEnum | AttributeUrl | AttributeIp | AttributeDatetime | AttributeRelationship | AttributeString)[];
         /**
          * Collection indexes.
          */
@@ -349,7 +349,7 @@ export namespace Models {
         /**
          * List of attributes.
          */
-        attributes: (AttributeBoolean | AttributeInteger | AttributeFloat | AttributeEmail | AttributeEnum | AttributeUrl | AttributeIp | AttributeDatetime | AttributeString)[];
+        attributes: (AttributeBoolean | AttributeInteger | AttributeFloat | AttributeEmail | AttributeEnum | AttributeUrl | AttributeIp | AttributeDatetime | AttributeRelationship | AttributeString)[];
     }
     /**
      * AttributeString
@@ -657,6 +657,55 @@ export namespace Models {
         xdefault?: string;
     }
     /**
+     * AttributeRelationship
+     */
+    export type AttributeRelationship = { 
+        /**
+         * Attribute Key.
+         */
+        key: string;
+        /**
+         * Attribute type.
+         */
+        type: string;
+        /**
+         * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+         */
+        status: string;
+        /**
+         * Is attribute required?
+         */
+        required: boolean;
+        /**
+         * Is attribute an array?
+         */
+        array?: boolean;
+        /**
+         * The ID of the related collection.
+         */
+        relatedCollection: string;
+        /**
+         * The type of the relationship.
+         */
+        relationType: string;
+        /**
+         * Is the relationship two-way?
+         */
+        twoWay: boolean;
+        /**
+         * The key of the two-way relationship.
+         */
+        twoWayKey: string;
+        /**
+         * How deleting the parent document will propagate to child documents.
+         */
+        onDelete: string;
+        /**
+         * Whether this is the parent or child side of the relationship
+         */
+        side: string;
+    }
+    /**
      * Index
      */
     export type Index = { 
@@ -822,15 +871,15 @@ export namespace Models {
         /**
          * Hashed user password.
          */
-        password: string;
+        password?: string;
         /**
          * Password hashing algorithm.
          */
-        hash: string;
+        hash?: string;
         /**
          * Password hashing algorithm configuration.
          */
-        hashOptions: (AlgoArgon2 | AlgoScrypt | AlgoScryptModified | AlgoBcrypt | AlgoPhpass | AlgoSha | AlgoMd5);
+        hashOptions?: (AlgoArgon2 | AlgoScrypt | AlgoScryptModified | AlgoBcrypt | AlgoPhpass | AlgoSha | AlgoMd5);
         /**
          * User registration date in ISO 8601 format.
          */
@@ -966,59 +1015,6 @@ export namespace Models {
          * Number of threads used to compute hash.
          */
         threads: number;
-    }
-    /**
-     * Account
-     */
-    export type Account<Preferences extends Models.Preferences> = { 
-        /**
-         * User ID.
-         */
-        $id: string;
-        /**
-         * User creation date in ISO 8601 format.
-         */
-        $createdAt: string;
-        /**
-         * User update date in ISO 8601 format.
-         */
-        $updatedAt: string;
-        /**
-         * User name.
-         */
-        name: string;
-        /**
-         * User registration date in ISO 8601 format.
-         */
-        registration: string;
-        /**
-         * User status. Pass `true` for enabled and `false` for disabled.
-         */
-        status: boolean;
-        /**
-         * Password update time in ISO 8601 format.
-         */
-        passwordUpdate: string;
-        /**
-         * User email address.
-         */
-        email: string;
-        /**
-         * User phone number in E.164 format.
-         */
-        phone: string;
-        /**
-         * Email verification status.
-         */
-        emailVerification: boolean;
-        /**
-         * Phone verification status.
-         */
-        phoneVerification: boolean;
-        /**
-         * User preferences as a key-value object
-         */
-        prefs: Preferences;
     }
     /**
      * Preferences
@@ -1293,7 +1289,7 @@ export namespace Models {
     /**
      * Team
      */
-    export type Team = { 
+    export type Team<Preferences extends Models.Preferences> = { 
         /**
          * Team ID.
          */
@@ -1314,6 +1310,10 @@ export namespace Models {
          * Total number of team members.
          */
         total: number;
+        /**
+         * Team preferences as a key-value object
+         */
+        prefs: Preferences;
     }
     /**
      * Membership
