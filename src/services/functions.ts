@@ -56,8 +56,8 @@ export class Functions extends Service {
      *
      * @param {string} functionId
      * @param {string} name
-     * @param {string[]} execute
      * @param {string} runtime
+     * @param {string[]} execute
      * @param {string[]} events
      * @param {string} schedule
      * @param {number} timeout
@@ -65,17 +65,13 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create(functionId: string, name: string, execute: string[], runtime: string, events?: string[], schedule?: string, timeout?: number, enabled?: boolean): Promise<Models.Function> {
+    async create(functionId: string, name: string, runtime: string, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
         if (typeof name === 'undefined') {
             throw new AppwriteException('Missing required parameter: "name"');
-        }
-
-        if (typeof execute === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "execute"');
         }
 
         if (typeof runtime === 'undefined') {
@@ -165,17 +161,13 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async update(functionId: string, name: string, execute: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean): Promise<Models.Function> {
+    async update(functionId: string, name: string, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
         if (typeof name === 'undefined') {
             throw new AppwriteException('Missing required parameter: "name"');
-        }
-
-        if (typeof execute === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "execute"');
         }
 
         let path = '/functions/{functionId}'.replace('{functionId}', functionId);
