@@ -32,8 +32,8 @@ export class Storage extends Service {
      * @returns {Promise}
      */
     async listBuckets(queries?: string[], search?: string): Promise<Models.BucketList> {
-        let path = '/storage/buckets';
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets';
+        const payload: Payload = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -43,7 +43,7 @@ export class Storage extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -74,8 +74,8 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "name"');
         }
 
-        let path = '/storage/buckets';
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets';
+        const payload: Payload = {};
 
         if (typeof bucketId !== 'undefined') {
             payload['bucketId'] = bucketId;
@@ -107,7 +107,7 @@ export class Storage extends Service {
         if (typeof antivirus !== 'undefined') {
             payload['antivirus'] = antivirus;
         }
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -126,10 +126,10 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
 
-        let path = '/storage/buckets/{bucketId}'.replace('{bucketId}', bucketId);
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets/{bucketId}'.replace('{bucketId}', bucketId);
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -160,8 +160,8 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "name"');
         }
 
-        let path = '/storage/buckets/{bucketId}'.replace('{bucketId}', bucketId);
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets/{bucketId}'.replace('{bucketId}', bucketId);
+        const payload: Payload = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -190,7 +190,7 @@ export class Storage extends Service {
         if (typeof antivirus !== 'undefined') {
             payload['antivirus'] = antivirus;
         }
-        return await this.client.call('put', path, {
+        return await this.client.call('put', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -208,10 +208,10 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
 
-        let path = '/storage/buckets/{bucketId}'.replace('{bucketId}', bucketId);
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets/{bucketId}'.replace('{bucketId}', bucketId);
+        const payload: Payload = {};
 
-        return await this.client.call('delete', path, {
+        return await this.client.call('delete', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -232,8 +232,8 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
 
-        let path = '/storage/buckets/{bucketId}/files'.replace('{bucketId}', bucketId);
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets/{bucketId}/files'.replace('{bucketId}', bucketId);
+        const payload: Payload = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -243,7 +243,7 @@ export class Storage extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -289,8 +289,8 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "file"');
         }
 
-        let path = '/storage/buckets/{bucketId}/files'.replace('{bucketId}', bucketId);
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets/{bucketId}/files'.replace('{bucketId}', bucketId);
+        const payload: Payload = {};
 
         if (typeof fileId !== 'undefined') {
             payload['fileId'] = fileId;
@@ -315,7 +315,7 @@ export class Storage extends Service {
 
         if(fileId != 'unique()') {
             try {
-                response = await this.client.call('get', path + '/' + fileId, headers);
+                response = await this.client.call('get', apiPath + '/' + fileId, headers);
                 chunksUploaded = response.chunksUploaded;
             } catch(e) {
             }
@@ -354,7 +354,7 @@ export class Storage extends Service {
 
             payload['file'] = { type: 'file', file: new File([uploadableChunkTrimmed], file.filename), filename: file.filename };
 
-            response = await this.client.call('post', path, headers, payload);
+            response = await this.client.call('post', apiPath, headers, payload);
 
             if (!id) {
                 id = response['$id'];
@@ -414,10 +414,10 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 
-        let path = '/storage/buckets/{bucketId}/files/{fileId}'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets/{bucketId}/files/{fileId}'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -429,11 +429,12 @@ export class Storage extends Service {
      *
      * @param {string} bucketId
      * @param {string} fileId
+     * @param {string} name
      * @param {string[]} permissions
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateFile(bucketId: string, fileId: string, permissions?: string[]): Promise<Models.File> {
+    async updateFile(bucketId: string, fileId: string, name?: string, permissions?: string[]): Promise<Models.File> {
         if (typeof bucketId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -442,13 +443,16 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 
-        let path = '/storage/buckets/{bucketId}/files/{fileId}'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets/{bucketId}/files/{fileId}'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
+        const payload: Payload = {};
 
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
         if (typeof permissions !== 'undefined') {
             payload['permissions'] = permissions;
         }
-        return await this.client.call('put', path, {
+        return await this.client.call('put', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -472,10 +476,10 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 
-        let path = '/storage/buckets/{bucketId}/files/{fileId}'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets/{bucketId}/files/{fileId}'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
+        const payload: Payload = {};
 
-        return await this.client.call('delete', path, {
+        return await this.client.call('delete', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -500,10 +504,10 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 
-        let path = '/storage/buckets/{bucketId}/files/{fileId}/download'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets/{bucketId}/files/{fileId}/download'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -541,8 +545,8 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 
-        let path = '/storage/buckets/{bucketId}/files/{fileId}/preview'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets/{bucketId}/files/{fileId}/preview'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
+        const payload: Payload = {};
 
         if (typeof width !== 'undefined') {
             payload['width'] = width;
@@ -588,7 +592,7 @@ export class Storage extends Service {
             payload['output'] = output;
         }
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -613,10 +617,10 @@ export class Storage extends Service {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 
-        let path = '/storage/buckets/{bucketId}/files/{fileId}/view'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
-        let payload: Payload = {};
+        const apiPath = '/storage/buckets/{bucketId}/files/{fileId}/view'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }

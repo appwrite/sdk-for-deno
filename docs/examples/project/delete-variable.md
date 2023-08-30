@@ -3,16 +3,16 @@ import * as sdk from "https://deno.land/x/appwrite/mod.ts";
 // Init SDK
 let client = new sdk.Client();
 
-let teams = new sdk.Teams(client);
+let project = new sdk.Project(client);
 
 client
-    .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
+    .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
 ;
 
 
-let promise = teams.updateMembershipRoles('[TEAM_ID]', '[MEMBERSHIP_ID]', []);
+let promise = project.deleteVariable('[VARIABLE_ID]');
 
 promise.then(function (response) {
     console.log(response);

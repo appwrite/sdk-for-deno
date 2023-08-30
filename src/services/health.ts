@@ -29,10 +29,10 @@ export class Health extends Service {
      * @returns {Promise}
      */
     async get(): Promise<Models.HealthStatus> {
-        let path = '/health';
-        let payload: Payload = {};
+        const apiPath = '/health';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -45,43 +45,76 @@ export class Health extends Service {
      * @returns {Promise}
      */
     async getAntivirus(): Promise<Models.HealthAntivirus> {
-        let path = '/health/anti-virus';
-        let payload: Payload = {};
+        const apiPath = '/health/anti-virus';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
     /**
      * Get Cache
      *
-     * Check the Appwrite in-memory cache server is up and connection is
+     * Check the Appwrite in-memory cache servers are up and connection is
      * successful.
      *
      * @throws {AppwriteException}
      * @returns {Promise}
      */
     async getCache(): Promise<Models.HealthStatus> {
-        let path = '/health/cache';
-        let payload: Payload = {};
+        const apiPath = '/health/cache';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
     /**
      * Get DB
      *
-     * Check the Appwrite database server is up and connection is successful.
+     * Check the Appwrite database servers are up and connection is successful.
      *
      * @throws {AppwriteException}
      * @returns {Promise}
      */
     async getDB(): Promise<Models.HealthStatus> {
-        let path = '/health/db';
-        let payload: Payload = {};
+        const apiPath = '/health/db';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Get PubSub
+     *
+     * Check the Appwrite pub-sub servers are up and connection is successful.
+     *
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getPubSub(): Promise<Models.HealthStatus> {
+        const apiPath = '/health/pubsub';
+        const payload: Payload = {};
+
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Get Queue
+     *
+     * Check the Appwrite queue messaging servers are up and connection is
+     * successful.
+     *
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getQueue(): Promise<Models.HealthStatus> {
+        const apiPath = '/health/queue';
+        const payload: Payload = {};
+
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -96,10 +129,10 @@ export class Health extends Service {
      * @returns {Promise}
      */
     async getQueueCertificates(): Promise<Models.HealthQueue> {
-        let path = '/health/queue/certificates';
-        let payload: Payload = {};
+        const apiPath = '/health/queue/certificates';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -110,10 +143,10 @@ export class Health extends Service {
      * @returns {Promise}
      */
     async getQueueFunctions(): Promise<Models.HealthQueue> {
-        let path = '/health/queue/functions';
-        let payload: Payload = {};
+        const apiPath = '/health/queue/functions';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -127,10 +160,10 @@ export class Health extends Service {
      * @returns {Promise}
      */
     async getQueueLogs(): Promise<Models.HealthQueue> {
-        let path = '/health/queue/logs';
-        let payload: Payload = {};
+        const apiPath = '/health/queue/logs';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -144,10 +177,10 @@ export class Health extends Service {
      * @returns {Promise}
      */
     async getQueueWebhooks(): Promise<Models.HealthQueue> {
-        let path = '/health/queue/webhooks';
-        let payload: Payload = {};
+        const apiPath = '/health/queue/webhooks';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -160,10 +193,10 @@ export class Health extends Service {
      * @returns {Promise}
      */
     async getStorageLocal(): Promise<Models.HealthStatus> {
-        let path = '/health/storage/local';
-        let payload: Payload = {};
+        const apiPath = '/health/storage/local';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -182,10 +215,10 @@ export class Health extends Service {
      * @returns {Promise}
      */
     async getTime(): Promise<Models.HealthTime> {
-        let path = '/health/time';
-        let payload: Payload = {};
+        const apiPath = '/health/time';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
