@@ -11,11 +11,12 @@ export class Client {
     endpoint: string = 'https://HOSTNAME/v1';
     headers: Payload = {
         'content-type': '',
+        'user-agent' : `AppwriteDenoSDK/8.0.0 (${Deno.build.os}; ${Deno.build.arch})`,
         'x-sdk-name': 'Deno',
         'x-sdk-platform': 'server',
         'x-sdk-language': 'deno',
-        'x-sdk-version': '7.0.0',
-        'X-Appwrite-Response-Format':'1.0.0',
+        'x-sdk-version': '8.0.0',
+        'X-Appwrite-Response-Format':'1.4.0',
     };
 
     /**
@@ -98,8 +99,8 @@ export class Client {
     }
 
     withoutHeader(key: string, headers: Payload): Payload {
-        return Object.keys(headers).reduce((acc: Payload, cv) => {
-            if (cv == 'content-type') return acc;
+        return Object.keys(headers).reduce((acc: Payload, cv: string) => {
+            if (cv === 'content-type') return acc;
             acc[cv] = headers[cv];
             return acc;
         }, {})

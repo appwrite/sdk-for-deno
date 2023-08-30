@@ -32,8 +32,8 @@ export class Users extends Service {
      * @returns {Promise}
      */
     async list<Preferences extends Models.Preferences>(queries?: string[], search?: string): Promise<Models.UserList<Preferences>> {
-        let path = '/users';
-        let payload: Payload = {};
+        const apiPath = '/users';
+        const payload: Payload = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -43,7 +43,7 @@ export class Users extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -65,8 +65,8 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        let path = '/users';
-        let payload: Payload = {};
+        const apiPath = '/users';
+        const payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
@@ -83,7 +83,7 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -115,8 +115,8 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
-        let path = '/users/argon2';
-        let payload: Payload = {};
+        const apiPath = '/users/argon2';
+        const payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
@@ -130,7 +130,7 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -162,8 +162,8 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
-        let path = '/users/bcrypt';
-        let payload: Payload = {};
+        const apiPath = '/users/bcrypt';
+        const payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
@@ -177,7 +177,54 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * List Identities
+     *
+     * Get identities for all users.
+     *
+     * @param {string} queries
+     * @param {string} search
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async listIdentities(queries?: string, search?: string): Promise<Models.IdentityList> {
+        const apiPath = '/users/identities';
+        const payload: Payload = {};
+
+        if (typeof queries !== 'undefined') {
+            payload['queries'] = queries;
+        }
+
+        if (typeof search !== 'undefined') {
+            payload['search'] = search;
+        }
+
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Delete Identity
+     *
+     * Delete an identity by its unique ID.
+     *
+     * @param {string} identityId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async deleteIdentity(identityId: string): Promise<Response> {
+        if (typeof identityId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "identityId"');
+        }
+
+        const apiPath = '/users/identities/{identityId}'.replace('{identityId}', identityId);
+        const payload: Payload = {};
+
+        return await this.client.call('delete', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -209,8 +256,8 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
-        let path = '/users/md5';
-        let payload: Payload = {};
+        const apiPath = '/users/md5';
+        const payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
@@ -224,7 +271,7 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -256,8 +303,8 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
-        let path = '/users/phpass';
-        let payload: Payload = {};
+        const apiPath = '/users/phpass';
+        const payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
@@ -271,7 +318,7 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -328,8 +375,8 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "passwordLength"');
         }
 
-        let path = '/users/scrypt';
-        let payload: Payload = {};
+        const apiPath = '/users/scrypt';
+        const payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
@@ -358,7 +405,7 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -405,8 +452,8 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "passwordSignerKey"');
         }
 
-        let path = '/users/scrypt-modified';
-        let payload: Payload = {};
+        const apiPath = '/users/scrypt-modified';
+        const payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
@@ -429,7 +476,7 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -462,8 +509,8 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
-        let path = '/users/sha';
-        let payload: Payload = {};
+        const apiPath = '/users/sha';
+        const payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
@@ -480,7 +527,7 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -498,10 +545,10 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        let path = '/users/{userId}'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}'.replace('{userId}', userId);
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -523,10 +570,10 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        let path = '/users/{userId}'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}'.replace('{userId}', userId);
+        const payload: Payload = {};
 
-        return await this.client.call('delete', path, {
+        return await this.client.call('delete', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -549,13 +596,47 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "email"');
         }
 
-        let path = '/users/{userId}/email'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/email'.replace('{userId}', userId);
+        const payload: Payload = {};
 
         if (typeof email !== 'undefined') {
             payload['email'] = email;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Update User Labels
+     *
+     * Update the user labels by its unique ID. 
+     * 
+     * Labels can be used to grant access to resources. While teams are a way for
+     * user's to share access to a resource, labels can be defined by the
+     * developer to grant access without an invitation. See the [Permissions
+     * docs](/docs/permissions) for more info.
+     *
+     * @param {string} userId
+     * @param {string[]} labels
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateLabels<Preferences extends Models.Preferences>(userId: string, labels: string[]): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof labels === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "labels"');
+        }
+
+        const apiPath = '/users/{userId}/labels'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        if (typeof labels !== 'undefined') {
+            payload['labels'] = labels;
+        }
+        return await this.client.call('put', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -574,14 +655,14 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        let path = '/users/{userId}/logs'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/logs'.replace('{userId}', userId);
+        const payload: Payload = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -599,10 +680,10 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        let path = '/users/{userId}/memberships'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/memberships'.replace('{userId}', userId);
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -625,13 +706,13 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "name"');
         }
 
-        let path = '/users/{userId}/name'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/name'.replace('{userId}', userId);
+        const payload: Payload = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -654,13 +735,13 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
-        let path = '/users/{userId}/password'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/password'.replace('{userId}', userId);
+        const payload: Payload = {};
 
         if (typeof password !== 'undefined') {
             payload['password'] = password;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -683,13 +764,13 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "number"');
         }
 
-        let path = '/users/{userId}/phone'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/phone'.replace('{userId}', userId);
+        const payload: Payload = {};
 
         if (typeof number !== 'undefined') {
             payload['number'] = number;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -707,10 +788,10 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        let path = '/users/{userId}/prefs'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/prefs'.replace('{userId}', userId);
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -735,13 +816,13 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "prefs"');
         }
 
-        let path = '/users/{userId}/prefs'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/prefs'.replace('{userId}', userId);
+        const payload: Payload = {};
 
         if (typeof prefs !== 'undefined') {
             payload['prefs'] = prefs;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -759,10 +840,10 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        let path = '/users/{userId}/sessions'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/sessions'.replace('{userId}', userId);
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -780,10 +861,10 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        let path = '/users/{userId}/sessions'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/sessions'.replace('{userId}', userId);
+        const payload: Payload = {};
 
-        return await this.client.call('delete', path, {
+        return await this.client.call('delete', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -806,10 +887,10 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
 
-        let path = '/users/{userId}/sessions/{sessionId}'.replace('{userId}', userId).replace('{sessionId}', sessionId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/sessions/{sessionId}'.replace('{userId}', userId).replace('{sessionId}', sessionId);
+        const payload: Payload = {};
 
-        return await this.client.call('delete', path, {
+        return await this.client.call('delete', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -833,13 +914,13 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "status"');
         }
 
-        let path = '/users/{userId}/status'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/status'.replace('{userId}', userId);
+        const payload: Payload = {};
 
         if (typeof status !== 'undefined') {
             payload['status'] = status;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -862,13 +943,13 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "emailVerification"');
         }
 
-        let path = '/users/{userId}/verification'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/verification'.replace('{userId}', userId);
+        const payload: Payload = {};
 
         if (typeof emailVerification !== 'undefined') {
             payload['emailVerification'] = emailVerification;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -891,13 +972,13 @@ export class Users extends Service {
             throw new AppwriteException('Missing required parameter: "phoneVerification"');
         }
 
-        let path = '/users/{userId}/verification/phone'.replace('{userId}', userId);
-        let payload: Payload = {};
+        const apiPath = '/users/{userId}/verification/phone'.replace('{userId}', userId);
+        const payload: Payload = {};
 
         if (typeof phoneVerification !== 'undefined') {
             payload['phoneVerification'] = phoneVerification;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }

@@ -34,10 +34,27 @@ export class Locale extends Service {
      * @returns {Promise}
      */
     async get(): Promise<Models.Locale> {
-        let path = '/locale';
-        let payload: Payload = {};
+        const apiPath = '/locale';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * List Locale Codes
+     *
+     * List of all locale codes in [ISO
+     * 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+     *
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async listCodes(): Promise<Models.LocaleCodeList> {
+        const apiPath = '/locale/codes';
+        const payload: Payload = {};
+
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -51,10 +68,10 @@ export class Locale extends Service {
      * @returns {Promise}
      */
     async listContinents(): Promise<Models.ContinentList> {
-        let path = '/locale/continents';
-        let payload: Payload = {};
+        const apiPath = '/locale/continents';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -68,10 +85,10 @@ export class Locale extends Service {
      * @returns {Promise}
      */
     async listCountries(): Promise<Models.CountryList> {
-        let path = '/locale/countries';
-        let payload: Payload = {};
+        const apiPath = '/locale/countries';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -85,10 +102,10 @@ export class Locale extends Service {
      * @returns {Promise}
      */
     async listCountriesEU(): Promise<Models.CountryList> {
-        let path = '/locale/countries/eu';
-        let payload: Payload = {};
+        const apiPath = '/locale/countries/eu';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -102,10 +119,10 @@ export class Locale extends Service {
      * @returns {Promise}
      */
     async listCountriesPhones(): Promise<Models.PhoneList> {
-        let path = '/locale/countries/phones';
-        let payload: Payload = {};
+        const apiPath = '/locale/countries/phones';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -120,10 +137,10 @@ export class Locale extends Service {
      * @returns {Promise}
      */
     async listCurrencies(): Promise<Models.CurrencyList> {
-        let path = '/locale/currencies';
-        let payload: Payload = {};
+        const apiPath = '/locale/currencies';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -137,10 +154,10 @@ export class Locale extends Service {
      * @returns {Promise}
      */
     async listLanguages(): Promise<Models.LanguageList> {
-        let path = '/locale/languages';
-        let payload: Payload = {};
+        const apiPath = '/locale/languages';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }

@@ -23,16 +23,16 @@ export class Account extends Service {
     /**
      * Get Account
      *
-     * Get currently logged in user data as JSON object.
+     * Get the currently logged in user.
      *
      * @throws {AppwriteException}
      * @returns {Promise}
      */
     async get<Preferences extends Models.Preferences>(): Promise<Models.User<Preferences>> {
-        let path = '/account';
-        let payload: Payload = {};
+        const apiPath = '/account';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -62,8 +62,8 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
-        let path = '/account/email';
-        let payload: Payload = {};
+        const apiPath = '/account/email';
+        const payload: Payload = {};
 
         if (typeof email !== 'undefined') {
             payload['email'] = email;
@@ -71,29 +71,71 @@ export class Account extends Service {
         if (typeof password !== 'undefined') {
             payload['password'] = password;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * List Identities
+     *
+     * Get the list of identities for the currently logged in user.
+     *
+     * @param {string} queries
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async listIdentities(queries?: string): Promise<Models.IdentityList> {
+        const apiPath = '/account/identities';
+        const payload: Payload = {};
+
+        if (typeof queries !== 'undefined') {
+            payload['queries'] = queries;
+        }
+
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Delete Identity
+     *
+     * Delete an identity by its unique ID.
+     *
+     * @param {string} identityId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async deleteIdentity(identityId: string): Promise<Response> {
+        if (typeof identityId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "identityId"');
+        }
+
+        const apiPath = '/account/identities/{identityId}'.replace('{identityId}', identityId);
+        const payload: Payload = {};
+
+        return await this.client.call('delete', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
     /**
      * List Logs
      *
-     * Get currently logged in user list of latest security activity logs. Each
-     * log returns user IP address, location and date and time of log.
+     * Get the list of latest security activity logs for the currently logged in
+     * user. Each log returns user IP address, location and date and time of log.
      *
      * @param {string[]} queries
      * @throws {AppwriteException}
      * @returns {Promise}
      */
     async listLogs(queries?: string[]): Promise<Models.LogList> {
-        let path = '/account/logs';
-        let payload: Payload = {};
+        const apiPath = '/account/logs';
+        const payload: Payload = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -111,13 +153,13 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "name"');
         }
 
-        let path = '/account/name';
-        let payload: Payload = {};
+        const apiPath = '/account/name';
+        const payload: Payload = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -138,8 +180,8 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
-        let path = '/account/password';
-        let payload: Payload = {};
+        const apiPath = '/account/password';
+        const payload: Payload = {};
 
         if (typeof password !== 'undefined') {
             payload['password'] = password;
@@ -147,7 +189,7 @@ export class Account extends Service {
         if (typeof oldPassword !== 'undefined') {
             payload['oldPassword'] = oldPassword;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -174,8 +216,8 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
-        let path = '/account/phone';
-        let payload: Payload = {};
+        const apiPath = '/account/phone';
+        const payload: Payload = {};
 
         if (typeof phone !== 'undefined') {
             payload['phone'] = phone;
@@ -183,23 +225,23 @@ export class Account extends Service {
         if (typeof password !== 'undefined') {
             payload['password'] = password;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
     /**
      * Get Account Preferences
      *
-     * Get currently logged in user preferences as a key-value object.
+     * Get the preferences as a key-value object for the currently logged in user.
      *
      * @throws {AppwriteException}
      * @returns {Promise}
      */
     async getPrefs<Preferences extends Models.Preferences>(): Promise<Preferences> {
-        let path = '/account/prefs';
-        let payload: Payload = {};
+        const apiPath = '/account/prefs';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -219,13 +261,13 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "prefs"');
         }
 
-        let path = '/account/prefs';
-        let payload: Payload = {};
+        const apiPath = '/account/prefs';
+        const payload: Payload = {};
 
         if (typeof prefs !== 'undefined') {
             payload['prefs'] = prefs;
         }
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -255,8 +297,8 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "url"');
         }
 
-        let path = '/account/recovery';
-        let payload: Payload = {};
+        const apiPath = '/account/recovery';
+        const payload: Payload = {};
 
         if (typeof email !== 'undefined') {
             payload['email'] = email;
@@ -264,7 +306,7 @@ export class Account extends Service {
         if (typeof url !== 'undefined') {
             payload['url'] = url;
         }
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -305,8 +347,8 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "passwordAgain"');
         }
 
-        let path = '/account/recovery';
-        let payload: Payload = {};
+        const apiPath = '/account/recovery';
+        const payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
@@ -320,24 +362,24 @@ export class Account extends Service {
         if (typeof passwordAgain !== 'undefined') {
             payload['passwordAgain'] = passwordAgain;
         }
-        return await this.client.call('put', path, {
+        return await this.client.call('put', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
     /**
      * List Sessions
      *
-     * Get currently logged in user list of active sessions across different
-     * devices.
+     * Get the list of active sessions across different devices for the currently
+     * logged in user.
      *
      * @throws {AppwriteException}
      * @returns {Promise}
      */
     async listSessions(): Promise<Models.SessionList> {
-        let path = '/account/sessions';
-        let payload: Payload = {};
+        const apiPath = '/account/sessions';
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -351,10 +393,10 @@ export class Account extends Service {
      * @returns {Promise}
      */
     async deleteSessions(): Promise<Response> {
-        let path = '/account/sessions';
-        let payload: Payload = {};
+        const apiPath = '/account/sessions';
+        const payload: Payload = {};
 
-        return await this.client.call('delete', path, {
+        return await this.client.call('delete', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -373,10 +415,10 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
 
-        let path = '/account/sessions/{sessionId}'.replace('{sessionId}', sessionId);
-        let payload: Payload = {};
+        const apiPath = '/account/sessions/{sessionId}'.replace('{sessionId}', sessionId);
+        const payload: Payload = {};
 
-        return await this.client.call('get', path, {
+        return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -396,20 +438,20 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
 
-        let path = '/account/sessions/{sessionId}'.replace('{sessionId}', sessionId);
-        let payload: Payload = {};
+        const apiPath = '/account/sessions/{sessionId}'.replace('{sessionId}', sessionId);
+        const payload: Payload = {};
 
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
     /**
      * Delete Session
      *
-     * Use this endpoint to log out the currently logged in user from all their
-     * account sessions across all of their different devices. When using the
-     * Session ID argument, only the unique session ID provided is deleted.
-     * 
+     * Logout the user. Use 'current' as the session ID to logout on this device,
+     * use a session ID to logout on another device. If you're looking to logout
+     * the user on all devices, use [Delete
+     * Sessions](/docs/client/account#accountDeleteSessions) instead.
      *
      * @param {string} sessionId
      * @throws {AppwriteException}
@@ -420,10 +462,10 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
 
-        let path = '/account/sessions/{sessionId}'.replace('{sessionId}', sessionId);
-        let payload: Payload = {};
+        const apiPath = '/account/sessions/{sessionId}'.replace('{sessionId}', sessionId);
+        const payload: Payload = {};
 
-        return await this.client.call('delete', path, {
+        return await this.client.call('delete', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -438,10 +480,10 @@ export class Account extends Service {
      * @returns {Promise}
      */
     async updateStatus<Preferences extends Models.Preferences>(): Promise<Models.User<Preferences>> {
-        let path = '/account/status';
-        let payload: Payload = {};
+        const apiPath = '/account/status';
+        const payload: Payload = {};
 
-        return await this.client.call('patch', path, {
+        return await this.client.call('patch', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -473,13 +515,13 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "url"');
         }
 
-        let path = '/account/verification';
-        let payload: Payload = {};
+        const apiPath = '/account/verification';
+        const payload: Payload = {};
 
         if (typeof url !== 'undefined') {
             payload['url'] = url;
         }
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -505,8 +547,8 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "secret"');
         }
 
-        let path = '/account/verification';
-        let payload: Payload = {};
+        const apiPath = '/account/verification';
+        const payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
@@ -514,7 +556,7 @@ export class Account extends Service {
         if (typeof secret !== 'undefined') {
             payload['secret'] = secret;
         }
-        return await this.client.call('put', path, {
+        return await this.client.call('put', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -532,10 +574,10 @@ export class Account extends Service {
      * @returns {Promise}
      */
     async createPhoneVerification(): Promise<Models.Token> {
-        let path = '/account/verification/phone';
-        let payload: Payload = {};
+        const apiPath = '/account/verification/phone';
+        const payload: Payload = {};
 
-        return await this.client.call('post', path, {
+        return await this.client.call('post', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
@@ -561,8 +603,8 @@ export class Account extends Service {
             throw new AppwriteException('Missing required parameter: "secret"');
         }
 
-        let path = '/account/verification/phone';
-        let payload: Payload = {};
+        const apiPath = '/account/verification/phone';
+        const payload: Payload = {};
 
         if (typeof userId !== 'undefined') {
             payload['userId'] = userId;
@@ -570,7 +612,7 @@ export class Account extends Service {
         if (typeof secret !== 'undefined') {
             payload['secret'] = secret;
         }
-        return await this.client.call('put', path, {
+        return await this.client.call('put', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }

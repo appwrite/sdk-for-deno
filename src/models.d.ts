@@ -78,6 +78,19 @@ export namespace Models {
         sessions: Session[];
     }
     /**
+     * Identities List
+     */
+    export type IdentityList = { 
+        /**
+         * Total number of identities documents that matched your query.
+         */
+        total: number;
+        /**
+         * List of identities.
+         */
+        identities: Identity[];
+    }
+    /**
      * Logs List
      */
     export type LogList = { 
@@ -273,6 +286,19 @@ export namespace Models {
         variables: Variable[];
     }
     /**
+     * Locale codes list
+     */
+    export type LocaleCodeList = { 
+        /**
+         * Total number of localeCodes documents that matched your query.
+         */
+        total: number;
+        /**
+         * List of localeCodes.
+         */
+        localeCodes: LocaleCode[];
+    }
+    /**
      * Database
      */
     export type Database = { 
@@ -292,6 +318,10 @@ export namespace Models {
          * Database update date in ISO 8601 format.
          */
         $updatedAt: string;
+        /**
+         * If database is enabled. Can be &#039;enabled&#039; or &#039;disabled&#039;. When disabled, the database is inaccessible to users, but remains accessible to Server SDKs using API keys.
+         */
+        enabled: boolean;
     }
     /**
      * Collection
@@ -322,7 +352,7 @@ export namespace Models {
          */
         name: string;
         /**
-         * Collection enabled.
+         * Collection enabled. Can be &#039;enabled&#039; or &#039;disabled&#039;. When disabled, the collection is inaccessible to users, but remains accessible to Server SDKs using API keys.
          */
         enabled: boolean;
         /**
@@ -368,6 +398,10 @@ export namespace Models {
          */
         status: string;
         /**
+         * Error message. Displays error generated on failure of creating or deleting an attribute.
+         */
+        error: string;
+        /**
          * Is attribute required?
          */
         required: boolean;
@@ -400,6 +434,10 @@ export namespace Models {
          * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
          */
         status: string;
+        /**
+         * Error message. Displays error generated on failure of creating or deleting an attribute.
+         */
+        error: string;
         /**
          * Is attribute required?
          */
@@ -438,6 +476,10 @@ export namespace Models {
          */
         status: string;
         /**
+         * Error message. Displays error generated on failure of creating or deleting an attribute.
+         */
+        error: string;
+        /**
          * Is attribute required?
          */
         required: boolean;
@@ -475,6 +517,10 @@ export namespace Models {
          */
         status: string;
         /**
+         * Error message. Displays error generated on failure of creating or deleting an attribute.
+         */
+        error: string;
+        /**
          * Is attribute required?
          */
         required: boolean;
@@ -503,6 +549,10 @@ export namespace Models {
          * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
          */
         status: string;
+        /**
+         * Error message. Displays error generated on failure of creating or deleting an attribute.
+         */
+        error: string;
         /**
          * Is attribute required?
          */
@@ -536,6 +586,10 @@ export namespace Models {
          * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
          */
         status: string;
+        /**
+         * Error message. Displays error generated on failure of creating or deleting an attribute.
+         */
+        error: string;
         /**
          * Is attribute required?
          */
@@ -574,6 +628,10 @@ export namespace Models {
          */
         status: string;
         /**
+         * Error message. Displays error generated on failure of creating or deleting an attribute.
+         */
+        error: string;
+        /**
          * Is attribute required?
          */
         required: boolean;
@@ -606,6 +664,10 @@ export namespace Models {
          * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
          */
         status: string;
+        /**
+         * Error message. Displays error generated on failure of creating or deleting an attribute.
+         */
+        error: string;
         /**
          * Is attribute required?
          */
@@ -640,6 +702,10 @@ export namespace Models {
          */
         status: string;
         /**
+         * Error message. Displays error generated on failure of creating or deleting an attribute.
+         */
+        error: string;
+        /**
          * Is attribute required?
          */
         required: boolean;
@@ -672,6 +738,10 @@ export namespace Models {
          * Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
          */
         status: string;
+        /**
+         * Error message. Displays error generated on failure of creating or deleting an attribute.
+         */
+        error: string;
         /**
          * Is attribute required?
          */
@@ -721,6 +791,10 @@ export namespace Models {
          * Index status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
          */
         status: string;
+        /**
+         * Error message. Displays error generated on failure of creating or deleting an index.
+         */
+        error: string;
         /**
          * Index attributes.
          */
@@ -889,6 +963,10 @@ export namespace Models {
          */
         status: boolean;
         /**
+         * Labels for the user.
+         */
+        labels: string[];
+        /**
          * Password update time in ISO 8601 format.
          */
         passwordUpdate: string;
@@ -912,6 +990,10 @@ export namespace Models {
          * User preferences as a key-value object
          */
         prefs: Preferences;
+        /**
+         * Most recent access date in ISO 8601 format. This attribute is only updated again after 24 hours.
+         */
+        accessedAt: string;
     }
     /**
      * AlgoMD5
@@ -1127,6 +1209,51 @@ export namespace Models {
         current: boolean;
     }
     /**
+     * Identity
+     */
+    export type Identity = { 
+        /**
+         * Identity ID.
+         */
+        $id: string;
+        /**
+         * Identity creation date in ISO 8601 format.
+         */
+        $createdAt: string;
+        /**
+         * Identity update date in ISO 8601 format.
+         */
+        $updatedAt: string;
+        /**
+         * User ID.
+         */
+        userId: string;
+        /**
+         * Identity Provider.
+         */
+        provider: string;
+        /**
+         * ID of the User in the Identity Provider.
+         */
+        providerUid: string;
+        /**
+         * Email of the User in the Identity Provider.
+         */
+        providerEmail: string;
+        /**
+         * Identity Provider Access Token.
+         */
+        providerAccessToken: string;
+        /**
+         * The date of when the access token expires in ISO 8601 format.
+         */
+        providerAccessTokenExpiry: string;
+        /**
+         * Identity Provider Refresh Token.
+         */
+        providerRefreshToken: string;
+    }
+    /**
      * Token
      */
     export type Token = { 
@@ -1183,6 +1310,19 @@ export namespace Models {
          * Currency code in [ISO 4217-1](http://en.wikipedia.org/wiki/ISO_4217) three-character format
          */
         currency: string;
+    }
+    /**
+     * LocaleCode
+     */
+    export type LocaleCode = { 
+        /**
+         * Locale codes in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+         */
+        code: string;
+        /**
+         * Locale name
+         */
+        name: string;
     }
     /**
      * File
@@ -1397,6 +1537,14 @@ export namespace Models {
          */
         enabled: boolean;
         /**
+         * Is the function deployed with the latest configuration? This is set to false if you&#039;ve changed an environment variables, entrypoint, commands, or other settings that needs redeploy to be applied. When the value is false, redeploy the function to update it with the latest configuration.
+         */
+        live: boolean;
+        /**
+         * Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project.
+         */
+        logging: boolean;
+        /**
          * Function execution runtime.
          */
         runtime: string;
@@ -1417,17 +1565,41 @@ export namespace Models {
          */
         schedule: string;
         /**
-         * Function&#039;s next scheduled execution time in ISO 8601 format.
-         */
-        scheduleNext: string;
-        /**
-         * Function&#039;s previous scheduled execution time in ISO 8601 format.
-         */
-        schedulePrevious: string;
-        /**
          * Function execution timeout in seconds.
          */
         timeout: number;
+        /**
+         * The entrypoint file used to execute the deployment.
+         */
+        entrypoint: string;
+        /**
+         * The build command used to build the deployment.
+         */
+        commands: string;
+        /**
+         * Version of Open Runtimes used for the function.
+         */
+        version: string;
+        /**
+         * Function VCS (Version Control System) installation id.
+         */
+        installationId: string;
+        /**
+         * VCS (Version Control System) Repository ID
+         */
+        providerRepositoryId: string;
+        /**
+         * VCS (Version Control System) branch name
+         */
+        providerBranch: string;
+        /**
+         * Path to function in VCS (Version Control System) repository
+         */
+        providerRootDirectory: string;
+        /**
+         * Is VCS (Version Control System) connection is in silent mode? When in silence mode, no comments will be posted on the repository pull or merge requests
+         */
+        providerSilentMode: boolean;
     }
     /**
      * Runtime
@@ -1479,6 +1651,10 @@ export namespace Models {
          */
         $updatedAt: string;
         /**
+         * Type of deployment.
+         */
+        type: string;
+        /**
          * Resource ID.
          */
         resourceId: string;
@@ -1503,21 +1679,57 @@ export namespace Models {
          */
         activate: boolean;
         /**
-         * The deployment status. Possible values are &quot;processing&quot;, &quot;building&quot;, &quot;pending&quot;, &quot;ready&quot;, and &quot;failed&quot;.
+         * The deployment status. Possible values are &quot;processing&quot;, &quot;building&quot;, &quot;waiting&quot;, &quot;ready&quot;, and &quot;failed&quot;.
          */
         status: string;
         /**
-         * The build stdout.
+         * The build logs.
          */
-        buildStdout: string;
-        /**
-         * The build stderr.
-         */
-        buildStderr: string;
+        buildLogs: string;
         /**
          * The current build time in seconds.
          */
         buildTime: number;
+        /**
+         * The name of the vcs provider repository
+         */
+        providerRepositoryName: string;
+        /**
+         * The name of the vcs provider repository owner
+         */
+        providerRepositoryOwner: string;
+        /**
+         * The url of the vcs provider repository
+         */
+        providerRepositoryUrl: string;
+        /**
+         * The branch of the vcs repository
+         */
+        providerBranch: string;
+        /**
+         * The commit hash of the vcs commit
+         */
+        providerCommitHash: string;
+        /**
+         * The url of vcs commit author
+         */
+        providerCommitAuthorUrl: string;
+        /**
+         * The name of vcs commit author
+         */
+        providerCommitAuthor: string;
+        /**
+         * The commit message
+         */
+        providerCommitMessage: string;
+        /**
+         * The url of the vcs commit
+         */
+        providerCommitUrl: string;
+        /**
+         * The branch of the vcs repository
+         */
+        providerBranchUrl: string;
     }
     /**
      * Execution
@@ -1552,23 +1764,39 @@ export namespace Models {
          */
         status: string;
         /**
-         * The script status code.
+         * HTTP request method type.
          */
-        statusCode: number;
+        requestMethod: string;
         /**
-         * The script response output string. Logs the last 4,000 characters of the execution response output.
+         * HTTP request path and query.
          */
-        response: string;
+        requestPath: string;
         /**
-         * The script stdout output string. Logs the last 4,000 characters of the execution stdout output. This will return an empty string unless the response is returned using an API key or as part of a webhook payload.
+         * HTTP response headers as a key-value object. This will return only whitelisted headers. All headers are returned if execution is created as synchronous.
          */
-        stdout: string;
+        requestHeaders: Headers[];
         /**
-         * The script stderr output string. Logs the last 4,000 characters of the execution stderr output. This will return an empty string unless the response is returned using an API key or as part of a webhook payload.
+         * HTTP response status code.
          */
-        stderr: string;
+        responseStatusCode: number;
         /**
-         * The script execution duration in seconds.
+         * HTTP response body. This will return empty unless execution is created as synchronous.
+         */
+        responseBody: string;
+        /**
+         * HTTP response headers as a key-value object. This will return only whitelisted headers. All headers are returned if execution is created as synchronous.
+         */
+        responseHeaders: Headers[];
+        /**
+         * Function logs. Includes the last 4,000 characters. This will return an empty string unless the response is returned using an API key or as part of a webhook payload.
+         */
+        logs: string;
+        /**
+         * Function errors. Includes the last 4,000 characters. This will return an empty string unless the response is returned using an API key or as part of a webhook payload.
+         */
+        errors: string;
+        /**
+         * Function execution duration in seconds.
          */
         duration: number;
     }
@@ -1597,9 +1825,13 @@ export namespace Models {
          */
         value: string;
         /**
-         * Function ID.
+         * Service to which the variable belongs. Possible values are &quot;project&quot;, &quot;function&quot;
          */
-        functionId: string;
+        resourceType: string;
+        /**
+         * ID of resource to which the variable belongs. If resourceType is &quot;project&quot;, it is empty. If resourceType is &quot;function&quot;, it is ID of the function.
+         */
+        resourceId: string;
     }
     /**
      * Country
@@ -1721,6 +1953,10 @@ export namespace Models {
      */
     export type HealthStatus = { 
         /**
+         * Name of the service.
+         */
+        name: string;
+        /**
          * Duration in milliseconds how long the health check took.
          */
         ping: number;
@@ -1745,5 +1981,18 @@ export namespace Models {
          * Difference of unix remote and local timestamps in milliseconds.
          */
         diff: number;
+    }
+    /**
+     * Headers
+     */
+    export type Headers = { 
+        /**
+         * Header name.
+         */
+        name: string;
+        /**
+         * Header value.
+         */
+        value: string;
     }
 }
