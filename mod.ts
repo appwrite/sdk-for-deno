@@ -12,8 +12,6 @@ import { Functions } from "./src/services/functions.ts";
 import { Graphql } from "./src/services/graphql.ts";
 import { Health } from "./src/services/health.ts";
 import { Locale } from "./src/services/locale.ts";
-import { Project } from "./src/services/project.ts";
-import { Proxy } from "./src/services/proxy.ts";
 import { Storage } from "./src/services/storage.ts";
 import { Teams } from "./src/services/teams.ts";
 import { Users } from "./src/services/users.ts";
@@ -33,8 +31,6 @@ export {
     Graphql,
     Health,
     Locale,
-    Project,
-    Proxy,
     Storage,
     Teams,
     Users,

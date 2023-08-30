@@ -286,19 +286,6 @@ export namespace Models {
         variables: Variable[];
     }
     /**
-     * Rule List
-     */
-    export type ProxyRuleList = { 
-        /**
-         * Total number of rules documents that matched your query.
-         */
-        total: number;
-        /**
-         * List of rules.
-         */
-        rules: ProxyRule[];
-    }
-    /**
      * Locale codes list
      */
     export type LocaleCodeList = { 
@@ -2007,46 +1994,5 @@ export namespace Models {
          * Header value.
          */
         value: string;
-    }
-    /**
-     * Rule
-     */
-    export type ProxyRule = { 
-        /**
-         * Rule ID.
-         */
-        $id: string;
-        /**
-         * Rule creation date in ISO 8601 format.
-         */
-        $createdAt: string;
-        /**
-         * Rule update date in ISO 8601 format.
-         */
-        $updatedAt: string;
-        /**
-         * Domain name.
-         */
-        domain: string;
-        /**
-         * Action definition for the rule. Possible values are &quot;api&quot;, &quot;function&quot;, or &quot;redirect&quot;
-         */
-        resourceType: string;
-        /**
-         * ID of resource for the action type. If resourceType is &quot;api&quot; or &quot;url&quot;, it is empty. If resourceType is &quot;function&quot;, it is ID of the function.
-         */
-        resourceId: string;
-        /**
-         * Domain verification status. Possible values are &quot;created&quot;, &quot;verifying&quot;, &quot;verified&quot; and &quot;unverified&quot;
-         */
-        status: string;
-        /**
-         * Certificate generation logs. This will return an empty string if generation did not run, or succeeded.
-         */
-        logs: string;
-        /**
-         * Certificate auto-renewal date in ISO 8601 format.
-         */
-        renewAt: string;
     }
 }
