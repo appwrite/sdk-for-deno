@@ -389,7 +389,7 @@ export class Functions extends Service {
 
         const size = code.size;
         
-        const headers: { [header: string]: string } = {
+        const apiHeaders: { [header: string]: string } = {
             'content-type': 'multipart/form-data',
         };
 
@@ -412,7 +412,7 @@ export class Functions extends Service {
             const end = start + currentPosition;
 
             if(!lastUpload || currentChunk !== 1) {
-                headers['content-range'] = 'bytes ' + start + '-' + end + '/' + size;
+                apiHeaders['content-range'] = 'bytes ' + start + '-' + end + '/' + size;
             }
 
             let uploadableChunkTrimmed: Uint8Array;
@@ -427,12 +427,12 @@ export class Functions extends Service {
             }
 
             if (id) {
-                headers['x-appwrite-id'] = id;
+                apiHeaders['x-appwrite-id'] = id;
             }
 
             payload['code'] = { type: 'file', file: new File([uploadableChunkTrimmed], code.filename), filename: code.filename };
 
-            response = await this.client.call('post', apiPath, headers, payload);
+            response = await this.client.call('post', apiPath, apiHeaders, payload);
 
             if (!id) {
                 id = response['$id'];

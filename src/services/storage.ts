@@ -304,7 +304,7 @@ export class Storage extends Service {
 
         const size = file.size;
         
-        const headers: { [header: string]: string } = {
+        const apiHeaders: { [header: string]: string } = {
             'content-type': 'multipart/form-data',
         };
 
@@ -315,7 +315,7 @@ export class Storage extends Service {
 
         if(fileId != 'unique()') {
             try {
-                response = await this.client.call('get', apiPath + '/' + fileId, headers);
+                response = await this.client.call('get', apiPath + '/' + fileId, apiHeaders);
                 chunksUploaded = response.chunksUploaded;
             } catch(e) {
             }
@@ -334,7 +334,7 @@ export class Storage extends Service {
             const end = start + currentPosition;
 
             if(!lastUpload || currentChunk !== 1) {
-                headers['content-range'] = 'bytes ' + start + '-' + end + '/' + size;
+                apiHeaders['content-range'] = 'bytes ' + start + '-' + end + '/' + size;
             }
 
             let uploadableChunkTrimmed: Uint8Array;
@@ -349,12 +349,12 @@ export class Storage extends Service {
             }
 
             if (id) {
-                headers['x-appwrite-id'] = id;
+                apiHeaders['x-appwrite-id'] = id;
             }
 
             payload['file'] = { type: 'file', file: new File([uploadableChunkTrimmed], file.filename), filename: file.filename };
 
-            response = await this.client.call('post', apiPath, headers, payload);
+            response = await this.client.call('post', apiPath, apiHeaders, payload);
 
             if (!id) {
                 id = response['$id'];
