@@ -11,11 +11,11 @@ export class Client {
     endpoint: string = 'https://HOSTNAME/v1';
     headers: Payload = {
         'content-type': '',
-        'user-agent' : `AppwriteDenoSDK/8.0.1 (${Deno.build.os}; ${Deno.build.arch})`,
+        'user-agent' : `AppwriteDenoSDK/8.0.2 (${Deno.build.os}; ${Deno.build.arch})`,
         'x-sdk-name': 'Deno',
         'x-sdk-platform': 'server',
         'x-sdk-language': 'deno',
-        'x-sdk-version': '8.0.1',
+        'x-sdk-version': '8.0.2',
         'X-Appwrite-Response-Format':'1.4.0',
     };
 
