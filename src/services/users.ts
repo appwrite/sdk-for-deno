@@ -21,7 +21,7 @@ export class Users extends Service {
      }
 
     /**
-     * List Users
+     * List users
      *
      * Get a list of all the project's users. You can use the query params to
      * filter your results.
@@ -48,7 +48,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Create User
+     * Create user
      *
      * Create a new user.
      *
@@ -88,12 +88,12 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Create User with Argon2 Password
+     * Create user with Argon2 password
      *
      * Create a new user. Password provided must be hashed with the
      * [Argon2](https://en.wikipedia.org/wiki/Argon2) algorithm. Use the [POST
-     * /users](/docs/server/users#usersCreate) endpoint to create users with a
-     * plain text password.
+     * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+     * create users with a plain text password.
      *
      * @param {string} userId
      * @param {string} email
@@ -135,12 +135,12 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Create User with Bcrypt Password
+     * Create user with bcrypt password
      *
      * Create a new user. Password provided must be hashed with the
      * [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm. Use the [POST
-     * /users](/docs/server/users#usersCreate) endpoint to create users with a
-     * plain text password.
+     * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+     * create users with a plain text password.
      *
      * @param {string} userId
      * @param {string} email
@@ -229,12 +229,12 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Create User with MD5 Password
+     * Create user with MD5 password
      *
      * Create a new user. Password provided must be hashed with the
      * [MD5](https://en.wikipedia.org/wiki/MD5) algorithm. Use the [POST
-     * /users](/docs/server/users#usersCreate) endpoint to create users with a
-     * plain text password.
+     * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+     * create users with a plain text password.
      *
      * @param {string} userId
      * @param {string} email
@@ -276,12 +276,12 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Create User with PHPass Password
+     * Create user with PHPass password
      *
      * Create a new user. Password provided must be hashed with the
      * [PHPass](https://www.openwall.com/phpass/) algorithm. Use the [POST
-     * /users](/docs/server/users#usersCreate) endpoint to create users with a
-     * plain text password.
+     * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+     * create users with a plain text password.
      *
      * @param {string} userId
      * @param {string} email
@@ -323,12 +323,12 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Create User with Scrypt Password
+     * Create user with Scrypt password
      *
      * Create a new user. Password provided must be hashed with the
      * [Scrypt](https://github.com/Tarsnap/scrypt) algorithm. Use the [POST
-     * /users](/docs/server/users#usersCreate) endpoint to create users with a
-     * plain text password.
+     * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+     * create users with a plain text password.
      *
      * @param {string} userId
      * @param {string} email
@@ -410,12 +410,13 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Create User with Scrypt Modified Password
+     * Create user with Scrypt modified password
      *
      * Create a new user. Password provided must be hashed with the [Scrypt
      * Modified](https://gist.github.com/Meldiron/eecf84a0225eccb5a378d45bb27462cc)
-     * algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint
-     * to create users with a plain text password.
+     * algorithm. Use the [POST
+     * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+     * create users with a plain text password.
      *
      * @param {string} userId
      * @param {string} email
@@ -481,12 +482,12 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Create User with SHA Password
+     * Create user with SHA password
      *
      * Create a new user. Password provided must be hashed with the
      * [SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) algorithm. Use
-     * the [POST /users](/docs/server/users#usersCreate) endpoint to create users
-     * with a plain text password.
+     * the [POST /users](https://appwrite.io/docs/server/users#usersCreate)
+     * endpoint to create users with a plain text password.
      *
      * @param {string} userId
      * @param {string} email
@@ -532,7 +533,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Get User
+     * Get user
      *
      * Get a user by its unique ID.
      *
@@ -553,12 +554,13 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Delete User
+     * Delete user
      *
      * Delete a user by its unique ID, thereby releasing it's ID. Since ID is
      * released and can be reused, all user-related resources like documents or
      * storage files should be deleted before user deletion. If you want to keep
-     * ID reserved, use the [updateStatus](/docs/server/users#usersUpdateStatus)
+     * ID reserved, use the
+     * [updateStatus](https://appwrite.io/docs/server/users#usersUpdateStatus)
      * endpoint instead.
      *
      * @param {string} userId
@@ -578,7 +580,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Update Email
+     * Update email
      *
      * Update the user email by its unique ID.
      *
@@ -607,14 +609,14 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Update User Labels
+     * Update user labels
      *
      * Update the user labels by its unique ID. 
      * 
      * Labels can be used to grant access to resources. While teams are a way for
      * user's to share access to a resource, labels can be defined by the
      * developer to grant access without an invitation. See the [Permissions
-     * docs](/docs/permissions) for more info.
+     * docs](https://appwrite.io/docs/permissions) for more info.
      *
      * @param {string} userId
      * @param {string[]} labels
@@ -641,7 +643,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * List User Logs
+     * List user logs
      *
      * Get the user activity logs list by its unique ID.
      *
@@ -667,7 +669,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * List User Memberships
+     * List user memberships
      *
      * Get the user membership list by its unique ID.
      *
@@ -688,7 +690,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Update Name
+     * Update name
      *
      * Update the user name by its unique ID.
      *
@@ -717,7 +719,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Update Password
+     * Update password
      *
      * Update the user password by its unique ID.
      *
@@ -746,7 +748,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Update Phone
+     * Update phone
      *
      * Update the user phone by its unique ID.
      *
@@ -775,7 +777,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Get User Preferences
+     * Get user preferences
      *
      * Get the user preferences by its unique ID.
      *
@@ -796,7 +798,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Update User Preferences
+     * Update user preferences
      *
      * Update the user preferences by its unique ID. The object you pass is stored
      * as is, and replaces any previous value. The maximum allowed prefs size is
@@ -827,7 +829,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * List User Sessions
+     * List user sessions
      *
      * Get the user sessions list by its unique ID.
      *
@@ -848,7 +850,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Delete User Sessions
+     * Delete user sessions
      *
      * Delete all user's sessions by using the user's unique ID.
      *
@@ -869,7 +871,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Delete User Session
+     * Delete user session
      *
      * Delete a user sessions by its unique ID.
      *
@@ -895,7 +897,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Update User Status
+     * Update user status
      *
      * Update the user status by its unique ID. Use this endpoint as an
      * alternative to deleting a user if you want to keep user's ID reserved.
@@ -925,7 +927,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Update Email Verification
+     * Update email verification
      *
      * Update the user email verification status by its unique ID.
      *
@@ -954,7 +956,7 @@ export class Users extends Service {
         }, payload);
     }
     /**
-     * Update Phone Verification
+     * Update phone verification
      *
      * Update the user phone verification status by its unique ID.
      *

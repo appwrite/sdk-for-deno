@@ -340,7 +340,7 @@ export namespace Models {
          */
         $updatedAt: string;
         /**
-         * Collection permissions. [Learn more about permissions](/docs/permissions).
+         * Collection permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
          */
         $permissions: string[];
         /**
@@ -356,7 +356,7 @@ export namespace Models {
          */
         enabled: boolean;
         /**
-         * Whether document-level permissions are enabled. [Learn more about permissions](/docs/permissions).
+         * Whether document-level permissions are enabled. [Learn more about permissions](https://appwrite.io/docs/permissions).
          */
         documentSecurity: boolean;
         /**
@@ -829,7 +829,7 @@ export namespace Models {
          */
         $updatedAt: string;
         /**
-         * Document permissions. [Learn more about permissions](/docs/permissions).
+         * Document permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
          */
         $permissions: string[];
     }
@@ -1345,7 +1345,7 @@ export namespace Models {
          */
         $updatedAt: string;
         /**
-         * File permissions. [Learn more about permissions](/docs/permissions).
+         * File permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
          */
         $permissions: string[];
         /**
@@ -1390,11 +1390,11 @@ export namespace Models {
          */
         $updatedAt: string;
         /**
-         * Bucket permissions. [Learn more about permissions](/docs/permissions).
+         * Bucket permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
          */
         $permissions: string[];
         /**
-         * Whether file-level security is enabled. [Learn more about permissions](/docs/permissions).
+         * Whether file-level security is enabled. [Learn more about permissions](https://appwrite.io/docs/permissions).
          */
         fileSecurity: boolean;
         /**

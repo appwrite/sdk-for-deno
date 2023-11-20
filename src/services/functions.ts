@@ -21,7 +21,7 @@ export class Functions extends Service {
      }
 
     /**
-     * List Functions
+     * List functions
      *
      * Get a list of all the project's functions. You can use the query params to
      * filter your results.
@@ -48,11 +48,12 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Create Function
+     * Create function
      *
      * Create a new function. You can pass a list of
-     * [permissions](/docs/permissions) to allow different project users or team
-     * with access to execute the function using the client API.
+     * [permissions](https://appwrite.io/docs/permissions) to allow different
+     * project users or team with access to execute the function using the client
+     * API.
      *
      * @param {string} functionId
      * @param {string} name
@@ -174,7 +175,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Get Function
+     * Get function
      *
      * Get a function by its unique ID.
      *
@@ -195,7 +196,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Update Function
+     * Update function
      *
      * Update function by its unique ID.
      *
@@ -280,7 +281,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Delete Function
+     * Delete function
      *
      * Delete a function by its unique ID.
      *
@@ -301,7 +302,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * List Deployments
+     * List deployments
      *
      * Get a list of all the project's code deployments. You can use the query
      * params to filter your results.
@@ -333,7 +334,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Create Deployment
+     * Create deployment
      *
      * Create a new function code deployment. Use this endpoint to upload a new
      * version of your code function. To execute your newly uploaded code, you'll
@@ -342,7 +343,7 @@ export class Functions extends Service {
      * This endpoint accepts a tar.gz file compressed with your code. Make sure to
      * include any dependencies your code has within the compressed file. You can
      * learn more about code packaging in the [Appwrite Cloud Functions
-     * tutorial](/docs/functions).
+     * tutorial](https://appwrite.io/docs/functions).
      * 
      * Use the "command" param to set the entrypoint used to execute your code.
      *
@@ -469,7 +470,7 @@ export class Functions extends Service {
         return response;
     }
     /**
-     * Get Deployment
+     * Get deployment
      *
      * Get a code deployment by its unique ID.
      *
@@ -495,7 +496,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Update Function Deployment
+     * Update function deployment
      *
      * Update the function code deployment ID using the unique function ID. Use
      * this endpoint to switch the code deployment that should be executed by the
@@ -523,7 +524,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Delete Deployment
+     * Delete deployment
      *
      * Delete a code deployment by its unique ID.
      *
@@ -549,7 +550,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Create Build
+     * Create build
      *
      * Create a new build for an Appwrite Function deployment. This endpoint can
      * be used to retry a failed build.
@@ -583,6 +584,9 @@ export class Functions extends Service {
     /**
      * Download Deployment
      *
+     * Get a Deployment's contents by its unique ID. This endpoint supports range
+     * requests for partial or streaming file download.
+     *
      * @param {string} functionId
      * @param {string} deploymentId
      * @throws {AppwriteException}
@@ -605,7 +609,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * List Executions
+     * List executions
      *
      * Get a list of all the current user function execution logs. You can use the
      * query params to filter your results.
@@ -637,7 +641,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Create Execution
+     * Create execution
      *
      * Trigger a function execution. The returned object will return you the
      * current execution status. You can ping the `Get Execution` endpoint to get
@@ -681,7 +685,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Get Execution
+     * Get execution
      *
      * Get a function execution log by its unique ID.
      *
@@ -707,7 +711,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * List Variables
+     * List variables
      *
      * Get a list of all variables of a specific function.
      *
@@ -728,7 +732,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Create Variable
+     * Create variable
      *
      * Create a new function environment variable. These variables can be accessed
      * in the function at runtime as environment variables.
@@ -766,7 +770,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Get Variable
+     * Get variable
      *
      * Get a variable by its unique ID.
      *
@@ -792,7 +796,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Update Variable
+     * Update variable
      *
      * Update variable by its unique ID.
      *
@@ -830,7 +834,7 @@ export class Functions extends Service {
         }, payload);
     }
     /**
-     * Delete Variable
+     * Delete variable
      *
      * Delete a variable by its unique ID.
      *

@@ -37,7 +37,7 @@ export class Health extends Service {
         }, payload);
     }
     /**
-     * Get Antivirus
+     * Get antivirus
      *
      * Check the Appwrite Antivirus server is up and connection is successful.
      *
@@ -53,7 +53,7 @@ export class Health extends Service {
         }, payload);
     }
     /**
-     * Get Cache
+     * Get cache
      *
      * Check the Appwrite in-memory cache servers are up and connection is
      * successful.
@@ -86,7 +86,7 @@ export class Health extends Service {
         }, payload);
     }
     /**
-     * Get PubSub
+     * Get pubsub
      *
      * Check the Appwrite pub-sub servers are up and connection is successful.
      *
@@ -102,7 +102,7 @@ export class Health extends Service {
         }, payload);
     }
     /**
-     * Get Queue
+     * Get queue
      *
      * Check the Appwrite queue messaging servers are up and connection is
      * successful.
@@ -119,73 +119,230 @@ export class Health extends Service {
         }, payload);
     }
     /**
-     * Get Certificates Queue
+     * Get builds queue
+     *
+     * Get the number of builds that are waiting to be processed in the Appwrite
+     * internal queue server.
+     *
+     * @param {number} threshold
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getQueueBuilds(threshold?: number): Promise<Models.HealthQueue> {
+        const apiPath = '/health/queue/builds';
+        const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
+
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Get certificates queue
      *
      * Get the number of certificates that are waiting to be issued against
      * [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
      * server.
      *
+     * @param {number} threshold
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueCertificates(): Promise<Models.HealthQueue> {
+    async getQueueCertificates(threshold?: number): Promise<Models.HealthQueue> {
         const apiPath = '/health/queue/certificates';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
-    }
-    /**
-     * Get Functions Queue
-     *
-     * @throws {AppwriteException}
-     * @returns {Promise}
-     */
-    async getQueueFunctions(): Promise<Models.HealthQueue> {
-        const apiPath = '/health/queue/functions';
-        const payload: Payload = {};
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
 
         return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
     /**
-     * Get Logs Queue
+     * Get databases queue
+     *
+     * Get the number of database changes that are waiting to be processed in the
+     * Appwrite internal queue server.
+     *
+     * @param {string} name
+     * @param {number} threshold
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getQueueDatabases(name?: string, threshold?: number): Promise<Models.HealthQueue> {
+        const apiPath = '/health/queue/databases';
+        const payload: Payload = {};
+
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
+
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Get deletes queue
+     *
+     * Get the number of background destructive changes that are waiting to be
+     * processed in the Appwrite internal queue server.
+     *
+     * @param {number} threshold
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getQueueDeletes(threshold?: number): Promise<Models.HealthQueue> {
+        const apiPath = '/health/queue/deletes';
+        const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
+
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Get functions queue
+     *
+     * @param {number} threshold
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getQueueFunctions(threshold?: number): Promise<Models.HealthQueue> {
+        const apiPath = '/health/queue/functions';
+        const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
+
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Get logs queue
      *
      * Get the number of logs that are waiting to be processed in the Appwrite
      * internal queue server.
      *
+     * @param {number} threshold
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueLogs(): Promise<Models.HealthQueue> {
+    async getQueueLogs(threshold?: number): Promise<Models.HealthQueue> {
         const apiPath = '/health/queue/logs';
         const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
 
         return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
     /**
-     * Get Webhooks Queue
+     * Get mails queue
+     *
+     * Get the number of mails that are waiting to be processed in the Appwrite
+     * internal queue server.
+     *
+     * @param {number} threshold
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getQueueMails(threshold?: number): Promise<Models.HealthQueue> {
+        const apiPath = '/health/queue/mails';
+        const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
+
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Get messaging queue
+     *
+     * Get the number of messages that are waiting to be processed in the Appwrite
+     * internal queue server.
+     *
+     * @param {number} threshold
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getQueueMessaging(threshold?: number): Promise<Models.HealthQueue> {
+        const apiPath = '/health/queue/messaging';
+        const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
+
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Get migrations queue
+     *
+     * Get the number of migrations that are waiting to be processed in the
+     * Appwrite internal queue server.
+     *
+     * @param {number} threshold
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getQueueMigrations(threshold?: number): Promise<Models.HealthQueue> {
+        const apiPath = '/health/queue/migrations';
+        const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
+
+        return await this.client.call('get', apiPath, {
+            'content-type': 'application/json',
+        }, payload);
+    }
+    /**
+     * Get webhooks queue
      *
      * Get the number of webhooks that are waiting to be processed in the Appwrite
      * internal queue server.
      *
+     * @param {number} threshold
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueWebhooks(): Promise<Models.HealthQueue> {
+    async getQueueWebhooks(threshold?: number): Promise<Models.HealthQueue> {
         const apiPath = '/health/queue/webhooks';
         const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
 
         return await this.client.call('get', apiPath, {
             'content-type': 'application/json',
         }, payload);
     }
     /**
-     * Get Local Storage
+     * Get local storage
      *
      * Check the Appwrite local storage device is up and connection is successful.
      *
@@ -201,7 +358,7 @@ export class Health extends Service {
         }, payload);
     }
     /**
-     * Get Time
+     * Get time
      *
      * Check the Appwrite server time is synced with Google remote NTP server. We
      * use this technology to smoothly handle leap seconds with no disruptive
