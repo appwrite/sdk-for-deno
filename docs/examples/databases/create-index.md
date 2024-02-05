@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = databases.createIndex('[DATABASE_ID]', '[COLLECTION_ID]', '', 'key', []);
+let promise = databases.createIndex('[DATABASE_ID]', '[COLLECTION_ID]', '', IndexType.Key, []);
 
 promise.then(function (response) {
     console.log(response);

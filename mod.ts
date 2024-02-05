@@ -12,9 +12,28 @@ import { Functions } from "./src/services/functions.ts";
 import { Graphql } from "./src/services/graphql.ts";
 import { Health } from "./src/services/health.ts";
 import { Locale } from "./src/services/locale.ts";
+import { Messaging } from "./src/services/messaging.ts";
 import { Storage } from "./src/services/storage.ts";
 import { Teams } from "./src/services/teams.ts";
 import { Users } from "./src/services/users.ts";
+import { AuthenticatorProvider } from "./src/enums/authenticator-provider.ts";
+import { AuthenticatorFactor } from "./src/enums/authenticator-factor.ts";
+import { OAuthProvider } from "./src/enums/o-auth-provider.ts";
+import { Browser } from "./src/enums/browser.ts";
+import { CreditCard } from "./src/enums/credit-card.ts";
+import { Flag } from "./src/enums/flag.ts";
+import { RelationshipType } from "./src/enums/relationship-type.ts";
+import { RelationMutate } from "./src/enums/relation-mutate.ts";
+import { IndexType } from "./src/enums/index-type.ts";
+import { Runtime } from "./src/enums/runtime.ts";
+import { ExecutionMethod } from "./src/enums/execution-method.ts";
+import { MessageType } from "./src/enums/message-type.ts";
+import { SMTPEncryption } from "./src/enums/s-m-t-p-encryption.ts";
+import { Compression } from "./src/enums/compression.ts";
+import { ImageGravity } from "./src/enums/image-gravity.ts";
+import { ImageFormat } from "./src/enums/image-format.ts";
+import { PasswordVersion } from "./src/enums/password-version.ts";
+import { MessagingProviderType } from "./src/enums/messaging-provider-type.ts";
 
 export {
     Client,
@@ -31,9 +50,28 @@ export {
     Graphql,
     Health,
     Locale,
+    Messaging,
     Storage,
     Teams,
     Users,
+    AuthenticatorProvider,
+    AuthenticatorFactor,
+    OAuthProvider,
+    Browser,
+    CreditCard,
+    Flag,
+    RelationshipType,
+    RelationMutate,
+    IndexType,
+    Runtime,
+    ExecutionMethod,
+    MessageType,
+    SMTPEncryption,
+    Compression,
+    ImageGravity,
+    ImageFormat,
+    PasswordVersion,
+    MessagingProviderType,
 };
 
 export type { Models } from "./src/models.d.ts";
