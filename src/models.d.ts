@@ -1287,7 +1287,7 @@ export namespace Models {
         /**
          * Returns a list of active session factors.
          */
-        factors: number;
+        factors: string[];
         /**
          * Secret used to authenticate the user. Only included if the request was made with an API key
          */
@@ -2249,10 +2249,6 @@ export namespace Models {
          * Status of delivery.
          */
         status: string;
-        /**
-         * Message description.
-         */
-        description?: string;
     }
     /**
      * Topic
@@ -2278,10 +2274,6 @@ export namespace Models {
          * Total count of subscribers subscribed to topic.
          */
         total: number;
-        /**
-         * Description of the topic.
-         */
-        description?: string;
     }
     /**
      * Subscriber

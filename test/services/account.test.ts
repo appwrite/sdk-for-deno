@@ -565,7 +565,7 @@ describe('Account service', () => {
             'countryCode': 'US',
             'countryName': 'United States',
             'current': true,
-            'factors': 1,
+            'factors': [],
             'secret': '5e5bb8c16897e',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -605,7 +605,7 @@ describe('Account service', () => {
             'countryCode': 'US',
             'countryName': 'United States',
             'current': true,
-            'factors': 1,
+            'factors': [],
             'secret': '5e5bb8c16897e',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -647,7 +647,7 @@ describe('Account service', () => {
             'countryCode': 'US',
             'countryName': 'United States',
             'current': true,
-            'factors': 1,
+            'factors': [],
             'secret': '5e5bb8c16897e',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -704,7 +704,7 @@ describe('Account service', () => {
             'countryCode': 'US',
             'countryName': 'United States',
             'current': true,
-            'factors': 1,
+            'factors': [],
             'secret': '5e5bb8c16897e',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -746,7 +746,7 @@ describe('Account service', () => {
             'countryCode': 'US',
             'countryName': 'United States',
             'current': true,
-            'factors': 1,
+            'factors': [],
             'secret': '5e5bb8c16897e',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -787,7 +787,7 @@ describe('Account service', () => {
             'countryCode': 'US',
             'countryName': 'United States',
             'current': true,
-            'factors': 1,
+            'factors': [],
             'secret': '5e5bb8c16897e',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
