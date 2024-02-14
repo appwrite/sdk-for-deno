@@ -4,10 +4,6 @@ import { Payload, Client } from '../client.ts';
 import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
-import { Query } from '../query.ts';
-import { Browser } from '../enums/browser.ts';
-import { CreditCard } from '../enums/credit-card.ts';
-import { Flag } from '../enums/flag.ts';
 
 export type UploadProgress = {
     $id: string;
@@ -38,14 +34,14 @@ export class Avatars extends Service {
      * image at source quality. If dimensions are not specified, the default size
      * of image returned is 100x100px.
      *
-     * @param {Browser} code
+     * @param {string} code
      * @param {number} width
      * @param {number} height
      * @param {number} quality
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getBrowser(code: Browser, width?: number, height?: number, quality?: number): Promise<Response> {
+    async getBrowser(code: string, width?: number, height?: number, quality?: number): Promise<Response> {
         if (typeof code === 'undefined') {
             throw new AppwriteException('Missing required parameter: "code"');
         }
@@ -82,14 +78,14 @@ export class Avatars extends Service {
      * of image returned is 100x100px.
      * 
      *
-     * @param {CreditCard} code
+     * @param {string} code
      * @param {number} width
      * @param {number} height
      * @param {number} quality
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getCreditCard(code: CreditCard, width?: number, height?: number, quality?: number): Promise<Response> {
+    async getCreditCard(code: string, width?: number, height?: number, quality?: number): Promise<Response> {
         if (typeof code === 'undefined') {
             throw new AppwriteException('Missing required parameter: "code"');
         }
@@ -154,14 +150,14 @@ export class Avatars extends Service {
      * of image returned is 100x100px.
      * 
      *
-     * @param {Flag} code
+     * @param {string} code
      * @param {number} width
      * @param {number} height
      * @param {number} quality
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFlag(code: Flag, width?: number, height?: number, quality?: number): Promise<Response> {
+    async getFlag(code: string, width?: number, height?: number, quality?: number): Promise<Response> {
         if (typeof code === 'undefined') {
             throw new AppwriteException('Missing required parameter: "code"');
         }

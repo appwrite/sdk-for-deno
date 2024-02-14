@@ -4,9 +4,6 @@ import { Payload, Client } from '../client.ts';
 import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
-import { Query } from '../query.ts';
-import { Runtime } from '../enums/runtime.ts';
-import { ExecutionMethod } from '../enums/execution-method.ts';
 
 export type UploadProgress = {
     $id: string;
@@ -60,7 +57,7 @@ export class Functions extends Service {
      *
      * @param {string} functionId
      * @param {string} name
-     * @param {Runtime} runtime
+     * @param {string} runtime
      * @param {string[]} execute
      * @param {string[]} events
      * @param {string} schedule
@@ -81,7 +78,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create(functionId: string, name: string, runtime: Runtime, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string, templateRepository?: string, templateOwner?: string, templateRootDirectory?: string, templateBranch?: string): Promise<Models.Function> {
+    async create(functionId: string, name: string, runtime: string, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string, templateRepository?: string, templateOwner?: string, templateRootDirectory?: string, templateBranch?: string): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -205,7 +202,7 @@ export class Functions extends Service {
      *
      * @param {string} functionId
      * @param {string} name
-     * @param {Runtime} runtime
+     * @param {string} runtime
      * @param {string[]} execute
      * @param {string[]} events
      * @param {string} schedule
@@ -222,7 +219,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async update(functionId: string, name: string, runtime?: Runtime, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string): Promise<Models.Function> {
+    async update(functionId: string, name: string, runtime?: string, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -409,11 +406,7 @@ export class Functions extends Service {
             }
 
             const start = ((currentChunk - 1) * Client.CHUNK_SIZE);
-            let end = start + currentPosition;
-
-            if (end === size) {
-                end -= 1;
-            }
+            const end = start + currentPosition;
 
             if(!lastUpload || currentChunk !== 1) {
                 apiHeaders['content-range'] = 'bytes ' + start + '-' + end + '/' + size;
@@ -659,12 +652,12 @@ export class Functions extends Service {
      * @param {string} body
      * @param {boolean} async
      * @param {string} xpath
-     * @param {ExecutionMethod} method
+     * @param {string} method
      * @param {object} headers
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createExecution(functionId: string, body?: string, async?: boolean, xpath?: string, method?: ExecutionMethod, headers?: object): Promise<Models.Execution> {
+    async createExecution(functionId: string, body?: string, async?: boolean, xpath?: string, method?: string, headers?: object): Promise<Models.Execution> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }

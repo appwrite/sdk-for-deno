@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = databases.createRelationshipAttribute('[DATABASE_ID]', '[COLLECTION_ID]', '[RELATED_COLLECTION_ID]', RelationshipType.OneToOne);
+let promise = databases.createRelationshipAttribute('[DATABASE_ID]', '[COLLECTION_ID]', '[RELATED_COLLECTION_ID]', 'oneToOne');
 
 promise.then(function (response) {
     console.log(response);

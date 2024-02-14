@@ -4,10 +4,6 @@ import { Payload, Client } from '../client.ts';
 import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
-import { Query } from '../query.ts';
-import { Compression } from '../enums/compression.ts';
-import { ImageGravity } from '../enums/image-gravity.ts';
-import { ImageFormat } from '../enums/image-format.ts';
 
 export type UploadProgress = {
     $id: string;
@@ -63,13 +59,13 @@ export class Storage extends Service {
      * @param {boolean} enabled
      * @param {number} maximumFileSize
      * @param {string[]} allowedFileExtensions
-     * @param {Compression} compression
+     * @param {string} compression
      * @param {boolean} encryption
      * @param {boolean} antivirus
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createBucket(bucketId: string, name: string, permissions?: string[], fileSecurity?: boolean, enabled?: boolean, maximumFileSize?: number, allowedFileExtensions?: string[], compression?: Compression, encryption?: boolean, antivirus?: boolean): Promise<Models.Bucket> {
+    async createBucket(bucketId: string, name: string, permissions?: string[], fileSecurity?: boolean, enabled?: boolean, maximumFileSize?: number, allowedFileExtensions?: string[], compression?: string, encryption?: boolean, antivirus?: boolean): Promise<Models.Bucket> {
         if (typeof bucketId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -149,13 +145,13 @@ export class Storage extends Service {
      * @param {boolean} enabled
      * @param {number} maximumFileSize
      * @param {string[]} allowedFileExtensions
-     * @param {Compression} compression
+     * @param {string} compression
      * @param {boolean} encryption
      * @param {boolean} antivirus
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateBucket(bucketId: string, name: string, permissions?: string[], fileSecurity?: boolean, enabled?: boolean, maximumFileSize?: number, allowedFileExtensions?: string[], compression?: Compression, encryption?: boolean, antivirus?: boolean): Promise<Models.Bucket> {
+    async updateBucket(bucketId: string, name: string, permissions?: string[], fileSecurity?: boolean, enabled?: boolean, maximumFileSize?: number, allowedFileExtensions?: string[], compression?: string, encryption?: boolean, antivirus?: boolean): Promise<Models.Bucket> {
         if (typeof bucketId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -335,11 +331,7 @@ export class Storage extends Service {
             }
 
             const start = ((currentChunk - 1) * Client.CHUNK_SIZE);
-            let end = start + currentPosition;
-
-            if (end === size) {
-                end -= 1;
-            }
+            const end = start + currentPosition;
 
             if(!lastUpload || currentChunk !== 1) {
                 apiHeaders['content-range'] = 'bytes ' + start + '-' + end + '/' + size;
@@ -532,7 +524,7 @@ export class Storage extends Service {
      * @param {string} fileId
      * @param {number} width
      * @param {number} height
-     * @param {ImageGravity} gravity
+     * @param {string} gravity
      * @param {number} quality
      * @param {number} borderWidth
      * @param {string} borderColor
@@ -540,11 +532,11 @@ export class Storage extends Service {
      * @param {number} opacity
      * @param {number} rotation
      * @param {string} background
-     * @param {ImageFormat} output
+     * @param {string} output
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFilePreview(bucketId: string, fileId: string, width?: number, height?: number, gravity?: ImageGravity, quality?: number, borderWidth?: number, borderColor?: string, borderRadius?: number, opacity?: number, rotation?: number, background?: string, output?: ImageFormat): Promise<Response> {
+    async getFilePreview(bucketId: string, fileId: string, width?: number, height?: number, gravity?: string, quality?: number, borderWidth?: number, borderColor?: string, borderRadius?: number, opacity?: number, rotation?: number, background?: string, output?: string): Promise<Response> {
         if (typeof bucketId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }

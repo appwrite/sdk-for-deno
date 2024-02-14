@@ -4,7 +4,6 @@ import { Payload, Client } from '../client.ts';
 import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
-import { Query } from '../query.ts';
 
 export type UploadProgress = {
     $id: string;
