@@ -59,6 +59,25 @@ describe('Health service', () => {
     });
 
     
+    test('test method getCertificate()', async () => {
+        const data = {
+            'name': '/CN=www.google.com',
+            'subjectSN': '',
+            'issuerOrganisation': '',
+            'validFrom': '1704200998',
+            'validTo': '1711458597',
+            'signatureTypeSN': 'RSA-SHA256',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await health.getCertificate(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method getDB()', async () => {
         const data = {
             'name': 'database',
@@ -156,6 +175,21 @@ describe('Health service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await health.getQueueDeletes(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method getFailedJobs()', async () => {
+        const data = {
+            'size': 8,};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await health.getFailedJobs(
+            'v1-database',
         );
 
         assertEquals(response, data);

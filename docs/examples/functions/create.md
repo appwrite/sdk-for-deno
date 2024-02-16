@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = functions.create('[FUNCTION_ID]', '[NAME]', 'node-18.0');
+let promise = functions.create('[FUNCTION_ID]', '[NAME]', .Node180);
 
 promise.then(function (response) {
     console.log(response);
