@@ -12,7 +12,7 @@ client
 ;
 
 
-let promise = account.verifyAuthenticator(.Totp, '[OTP]');
+let promise = account.verifyAuthenticator(AuthenticatorType.Totp, '[OTP]');
 
 promise.then(function (response) {
     console.log(response);

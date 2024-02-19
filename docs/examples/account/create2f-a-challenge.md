@@ -11,7 +11,7 @@ client
 ;
 
 
-let promise = account.create2FAChallenge(.Totp);
+let promise = account.create2FAChallenge(AuthenticationFactor.Totp);
 
 promise.then(function (response) {
     console.log(response);

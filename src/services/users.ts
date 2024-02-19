@@ -6,7 +6,7 @@ import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
 import { PasswordHash } from '../enums/password-hash.ts';
-import { Type } from '../enums/type.ts';
+import { AuthenticatorType } from '../enums/authenticator-type.ts';
 import { MessagingProviderType } from '../enums/messaging-provider-type.ts';
 
 export type UploadProgress = {
@@ -743,12 +743,12 @@ export class Users extends Service {
      * Delete Authenticator
      *
      * @param {string} userId
-     * @param {Type} type
+     * @param {AuthenticatorType} type
      * @param {string} otp
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async deleteAuthenticator<Preferences extends Models.Preferences>(userId: string, type: Type, otp: string): Promise<Models.User<Preferences>> {
+    async deleteAuthenticator<Preferences extends Models.Preferences>(userId: string, type: AuthenticatorType, otp: string): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
