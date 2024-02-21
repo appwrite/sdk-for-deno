@@ -57,7 +57,7 @@ describe('Functions service', () => {
         const response = await functions.create(
             '[FUNCTION_ID]',
             '[NAME]',
-            'node-18.0',
+            'node-14.5',
         );
 
         assertEquals(response, data);

@@ -6,7 +6,7 @@ import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
 import { MessageStatus } from '../enums/message-status.ts';
-import { SMTPEncryption } from '../enums/s-m-t-p-encryption.ts';
+import { Encryption } from '../enums/encryption.ts';
 
 export type UploadProgress = {
     $id: string;
@@ -25,6 +25,8 @@ export class Messaging extends Service {
 
     /**
      * List messages
+     *
+     * Get a list of all messages from the current Appwrite project.
      *
      * @param {string[]} queries
      * @param {string} search
@@ -48,7 +50,9 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Create an email.
+     * Create an email
+     *
+     * Create a new email message.
      *
      * @param {string} messageId
      * @param {string} subject
@@ -58,13 +62,14 @@ export class Messaging extends Service {
      * @param {string[]} targets
      * @param {string[]} cc
      * @param {string[]} bcc
+     * @param {string[]} attachments
      * @param {MessageStatus} status
      * @param {boolean} html
      * @param {string} scheduledAt
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createEmail(messageId: string, subject: string, content: string, topics?: string[], users?: string[], targets?: string[], cc?: string[], bcc?: string[], status?: MessageStatus, html?: boolean, scheduledAt?: string): Promise<Models.Message> {
+    async createEmail(messageId: string, subject: string, content: string, topics?: string[], users?: string[], targets?: string[], cc?: string[], bcc?: string[], attachments?: string[], status?: MessageStatus, html?: boolean, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -104,6 +109,9 @@ export class Messaging extends Service {
         if (typeof bcc !== 'undefined') {
             payload['bcc'] = bcc;
         }
+        if (typeof attachments !== 'undefined') {
+            payload['attachments'] = attachments;
+        }
         if (typeof status !== 'undefined') {
             payload['status'] = status;
         }
@@ -118,7 +126,10 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Update an email.
+     * Update an email
+     *
+     * Update an email message by its unique ID.
+     * 
      *
      * @param {string} messageId
      * @param {string[]} topics
@@ -177,7 +188,9 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Create a push notification.
+     * Create a push notification
+     *
+     * Create a new push notification.
      *
      * @param {string} messageId
      * @param {string} title
@@ -187,6 +200,7 @@ export class Messaging extends Service {
      * @param {string[]} targets
      * @param {object} data
      * @param {string} action
+     * @param {string} image
      * @param {string} icon
      * @param {string} sound
      * @param {string} color
@@ -197,7 +211,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createPush(messageId: string, title: string, body: string, topics?: string[], users?: string[], targets?: string[], data?: object, action?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: string, status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
+    async createPush(messageId: string, title: string, body: string, topics?: string[], users?: string[], targets?: string[], data?: object, action?: string, image?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: string, status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -237,6 +251,9 @@ export class Messaging extends Service {
         if (typeof action !== 'undefined') {
             payload['action'] = action;
         }
+        if (typeof image !== 'undefined') {
+            payload['image'] = image;
+        }
         if (typeof icon !== 'undefined') {
             payload['icon'] = icon;
         }
@@ -263,7 +280,10 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Update a push notification.
+     * Update a push notification
+     *
+     * Update a push notification by its unique ID.
+     * 
      *
      * @param {string} messageId
      * @param {string[]} topics
@@ -273,6 +293,7 @@ export class Messaging extends Service {
      * @param {string} body
      * @param {object} data
      * @param {string} action
+     * @param {string} image
      * @param {string} icon
      * @param {string} sound
      * @param {string} color
@@ -283,7 +304,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updatePush(messageId: string, topics?: string[], users?: string[], targets?: string[], title?: string, body?: string, data?: object, action?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: number, status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
+    async updatePush(messageId: string, topics?: string[], users?: string[], targets?: string[], title?: string, body?: string, data?: object, action?: string, image?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: number, status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -312,6 +333,9 @@ export class Messaging extends Service {
         if (typeof action !== 'undefined') {
             payload['action'] = action;
         }
+        if (typeof image !== 'undefined') {
+            payload['image'] = image;
+        }
         if (typeof icon !== 'undefined') {
             payload['icon'] = icon;
         }
@@ -338,7 +362,9 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Create an SMS.
+     * Create an SMS
+     *
+     * Create a new SMS message.
      *
      * @param {string} messageId
      * @param {string} content
@@ -350,7 +376,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createSMS(messageId: string, content: string, topics?: string[], users?: string[], targets?: string[], status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
+    async createSms(messageId: string, content: string, topics?: string[], users?: string[], targets?: string[], status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -388,7 +414,10 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Update an SMS.
+     * Update an SMS
+     *
+     * Update an email message by its unique ID.
+     * 
      *
      * @param {string} messageId
      * @param {string[]} topics
@@ -400,7 +429,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateSMS(messageId: string, topics?: string[], users?: string[], targets?: string[], content?: string, status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
+    async updateSms(messageId: string, topics?: string[], users?: string[], targets?: string[], content?: string, status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -432,6 +461,9 @@ export class Messaging extends Service {
     }
     /**
      * Get a message
+     *
+     * Get a message by its unique ID.
+     * 
      *
      * @param {string} messageId
      * @throws {AppwriteException}
@@ -471,6 +503,8 @@ export class Messaging extends Service {
     /**
      * List message logs
      *
+     * Get the message activity logs listed by its unique ID.
+     *
      * @param {string} messageId
      * @param {string[]} queries
      * @throws {AppwriteException}
@@ -495,8 +529,7 @@ export class Messaging extends Service {
     /**
      * List message targets
      *
-     * List the targets associated with a message as set via the targets
-     * attribute.
+     * Get a list of the targets associated with a message.
      *
      * @param {string} messageId
      * @param {string[]} queries
@@ -522,6 +555,8 @@ export class Messaging extends Service {
     /**
      * List providers
      *
+     * Get a list of all providers from the current Appwrite project.
+     *
      * @param {string[]} queries
      * @param {string} search
      * @throws {AppwriteException}
@@ -546,6 +581,8 @@ export class Messaging extends Service {
     /**
      * Create APNS provider
      *
+     * Create a new Apple Push Notification service provider.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {string} authKey
@@ -556,7 +593,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createAPNSProvider(providerId: string, name: string, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string, enabled?: boolean): Promise<Models.Provider> {
+    async createApnsProvider(providerId: string, name: string, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -595,6 +632,8 @@ export class Messaging extends Service {
     }
     /**
      * Update APNS provider
+     *
+     * Update a Apple Push Notification service provider by its unique ID.
      *
      * @param {string} providerId
      * @param {string} name
@@ -639,6 +678,8 @@ export class Messaging extends Service {
     /**
      * Create FCM provider
      *
+     * Create a new Firebase Cloud Messaging provider.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {object} serviceAccountJSON
@@ -646,7 +687,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createFCMProvider(providerId: string, name: string, serviceAccountJSON?: object, enabled?: boolean): Promise<Models.Provider> {
+    async createFcmProvider(providerId: string, name: string, serviceAccountJSON?: object, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -676,6 +717,8 @@ export class Messaging extends Service {
     }
     /**
      * Update FCM provider
+     *
+     * Update a Firebase Cloud Messaging provider by its unique ID.
      *
      * @param {string} providerId
      * @param {string} name
@@ -707,6 +750,8 @@ export class Messaging extends Service {
     }
     /**
      * Create Mailgun provider
+     *
+     * Create a new Mailgun provider.
      *
      * @param {string} providerId
      * @param {string} name
@@ -770,6 +815,8 @@ export class Messaging extends Service {
     /**
      * Update Mailgun provider
      *
+     * Update a Mailgun provider by its unique ID.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {string} apiKey
@@ -825,6 +872,8 @@ export class Messaging extends Service {
     /**
      * Create Msg91 provider
      *
+     * Create a new MSG91 provider.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {string} from
@@ -870,6 +919,8 @@ export class Messaging extends Service {
     }
     /**
      * Update Msg91 provider
+     *
+     * Update a MSG91 provider by its unique ID.
      *
      * @param {string} providerId
      * @param {string} name
@@ -964,6 +1015,8 @@ export class Messaging extends Service {
     /**
      * Update Sendgrid provider
      *
+     * Update a Sendgrid provider by its unique ID.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {boolean} enabled
@@ -1011,13 +1064,15 @@ export class Messaging extends Service {
     /**
      * Create SMTP provider
      *
+     * Create a new SMTP provider.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {string} host
      * @param {number} port
      * @param {string} username
      * @param {string} password
-     * @param {SMTPEncryption} encryption
+     * @param {Encryption} encryption
      * @param {boolean} autoTLS
      * @param {string} mailer
      * @param {string} fromName
@@ -1028,7 +1083,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createSMTPProvider(providerId: string, name: string, host: string, port?: number, username?: string, password?: string, encryption?: SMTPEncryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
+    async createSmtpProvider(providerId: string, name: string, host: string, port?: number, username?: string, password?: string, encryption?: Encryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -1093,13 +1148,15 @@ export class Messaging extends Service {
     /**
      * Update SMTP provider
      *
+     * Update a SMTP provider by its unique ID.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {string} host
      * @param {number} port
      * @param {string} username
      * @param {string} password
-     * @param {SMTPEncryption} encryption
+     * @param {Encryption} encryption
      * @param {boolean} autoTLS
      * @param {string} mailer
      * @param {string} fromName
@@ -1110,7 +1167,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateSMTPProvider(providerId: string, name?: string, host?: string, port?: number, username?: string, password?: string, encryption?: SMTPEncryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
+    async updateSmtpProvider(providerId: string, name?: string, host?: string, port?: number, username?: string, password?: string, encryption?: Encryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -1164,6 +1221,8 @@ export class Messaging extends Service {
     /**
      * Create Telesign provider
      *
+     * Create a new Telesign provider.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {string} from
@@ -1210,6 +1269,8 @@ export class Messaging extends Service {
     /**
      * Update Telesign provider
      *
+     * Update a Telesign provider by its unique ID.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {boolean} enabled
@@ -1248,6 +1309,8 @@ export class Messaging extends Service {
     }
     /**
      * Create Textmagic provider
+     *
+     * Create a new Textmagic provider.
      *
      * @param {string} providerId
      * @param {string} name
@@ -1295,6 +1358,8 @@ export class Messaging extends Service {
     /**
      * Update Textmagic provider
      *
+     * Update a Textmagic provider by its unique ID.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {boolean} enabled
@@ -1333,6 +1398,8 @@ export class Messaging extends Service {
     }
     /**
      * Create Twilio provider
+     *
+     * Create a new Twilio provider.
      *
      * @param {string} providerId
      * @param {string} name
@@ -1380,6 +1447,8 @@ export class Messaging extends Service {
     /**
      * Update Twilio provider
      *
+     * Update a Twilio provider by its unique ID.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {boolean} enabled
@@ -1418,6 +1487,8 @@ export class Messaging extends Service {
     }
     /**
      * Create Vonage provider
+     *
+     * Create a new Vonage provider.
      *
      * @param {string} providerId
      * @param {string} name
@@ -1465,6 +1536,8 @@ export class Messaging extends Service {
     /**
      * Update Vonage provider
      *
+     * Update a Vonage provider by its unique ID.
+     *
      * @param {string} providerId
      * @param {string} name
      * @param {boolean} enabled
@@ -1504,6 +1577,9 @@ export class Messaging extends Service {
     /**
      * Get provider
      *
+     * Get a provider by its unique ID.
+     * 
+     *
      * @param {string} providerId
      * @throws {AppwriteException}
      * @returns {Promise}
@@ -1523,6 +1599,8 @@ export class Messaging extends Service {
     /**
      * Delete provider
      *
+     * Delete a provider by its unique ID.
+     *
      * @param {string} providerId
      * @throws {AppwriteException}
      * @returns {Promise}
@@ -1541,6 +1619,8 @@ export class Messaging extends Service {
     }
     /**
      * List provider logs
+     *
+     * Get the provider activity logs listed by its unique ID.
      *
      * @param {string} providerId
      * @param {string[]} queries
@@ -1566,6 +1646,8 @@ export class Messaging extends Service {
     /**
      * List subscriber logs
      *
+     * Get the subscriber activity logs listed by its unique ID.
+     *
      * @param {string} subscriberId
      * @param {string[]} queries
      * @throws {AppwriteException}
@@ -1588,7 +1670,9 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * List topics.
+     * List topics
+     *
+     * Get a list of all topics from the current Appwrite project.
      *
      * @param {string[]} queries
      * @param {string} search
@@ -1612,7 +1696,9 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Create a topic.
+     * Create a topic
+     *
+     * Create a new topic.
      *
      * @param {string} topicId
      * @param {string} name
@@ -1646,7 +1732,10 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Get a topic.
+     * Get a topic
+     *
+     * Get a topic by its unique ID.
+     * 
      *
      * @param {string} topicId
      * @throws {AppwriteException}
@@ -1665,7 +1754,10 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Update a topic.
+     * Update a topic
+     *
+     * Update a topic by its unique ID.
+     * 
      *
      * @param {string} topicId
      * @param {string} name
@@ -1688,7 +1780,9 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Delete a topic.
+     * Delete a topic
+     *
+     * Delete a topic by its unique ID.
      *
      * @param {string} topicId
      * @throws {AppwriteException}
@@ -1708,6 +1802,8 @@ export class Messaging extends Service {
     }
     /**
      * List topic logs
+     *
+     * Get the topic activity logs listed by its unique ID.
      *
      * @param {string} topicId
      * @param {string[]} queries
@@ -1731,7 +1827,9 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * List subscribers.
+     * List subscribers
+     *
+     * Get a list of all subscribers from the current Appwrite project.
      *
      * @param {string} topicId
      * @param {string[]} queries
@@ -1760,7 +1858,9 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Create a subscriber.
+     * Create a subscriber
+     *
+     * Create a new subscriber.
      *
      * @param {string} topicId
      * @param {string} subscriberId
@@ -1795,7 +1895,10 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Get a subscriber.
+     * Get a subscriber
+     *
+     * Get a subscriber by its unique ID.
+     * 
      *
      * @param {string} topicId
      * @param {string} subscriberId
@@ -1819,7 +1922,9 @@ export class Messaging extends Service {
         }, payload);
     }
     /**
-     * Delete a subscriber.
+     * Delete a subscriber
+     *
+     * Delete a subscriber by its unique ID.
      *
      * @param {string} topicId
      * @param {string} subscriberId

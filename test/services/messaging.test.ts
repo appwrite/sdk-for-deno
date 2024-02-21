@@ -127,7 +127,7 @@ describe('Messaging service', () => {
     });
 
     
-    test('test method createSMS()', async () => {
+    test('test method createSms()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -142,7 +142,7 @@ describe('Messaging service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await messaging.createSMS(
+        const response = await messaging.createSms(
             '[MESSAGE_ID]',
             '[CONTENT]',
         );
@@ -152,7 +152,7 @@ describe('Messaging service', () => {
     });
 
     
-    test('test method updateSMS()', async () => {
+    test('test method updateSms()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -167,7 +167,7 @@ describe('Messaging service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await messaging.updateSMS(
+        const response = await messaging.updateSms(
             '[MESSAGE_ID]',
         );
 
@@ -262,7 +262,7 @@ describe('Messaging service', () => {
     });
 
     
-    test('test method createAPNSProvider()', async () => {
+    test('test method createApnsProvider()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -275,7 +275,7 @@ describe('Messaging service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await messaging.createAPNSProvider(
+        const response = await messaging.createApnsProvider(
             '[PROVIDER_ID]',
             '[NAME]',
         );
@@ -307,7 +307,7 @@ describe('Messaging service', () => {
     });
 
     
-    test('test method createFCMProvider()', async () => {
+    test('test method createFcmProvider()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -320,7 +320,7 @@ describe('Messaging service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await messaging.createFCMProvider(
+        const response = await messaging.createFcmProvider(
             '[PROVIDER_ID]',
             '[NAME]',
         );
@@ -487,7 +487,7 @@ describe('Messaging service', () => {
     });
 
     
-    test('test method createSMTPProvider()', async () => {
+    test('test method createSmtpProvider()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -500,7 +500,7 @@ describe('Messaging service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await messaging.createSMTPProvider(
+        const response = await messaging.createSmtpProvider(
             '[PROVIDER_ID]',
             '[NAME]',
             '[HOST]',
@@ -511,7 +511,7 @@ describe('Messaging service', () => {
     });
 
     
-    test('test method updateSMTPProvider()', async () => {
+    test('test method updateSmtpProvider()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -524,7 +524,7 @@ describe('Messaging service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await messaging.updateSMTPProvider(
+        const response = await messaging.updateSmtpProvider(
             '[PROVIDER_ID]',
         );
 
