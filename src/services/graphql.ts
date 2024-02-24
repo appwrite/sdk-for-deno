@@ -41,10 +41,15 @@ export class Graphql extends Service {
         if (typeof query !== 'undefined') {
             payload['query'] = query;
         }
-        return await this.client.call('post', apiPath, {
-            'x-sdk-graphql': 'true',
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'x-sdk-graphql': 'true',
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * GraphQL endpoint
@@ -66,9 +71,14 @@ export class Graphql extends Service {
         if (typeof query !== 'undefined') {
             payload['query'] = query;
         }
-        return await this.client.call('post', apiPath, {
-            'x-sdk-graphql': 'true',
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'x-sdk-graphql': 'true',
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
 }

@@ -55,8 +55,8 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.create(
-            '[FUNCTION_ID]',
-            '[NAME]',
+            '<FUNCTION_ID>',
+            '<NAME>',
             'node-14.5',
         );
 
@@ -108,7 +108,7 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.get(
-            '[FUNCTION_ID]',
+            '<FUNCTION_ID>',
         );
 
         assertEquals(response, data);
@@ -144,8 +144,8 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.update(
-            '[FUNCTION_ID]',
-            '[NAME]',
+            '<FUNCTION_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -159,7 +159,7 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await functions.delete(
-            '[FUNCTION_ID]',
+            '<FUNCTION_ID>',
         );
 
         const text = await response.text();
@@ -176,7 +176,7 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.listDeployments(
-            '[FUNCTION_ID]',
+            '<FUNCTION_ID>',
         );
 
         assertEquals(response, data);
@@ -213,7 +213,7 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.createDeployment(
-            '[FUNCTION_ID]',
+            '<FUNCTION_ID>',
             InputFile.fromBuffer(new Uint8Array(0), 'image.png'),
             true,
         );
@@ -252,8 +252,8 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.getDeployment(
-            '[FUNCTION_ID]',
-            '[DEPLOYMENT_ID]',
+            '<FUNCTION_ID>',
+            '<DEPLOYMENT_ID>',
         );
 
         assertEquals(response, data);
@@ -289,8 +289,8 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.updateDeployment(
-            '[FUNCTION_ID]',
-            '[DEPLOYMENT_ID]',
+            '<FUNCTION_ID>',
+            '<DEPLOYMENT_ID>',
         );
 
         assertEquals(response, data);
@@ -304,8 +304,8 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await functions.deleteDeployment(
-            '[FUNCTION_ID]',
-            '[DEPLOYMENT_ID]',
+            '<FUNCTION_ID>',
+            '<DEPLOYMENT_ID>',
         );
 
         const text = await response.text();
@@ -320,9 +320,9 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await functions.createBuild(
-            '[FUNCTION_ID]',
-            '[DEPLOYMENT_ID]',
-            '[BUILD_ID]',
+            '<FUNCTION_ID>',
+            '<DEPLOYMENT_ID>',
+            '<BUILD_ID>',
         );
 
         const text = await response.text();
@@ -337,8 +337,8 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data.buffer)));
 
         const response = await functions.downloadDeployment(
-            '[FUNCTION_ID]',
-            '[DEPLOYMENT_ID]',
+            '<FUNCTION_ID>',
+            '<DEPLOYMENT_ID>',
         );
 
         const buffer = await response.arrayBuffer();
@@ -355,7 +355,7 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.listExecutions(
-            '[FUNCTION_ID]',
+            '<FUNCTION_ID>',
         );
 
         assertEquals(response, data);
@@ -385,7 +385,7 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.createExecution(
-            '[FUNCTION_ID]',
+            '<FUNCTION_ID>',
         );
 
         assertEquals(response, data);
@@ -415,8 +415,8 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.getExecution(
-            '[FUNCTION_ID]',
-            '[EXECUTION_ID]',
+            '<FUNCTION_ID>',
+            '<EXECUTION_ID>',
         );
 
         assertEquals(response, data);
@@ -432,7 +432,7 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.listVariables(
-            '[FUNCTION_ID]',
+            '<FUNCTION_ID>',
         );
 
         assertEquals(response, data);
@@ -453,9 +453,9 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.createVariable(
-            '[FUNCTION_ID]',
-            '[KEY]',
-            '[VALUE]',
+            '<FUNCTION_ID>',
+            '<KEY>',
+            '<VALUE>',
         );
 
         assertEquals(response, data);
@@ -476,8 +476,8 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.getVariable(
-            '[FUNCTION_ID]',
-            '[VARIABLE_ID]',
+            '<FUNCTION_ID>',
+            '<VARIABLE_ID>',
         );
 
         assertEquals(response, data);
@@ -498,9 +498,9 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.updateVariable(
-            '[FUNCTION_ID]',
-            '[VARIABLE_ID]',
-            '[KEY]',
+            '<FUNCTION_ID>',
+            '<VARIABLE_ID>',
+            '<KEY>',
         );
 
         assertEquals(response, data);
@@ -514,8 +514,8 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await functions.deleteVariable(
-            '[FUNCTION_ID]',
-            '[VARIABLE_ID]',
+            '<FUNCTION_ID>',
+            '<VARIABLE_ID>',
         );
 
         const text = await response.text();

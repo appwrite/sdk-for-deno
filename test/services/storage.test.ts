@@ -45,8 +45,8 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await storage.createBucket(
-            '[BUCKET_ID]',
-            '[NAME]',
+            '<BUCKET_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -72,7 +72,7 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await storage.getBucket(
-            '[BUCKET_ID]',
+            '<BUCKET_ID>',
         );
 
         assertEquals(response, data);
@@ -98,8 +98,8 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await storage.updateBucket(
-            '[BUCKET_ID]',
-            '[NAME]',
+            '<BUCKET_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -113,7 +113,7 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await storage.deleteBucket(
-            '[BUCKET_ID]',
+            '<BUCKET_ID>',
         );
 
         const text = await response.text();
@@ -130,7 +130,7 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await storage.listFiles(
-            '[BUCKET_ID]',
+            '<BUCKET_ID>',
         );
 
         assertEquals(response, data);
@@ -155,8 +155,8 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await storage.createFile(
-            '[BUCKET_ID]',
-            '[FILE_ID]',
+            '<BUCKET_ID>',
+            '<FILE_ID>',
             InputFile.fromBuffer(new Uint8Array(0), 'image.png'),
         );
 
@@ -182,8 +182,8 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await storage.getFile(
-            '[BUCKET_ID]',
-            '[FILE_ID]',
+            '<BUCKET_ID>',
+            '<FILE_ID>',
         );
 
         assertEquals(response, data);
@@ -208,8 +208,8 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await storage.updateFile(
-            '[BUCKET_ID]',
-            '[FILE_ID]',
+            '<BUCKET_ID>',
+            '<FILE_ID>',
         );
 
         assertEquals(response, data);
@@ -223,8 +223,8 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await storage.deleteFile(
-            '[BUCKET_ID]',
-            '[FILE_ID]',
+            '<BUCKET_ID>',
+            '<FILE_ID>',
         );
 
         const text = await response.text();
@@ -239,8 +239,8 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data.buffer)));
 
         const response = await storage.getFileDownload(
-            '[BUCKET_ID]',
-            '[FILE_ID]',
+            '<BUCKET_ID>',
+            '<FILE_ID>',
         );
 
         const buffer = await response.arrayBuffer();
@@ -255,8 +255,8 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data.buffer)));
 
         const response = await storage.getFilePreview(
-            '[BUCKET_ID]',
-            '[FILE_ID]',
+            '<BUCKET_ID>',
+            '<FILE_ID>',
         );
 
         const buffer = await response.arrayBuffer();
@@ -271,8 +271,8 @@ describe('Storage service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data.buffer)));
 
         const response = await storage.getFileView(
-            '[BUCKET_ID]',
-            '[FILE_ID]',
+            '<BUCKET_ID>',
+            '<FILE_ID>',
         );
 
         const buffer = await response.arrayBuffer();

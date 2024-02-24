@@ -38,9 +38,14 @@ export class Locale extends Service {
         const apiPath = '/locale';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List Locale Codes
@@ -55,9 +60,14 @@ export class Locale extends Service {
         const apiPath = '/locale/codes';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List continents
@@ -72,9 +82,14 @@ export class Locale extends Service {
         const apiPath = '/locale/continents';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List countries
@@ -89,9 +104,14 @@ export class Locale extends Service {
         const apiPath = '/locale/countries';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List EU countries
@@ -106,9 +126,14 @@ export class Locale extends Service {
         const apiPath = '/locale/countries/eu';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List countries phone codes
@@ -123,9 +148,14 @@ export class Locale extends Service {
         const apiPath = '/locale/countries/phones';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List currencies
@@ -141,9 +171,14 @@ export class Locale extends Service {
         const apiPath = '/locale/currencies';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List languages
@@ -158,8 +193,13 @@ export class Locale extends Service {
         const apiPath = '/locale/languages';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
 }

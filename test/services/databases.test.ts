@@ -38,8 +38,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.create(
-            '[DATABASE_ID]',
-            '[NAME]',
+            '<DATABASE_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -58,7 +58,7 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.get(
-            '[DATABASE_ID]',
+            '<DATABASE_ID>',
         );
 
         assertEquals(response, data);
@@ -77,8 +77,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.update(
-            '[DATABASE_ID]',
-            '[NAME]',
+            '<DATABASE_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -92,7 +92,7 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await databases.delete(
-            '[DATABASE_ID]',
+            '<DATABASE_ID>',
         );
 
         const text = await response.text();
@@ -109,7 +109,7 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.listCollections(
-            '[DATABASE_ID]',
+            '<DATABASE_ID>',
         );
 
         assertEquals(response, data);
@@ -133,9 +133,9 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createCollection(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
-            '[NAME]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -159,8 +159,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.getCollection(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
         );
 
         assertEquals(response, data);
@@ -184,9 +184,9 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateCollection(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
-            '[NAME]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -200,8 +200,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await databases.deleteCollection(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
         );
 
         const text = await response.text();
@@ -218,8 +218,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.listAttributes(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
         );
 
         assertEquals(response, data);
@@ -238,8 +238,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createBooleanAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
         );
@@ -260,8 +260,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateBooleanAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
             true,
@@ -284,8 +284,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createDatetimeAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
         );
@@ -307,8 +307,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateDatetimeAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
             '',
@@ -331,8 +331,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createEmailAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
         );
@@ -354,8 +354,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateEmailAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
             'email@example.com',
@@ -379,8 +379,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createEnumAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             [],
             true,
@@ -404,12 +404,12 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateEnumAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             [],
             true,
-            '[DEFAULT]',
+            '<DEFAULT>',
         );
 
         assertEquals(response, data);
@@ -428,8 +428,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createFloatAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
         );
@@ -450,8 +450,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateFloatAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
             1.0,
@@ -475,8 +475,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createIntegerAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
         );
@@ -497,8 +497,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateIntegerAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
             1,
@@ -523,8 +523,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createIpAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
         );
@@ -546,8 +546,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateIpAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
             '',
@@ -575,9 +575,9 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createRelationshipAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
-            '[RELATED_COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '<RELATED_COLLECTION_ID>',
             'oneToOne',
         );
 
@@ -598,8 +598,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createStringAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             1,
             true,
@@ -622,11 +622,11 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateStringAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
-            '[DEFAULT]',
+            '<DEFAULT>',
         );
 
         assertEquals(response, data);
@@ -646,8 +646,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createUrlAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
         );
@@ -669,8 +669,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateUrlAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             true,
             'https://example.com',
@@ -687,8 +687,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await databases.getAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
         );
 
@@ -704,8 +704,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await databases.deleteAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
         );
 
@@ -732,8 +732,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateRelationshipAttribute(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
         );
 
@@ -750,8 +750,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.listDocuments(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
         );
 
         assertEquals(response, data);
@@ -771,9 +771,9 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createDocument(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
-            '[DOCUMENT_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '<DOCUMENT_ID>',
             {},
         );
 
@@ -794,9 +794,9 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.getDocument(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
-            '[DOCUMENT_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '<DOCUMENT_ID>',
         );
 
         assertEquals(response, data);
@@ -816,9 +816,9 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.updateDocument(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
-            '[DOCUMENT_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '<DOCUMENT_ID>',
         );
 
         assertEquals(response, data);
@@ -832,9 +832,9 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await databases.deleteDocument(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
-            '[DOCUMENT_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '<DOCUMENT_ID>',
         );
 
         const text = await response.text();
@@ -851,8 +851,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.listIndexes(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
         );
 
         assertEquals(response, data);
@@ -871,8 +871,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.createIndex(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
             'key',
             [],
@@ -894,8 +894,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await databases.getIndex(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
         );
 
@@ -910,8 +910,8 @@ describe('Databases service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await databases.deleteIndex(
-            '[DATABASE_ID]',
-            '[COLLECTION_ID]',
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
             '',
         );
 

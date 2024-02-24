@@ -39,8 +39,8 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await teams.create(
-            '[TEAM_ID]',
-            '[NAME]',
+            '<TEAM_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -60,7 +60,7 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await teams.get(
-            '[TEAM_ID]',
+            '<TEAM_ID>',
         );
 
         assertEquals(response, data);
@@ -80,8 +80,8 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await teams.updateName(
-            '[TEAM_ID]',
-            '[NAME]',
+            '<TEAM_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -95,7 +95,7 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await teams.delete(
-            '[TEAM_ID]',
+            '<TEAM_ID>',
         );
 
         const text = await response.text();
@@ -112,7 +112,7 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await teams.listMemberships(
-            '[TEAM_ID]',
+            '<TEAM_ID>',
         );
 
         assertEquals(response, data);
@@ -139,7 +139,7 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await teams.createMembership(
-            '[TEAM_ID]',
+            '<TEAM_ID>',
             [],
         );
 
@@ -167,8 +167,8 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await teams.getMembership(
-            '[TEAM_ID]',
-            '[MEMBERSHIP_ID]',
+            '<TEAM_ID>',
+            '<MEMBERSHIP_ID>',
         );
 
         assertEquals(response, data);
@@ -195,8 +195,8 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await teams.updateMembership(
-            '[TEAM_ID]',
-            '[MEMBERSHIP_ID]',
+            '<TEAM_ID>',
+            '<MEMBERSHIP_ID>',
             [],
         );
 
@@ -211,8 +211,8 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await teams.deleteMembership(
-            '[TEAM_ID]',
-            '[MEMBERSHIP_ID]',
+            '<TEAM_ID>',
+            '<MEMBERSHIP_ID>',
         );
 
         const text = await response.text();
@@ -240,10 +240,10 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await teams.updateMembershipStatus(
-            '[TEAM_ID]',
-            '[MEMBERSHIP_ID]',
-            '[USER_ID]',
-            '[SECRET]',
+            '<TEAM_ID>',
+            '<MEMBERSHIP_ID>',
+            '<USER_ID>',
+            '<SECRET>',
         );
 
         assertEquals(response, data);
@@ -257,7 +257,7 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await teams.getPrefs(
-            '[TEAM_ID]',
+            '<TEAM_ID>',
         );
 
         assertEquals(response, data);
@@ -271,7 +271,7 @@ describe('Teams service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await teams.updatePrefs(
-            '[TEAM_ID]',
+            '<TEAM_ID>',
             {},
         );
 

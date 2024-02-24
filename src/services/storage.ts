@@ -47,9 +47,14 @@ export class Storage extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create bucket
@@ -111,9 +116,14 @@ export class Storage extends Service {
         if (typeof antivirus !== 'undefined') {
             payload['antivirus'] = antivirus;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get bucket
@@ -133,9 +143,14 @@ export class Storage extends Service {
         const apiPath = '/storage/buckets/{bucketId}'.replace('{bucketId}', bucketId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update bucket
@@ -194,9 +209,14 @@ export class Storage extends Service {
         if (typeof antivirus !== 'undefined') {
             payload['antivirus'] = antivirus;
         }
-        return await this.client.call('put', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'put',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete bucket
@@ -215,9 +235,14 @@ export class Storage extends Service {
         const apiPath = '/storage/buckets/{bucketId}'.replace('{bucketId}', bucketId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List files
@@ -247,9 +272,14 @@ export class Storage extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create file
@@ -319,7 +349,11 @@ export class Storage extends Service {
 
         if(fileId != 'unique()') {
             try {
-                response = await this.client.call('get', apiPath + '/' + fileId, apiHeaders);
+                response = await this.client.call(
+                    'get',
+                    apiPath + '/' + fileId,
+                    apiHeaders
+                );
                 chunksUploaded = response.chunksUploaded;
             } catch(e) {
             }
@@ -425,9 +459,14 @@ export class Storage extends Service {
         const apiPath = '/storage/buckets/{bucketId}/files/{fileId}'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update file
@@ -460,9 +499,14 @@ export class Storage extends Service {
         if (typeof permissions !== 'undefined') {
             payload['permissions'] = permissions;
         }
-        return await this.client.call('put', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'put',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete File
@@ -487,9 +531,14 @@ export class Storage extends Service {
         const apiPath = '/storage/buckets/{bucketId}/files/{fileId}'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get file for download
@@ -503,7 +552,7 @@ export class Storage extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFileDownload(bucketId: string, fileId: string): Promise<Response> {
+    async getFileDownload(bucketId: string, fileId: string): Promise<ArrayBuffer> {
         if (typeof bucketId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -515,9 +564,14 @@ export class Storage extends Service {
         const apiPath = '/storage/buckets/{bucketId}/files/{fileId}/download'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'arraybuffer'        );
     }
     /**
      * Get file preview
@@ -544,7 +598,7 @@ export class Storage extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFilePreview(bucketId: string, fileId: string, width?: number, height?: number, gravity?: ImageGravity, quality?: number, borderWidth?: number, borderColor?: string, borderRadius?: number, opacity?: number, rotation?: number, background?: string, output?: ImageFormat): Promise<Response> {
+    async getFilePreview(bucketId: string, fileId: string, width?: number, height?: number, gravity?: ImageGravity, quality?: number, borderWidth?: number, borderColor?: string, borderRadius?: number, opacity?: number, rotation?: number, background?: string, output?: ImageFormat): Promise<ArrayBuffer> {
         if (typeof bucketId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -600,9 +654,14 @@ export class Storage extends Service {
             payload['output'] = output;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'arraybuffer'        );
     }
     /**
      * Get file for view
@@ -616,7 +675,7 @@ export class Storage extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFileView(bucketId: string, fileId: string): Promise<Response> {
+    async getFileView(bucketId: string, fileId: string): Promise<ArrayBuffer> {
         if (typeof bucketId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -628,8 +687,13 @@ export class Storage extends Service {
         const apiPath = '/storage/buckets/{bucketId}/files/{fileId}/view'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'arraybuffer'        );
     }
 }

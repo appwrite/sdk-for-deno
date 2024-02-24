@@ -47,9 +47,14 @@ export class Databases extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create database
@@ -84,9 +89,14 @@ export class Databases extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get database
@@ -106,9 +116,14 @@ export class Databases extends Service {
         const apiPath = '/databases/{databaseId}'.replace('{databaseId}', databaseId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update database
@@ -139,9 +154,14 @@ export class Databases extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('put', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'put',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete database
@@ -161,9 +181,14 @@ export class Databases extends Service {
         const apiPath = '/databases/{databaseId}'.replace('{databaseId}', databaseId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List collections
@@ -193,9 +218,14 @@ export class Databases extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create collection
@@ -245,9 +275,14 @@ export class Databases extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get collection
@@ -272,9 +307,14 @@ export class Databases extends Service {
         const apiPath = '/databases/{databaseId}/collections/{collectionId}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update collection
@@ -318,9 +358,14 @@ export class Databases extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('put', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'put',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete collection
@@ -345,9 +390,14 @@ export class Databases extends Service {
         const apiPath = '/databases/{databaseId}/collections/{collectionId}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List attributes
@@ -374,9 +424,14 @@ export class Databases extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create boolean attribute
@@ -425,9 +480,14 @@ export class Databases extends Service {
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update boolean attribute
@@ -470,9 +530,14 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create datetime attribute
@@ -518,9 +583,14 @@ export class Databases extends Service {
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update dateTime attribute
@@ -563,9 +633,14 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create email attribute
@@ -614,9 +689,14 @@ export class Databases extends Service {
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update email attribute
@@ -663,9 +743,14 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create enum attribute
@@ -719,9 +804,14 @@ export class Databases extends Service {
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update enum attribute
@@ -776,9 +866,14 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create float attribute
@@ -836,9 +931,14 @@ export class Databases extends Service {
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update float attribute
@@ -901,9 +1001,14 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create integer attribute
@@ -961,9 +1066,14 @@ export class Databases extends Service {
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update integer attribute
@@ -1026,9 +1136,14 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create IP address attribute
@@ -1077,9 +1192,14 @@ export class Databases extends Service {
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update IP address attribute
@@ -1126,9 +1246,14 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create relationship attribute
@@ -1186,9 +1311,14 @@ export class Databases extends Service {
         if (typeof onDelete !== 'undefined') {
             payload['onDelete'] = onDelete;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create string attribute
@@ -1249,9 +1379,14 @@ export class Databases extends Service {
         if (typeof encrypt !== 'undefined') {
             payload['encrypt'] = encrypt;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update string attribute
@@ -1298,9 +1433,14 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create URL attribute
@@ -1349,9 +1489,14 @@ export class Databases extends Service {
         if (typeof array !== 'undefined') {
             payload['array'] = array;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update URL attribute
@@ -1398,9 +1543,14 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get attribute
@@ -1427,9 +1577,14 @@ export class Databases extends Service {
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete attribute
@@ -1456,9 +1611,14 @@ export class Databases extends Service {
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update relationship attribute
@@ -1493,9 +1653,14 @@ export class Databases extends Service {
         if (typeof onDelete !== 'undefined') {
             payload['onDelete'] = onDelete;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List documents
@@ -1525,9 +1690,14 @@ export class Databases extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create document
@@ -1574,9 +1744,14 @@ export class Databases extends Service {
         if (typeof permissions !== 'undefined') {
             payload['permissions'] = permissions;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get document
@@ -1611,9 +1786,14 @@ export class Databases extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update document
@@ -1651,9 +1831,14 @@ export class Databases extends Service {
         if (typeof permissions !== 'undefined') {
             payload['permissions'] = permissions;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete document
@@ -1682,9 +1867,14 @@ export class Databases extends Service {
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{documentId}', documentId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List indexes
@@ -1711,9 +1901,14 @@ export class Databases extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create index
@@ -1763,9 +1958,14 @@ export class Databases extends Service {
         if (typeof orders !== 'undefined') {
             payload['orders'] = orders;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get index
@@ -1792,9 +1992,14 @@ export class Databases extends Service {
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete index
@@ -1821,8 +2026,13 @@ export class Databases extends Service {
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
 }

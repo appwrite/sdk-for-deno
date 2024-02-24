@@ -50,7 +50,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.create(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         assertEquals(response, data);
@@ -81,7 +81,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.createArgon2User(
-            '[USER_ID]',
+            '<USER_ID>',
             'email@example.com',
             'password',
         );
@@ -114,7 +114,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.createBcryptUser(
-            '[USER_ID]',
+            '<USER_ID>',
             'email@example.com',
             'password',
         );
@@ -145,7 +145,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await users.deleteIdentity(
-            '[IDENTITY_ID]',
+            '<IDENTITY_ID>',
         );
 
         const text = await response.text();
@@ -177,7 +177,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.createMD5User(
-            '[USER_ID]',
+            '<USER_ID>',
             'email@example.com',
             'password',
         );
@@ -210,7 +210,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.createPHPassUser(
-            '[USER_ID]',
+            '<USER_ID>',
             'email@example.com',
             'password',
         );
@@ -243,10 +243,10 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.createScryptUser(
-            '[USER_ID]',
+            '<USER_ID>',
             'email@example.com',
             'password',
-            '[PASSWORD_SALT]',
+            '<PASSWORD_SALT>',
             1,
             1,
             1,
@@ -281,12 +281,12 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.createScryptModifiedUser(
-            '[USER_ID]',
+            '<USER_ID>',
             'email@example.com',
             'password',
-            '[PASSWORD_SALT]',
-            '[PASSWORD_SALT_SEPARATOR]',
-            '[PASSWORD_SIGNER_KEY]',
+            '<PASSWORD_SALT>',
+            '<PASSWORD_SALT_SEPARATOR>',
+            '<PASSWORD_SIGNER_KEY>',
         );
 
         assertEquals(response, data);
@@ -317,7 +317,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.createSHAUser(
-            '[USER_ID]',
+            '<USER_ID>',
             'email@example.com',
             'password',
         );
@@ -350,7 +350,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.get(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         assertEquals(response, data);
@@ -364,7 +364,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await users.delete(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         const text = await response.text();
@@ -396,7 +396,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.updateEmail(
-            '[USER_ID]',
+            '<USER_ID>',
             'email@example.com',
         );
 
@@ -428,7 +428,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.updateLabels(
-            '[USER_ID]',
+            '<USER_ID>',
             [],
         );
 
@@ -445,7 +445,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.listLogs(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         assertEquals(response, data);
@@ -461,7 +461,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.listMemberships(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         assertEquals(response, data);
@@ -492,7 +492,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.updateMfa(
-            '[USER_ID]',
+            '<USER_ID>',
             true,
         );
 
@@ -510,7 +510,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.listFactors(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         assertEquals(response, data);
@@ -541,9 +541,9 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.deleteAuthenticator(
-            '[USER_ID]',
+            '<USER_ID>',
             'totp',
-            '[OTP]',
+            '<OTP>',
         );
 
         assertEquals(response, data);
@@ -574,8 +574,8 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.updateName(
-            '[USER_ID]',
-            '[NAME]',
+            '<USER_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -606,7 +606,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.updatePassword(
-            '[USER_ID]',
+            '<USER_ID>',
             '',
         );
 
@@ -638,7 +638,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.updatePhone(
-            '[USER_ID]',
+            '<USER_ID>',
             '+12065550100',
         );
 
@@ -653,7 +653,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.getPrefs(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         assertEquals(response, data);
@@ -667,7 +667,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.updatePrefs(
-            '[USER_ID]',
+            '<USER_ID>',
             {},
         );
 
@@ -684,7 +684,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.listSessions(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         assertEquals(response, data);
@@ -725,7 +725,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.createSession(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         assertEquals(response, data);
@@ -739,7 +739,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await users.deleteSessions(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         const text = await response.text();
@@ -754,8 +754,8 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await users.deleteSession(
-            '[USER_ID]',
-            '[SESSION_ID]',
+            '<USER_ID>',
+            '<SESSION_ID>',
         );
 
         const text = await response.text();
@@ -787,7 +787,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.updateStatus(
-            '[USER_ID]',
+            '<USER_ID>',
             true,
         );
 
@@ -804,7 +804,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.listTargets(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         assertEquals(response, data);
@@ -825,10 +825,10 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.createTarget(
-            '[USER_ID]',
-            '[TARGET_ID]',
+            '<USER_ID>',
+            '<TARGET_ID>',
             'email',
-            '[IDENTIFIER]',
+            '<IDENTIFIER>',
         );
 
         assertEquals(response, data);
@@ -849,8 +849,8 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.getTarget(
-            '[USER_ID]',
-            '[TARGET_ID]',
+            '<USER_ID>',
+            '<TARGET_ID>',
         );
 
         assertEquals(response, data);
@@ -871,8 +871,8 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.updateTarget(
-            '[USER_ID]',
-            '[TARGET_ID]',
+            '<USER_ID>',
+            '<TARGET_ID>',
         );
 
         assertEquals(response, data);
@@ -886,8 +886,8 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await users.deleteTarget(
-            '[USER_ID]',
-            '[TARGET_ID]',
+            '<USER_ID>',
+            '<TARGET_ID>',
         );
 
         const text = await response.text();
@@ -908,7 +908,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.createToken(
-            '[USER_ID]',
+            '<USER_ID>',
         );
 
         assertEquals(response, data);
@@ -939,7 +939,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.updateEmailVerification(
-            '[USER_ID]',
+            '<USER_ID>',
             true,
         );
 
@@ -971,7 +971,7 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.updatePhoneVerification(
-            '[USER_ID]',
+            '<USER_ID>',
             true,
         );
 

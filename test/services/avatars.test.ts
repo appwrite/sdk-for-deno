@@ -107,7 +107,7 @@ describe('Avatars service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data.buffer)));
 
         const response = await avatars.getQR(
-            '[TEXT]',
+            '<TEXT>',
         );
 
         const buffer = await response.arrayBuffer();

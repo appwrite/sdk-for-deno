@@ -6,7 +6,7 @@ import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
 import { MessageStatus } from '../enums/message-status.ts';
-import { Encryption } from '../enums/encryption.ts';
+import { SmtpEncryption } from '../enums/smtp-encryption.ts';
 
 export type UploadProgress = {
     $id: string;
@@ -45,9 +45,14 @@ export class Messaging extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create an email
@@ -121,9 +126,14 @@ export class Messaging extends Service {
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update an email
@@ -183,9 +193,14 @@ export class Messaging extends Service {
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create a push notification
@@ -275,9 +290,14 @@ export class Messaging extends Service {
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update a push notification
@@ -357,9 +377,14 @@ export class Messaging extends Service {
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create an SMS
@@ -409,9 +434,14 @@ export class Messaging extends Service {
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update an SMS
@@ -455,9 +485,14 @@ export class Messaging extends Service {
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get a message
@@ -477,9 +512,14 @@ export class Messaging extends Service {
         const apiPath = '/messaging/messages/{messageId}'.replace('{messageId}', messageId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete a message
@@ -496,9 +536,14 @@ export class Messaging extends Service {
         const apiPath = '/messaging/messages/{messageId}'.replace('{messageId}', messageId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List message logs
@@ -522,9 +567,14 @@ export class Messaging extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List message targets
@@ -548,9 +598,14 @@ export class Messaging extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List providers
@@ -574,9 +629,14 @@ export class Messaging extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create APNS provider
@@ -589,11 +649,12 @@ export class Messaging extends Service {
      * @param {string} authKeyId
      * @param {string} teamId
      * @param {string} bundleId
+     * @param {boolean} sandbox
      * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createApnsProvider(providerId: string, name: string, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string, enabled?: boolean): Promise<Models.Provider> {
+    async createApnsProvider(providerId: string, name: string, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string, sandbox?: boolean, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -623,12 +684,20 @@ export class Messaging extends Service {
         if (typeof bundleId !== 'undefined') {
             payload['bundleId'] = bundleId;
         }
+        if (typeof sandbox !== 'undefined') {
+            payload['sandbox'] = sandbox;
+        }
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update APNS provider
@@ -642,10 +711,11 @@ export class Messaging extends Service {
      * @param {string} authKeyId
      * @param {string} teamId
      * @param {string} bundleId
+     * @param {boolean} sandbox
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateAPNSProvider(providerId: string, name?: string, enabled?: boolean, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string): Promise<Models.Provider> {
+    async updateApnsProvider(providerId: string, name?: string, enabled?: boolean, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string, sandbox?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -671,9 +741,17 @@ export class Messaging extends Service {
         if (typeof bundleId !== 'undefined') {
             payload['bundleId'] = bundleId;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        if (typeof sandbox !== 'undefined') {
+            payload['sandbox'] = sandbox;
+        }
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create FCM provider
@@ -711,9 +789,14 @@ export class Messaging extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update FCM provider
@@ -727,7 +810,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateFCMProvider(providerId: string, name?: string, enabled?: boolean, serviceAccountJSON?: object): Promise<Models.Provider> {
+    async updateFcmProvider(providerId: string, name?: string, enabled?: boolean, serviceAccountJSON?: object): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -744,9 +827,14 @@ export class Messaging extends Service {
         if (typeof serviceAccountJSON !== 'undefined') {
             payload['serviceAccountJSON'] = serviceAccountJSON;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create Mailgun provider
@@ -808,9 +896,14 @@ export class Messaging extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update Mailgun provider
@@ -865,9 +958,14 @@ export class Messaging extends Service {
         if (typeof replyToEmail !== 'undefined') {
             payload['replyToEmail'] = replyToEmail;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create Msg91 provider
@@ -913,9 +1011,14 @@ export class Messaging extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update Msg91 provider
@@ -954,9 +1057,14 @@ export class Messaging extends Service {
         if (typeof from !== 'undefined') {
             payload['from'] = from;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create Sendgrid provider
@@ -1008,9 +1116,14 @@ export class Messaging extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update Sendgrid provider
@@ -1057,9 +1170,14 @@ export class Messaging extends Service {
         if (typeof replyToEmail !== 'undefined') {
             payload['replyToEmail'] = replyToEmail;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create SMTP provider
@@ -1072,7 +1190,7 @@ export class Messaging extends Service {
      * @param {number} port
      * @param {string} username
      * @param {string} password
-     * @param {Encryption} encryption
+     * @param {SmtpEncryption} encryption
      * @param {boolean} autoTLS
      * @param {string} mailer
      * @param {string} fromName
@@ -1083,7 +1201,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createSmtpProvider(providerId: string, name: string, host: string, port?: number, username?: string, password?: string, encryption?: Encryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
+    async createSmtpProvider(providerId: string, name: string, host: string, port?: number, username?: string, password?: string, encryption?: SmtpEncryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -1141,9 +1259,14 @@ export class Messaging extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update SMTP provider
@@ -1156,7 +1279,7 @@ export class Messaging extends Service {
      * @param {number} port
      * @param {string} username
      * @param {string} password
-     * @param {Encryption} encryption
+     * @param {SmtpEncryption} encryption
      * @param {boolean} autoTLS
      * @param {string} mailer
      * @param {string} fromName
@@ -1167,7 +1290,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateSmtpProvider(providerId: string, name?: string, host?: string, port?: number, username?: string, password?: string, encryption?: Encryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
+    async updateSmtpProvider(providerId: string, name?: string, host?: string, port?: number, username?: string, password?: string, encryption?: SmtpEncryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -1214,9 +1337,14 @@ export class Messaging extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create Telesign provider
@@ -1262,9 +1390,14 @@ export class Messaging extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update Telesign provider
@@ -1303,9 +1436,14 @@ export class Messaging extends Service {
         if (typeof from !== 'undefined') {
             payload['from'] = from;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create Textmagic provider
@@ -1351,9 +1489,14 @@ export class Messaging extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update Textmagic provider
@@ -1392,9 +1535,14 @@ export class Messaging extends Service {
         if (typeof from !== 'undefined') {
             payload['from'] = from;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create Twilio provider
@@ -1440,9 +1588,14 @@ export class Messaging extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update Twilio provider
@@ -1481,9 +1634,14 @@ export class Messaging extends Service {
         if (typeof from !== 'undefined') {
             payload['from'] = from;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create Vonage provider
@@ -1529,9 +1687,14 @@ export class Messaging extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update Vonage provider
@@ -1570,9 +1733,14 @@ export class Messaging extends Service {
         if (typeof from !== 'undefined') {
             payload['from'] = from;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get provider
@@ -1592,9 +1760,14 @@ export class Messaging extends Service {
         const apiPath = '/messaging/providers/{providerId}'.replace('{providerId}', providerId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete provider
@@ -1613,9 +1786,14 @@ export class Messaging extends Service {
         const apiPath = '/messaging/providers/{providerId}'.replace('{providerId}', providerId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List provider logs
@@ -1639,9 +1817,14 @@ export class Messaging extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List subscriber logs
@@ -1665,9 +1848,14 @@ export class Messaging extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List topics
@@ -1691,9 +1879,14 @@ export class Messaging extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create a topic
@@ -1727,9 +1920,14 @@ export class Messaging extends Service {
         if (typeof subscribe !== 'undefined') {
             payload['subscribe'] = subscribe;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get a topic
@@ -1749,9 +1947,14 @@ export class Messaging extends Service {
         const apiPath = '/messaging/topics/{topicId}'.replace('{topicId}', topicId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update a topic
@@ -1761,10 +1964,11 @@ export class Messaging extends Service {
      *
      * @param {string} topicId
      * @param {string} name
+     * @param {string[]} subscribe
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateTopic(topicId: string, name?: string): Promise<Models.Topic> {
+    async updateTopic(topicId: string, name?: string, subscribe?: string[]): Promise<Models.Topic> {
         if (typeof topicId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "topicId"');
         }
@@ -1775,9 +1979,17 @@ export class Messaging extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        if (typeof subscribe !== 'undefined') {
+            payload['subscribe'] = subscribe;
+        }
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete a topic
@@ -1796,9 +2008,14 @@ export class Messaging extends Service {
         const apiPath = '/messaging/topics/{topicId}'.replace('{topicId}', topicId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List topic logs
@@ -1822,9 +2039,14 @@ export class Messaging extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List subscribers
@@ -1853,9 +2075,14 @@ export class Messaging extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create a subscriber
@@ -1890,9 +2117,14 @@ export class Messaging extends Service {
         if (typeof targetId !== 'undefined') {
             payload['targetId'] = targetId;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get a subscriber
@@ -1917,9 +2149,14 @@ export class Messaging extends Service {
         const apiPath = '/messaging/topics/{topicId}/subscribers/{subscriberId}'.replace('{topicId}', topicId).replace('{subscriberId}', subscriberId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete a subscriber
@@ -1943,8 +2180,13 @@ export class Messaging extends Service {
         const apiPath = '/messaging/topics/{topicId}/subscribers/{subscriberId}'.replace('{topicId}', topicId).replace('{subscriberId}', subscriberId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
 }

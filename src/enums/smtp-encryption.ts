@@ -1,4 +1,4 @@
-export enum Encryption {
+export enum SmtpEncryption {
     None = 'none',
     Ssl = 'ssl',
     Tls = 'tls',

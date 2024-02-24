@@ -47,9 +47,14 @@ export class Users extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create user
@@ -87,9 +92,14 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create user with Argon2 password
@@ -134,9 +144,14 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create user with bcrypt password
@@ -181,9 +196,14 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List Identities
@@ -207,9 +227,14 @@ export class Users extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete identity
@@ -228,9 +253,14 @@ export class Users extends Service {
         const apiPath = '/users/identities/{identityId}'.replace('{identityId}', identityId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create user with MD5 password
@@ -275,9 +305,14 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create user with PHPass password
@@ -322,9 +357,14 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create user with Scrypt password
@@ -409,9 +449,14 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create user with Scrypt modified password
@@ -481,9 +526,14 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create user with SHA password
@@ -532,9 +582,14 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get user
@@ -553,9 +608,14 @@ export class Users extends Service {
         const apiPath = '/users/{userId}'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete user
@@ -579,9 +639,14 @@ export class Users extends Service {
         const apiPath = '/users/{userId}'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update email
@@ -608,9 +673,14 @@ export class Users extends Service {
         if (typeof email !== 'undefined') {
             payload['email'] = email;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update user labels
@@ -642,9 +712,14 @@ export class Users extends Service {
         if (typeof labels !== 'undefined') {
             payload['labels'] = labels;
         }
-        return await this.client.call('put', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'put',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List user logs
@@ -668,9 +743,14 @@ export class Users extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List user memberships
@@ -689,9 +769,14 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/memberships'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update MFA
@@ -716,9 +801,14 @@ export class Users extends Service {
         if (typeof mfa !== 'undefined') {
             payload['mfa'] = mfa;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List Factors
@@ -735,9 +825,14 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/mfa/factors'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete Authenticator
@@ -767,9 +862,14 @@ export class Users extends Service {
         if (typeof otp !== 'undefined') {
             payload['otp'] = otp;
         }
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update name
@@ -796,9 +896,14 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update password
@@ -825,9 +930,14 @@ export class Users extends Service {
         if (typeof password !== 'undefined') {
             payload['password'] = password;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update phone
@@ -854,9 +964,14 @@ export class Users extends Service {
         if (typeof number !== 'undefined') {
             payload['number'] = number;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get user preferences
@@ -875,9 +990,14 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/prefs'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update user preferences
@@ -906,9 +1026,14 @@ export class Users extends Service {
         if (typeof prefs !== 'undefined') {
             payload['prefs'] = prefs;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List user sessions
@@ -927,9 +1052,14 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/sessions'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create session
@@ -953,9 +1083,14 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/sessions'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete user sessions
@@ -974,9 +1109,14 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/sessions'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete user session
@@ -1000,9 +1140,14 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/sessions/{sessionId}'.replace('{userId}', userId).replace('{sessionId}', sessionId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update user status
@@ -1030,9 +1175,14 @@ export class Users extends Service {
         if (typeof status !== 'undefined') {
             payload['status'] = status;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * List User Targets
@@ -1054,9 +1204,14 @@ export class Users extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create User Target
@@ -1105,9 +1260,14 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Get User Target
@@ -1129,9 +1289,14 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/targets/{targetId}'.replace('{userId}', userId).replace('{targetId}', targetId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update User target
@@ -1165,9 +1330,14 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Delete user target
@@ -1189,9 +1359,14 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/targets/{targetId}'.replace('{userId}', userId).replace('{targetId}', targetId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Create token
@@ -1222,9 +1397,14 @@ export class Users extends Service {
         if (typeof expire !== 'undefined') {
             payload['expire'] = expire;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update email verification
@@ -1251,9 +1431,14 @@ export class Users extends Service {
         if (typeof emailVerification !== 'undefined') {
             payload['emailVerification'] = emailVerification;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
     /**
      * Update phone verification
@@ -1280,8 +1465,13 @@ export class Users extends Service {
         if (typeof phoneVerification !== 'undefined') {
             payload['phoneVerification'] = phoneVerification;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
     }
 }

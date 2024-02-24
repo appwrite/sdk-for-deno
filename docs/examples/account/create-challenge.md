@@ -6,7 +6,7 @@ const client = new Client()
 
 const account = new Account(client);
 
-const response = await account.create2FAChallenge(
+const response = await account.createChallenge(
     AuthenticationFactor.Totp // factor
 );
 

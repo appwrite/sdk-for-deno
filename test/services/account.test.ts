@@ -65,7 +65,7 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.create(
-            '[USER_ID]',
+            '<USER_ID>',
             'email@example.com',
             '',
         );
@@ -128,7 +128,7 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await account.deleteIdentity(
-            '[IDENTITY_ID]',
+            '<IDENTITY_ID>',
         );
 
         const text = await response.text();
@@ -197,7 +197,7 @@ describe('Account service', () => {
     });
 
     
-    test('test method create2FAChallenge()', async () => {
+    test('test method createChallenge()', async () => {
         const data = {
             '\$id': 'bb8ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -206,7 +206,7 @@ describe('Account service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await account.create2FAChallenge(
+        const response = await account.createChallenge(
             'totp',
         );
 
@@ -221,8 +221,8 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await account.updateChallenge(
-            '[CHALLENGE_ID]',
-            '[OTP]',
+            '<CHALLENGE_ID>',
+            '<OTP>',
         );
 
         const text = await response.text();
@@ -288,7 +288,7 @@ describe('Account service', () => {
 
         const response = await account.verifyAuthenticator(
             'totp',
-            '[OTP]',
+            '<OTP>',
         );
 
         assertEquals(response, data);
@@ -320,7 +320,7 @@ describe('Account service', () => {
 
         const response = await account.deleteAuthenticator(
             'totp',
-            '[OTP]',
+            '<OTP>',
         );
 
         assertEquals(response, data);
@@ -351,7 +351,7 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.updateName(
-            '[NAME]',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -499,8 +499,8 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.updateRecovery(
-            '[USER_ID]',
-            '[SECRET]',
+            '<USER_ID>',
+            '<SECRET>',
             '',
         );
 
@@ -653,8 +653,8 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.updateMagicURLSession(
-            '[USER_ID]',
-            '[SECRET]',
+            '<USER_ID>',
+            '<SECRET>',
         );
 
         assertEquals(response, data);
@@ -710,8 +710,8 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.createSession(
-            '[USER_ID]',
-            '[SECRET]',
+            '<USER_ID>',
+            '<SECRET>',
         );
 
         assertEquals(response, data);
@@ -752,7 +752,7 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.getSession(
-            '[SESSION_ID]',
+            '<SESSION_ID>',
         );
 
         assertEquals(response, data);
@@ -793,7 +793,7 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.updateSession(
-            '[SESSION_ID]',
+            '<SESSION_ID>',
         );
 
         assertEquals(response, data);
@@ -807,7 +807,7 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await account.deleteSession(
-            '[SESSION_ID]',
+            '<SESSION_ID>',
         );
 
         const text = await response.text();
@@ -858,7 +858,7 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.createEmailToken(
-            '[USER_ID]',
+            '<USER_ID>',
             'email@example.com',
         );
 
@@ -879,11 +879,26 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.createMagicURLToken(
-            '[USER_ID]',
+            '<USER_ID>',
             'email@example.com',
         );
 
         assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createOAuth2Token()', async () => {
+        const data = '';
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
+
+        const response = await account.createOAuth2Token(
+            'amazon',
+        );
+
+        const text = await response.text();
+        assertEquals(text, data);
         stubbedFetch.restore();
     });
 
@@ -900,7 +915,7 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.createPhoneToken(
-            '[USER_ID]',
+            '<USER_ID>',
             '+12065550100',
         );
 
@@ -941,8 +956,8 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.updateVerification(
-            '[USER_ID]',
-            '[SECRET]',
+            '<USER_ID>',
+            '<SECRET>',
         );
 
         assertEquals(response, data);
@@ -981,8 +996,8 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.updatePhoneVerification(
-            '[USER_ID]',
-            '[SECRET]',
+            '<USER_ID>',
+            '<SECRET>',
         );
 
         assertEquals(response, data);

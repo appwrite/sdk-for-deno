@@ -29,7 +29,7 @@ import { Runtime } from "./src/enums/runtime.ts";
 import { ExecutionMethod } from "./src/enums/execution-method.ts";
 import { Name } from "./src/enums/name.ts";
 import { MessageStatus } from "./src/enums/message-status.ts";
-import { Encryption } from "./src/enums/encryption.ts";
+import { SmtpEncryption } from "./src/enums/smtp-encryption.ts";
 import { Compression } from "./src/enums/compression.ts";
 import { ImageGravity } from "./src/enums/image-gravity.ts";
 import { ImageFormat } from "./src/enums/image-format.ts";
@@ -68,7 +68,7 @@ export {
     ExecutionMethod,
     Name,
     MessageStatus,
-    Encryption,
+    SmtpEncryption,
     Compression,
     ImageGravity,
     ImageFormat,

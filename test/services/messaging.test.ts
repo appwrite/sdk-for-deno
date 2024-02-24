@@ -43,9 +43,9 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createEmail(
-            '[MESSAGE_ID]',
-            '[SUBJECT]',
-            '[CONTENT]',
+            '<MESSAGE_ID>',
+            '<SUBJECT>',
+            '<CONTENT>',
         );
 
         assertEquals(response, data);
@@ -69,7 +69,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateEmail(
-            '[MESSAGE_ID]',
+            '<MESSAGE_ID>',
         );
 
         assertEquals(response, data);
@@ -93,9 +93,9 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createPush(
-            '[MESSAGE_ID]',
-            '[TITLE]',
-            '[BODY]',
+            '<MESSAGE_ID>',
+            '<TITLE>',
+            '<BODY>',
         );
 
         assertEquals(response, data);
@@ -119,7 +119,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updatePush(
-            '[MESSAGE_ID]',
+            '<MESSAGE_ID>',
         );
 
         assertEquals(response, data);
@@ -143,8 +143,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createSms(
-            '[MESSAGE_ID]',
-            '[CONTENT]',
+            '<MESSAGE_ID>',
+            '<CONTENT>',
         );
 
         assertEquals(response, data);
@@ -168,7 +168,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateSms(
-            '[MESSAGE_ID]',
+            '<MESSAGE_ID>',
         );
 
         assertEquals(response, data);
@@ -192,7 +192,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.getMessage(
-            '[MESSAGE_ID]',
+            '<MESSAGE_ID>',
         );
 
         assertEquals(response, data);
@@ -206,7 +206,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await messaging.delete(
-            '[MESSAGE_ID]',
+            '<MESSAGE_ID>',
         );
 
         const text = await response.text();
@@ -223,7 +223,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.listMessageLogs(
-            '[MESSAGE_ID]',
+            '<MESSAGE_ID>',
         );
 
         assertEquals(response, data);
@@ -239,7 +239,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.listTargets(
-            '[MESSAGE_ID]',
+            '<MESSAGE_ID>',
         );
 
         assertEquals(response, data);
@@ -276,8 +276,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createApnsProvider(
-            '[PROVIDER_ID]',
-            '[NAME]',
+            '<PROVIDER_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -285,7 +285,7 @@ describe('Messaging service', () => {
     });
 
     
-    test('test method updateAPNSProvider()', async () => {
+    test('test method updateApnsProvider()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -298,8 +298,8 @@ describe('Messaging service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await messaging.updateAPNSProvider(
-            '[PROVIDER_ID]',
+        const response = await messaging.updateApnsProvider(
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -321,8 +321,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createFcmProvider(
-            '[PROVIDER_ID]',
-            '[NAME]',
+            '<PROVIDER_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -330,7 +330,7 @@ describe('Messaging service', () => {
     });
 
     
-    test('test method updateFCMProvider()', async () => {
+    test('test method updateFcmProvider()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -343,8 +343,8 @@ describe('Messaging service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await messaging.updateFCMProvider(
-            '[PROVIDER_ID]',
+        const response = await messaging.updateFcmProvider(
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -366,8 +366,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createMailgunProvider(
-            '[PROVIDER_ID]',
-            '[NAME]',
+            '<PROVIDER_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -389,7 +389,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateMailgunProvider(
-            '[PROVIDER_ID]',
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -411,8 +411,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createMsg91Provider(
-            '[PROVIDER_ID]',
-            '[NAME]',
+            '<PROVIDER_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -434,7 +434,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateMsg91Provider(
-            '[PROVIDER_ID]',
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -456,8 +456,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createSendgridProvider(
-            '[PROVIDER_ID]',
-            '[NAME]',
+            '<PROVIDER_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -479,7 +479,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateSendgridProvider(
-            '[PROVIDER_ID]',
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -501,9 +501,9 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createSmtpProvider(
-            '[PROVIDER_ID]',
-            '[NAME]',
-            '[HOST]',
+            '<PROVIDER_ID>',
+            '<NAME>',
+            '<HOST>',
         );
 
         assertEquals(response, data);
@@ -525,7 +525,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateSmtpProvider(
-            '[PROVIDER_ID]',
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -547,8 +547,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createTelesignProvider(
-            '[PROVIDER_ID]',
-            '[NAME]',
+            '<PROVIDER_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -570,7 +570,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateTelesignProvider(
-            '[PROVIDER_ID]',
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -592,8 +592,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createTextmagicProvider(
-            '[PROVIDER_ID]',
-            '[NAME]',
+            '<PROVIDER_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -615,7 +615,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateTextmagicProvider(
-            '[PROVIDER_ID]',
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -637,8 +637,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createTwilioProvider(
-            '[PROVIDER_ID]',
-            '[NAME]',
+            '<PROVIDER_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -660,7 +660,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateTwilioProvider(
-            '[PROVIDER_ID]',
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -682,8 +682,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createVonageProvider(
-            '[PROVIDER_ID]',
-            '[NAME]',
+            '<PROVIDER_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -705,7 +705,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateVonageProvider(
-            '[PROVIDER_ID]',
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -727,7 +727,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.getProvider(
-            '[PROVIDER_ID]',
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -741,7 +741,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await messaging.deleteProvider(
-            '[PROVIDER_ID]',
+            '<PROVIDER_ID>',
         );
 
         const text = await response.text();
@@ -758,7 +758,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.listProviderLogs(
-            '[PROVIDER_ID]',
+            '<PROVIDER_ID>',
         );
 
         assertEquals(response, data);
@@ -774,7 +774,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.listSubscriberLogs(
-            '[SUBSCRIBER_ID]',
+            '<SUBSCRIBER_ID>',
         );
 
         assertEquals(response, data);
@@ -811,8 +811,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createTopic(
-            '[TOPIC_ID]',
-            '[NAME]',
+            '<TOPIC_ID>',
+            '<NAME>',
         );
 
         assertEquals(response, data);
@@ -834,7 +834,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.getTopic(
-            '[TOPIC_ID]',
+            '<TOPIC_ID>',
         );
 
         assertEquals(response, data);
@@ -856,7 +856,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateTopic(
-            '[TOPIC_ID]',
+            '<TOPIC_ID>',
         );
 
         assertEquals(response, data);
@@ -870,7 +870,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await messaging.deleteTopic(
-            '[TOPIC_ID]',
+            '<TOPIC_ID>',
         );
 
         const text = await response.text();
@@ -887,7 +887,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.listTopicLogs(
-            '[TOPIC_ID]',
+            '<TOPIC_ID>',
         );
 
         assertEquals(response, data);
@@ -903,7 +903,7 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.listSubscribers(
-            '[TOPIC_ID]',
+            '<TOPIC_ID>',
         );
 
         assertEquals(response, data);
@@ -926,9 +926,9 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.createSubscriber(
-            '[TOPIC_ID]',
-            '[SUBSCRIBER_ID]',
-            '[TARGET_ID]',
+            '<TOPIC_ID>',
+            '<SUBSCRIBER_ID>',
+            '<TARGET_ID>',
         );
 
         assertEquals(response, data);
@@ -951,8 +951,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.getSubscriber(
-            '[TOPIC_ID]',
-            '[SUBSCRIBER_ID]',
+            '<TOPIC_ID>',
+            '<SUBSCRIBER_ID>',
         );
 
         assertEquals(response, data);
@@ -966,8 +966,8 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await messaging.deleteSubscriber(
-            '[TOPIC_ID]',
-            '[SUBSCRIBER_ID]',
+            '<TOPIC_ID>',
+            '<SUBSCRIBER_ID>',
         );
 
         const text = await response.text();

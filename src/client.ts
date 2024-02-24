@@ -1,5 +1,4 @@
 import { AppwriteException } from './exception.ts';
-import { Query } from './query.ts';
 
 export interface Payload {
     [key: string]: any;
@@ -12,11 +11,11 @@ export class Client {
     endpoint: string = 'https://cloud.appwrite.io/v1';
     headers: Payload = {
         'content-type': '',
-        'user-agent' : `AppwriteDenoSDK/10.0.0-rc.4 (${Deno.build.os}; ${Deno.build.arch})`,
+        'user-agent' : `AppwriteDenoSDK/10.0.0-rc.5 (${Deno.build.os}; ${Deno.build.arch})`,
         'x-sdk-name': 'Deno',
         'x-sdk-platform': 'server',
         'x-sdk-language': 'deno',
-        'x-sdk-version': '10.0.0-rc.4',
+        'x-sdk-version': '10.0.0-rc.5',
         'X-Appwrite-Response-Format':'1.5.0',
     };
 
@@ -94,21 +93,6 @@ export class Client {
     }
 
     /**
-     * Set ForwardedFor
-     *
-     * The IP address of the client that made the request
-     *
-     * @param string value
-     *
-     * @return self
-     */
-    setForwardedFor(value: string): this {
-        this.addHeader('X-Forwarded-For', value);
-
-        return this;
-    }
-
-    /**
      * Set ForwardedUserAgent
      *
      * The user agent string of the client that made the request
@@ -174,6 +158,7 @@ export class Client {
         let response = undefined;
         try {
             response = await fetch(url.toString(), {
+                redirect: responseType === "location" ? "manual" : "follow",
                 method: method.toUpperCase(),
                 headers,
                 body
@@ -198,6 +183,10 @@ export class Client {
             return data;
         }
 
+        if (responseType === "location") {
+            return response.headers.get("location");
+        }
+
         const text = await response.text();
         let json = undefined;
         try {
@@ -215,8 +204,6 @@ export class Client {
             let finalKey = prefix ? prefix + '[' + key +']' : key;
             if (Array.isArray(value)) {
                 output = { ...output, ...Client.flatten(value, finalKey) };
-            } else if (value instanceof Query) {
-                output[finalKey] = JSON.stringify(value);
             } else {
                 output[finalKey] = value;
             }
