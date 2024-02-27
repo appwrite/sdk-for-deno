@@ -662,17 +662,44 @@ describe('Account service', () => {
     });
 
     
-    test('test method createOAuth2Session()', async () => {
-        const data = '';
+    test('test method updatePhoneSession()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            'userId': '5e5bb8c16897e',
+            'expire': '2020-10-15T06:38:00.000+00:00',
+            'provider': 'email',
+            'providerUid': 'user@example.com',
+            'providerAccessToken': 'MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3',
+            'providerAccessTokenExpiry': '2020-10-15T06:38:00.000+00:00',
+            'providerRefreshToken': 'MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3',
+            'ip': '127.0.0.1',
+            'osCode': 'Mac',
+            'osName': 'Mac',
+            'osVersion': 'Mac',
+            'clientType': 'browser',
+            'clientCode': 'CM',
+            'clientName': 'Chrome Mobile iOS',
+            'clientVersion': '84.0',
+            'clientEngine': 'WebKit',
+            'clientEngineVersion': '605.1.15',
+            'deviceName': 'smartphone',
+            'deviceBrand': 'Google',
+            'deviceModel': 'Nexus 5',
+            'countryCode': 'US',
+            'countryName': 'United States',
+            'current': true,
+            'factors': [],
+            'secret': '5e5bb8c16897e',};
 
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await account.createOAuth2Session(
-            'amazon',
+        const response = await account.updatePhoneSession(
+            '<USER_ID>',
+            '<SECRET>',
         );
 
-        const text = await response.text();
-        assertEquals(text, data);
+        assertEquals(response, data);
         stubbedFetch.restore();
     });
 

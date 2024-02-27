@@ -251,6 +251,8 @@ export class Account extends Service {
     /**
      * Update MFA
      *
+     * Enable or disable MFA on an account.
+     *
      * @param {boolean} mfa
      * @throws {AppwriteException}
      * @returns {Promise}
@@ -305,6 +307,8 @@ export class Account extends Service {
     /**
      * Create MFA Challenge (confirmation)
      *
+     * Complete the MFA challenge by providing the one-time password.
+     *
      * @param {string} challengeId
      * @param {string} otp
      * @throws {AppwriteException}
@@ -340,6 +344,8 @@ export class Account extends Service {
     /**
      * List Factors
      *
+     * List the factors available on the account to be used as a MFA challange.
+     *
      * @throws {AppwriteException}
      * @returns {Promise}
      */
@@ -358,6 +364,11 @@ export class Account extends Service {
     }
     /**
      * Add Authenticator
+     *
+     * Add an authenticator app to be used as an MFA factor. Verify the
+     * authenticator using the [verify
+     * authenticator](/docs/references/cloud/client-web/account#verifyAuthenticator)
+     * method.
      *
      * @param {AuthenticatorType} type
      * @throws {AppwriteException}
@@ -382,6 +393,10 @@ export class Account extends Service {
     }
     /**
      * Verify Authenticator
+     *
+     * Verify an authenticator app after adding it using the [add
+     * authenticator](/docs/references/cloud/client-web/account#addAuthenticator)
+     * method.
      *
      * @param {AuthenticatorType} type
      * @param {string} otp
@@ -414,6 +429,8 @@ export class Account extends Service {
     }
     /**
      * Delete Authenticator
+     *
+     * Delete an authenticator for a user by ID.
      *
      * @param {AuthenticatorType} type
      * @param {string} otp
@@ -813,7 +830,7 @@ export class Account extends Service {
             'json'        );
     }
     /**
-     * Create session (deprecated)
+     * Update magic URL session
      *
      * Use this endpoint to create a session from token. Provide the **userId**
      * and **secret** parameters from the successful response of authentication
@@ -852,60 +869,43 @@ export class Account extends Service {
             'json'        );
     }
     /**
-     * Create OAuth2 session
+     * Update phone session
      *
-     * Allow the user to login to their account using the OAuth2 provider of their
-     * choice. Each OAuth2 provider should be enabled from the Appwrite console
-     * first. Use the success and failure arguments to provide a redirect URL's
-     * back to your app when login is completed.
-     * 
-     * If there is already an active session, the new session will be attached to
-     * the logged-in account. If there are no active sessions, the server will
-     * attempt to look for a user with the same email address as the email
-     * received from the OAuth2 provider and attach the new session to the
-     * existing user. If no matching user is found - the server will create a new
-     * user.
-     * 
-     * A user is limited to 10 active sessions at a time by default. [Learn more
-     * about session
-     * limits](https://appwrite.io/docs/authentication-security#limits).
-     * 
+     * Use this endpoint to create a session from token. Provide the **userId**
+     * and **secret** parameters from the successful response of authentication
+     * flows initiated by token creation. For example, magic URL and phone login.
      *
-     * @param {OAuthProvider} provider
-     * @param {string} success
-     * @param {string} failure
-     * @param {string[]} scopes
+     * @param {string} userId
+     * @param {string} secret
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createOAuth2Session(provider: OAuthProvider, success?: string, failure?: string, scopes?: string[]): Promise<string> {
-        if (typeof provider === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "provider"');
+    async updatePhoneSession(userId: string, secret: string): Promise<Models.Session> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        const apiPath = '/account/sessions/oauth2/{provider}'.replace('{provider}', provider);
+        if (typeof secret === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+
+        const apiPath = '/account/sessions/phone';
         const payload: Payload = {};
 
-        if (typeof success !== 'undefined') {
-            payload['success'] = success;
+        if (typeof userId !== 'undefined') {
+            payload['userId'] = userId;
         }
-
-        if (typeof failure !== 'undefined') {
-            payload['failure'] = failure;
+        if (typeof secret !== 'undefined') {
+            payload['secret'] = secret;
         }
-
-        if (typeof scopes !== 'undefined') {
-            payload['scopes'] = scopes;
-        }
-
         return await this.client.call(
-            'get',
+            'put',
             apiPath,
             {
                             'content-type': 'application/json',
             },
             payload,
-            'location'        );
+            'json'        );
     }
     /**
      * Create session
@@ -974,7 +974,7 @@ export class Account extends Service {
             'json'        );
     }
     /**
-     * Update (or renew) a session
+     * Update (or renew) session
      *
      * Extend session's expiry to increase it's lifespan. Extending a session is
      * useful when session length is short such as 5 minutes.

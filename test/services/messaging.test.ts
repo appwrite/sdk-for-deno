@@ -38,7 +38,7 @@ describe('Messaging service', () => {
             'targets': [],
             'deliveredTotal': 1,
             'data': {},
-            'status': 'Message status can be one of the following: processing, sent, cancelled, failed.',};
+            'status': 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -64,7 +64,7 @@ describe('Messaging service', () => {
             'targets': [],
             'deliveredTotal': 1,
             'data': {},
-            'status': 'Message status can be one of the following: processing, sent, cancelled, failed.',};
+            'status': 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -88,7 +88,7 @@ describe('Messaging service', () => {
             'targets': [],
             'deliveredTotal': 1,
             'data': {},
-            'status': 'Message status can be one of the following: processing, sent, cancelled, failed.',};
+            'status': 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -114,7 +114,7 @@ describe('Messaging service', () => {
             'targets': [],
             'deliveredTotal': 1,
             'data': {},
-            'status': 'Message status can be one of the following: processing, sent, cancelled, failed.',};
+            'status': 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -138,7 +138,7 @@ describe('Messaging service', () => {
             'targets': [],
             'deliveredTotal': 1,
             'data': {},
-            'status': 'Message status can be one of the following: processing, sent, cancelled, failed.',};
+            'status': 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -163,7 +163,7 @@ describe('Messaging service', () => {
             'targets': [],
             'deliveredTotal': 1,
             'data': {},
-            'status': 'Message status can be one of the following: processing, sent, cancelled, failed.',};
+            'status': 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -187,7 +187,7 @@ describe('Messaging service', () => {
             'targets': [],
             'deliveredTotal': 1,
             'data': {},
-            'status': 'Message status can be one of the following: processing, sent, cancelled, failed.',};
+            'status': 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 

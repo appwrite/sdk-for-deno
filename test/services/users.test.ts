@@ -543,7 +543,6 @@ describe('Users service', () => {
         const response = await users.deleteAuthenticator(
             '<USER_ID>',
             'totp',
-            '<OTP>',
         );
 
         assertEquals(response, data);

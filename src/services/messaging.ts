@@ -5,7 +5,6 @@ import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
-import { MessageStatus } from '../enums/message-status.ts';
 import { SmtpEncryption } from '../enums/smtp-encryption.ts';
 
 export type UploadProgress = {
@@ -55,7 +54,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Create an email
+     * Create email
      *
      * Create a new email message.
      *
@@ -68,13 +67,13 @@ export class Messaging extends Service {
      * @param {string[]} cc
      * @param {string[]} bcc
      * @param {string[]} attachments
-     * @param {MessageStatus} status
+     * @param {boolean} draft
      * @param {boolean} html
      * @param {string} scheduledAt
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createEmail(messageId: string, subject: string, content: string, topics?: string[], users?: string[], targets?: string[], cc?: string[], bcc?: string[], attachments?: string[], status?: MessageStatus, html?: boolean, scheduledAt?: string): Promise<Models.Message> {
+    async createEmail(messageId: string, subject: string, content: string, topics?: string[], users?: string[], targets?: string[], cc?: string[], bcc?: string[], attachments?: string[], draft?: boolean, html?: boolean, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -117,8 +116,8 @@ export class Messaging extends Service {
         if (typeof attachments !== 'undefined') {
             payload['attachments'] = attachments;
         }
-        if (typeof status !== 'undefined') {
-            payload['status'] = status;
+        if (typeof draft !== 'undefined') {
+            payload['draft'] = draft;
         }
         if (typeof html !== 'undefined') {
             payload['html'] = html;
@@ -136,7 +135,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Update an email
+     * Update email
      *
      * Update an email message by its unique ID.
      * 
@@ -147,7 +146,7 @@ export class Messaging extends Service {
      * @param {string[]} targets
      * @param {string} subject
      * @param {string} content
-     * @param {MessageStatus} status
+     * @param {boolean} draft
      * @param {boolean} html
      * @param {string[]} cc
      * @param {string[]} bcc
@@ -155,7 +154,7 @@ export class Messaging extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateEmail(messageId: string, topics?: string[], users?: string[], targets?: string[], subject?: string, content?: string, status?: MessageStatus, html?: boolean, cc?: string[], bcc?: string[], scheduledAt?: string): Promise<Models.Message> {
+    async updateEmail(messageId: string, topics?: string[], users?: string[], targets?: string[], subject?: string, content?: string, draft?: boolean, html?: boolean, cc?: string[], bcc?: string[], scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -178,8 +177,8 @@ export class Messaging extends Service {
         if (typeof content !== 'undefined') {
             payload['content'] = content;
         }
-        if (typeof status !== 'undefined') {
-            payload['status'] = status;
+        if (typeof draft !== 'undefined') {
+            payload['draft'] = draft;
         }
         if (typeof html !== 'undefined') {
             payload['html'] = html;
@@ -203,7 +202,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Create a push notification
+     * Create push notification
      *
      * Create a new push notification.
      *
@@ -221,12 +220,12 @@ export class Messaging extends Service {
      * @param {string} color
      * @param {string} tag
      * @param {string} badge
-     * @param {MessageStatus} status
+     * @param {boolean} draft
      * @param {string} scheduledAt
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createPush(messageId: string, title: string, body: string, topics?: string[], users?: string[], targets?: string[], data?: object, action?: string, image?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: string, status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
+    async createPush(messageId: string, title: string, body: string, topics?: string[], users?: string[], targets?: string[], data?: object, action?: string, image?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: string, draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -284,8 +283,8 @@ export class Messaging extends Service {
         if (typeof badge !== 'undefined') {
             payload['badge'] = badge;
         }
-        if (typeof status !== 'undefined') {
-            payload['status'] = status;
+        if (typeof draft !== 'undefined') {
+            payload['draft'] = draft;
         }
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
@@ -300,7 +299,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Update a push notification
+     * Update push notification
      *
      * Update a push notification by its unique ID.
      * 
@@ -319,12 +318,12 @@ export class Messaging extends Service {
      * @param {string} color
      * @param {string} tag
      * @param {number} badge
-     * @param {MessageStatus} status
+     * @param {boolean} draft
      * @param {string} scheduledAt
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updatePush(messageId: string, topics?: string[], users?: string[], targets?: string[], title?: string, body?: string, data?: object, action?: string, image?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: number, status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
+    async updatePush(messageId: string, topics?: string[], users?: string[], targets?: string[], title?: string, body?: string, data?: object, action?: string, image?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: number, draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -371,8 +370,8 @@ export class Messaging extends Service {
         if (typeof badge !== 'undefined') {
             payload['badge'] = badge;
         }
-        if (typeof status !== 'undefined') {
-            payload['status'] = status;
+        if (typeof draft !== 'undefined') {
+            payload['draft'] = draft;
         }
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
@@ -387,7 +386,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Create an SMS
+     * Create SMS
      *
      * Create a new SMS message.
      *
@@ -396,12 +395,12 @@ export class Messaging extends Service {
      * @param {string[]} topics
      * @param {string[]} users
      * @param {string[]} targets
-     * @param {MessageStatus} status
+     * @param {boolean} draft
      * @param {string} scheduledAt
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createSms(messageId: string, content: string, topics?: string[], users?: string[], targets?: string[], status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
+    async createSms(messageId: string, content: string, topics?: string[], users?: string[], targets?: string[], draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -428,8 +427,8 @@ export class Messaging extends Service {
         if (typeof targets !== 'undefined') {
             payload['targets'] = targets;
         }
-        if (typeof status !== 'undefined') {
-            payload['status'] = status;
+        if (typeof draft !== 'undefined') {
+            payload['draft'] = draft;
         }
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
@@ -444,7 +443,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Update an SMS
+     * Update SMS
      *
      * Update an email message by its unique ID.
      * 
@@ -454,12 +453,12 @@ export class Messaging extends Service {
      * @param {string[]} users
      * @param {string[]} targets
      * @param {string} content
-     * @param {MessageStatus} status
+     * @param {boolean} draft
      * @param {string} scheduledAt
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateSms(messageId: string, topics?: string[], users?: string[], targets?: string[], content?: string, status?: MessageStatus, scheduledAt?: string): Promise<Models.Message> {
+    async updateSms(messageId: string, topics?: string[], users?: string[], targets?: string[], content?: string, draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -479,8 +478,8 @@ export class Messaging extends Service {
         if (typeof content !== 'undefined') {
             payload['content'] = content;
         }
-        if (typeof status !== 'undefined') {
-            payload['status'] = status;
+        if (typeof draft !== 'undefined') {
+            payload['draft'] = draft;
         }
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
@@ -495,7 +494,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Get a message
+     * Get message
      *
      * Get a message by its unique ID.
      * 
@@ -522,7 +521,10 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Delete a message
+     * Delete message
+     *
+     * Delete a message. If the message is not a draft or scheduled, but has been
+     * sent, this will not recall the message.
      *
      * @param {string} messageId
      * @throws {AppwriteException}
@@ -1068,6 +1070,8 @@ export class Messaging extends Service {
     }
     /**
      * Create Sendgrid provider
+     *
+     * Create a new Sendgrid provider.
      *
      * @param {string} providerId
      * @param {string} name
@@ -1889,7 +1893,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Create a topic
+     * Create topic
      *
      * Create a new topic.
      *
@@ -1930,7 +1934,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Get a topic
+     * Get topic
      *
      * Get a topic by its unique ID.
      * 
@@ -1957,7 +1961,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Update a topic
+     * Update topic
      *
      * Update a topic by its unique ID.
      * 
@@ -1992,7 +1996,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Delete a topic
+     * Delete topic
      *
      * Delete a topic by its unique ID.
      *
@@ -2085,7 +2089,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Create a subscriber
+     * Create subscriber
      *
      * Create a new subscriber.
      *
@@ -2127,7 +2131,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Get a subscriber
+     * Get subscriber
      *
      * Get a subscriber by its unique ID.
      * 
@@ -2159,7 +2163,7 @@ export class Messaging extends Service {
             'json'        );
     }
     /**
-     * Delete a subscriber
+     * Delete subscriber
      *
      * Delete a subscriber by its unique ID.
      *

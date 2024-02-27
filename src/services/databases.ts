@@ -402,6 +402,8 @@ export class Databases extends Service {
     /**
      * List attributes
      *
+     * List attributes in the collection.
+     *
      * @param {string} databaseId
      * @param {string} collectionId
      * @param {string[]} queries
@@ -492,6 +494,9 @@ export class Databases extends Service {
     /**
      * Update boolean attribute
      *
+     * Update a boolean attribute. Changing the `default` value will not update
+     * already existing documents.
+     *
      * @param {string} databaseId
      * @param {string} collectionId
      * @param {string} key
@@ -541,6 +546,8 @@ export class Databases extends Service {
     }
     /**
      * Create datetime attribute
+     *
+     * Create a date time attribute according to the ISO 8601 standard.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -594,6 +601,9 @@ export class Databases extends Service {
     }
     /**
      * Update dateTime attribute
+     *
+     * Update a date time attribute. Changing the `default` value will not update
+     * already existing documents.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -754,6 +764,10 @@ export class Databases extends Service {
     }
     /**
      * Create enum attribute
+     *
+     * Create an enumeration attribute. The `elements` param acts as a white-list
+     * of accepted values for this attribute. 
+     * 
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1555,6 +1569,8 @@ export class Databases extends Service {
     /**
      * Get attribute
      *
+     * Get attribute by ID.
+     *
      * @param {string} databaseId
      * @param {string} collectionId
      * @param {string} key
@@ -1588,6 +1604,8 @@ export class Databases extends Service {
     }
     /**
      * Delete attribute
+     *
+     * Deletes an attribute.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1879,6 +1897,8 @@ export class Databases extends Service {
     /**
      * List indexes
      *
+     * List indexes in the collection.
+     *
      * @param {string} databaseId
      * @param {string} collectionId
      * @param {string[]} queries
@@ -1912,6 +1932,10 @@ export class Databases extends Service {
     }
     /**
      * Create index
+     *
+     * Creates an index on the attributes listed. Your index should include all
+     * the attributes you will query in a single request.
+     * Attributes can be `key`, `fulltext`, and `unique`.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1970,6 +1994,8 @@ export class Databases extends Service {
     /**
      * Get index
      *
+     * Get index by ID.
+     *
      * @param {string} databaseId
      * @param {string} collectionId
      * @param {string} key
@@ -2003,6 +2029,8 @@ export class Databases extends Service {
     }
     /**
      * Delete index
+     *
+     * Delete an index.
      *
      * @param {string} databaseId
      * @param {string} collectionId
