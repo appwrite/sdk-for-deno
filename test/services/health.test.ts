@@ -267,6 +267,34 @@ describe('Health service', () => {
     });
 
     
+    test('test method getQueueUsage()', async () => {
+        const data = {
+            'size': 8,};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await health.getQueueUsage(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method getQueueUsage()', async () => {
+        const data = {
+            'size': 8,};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await health.getQueueUsage(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method getQueueWebhooks()', async () => {
         const data = {
             'size': 8,};
@@ -274,6 +302,22 @@ describe('Health service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await health.getQueueWebhooks(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method getStorage()', async () => {
+        const data = {
+            'name': 'database',
+            'ping': 128,
+            'status': 'pass',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await health.getStorage(
         );
 
         assertEquals(response, data);

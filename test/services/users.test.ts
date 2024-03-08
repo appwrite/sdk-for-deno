@@ -42,7 +42,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -73,7 +72,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -106,7 +104,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -169,7 +166,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -202,7 +198,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -235,7 +230,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -273,7 +267,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -309,7 +302,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -342,7 +334,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -388,7 +379,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -420,7 +410,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -484,7 +473,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -501,24 +489,7 @@ describe('Users service', () => {
     });
 
     
-    test('test method listFactors()', async () => {
-        const data = {
-            'totp': true,
-            'phone': true,
-            'email': true,};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await users.listFactors(
-            '<USER_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method deleteAuthenticator()', async () => {
+    test('test method deleteMfaAuthenticator()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -533,16 +504,77 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await users.deleteAuthenticator(
+        const response = await users.deleteMfaAuthenticator(
             '<USER_ID>',
             'totp',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method listMfaFactors()', async () => {
+        const data = {
+            'totp': true,
+            'phone': true,
+            'email': true,};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await users.listMfaFactors(
+            '<USER_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method getMfaRecoveryCodes()', async () => {
+        const data = {
+            'recoveryCodes': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await users.getMfaRecoveryCodes(
+            '<USER_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateMfaRecoveryCodes()', async () => {
+        const data = {
+            'recoveryCodes': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await users.updateMfaRecoveryCodes(
+            '<USER_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createMfaRecoveryCodes()', async () => {
+        const data = {
+            'recoveryCodes': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await users.createMfaRecoveryCodes(
+            '<USER_ID>',
         );
 
         assertEquals(response, data);
@@ -565,7 +597,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -597,7 +628,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -629,7 +659,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -719,7 +748,8 @@ describe('Users service', () => {
             'countryName': 'United States',
             'current': true,
             'factors': [],
-            'secret': '5e5bb8c16897e',};
+            'secret': '5e5bb8c16897e',
+            'mfaUpdatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -778,7 +808,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -930,7 +959,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -962,7 +990,6 @@ describe('Users service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};

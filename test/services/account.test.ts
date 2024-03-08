@@ -27,7 +27,6 @@ describe('Account service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -57,7 +56,6 @@ describe('Account service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -90,7 +88,6 @@ describe('Account service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -181,7 +178,6 @@ describe('Account service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -197,16 +193,14 @@ describe('Account service', () => {
     });
 
     
-    test('test method createChallenge()', async () => {
+    test('test method createMfaAuthenticator()', async () => {
         const data = {
-            '\$id': 'bb8ea5c16897e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            'userId': '5e5ea5c168bb8',
-            'expire': '2020-10-15T06:38:00.000+00:00',};
+            'secret': '1',
+            'uri': '1',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await account.createChallenge(
+        const response = await account.createMfaAuthenticator(
             'totp',
         );
 
@@ -215,12 +209,92 @@ describe('Account service', () => {
     });
 
     
-    test('test method updateChallenge()', async () => {
+    test('test method updateMfaAuthenticator()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'name': 'John Doe',
+            'registration': '2020-10-15T06:38:00.000+00:00',
+            'status': true,
+            'labels': [],
+            'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
+            'email': 'john@appwrite.io',
+            'phone': '+4930901820',
+            'emailVerification': true,
+            'phoneVerification': true,
+            'mfa': true,
+            'prefs': {},
+            'targets': [],
+            'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await account.updateMfaAuthenticator(
+            'totp',
+            '<OTP>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method deleteMfaAuthenticator()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'name': 'John Doe',
+            'registration': '2020-10-15T06:38:00.000+00:00',
+            'status': true,
+            'labels': [],
+            'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
+            'email': 'john@appwrite.io',
+            'phone': '+4930901820',
+            'emailVerification': true,
+            'phoneVerification': true,
+            'mfa': true,
+            'prefs': {},
+            'targets': [],
+            'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await account.deleteMfaAuthenticator(
+            'totp',
+            '<OTP>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createMfaChallenge()', async () => {
+        const data = {
+            '\$id': 'bb8ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            'userId': '5e5ea5c168bb8',
+            'expire': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await account.createMfaChallenge(
+            'email',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateMfaChallenge()', async () => {
         const data = '';
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
-        const response = await account.updateChallenge(
+        const response = await account.updateMfaChallenge(
             '<CHALLENGE_ID>',
             '<OTP>',
         );
@@ -231,7 +305,7 @@ describe('Account service', () => {
     });
 
     
-    test('test method listFactors()', async () => {
+    test('test method listMfaFactors()', async () => {
         const data = {
             'totp': true,
             'phone': true,
@@ -239,7 +313,7 @@ describe('Account service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await account.listFactors(
+        const response = await account.listMfaFactors(
         );
 
         assertEquals(response, data);
@@ -247,16 +321,13 @@ describe('Account service', () => {
     });
 
     
-    test('test method addAuthenticator()', async () => {
+    test('test method getMfaRecoveryCodes()', async () => {
         const data = {
-            'backups': [],
-            'secret': '1',
-            'uri': '1',};
+            'recoveryCodes': [],};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await account.addAuthenticator(
-            'totp',
+        const response = await account.getMfaRecoveryCodes(
         );
 
         assertEquals(response, data);
@@ -264,31 +335,13 @@ describe('Account service', () => {
     });
 
     
-    test('test method verifyAuthenticator()', async () => {
+    test('test method createMfaRecoveryCodes()', async () => {
         const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'name': 'John Doe',
-            'registration': '2020-10-15T06:38:00.000+00:00',
-            'status': true,
-            'labels': [],
-            'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
-            'email': 'john@appwrite.io',
-            'phone': '+4930901820',
-            'emailVerification': true,
-            'phoneVerification': true,
-            'mfa': true,
-            'totp': true,
-            'prefs': {},
-            'targets': [],
-            'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+            'recoveryCodes': [],};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await account.verifyAuthenticator(
-            'totp',
-            '<OTP>',
+        const response = await account.createMfaRecoveryCodes(
         );
 
         assertEquals(response, data);
@@ -296,31 +349,13 @@ describe('Account service', () => {
     });
 
     
-    test('test method deleteAuthenticator()', async () => {
+    test('test method updateMfaRecoveryCodes()', async () => {
         const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'name': 'John Doe',
-            'registration': '2020-10-15T06:38:00.000+00:00',
-            'status': true,
-            'labels': [],
-            'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
-            'email': 'john@appwrite.io',
-            'phone': '+4930901820',
-            'emailVerification': true,
-            'phoneVerification': true,
-            'mfa': true,
-            'totp': true,
-            'prefs': {},
-            'targets': [],
-            'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+            'recoveryCodes': [],};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await account.deleteAuthenticator(
-            'totp',
-            '<OTP>',
+        const response = await account.updateMfaRecoveryCodes(
         );
 
         assertEquals(response, data);
@@ -343,7 +378,6 @@ describe('Account service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -374,7 +408,6 @@ describe('Account service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -405,7 +438,6 @@ describe('Account service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -450,7 +482,6 @@ describe('Account service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -566,7 +597,8 @@ describe('Account service', () => {
             'countryName': 'United States',
             'current': true,
             'factors': [],
-            'secret': '5e5bb8c16897e',};
+            'secret': '5e5bb8c16897e',
+            'mfaUpdatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -606,7 +638,8 @@ describe('Account service', () => {
             'countryName': 'United States',
             'current': true,
             'factors': [],
-            'secret': '5e5bb8c16897e',};
+            'secret': '5e5bb8c16897e',
+            'mfaUpdatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -648,7 +681,8 @@ describe('Account service', () => {
             'countryName': 'United States',
             'current': true,
             'factors': [],
-            'secret': '5e5bb8c16897e',};
+            'secret': '5e5bb8c16897e',
+            'mfaUpdatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -690,7 +724,8 @@ describe('Account service', () => {
             'countryName': 'United States',
             'current': true,
             'factors': [],
-            'secret': '5e5bb8c16897e',};
+            'secret': '5e5bb8c16897e',
+            'mfaUpdatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -732,7 +767,8 @@ describe('Account service', () => {
             'countryName': 'United States',
             'current': true,
             'factors': [],
-            'secret': '5e5bb8c16897e',};
+            'secret': '5e5bb8c16897e',
+            'mfaUpdatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -774,7 +810,8 @@ describe('Account service', () => {
             'countryName': 'United States',
             'current': true,
             'factors': [],
-            'secret': '5e5bb8c16897e',};
+            'secret': '5e5bb8c16897e',
+            'mfaUpdatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -815,7 +852,8 @@ describe('Account service', () => {
             'countryName': 'United States',
             'current': true,
             'factors': [],
-            'secret': '5e5bb8c16897e',};
+            'secret': '5e5bb8c16897e',
+            'mfaUpdatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -858,7 +896,6 @@ describe('Account service', () => {
             'emailVerification': true,
             'phoneVerification': true,
             'mfa': true,
-            'totp': true,
             'prefs': {},
             'targets': [],
             'accessedAt': '2020-10-15T06:38:00.000+00:00',};

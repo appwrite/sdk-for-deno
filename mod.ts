@@ -16,8 +16,8 @@ import { Messaging } from "./src/services/messaging.ts";
 import { Storage } from "./src/services/storage.ts";
 import { Teams } from "./src/services/teams.ts";
 import { Users } from "./src/services/users.ts";
-import { AuthenticationFactor } from "./src/enums/authentication-factor.ts";
 import { AuthenticatorType } from "./src/enums/authenticator-type.ts";
+import { AuthenticationFactor } from "./src/enums/authentication-factor.ts";
 import { OAuthProvider } from "./src/enums/o-auth-provider.ts";
 import { Browser } from "./src/enums/browser.ts";
 import { CreditCard } from "./src/enums/credit-card.ts";
@@ -54,8 +54,8 @@ export {
     Storage,
     Teams,
     Users,
-    AuthenticationFactor,
     AuthenticatorType,
+    AuthenticationFactor,
     OAuthProvider,
     Browser,
     CreditCard,

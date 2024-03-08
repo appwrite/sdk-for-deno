@@ -1,4 +1,4 @@
-import { Client, Users } from "https://deno.land/x/appwrite/mod.ts";
+import { Client, Users, AuthenticatorType } from "https://deno.land/x/appwrite/mod.ts";
 
 const client = new Client()
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
@@ -7,6 +7,7 @@ const client = new Client()
 
 const users = new Users(client);
 
-const response = await users.listFactors(
-    '<USER_ID>' // userId
+const response = await users.deleteMfaAuthenticator(
+    '<USER_ID>', // userId
+    AuthenticatorType.Totp // type
 );

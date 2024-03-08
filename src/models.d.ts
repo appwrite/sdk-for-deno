@@ -1056,10 +1056,6 @@ export namespace Models {
          */
         mfa: boolean;
         /**
-         * TOTP status.
-         */
-        totp: boolean;
-        /**
          * User preferences as a key-value object
          */
         prefs: Preferences;
@@ -1292,6 +1288,10 @@ export namespace Models {
          * Secret used to authenticate the user. Only included if the request was made with an API key
          */
         secret: string;
+        /**
+         * Most recent date in ISO 8601 format when the session successfully passed MFA challenge.
+         */
+        mfaUpdatedAt: string;
     }
     /**
      * Identity
@@ -2148,13 +2148,18 @@ export namespace Models {
         expire: string;
     }
     /**
+     * MFA Recovery Codes
+     */
+    export type MfaRecoveryCodes = { 
+        /**
+         * Recovery codes.
+         */
+        recoveryCodes: string[];
+    }
+    /**
      * MFAType
      */
     export type MfaType = { 
-        /**
-         * Backup codes.
-         */
-        backups: string[];
         /**
          * Secret token used for TOTP factor.
          */

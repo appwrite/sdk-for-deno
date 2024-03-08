@@ -6,6 +6,6 @@ const client = new Client()
 
 const account = new Account(client);
 
-const response = await account.createChallenge(
-    AuthenticationFactor.Totp // factor
+const response = await account.createMfaChallenge(
+    AuthenticationFactor.Email // factor
 );

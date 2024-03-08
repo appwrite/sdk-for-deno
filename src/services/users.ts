@@ -813,6 +813,37 @@ export class Users extends Service {
             'json'        );
     }
     /**
+     * Delete Authenticator
+     *
+     * Delete an authenticator app.
+     *
+     * @param {string} userId
+     * @param {AuthenticatorType} type
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async deleteMfaAuthenticator<Preferences extends Models.Preferences>(userId: string, type: AuthenticatorType): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof type === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/authenticators/{type}'.replace('{userId}', userId).replace('{type}', type);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
+    }
+    /**
      * List Factors
      *
      * List the factors available on the account to be used as a MFA challange.
@@ -821,7 +852,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listFactors(userId: string): Promise<Models.MfaFactors> {
+    async listMfaFactors(userId: string): Promise<Models.MfaFactors> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -839,29 +870,85 @@ export class Users extends Service {
             'json'        );
     }
     /**
-     * Delete Authenticator
+     * Get MFA Recovery Codes
      *
-     * Delete an authenticator app.
+     * Get recovery codes that can be used as backup for MFA flow by User ID.
+     * Before getting codes, they must be generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method.
      *
      * @param {string} userId
-     * @param {AuthenticatorType} type
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async deleteAuthenticator<Preferences extends Models.Preferences>(userId: string, type: AuthenticatorType): Promise<Models.User<Preferences>> {
+    async getMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        if (typeof type === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "type"');
-        }
-
-        const apiPath = '/users/{userId}/mfa/{type}'.replace('{userId}', userId).replace('{type}', type);
+        const apiPath = '/users/{userId}/mfa/recovery-codes'.replace('{userId}', userId);
         const payload: Payload = {};
 
         return await this.client.call(
-            'delete',
+            'get',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
+    }
+    /**
+     * Regenerate MFA Recovery Codes
+     *
+     * Regenerate recovery codes that can be used as backup for MFA flow by User
+     * ID. Before regenerating codes, they must be first generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method.
+     *
+     * @param {string} userId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/recovery-codes'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'put',
+            apiPath,
+            {
+                            'content-type': 'application/json',
+            },
+            payload,
+            'json'        );
+    }
+    /**
+     * Create MFA Recovery Codes
+     *
+     * Generate recovery codes used as backup for MFA flow for User ID. Recovery
+     * codes can be used as a MFA verification type in
+     * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+     * method by client SDK.
+     *
+     * @param {string} userId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/recovery-codes'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'patch',
             apiPath,
             {
                             'content-type': 'application/json',
