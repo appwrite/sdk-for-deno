@@ -42,10 +42,11 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List Locale Codes
@@ -64,10 +65,11 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List continents
@@ -86,10 +88,11 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List countries
@@ -108,10 +111,11 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List EU countries
@@ -130,10 +134,11 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List countries phone codes
@@ -152,10 +157,11 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List currencies
@@ -175,10 +181,11 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List languages
@@ -197,9 +204,10 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
 }

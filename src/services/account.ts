@@ -40,10 +40,11 @@ export class Account extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create account
@@ -95,10 +96,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update email
@@ -139,10 +141,11 @@ export class Account extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List Identities
@@ -165,10 +168,11 @@ export class Account extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete identity
@@ -191,10 +195,11 @@ export class Account extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create JWT
@@ -216,10 +221,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List logs
@@ -243,10 +249,11 @@ export class Account extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update MFA
@@ -272,10 +279,11 @@ export class Account extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Add Authenticator
@@ -301,10 +309,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Verify Authenticator
@@ -337,10 +346,11 @@ export class Account extends Service {
             'put',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete Authenticator
@@ -371,10 +381,11 @@ export class Account extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create 2FA Challenge
@@ -402,10 +413,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create MFA Challenge (confirmation)
@@ -443,10 +455,11 @@ export class Account extends Service {
             'put',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List Factors
@@ -464,10 +477,11 @@ export class Account extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get MFA Recovery Codes
@@ -488,10 +502,11 @@ export class Account extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create MFA Recovery Codes
@@ -513,10 +528,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Regenerate MFA Recovery Codes
@@ -537,10 +553,11 @@ export class Account extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update name
@@ -566,10 +583,11 @@ export class Account extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update password
@@ -601,10 +619,11 @@ export class Account extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update phone
@@ -642,10 +661,11 @@ export class Account extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get account preferences
@@ -663,10 +683,11 @@ export class Account extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update preferences
@@ -694,10 +715,11 @@ export class Account extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create password recovery
@@ -738,10 +760,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create password recovery (confirmation)
@@ -792,10 +815,11 @@ export class Account extends Service {
             'put',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List sessions
@@ -814,10 +838,11 @@ export class Account extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete sessions
@@ -836,10 +861,11 @@ export class Account extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create anonymous session
@@ -863,10 +889,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create email password session
@@ -905,10 +932,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update magic URL session
@@ -944,10 +972,11 @@ export class Account extends Service {
             'put',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update phone session
@@ -983,10 +1012,11 @@ export class Account extends Service {
             'put',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create session
@@ -1022,10 +1052,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get session
@@ -1049,10 +1080,11 @@ export class Account extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update session
@@ -1077,10 +1109,11 @@ export class Account extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete session
@@ -1107,10 +1140,11 @@ export class Account extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update status
@@ -1130,10 +1164,11 @@ export class Account extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create email token (OTP)
@@ -1180,10 +1215,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create magic URL token
@@ -1240,10 +1276,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create OAuth2 token
@@ -1294,10 +1331,11 @@ export class Account extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'location'        );
+            'location'
+        );
     }
     /**
      * Create phone token
@@ -1340,10 +1378,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create email verification
@@ -1383,10 +1422,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create email verification (confirmation)
@@ -1423,10 +1463,11 @@ export class Account extends Service {
             'put',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create phone verification
@@ -1451,10 +1492,11 @@ export class Account extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create phone verification (confirmation)
@@ -1491,9 +1533,10 @@ export class Account extends Service {
             'put',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
 }

@@ -45,11 +45,12 @@ export class Graphql extends Service {
             'post',
             apiPath,
             {
-                            'x-sdk-graphql': 'true',
+                'x-sdk-graphql': 'true',
                 'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * GraphQL endpoint
@@ -75,10 +76,11 @@ export class Graphql extends Service {
             'post',
             apiPath,
             {
-                            'x-sdk-graphql': 'true',
+                'x-sdk-graphql': 'true',
                 'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
 }

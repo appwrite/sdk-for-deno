@@ -51,10 +51,11 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create bucket
@@ -120,10 +121,11 @@ export class Storage extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get bucket
@@ -147,10 +149,11 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update bucket
@@ -213,10 +216,11 @@ export class Storage extends Service {
             'put',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete bucket
@@ -239,10 +243,11 @@ export class Storage extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List files
@@ -276,10 +281,11 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create file
@@ -463,10 +469,11 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update file
@@ -503,10 +510,11 @@ export class Storage extends Service {
             'put',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete File
@@ -535,10 +543,11 @@ export class Storage extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get file for download
@@ -568,10 +577,11 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'arraybuffer'        );
+            'arraybuffer'
+        );
     }
     /**
      * Get file preview
@@ -658,10 +668,11 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'arraybuffer'        );
+            'arraybuffer'
+        );
     }
     /**
      * Get file for view
@@ -691,9 +702,10 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'arraybuffer'        );
+            'arraybuffer'
+        );
     }
 }

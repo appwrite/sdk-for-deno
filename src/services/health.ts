@@ -38,10 +38,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get antivirus
@@ -59,10 +60,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get cache
@@ -81,10 +83,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get the SSL certificate for a domain
@@ -107,10 +110,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get DB
@@ -128,10 +132,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get pubsub
@@ -149,10 +154,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get queue
@@ -171,10 +177,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get builds queue
@@ -198,10 +205,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get certificates queue
@@ -226,10 +234,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get databases queue
@@ -258,10 +267,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get deletes queue
@@ -285,10 +295,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get number of failed queue jobs
@@ -317,10 +328,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get functions queue
@@ -344,10 +356,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get logs queue
@@ -371,10 +384,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get mails queue
@@ -398,10 +412,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get messaging queue
@@ -425,10 +440,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get migrations queue
@@ -452,10 +468,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get usage queue
@@ -479,10 +496,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get usage dump queue
@@ -506,10 +524,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get webhooks queue
@@ -533,10 +552,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get storage
@@ -554,10 +574,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get local storage
@@ -575,10 +596,11 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get time
@@ -602,9 +624,10 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
 }

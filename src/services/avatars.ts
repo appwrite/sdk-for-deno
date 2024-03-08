@@ -69,10 +69,11 @@ export class Avatars extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'arraybuffer'        );
+            'arraybuffer'
+        );
     }
     /**
      * Get credit card icon
@@ -118,10 +119,11 @@ export class Avatars extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'arraybuffer'        );
+            'arraybuffer'
+        );
     }
     /**
      * Get favicon
@@ -150,10 +152,11 @@ export class Avatars extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'arraybuffer'        );
+            'arraybuffer'
+        );
     }
     /**
      * Get country flag
@@ -200,10 +203,11 @@ export class Avatars extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'arraybuffer'        );
+            'arraybuffer'
+        );
     }
     /**
      * Get image from URL
@@ -249,10 +253,11 @@ export class Avatars extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'arraybuffer'        );
+            'arraybuffer'
+        );
     }
     /**
      * Get user initials
@@ -305,10 +310,11 @@ export class Avatars extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'arraybuffer'        );
+            'arraybuffer'
+        );
     }
     /**
      * Get QR code
@@ -352,9 +358,10 @@ export class Avatars extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'arraybuffer'        );
+            'arraybuffer'
+        );
     }
 }

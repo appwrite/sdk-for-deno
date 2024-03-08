@@ -51,10 +51,11 @@ export class Users extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create user
@@ -96,10 +97,11 @@ export class Users extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create user with Argon2 password
@@ -148,10 +150,11 @@ export class Users extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create user with bcrypt password
@@ -200,10 +203,11 @@ export class Users extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List Identities
@@ -231,10 +235,11 @@ export class Users extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete identity
@@ -257,10 +262,11 @@ export class Users extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create user with MD5 password
@@ -309,10 +315,11 @@ export class Users extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create user with PHPass password
@@ -361,10 +368,11 @@ export class Users extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create user with Scrypt password
@@ -453,10 +461,11 @@ export class Users extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create user with Scrypt modified password
@@ -530,10 +539,11 @@ export class Users extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create user with SHA password
@@ -586,10 +596,11 @@ export class Users extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get user
@@ -612,10 +623,11 @@ export class Users extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete user
@@ -643,10 +655,11 @@ export class Users extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update email
@@ -677,10 +690,11 @@ export class Users extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update user labels
@@ -716,10 +730,11 @@ export class Users extends Service {
             'put',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List user logs
@@ -747,10 +762,11 @@ export class Users extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List user memberships
@@ -773,10 +789,11 @@ export class Users extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update MFA
@@ -807,10 +824,11 @@ export class Users extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete Authenticator
@@ -838,10 +856,11 @@ export class Users extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List Factors
@@ -864,10 +883,11 @@ export class Users extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get MFA Recovery Codes
@@ -893,10 +913,11 @@ export class Users extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Regenerate MFA Recovery Codes
@@ -922,10 +943,11 @@ export class Users extends Service {
             'put',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create MFA Recovery Codes
@@ -951,10 +973,11 @@ export class Users extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update name
@@ -985,10 +1008,11 @@ export class Users extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update password
@@ -1019,10 +1043,11 @@ export class Users extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update phone
@@ -1053,10 +1078,11 @@ export class Users extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get user preferences
@@ -1079,10 +1105,11 @@ export class Users extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update user preferences
@@ -1115,10 +1142,11 @@ export class Users extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List user sessions
@@ -1141,10 +1169,11 @@ export class Users extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create session
@@ -1172,10 +1201,11 @@ export class Users extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete user sessions
@@ -1198,10 +1228,11 @@ export class Users extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete user session
@@ -1229,10 +1260,11 @@ export class Users extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update user status
@@ -1264,10 +1296,11 @@ export class Users extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List User Targets
@@ -1295,10 +1328,11 @@ export class Users extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create User Target
@@ -1353,10 +1387,11 @@ export class Users extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get User Target
@@ -1384,10 +1419,11 @@ export class Users extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update User target
@@ -1427,10 +1463,11 @@ export class Users extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete user target
@@ -1458,10 +1495,11 @@ export class Users extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create token
@@ -1496,10 +1534,11 @@ export class Users extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update email verification
@@ -1530,10 +1569,11 @@ export class Users extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update phone verification
@@ -1564,9 +1604,10 @@ export class Users extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
 }

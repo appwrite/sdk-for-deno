@@ -48,10 +48,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create email
@@ -129,10 +130,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update email
@@ -196,10 +198,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create push notification
@@ -293,10 +296,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update push notification
@@ -380,10 +384,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create SMS
@@ -437,10 +442,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update SMS
@@ -488,10 +494,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get message
@@ -515,10 +522,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete message
@@ -542,10 +550,11 @@ export class Messaging extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List message logs
@@ -573,10 +582,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List message targets
@@ -604,10 +614,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List providers
@@ -635,10 +646,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create APNS provider
@@ -696,10 +708,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update APNS provider
@@ -750,10 +763,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create FCM provider
@@ -795,10 +809,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update FCM provider
@@ -833,10 +848,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create Mailgun provider
@@ -902,10 +918,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update Mailgun provider
@@ -964,10 +981,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create Msg91 provider
@@ -1017,10 +1035,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update Msg91 provider
@@ -1063,10 +1082,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create Sendgrid provider
@@ -1124,10 +1144,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update Sendgrid provider
@@ -1178,10 +1199,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create SMTP provider
@@ -1267,10 +1289,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update SMTP provider
@@ -1345,10 +1368,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create Telesign provider
@@ -1398,10 +1422,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update Telesign provider
@@ -1444,10 +1469,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create Textmagic provider
@@ -1497,10 +1523,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update Textmagic provider
@@ -1543,10 +1570,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create Twilio provider
@@ -1596,10 +1624,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update Twilio provider
@@ -1642,10 +1671,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create Vonage provider
@@ -1695,10 +1725,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update Vonage provider
@@ -1741,10 +1772,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get provider
@@ -1768,10 +1800,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete provider
@@ -1794,10 +1827,11 @@ export class Messaging extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List provider logs
@@ -1825,10 +1859,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List subscriber logs
@@ -1856,10 +1891,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List topics
@@ -1887,10 +1923,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create topic
@@ -1928,10 +1965,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get topic
@@ -1955,10 +1993,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Update topic
@@ -1990,10 +2029,11 @@ export class Messaging extends Service {
             'patch',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete topic
@@ -2016,10 +2056,11 @@ export class Messaging extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List topic logs
@@ -2047,10 +2088,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * List subscribers
@@ -2083,10 +2125,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Create subscriber
@@ -2125,10 +2168,11 @@ export class Messaging extends Service {
             'post',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Get subscriber
@@ -2157,10 +2201,11 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
     /**
      * Delete subscriber
@@ -2188,9 +2233,10 @@ export class Messaging extends Service {
             'delete',
             apiPath,
             {
-                            'content-type': 'application/json',
+                'content-type': 'application/json',
             },
             payload,
-            'json'        );
+            'json'
+        );
     }
 }
