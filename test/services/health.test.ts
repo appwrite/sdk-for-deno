@@ -281,13 +281,13 @@ describe('Health service', () => {
     });
 
     
-    test('test method getQueueUsage()', async () => {
+    test('test method getQueueUsageDump()', async () => {
         const data = {
             'size': 8,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await health.getQueueUsage(
+        const response = await health.getQueueUsageDump(
         );
 
         assertEquals(response, data);

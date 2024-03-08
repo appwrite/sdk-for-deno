@@ -512,7 +512,7 @@ export class Health extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQueueUsage(threshold?: number): Promise<Models.HealthQueue> {
+    async getQueueUsageDump(threshold?: number): Promise<Models.HealthQueue> {
         const apiPath = '/health/queue/usage-dump';
         const payload: Payload = {};
 
