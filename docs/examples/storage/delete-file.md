@@ -1,21 +1,13 @@
-import * as sdk from "https://deno.land/x/appwrite/mod.ts";
+import { Client, Storage } from "https://deno.land/x/appwrite/mod.ts";
 
-// Init SDK
-let client = new sdk.Client();
-
-let storage = new sdk.Storage(client);
-
-client
+const client = new Client()
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-    .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
-;
+    .setSession(''); // The user session to authenticate with
 
+const storage = new Storage(client);
 
-let promise = storage.deleteFile('[BUCKET_ID]', '[FILE_ID]');
-
-promise.then(function (response) {
-    console.log(response);
-}, function (error) {
-    console.log(error);
-});
+const response = await storage.deleteFile(
+    '<BUCKET_ID>', // bucketId
+    '<FILE_ID>' // fileId
+);

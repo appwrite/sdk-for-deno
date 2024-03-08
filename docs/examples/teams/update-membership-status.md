@@ -1,21 +1,15 @@
-import * as sdk from "https://deno.land/x/appwrite/mod.ts";
+import { Client, Teams } from "https://deno.land/x/appwrite/mod.ts";
 
-// Init SDK
-let client = new sdk.Client();
-
-let teams = new sdk.Teams(client);
-
-client
+const client = new Client()
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-    .setJWT('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...') // Your secret JSON Web Token
-;
+    .setSession(''); // The user session to authenticate with
 
+const teams = new Teams(client);
 
-let promise = teams.updateMembershipStatus('[TEAM_ID]', '[MEMBERSHIP_ID]', '[USER_ID]', '[SECRET]');
-
-promise.then(function (response) {
-    console.log(response);
-}, function (error) {
-    console.log(error);
-});
+const response = await teams.updateMembershipStatus(
+    '<TEAM_ID>', // teamId
+    '<MEMBERSHIP_ID>', // membershipId
+    '<USER_ID>', // userId
+    '<SECRET>' // secret
+);

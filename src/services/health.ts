@@ -4,6 +4,8 @@ import { Payload, Client } from '../client.ts';
 import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
+import { Query } from '../query.ts';
+import { Name } from '../enums/name.ts';
 
 export type UploadProgress = {
     $id: string;
@@ -32,9 +34,15 @@ export class Health extends Service {
         const apiPath = '/health';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get antivirus
@@ -48,9 +56,15 @@ export class Health extends Service {
         const apiPath = '/health/anti-virus';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get cache
@@ -65,9 +79,42 @@ export class Health extends Service {
         const apiPath = '/health/cache';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Get the SSL certificate for a domain
+     *
+     * Get the SSL certificate for a domain
+     *
+     * @param {string} domain
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getCertificate(domain?: string): Promise<Models.HealthCertificate> {
+        const apiPath = '/health/certificate';
+        const payload: Payload = {};
+
+        if (typeof domain !== 'undefined') {
+            payload['domain'] = domain;
+        }
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get DB
@@ -81,9 +128,15 @@ export class Health extends Service {
         const apiPath = '/health/db';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get pubsub
@@ -97,9 +150,15 @@ export class Health extends Service {
         const apiPath = '/health/pubsub';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get queue
@@ -114,9 +173,15 @@ export class Health extends Service {
         const apiPath = '/health/queue';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get builds queue
@@ -136,9 +201,15 @@ export class Health extends Service {
             payload['threshold'] = threshold;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get certificates queue
@@ -159,9 +230,15 @@ export class Health extends Service {
             payload['threshold'] = threshold;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get databases queue
@@ -186,9 +263,15 @@ export class Health extends Service {
             payload['threshold'] = threshold;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get deletes queue
@@ -208,12 +291,54 @@ export class Health extends Service {
             payload['threshold'] = threshold;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Get number of failed queue jobs
+     *
+     * Returns the amount of failed jobs in a given queue.
+     * 
+     *
+     * @param {Name} name
+     * @param {number} threshold
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getFailedJobs(name: Name, threshold?: number): Promise<Models.HealthQueue> {
+        if (typeof name === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
+
+        const apiPath = '/health/queue/failed/{name}'.replace('{name}', name);
+        const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get functions queue
+     *
+     * Get the number of function executions that are waiting to be processed in
+     * the Appwrite internal queue server.
      *
      * @param {number} threshold
      * @throws {AppwriteException}
@@ -227,9 +352,15 @@ export class Health extends Service {
             payload['threshold'] = threshold;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get logs queue
@@ -249,9 +380,15 @@ export class Health extends Service {
             payload['threshold'] = threshold;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get mails queue
@@ -271,9 +408,15 @@ export class Health extends Service {
             payload['threshold'] = threshold;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get messaging queue
@@ -293,9 +436,15 @@ export class Health extends Service {
             payload['threshold'] = threshold;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get migrations queue
@@ -315,9 +464,71 @@ export class Health extends Service {
             payload['threshold'] = threshold;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Get usage queue
+     *
+     * Get the number of metrics that are waiting to be processed in the Appwrite
+     * internal queue server.
+     *
+     * @param {number} threshold
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getQueueUsage(threshold?: number): Promise<Models.HealthQueue> {
+        const apiPath = '/health/queue/usage';
+        const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Get usage dump queue
+     *
+     * Get the number of projects containing metrics that are waiting to be
+     * processed in the Appwrite internal queue server.
+     *
+     * @param {number} threshold
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getQueueUsageDump(threshold?: number): Promise<Models.HealthQueue> {
+        const apiPath = '/health/queue/usage-dump';
+        const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get webhooks queue
@@ -337,9 +548,37 @@ export class Health extends Service {
             payload['threshold'] = threshold;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Get storage
+     *
+     * Check the Appwrite storage device is up and connection is successful.
+     *
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getStorage(): Promise<Models.HealthStatus> {
+        const apiPath = '/health/storage';
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get local storage
@@ -353,9 +592,15 @@ export class Health extends Service {
         const apiPath = '/health/storage/local';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get time
@@ -375,8 +620,14 @@ export class Health extends Service {
         const apiPath = '/health/time';
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
 }

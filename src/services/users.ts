@@ -4,6 +4,10 @@ import { Payload, Client } from '../client.ts';
 import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
+import { Query } from '../query.ts';
+import { PasswordHash } from '../enums/password-hash.ts';
+import { AuthenticatorType } from '../enums/authenticator-type.ts';
+import { MessagingProviderType } from '../enums/messaging-provider-type.ts';
 
 export type UploadProgress = {
     $id: string;
@@ -43,9 +47,15 @@ export class Users extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Create user
@@ -83,9 +93,15 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Create user with Argon2 password
@@ -130,9 +146,15 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Create user with bcrypt password
@@ -177,21 +199,27 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * List Identities
      *
      * Get identities for all users.
      *
-     * @param {string} queries
+     * @param {string[]} queries
      * @param {string} search
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listIdentities(queries?: string, search?: string): Promise<Models.IdentityList> {
+    async listIdentities(queries?: string[], search?: string): Promise<Models.IdentityList> {
         const apiPath = '/users/identities';
         const payload: Payload = {};
 
@@ -203,12 +231,18 @@ export class Users extends Service {
             payload['search'] = search;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
-     * Delete Identity
+     * Delete identity
      *
      * Delete an identity by its unique ID.
      *
@@ -224,9 +258,15 @@ export class Users extends Service {
         const apiPath = '/users/identities/{identityId}'.replace('{identityId}', identityId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Create user with MD5 password
@@ -271,9 +311,15 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Create user with PHPass password
@@ -318,9 +364,15 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Create user with Scrypt password
@@ -405,9 +457,15 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Create user with Scrypt modified password
@@ -477,9 +535,15 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Create user with SHA password
@@ -492,12 +556,12 @@ export class Users extends Service {
      * @param {string} userId
      * @param {string} email
      * @param {string} password
-     * @param {string} passwordVersion
+     * @param {PasswordHash} passwordVersion
      * @param {string} name
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createSHAUser<Preferences extends Models.Preferences>(userId: string, email: string, password: string, passwordVersion?: string, name?: string): Promise<Models.User<Preferences>> {
+    async createSHAUser<Preferences extends Models.Preferences>(userId: string, email: string, password: string, passwordVersion?: PasswordHash, name?: string): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -528,9 +592,15 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('post', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get user
@@ -549,9 +619,15 @@ export class Users extends Service {
         const apiPath = '/users/{userId}'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Delete user
@@ -575,9 +651,15 @@ export class Users extends Service {
         const apiPath = '/users/{userId}'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Update email
@@ -604,9 +686,15 @@ export class Users extends Service {
         if (typeof email !== 'undefined') {
             payload['email'] = email;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Update user labels
@@ -638,9 +726,15 @@ export class Users extends Service {
         if (typeof labels !== 'undefined') {
             payload['labels'] = labels;
         }
-        return await this.client.call('put', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'put',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * List user logs
@@ -664,9 +758,15 @@ export class Users extends Service {
             payload['queries'] = queries;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * List user memberships
@@ -685,9 +785,199 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/memberships'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Update MFA
+     *
+     * Enable or disable MFA on a user account.
+     *
+     * @param {string} userId
+     * @param {boolean} mfa
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateMfa<Preferences extends Models.Preferences>(userId: string, mfa: boolean): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof mfa === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "mfa"');
+        }
+
+        const apiPath = '/users/{userId}/mfa'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        if (typeof mfa !== 'undefined') {
+            payload['mfa'] = mfa;
+        }
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Delete Authenticator
+     *
+     * Delete an authenticator app.
+     *
+     * @param {string} userId
+     * @param {AuthenticatorType} type
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async deleteMfaAuthenticator<Preferences extends Models.Preferences>(userId: string, type: AuthenticatorType): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof type === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/authenticators/{type}'.replace('{userId}', userId).replace('{type}', type);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * List Factors
+     *
+     * List the factors available on the account to be used as a MFA challange.
+     *
+     * @param {string} userId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async listMfaFactors(userId: string): Promise<Models.MfaFactors> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/factors'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Get MFA Recovery Codes
+     *
+     * Get recovery codes that can be used as backup for MFA flow by User ID.
+     * Before getting codes, they must be generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method.
+     *
+     * @param {string} userId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/recovery-codes'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Regenerate MFA Recovery Codes
+     *
+     * Regenerate recovery codes that can be used as backup for MFA flow by User
+     * ID. Before regenerating codes, they must be first generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method.
+     *
+     * @param {string} userId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/recovery-codes'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'put',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Create MFA Recovery Codes
+     *
+     * Generate recovery codes used as backup for MFA flow for User ID. Recovery
+     * codes can be used as a MFA verification type in
+     * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+     * method by client SDK.
+     *
+     * @param {string} userId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/recovery-codes'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Update name
@@ -714,9 +1004,15 @@ export class Users extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Update password
@@ -743,9 +1039,15 @@ export class Users extends Service {
         if (typeof password !== 'undefined') {
             payload['password'] = password;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Update phone
@@ -772,9 +1074,15 @@ export class Users extends Service {
         if (typeof number !== 'undefined') {
             payload['number'] = number;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get user preferences
@@ -793,9 +1101,15 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/prefs'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Update user preferences
@@ -824,9 +1138,15 @@ export class Users extends Service {
         if (typeof prefs !== 'undefined') {
             payload['prefs'] = prefs;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * List user sessions
@@ -845,9 +1165,47 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/sessions'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Create session
+     *
+     * Creates a session for a user. Returns an immediately usable session object.
+     * 
+     * If you want to generate a token for a custom authentication flow, use the
+     * [POST
+     * /users/{userId}/tokens](https://appwrite.io/docs/server/users#createToken)
+     * endpoint.
+     *
+     * @param {string} userId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createSession(userId: string): Promise<Models.Session> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/sessions'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Delete user sessions
@@ -866,9 +1224,15 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/sessions'.replace('{userId}', userId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Delete user session
@@ -892,9 +1256,15 @@ export class Users extends Service {
         const apiPath = '/users/{userId}/sessions/{sessionId}'.replace('{userId}', userId).replace('{sessionId}', sessionId);
         const payload: Payload = {};
 
-        return await this.client.call('delete', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Update user status
@@ -922,9 +1292,253 @@ export class Users extends Service {
         if (typeof status !== 'undefined') {
             payload['status'] = status;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * List User Targets
+     *
+     * List the messaging targets that are associated with a user.
+     *
+     * @param {string} userId
+     * @param {string[]} queries
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async listTargets(userId: string, queries?: string[]): Promise<Models.TargetList> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/targets'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        if (typeof queries !== 'undefined') {
+            payload['queries'] = queries;
+        }
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Create User Target
+     *
+     * Create a messaging target.
+     *
+     * @param {string} userId
+     * @param {string} targetId
+     * @param {MessagingProviderType} providerType
+     * @param {string} identifier
+     * @param {string} providerId
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createTarget(userId: string, targetId: string, providerType: MessagingProviderType, identifier: string, providerId?: string, name?: string): Promise<Models.Target> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof targetId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "targetId"');
+        }
+
+        if (typeof providerType === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "providerType"');
+        }
+
+        if (typeof identifier === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "identifier"');
+        }
+
+        const apiPath = '/users/{userId}/targets'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        if (typeof targetId !== 'undefined') {
+            payload['targetId'] = targetId;
+        }
+        if (typeof providerType !== 'undefined') {
+            payload['providerType'] = providerType;
+        }
+        if (typeof identifier !== 'undefined') {
+            payload['identifier'] = identifier;
+        }
+        if (typeof providerId !== 'undefined') {
+            payload['providerId'] = providerId;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Get User Target
+     *
+     * Get a user's push notification target by ID.
+     *
+     * @param {string} userId
+     * @param {string} targetId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getTarget(userId: string, targetId: string): Promise<Models.Target> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof targetId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "targetId"');
+        }
+
+        const apiPath = '/users/{userId}/targets/{targetId}'.replace('{userId}', userId).replace('{targetId}', targetId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Update User target
+     *
+     * Update a messaging target.
+     *
+     * @param {string} userId
+     * @param {string} targetId
+     * @param {string} identifier
+     * @param {string} providerId
+     * @param {string} name
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateTarget(userId: string, targetId: string, identifier?: string, providerId?: string, name?: string): Promise<Models.Target> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof targetId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "targetId"');
+        }
+
+        const apiPath = '/users/{userId}/targets/{targetId}'.replace('{userId}', userId).replace('{targetId}', targetId);
+        const payload: Payload = {};
+
+        if (typeof identifier !== 'undefined') {
+            payload['identifier'] = identifier;
+        }
+        if (typeof providerId !== 'undefined') {
+            payload['providerId'] = providerId;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Delete user target
+     *
+     * Delete a messaging target.
+     *
+     * @param {string} userId
+     * @param {string} targetId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async deleteTarget(userId: string, targetId: string): Promise<Response> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof targetId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "targetId"');
+        }
+
+        const apiPath = '/users/{userId}/targets/{targetId}'.replace('{userId}', userId).replace('{targetId}', targetId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Create token
+     *
+     * Returns a token with a secret key for creating a session. If the provided
+     * user ID has not be registered, a new user will be created. Use the returned
+     * user ID and secret and submit a request to the [PUT
+     * /account/sessions/custom](https://appwrite.io/docs/references/cloud/client-web/account#updateCustomSession)
+     * endpoint to complete the login process.
+     *
+     * @param {string} userId
+     * @param {number} length
+     * @param {number} expire
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createToken(userId: string, length?: number, expire?: number): Promise<Models.Token> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/tokens'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        if (typeof length !== 'undefined') {
+            payload['length'] = length;
+        }
+        if (typeof expire !== 'undefined') {
+            payload['expire'] = expire;
+        }
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Update email verification
@@ -951,9 +1565,15 @@ export class Users extends Service {
         if (typeof emailVerification !== 'undefined') {
             payload['emailVerification'] = emailVerification;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Update phone verification
@@ -980,8 +1600,14 @@ export class Users extends Service {
         if (typeof phoneVerification !== 'undefined') {
             payload['phoneVerification'] = phoneVerification;
         }
-        return await this.client.call('patch', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
 }

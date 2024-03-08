@@ -4,6 +4,10 @@ import { Payload, Client } from '../client.ts';
 import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
+import { Query } from '../query.ts';
+import { Browser } from '../enums/browser.ts';
+import { CreditCard } from '../enums/credit-card.ts';
+import { Flag } from '../enums/flag.ts';
 
 export type UploadProgress = {
     $id: string;
@@ -34,14 +38,14 @@ export class Avatars extends Service {
      * image at source quality. If dimensions are not specified, the default size
      * of image returned is 100x100px.
      *
-     * @param {string} code
+     * @param {Browser} code
      * @param {number} width
      * @param {number} height
      * @param {number} quality
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getBrowser(code: string, width?: number, height?: number, quality?: number): Promise<Response> {
+    async getBrowser(code: Browser, width?: number, height?: number, quality?: number): Promise<ArrayBuffer> {
         if (typeof code === 'undefined') {
             throw new AppwriteException('Missing required parameter: "code"');
         }
@@ -61,9 +65,15 @@ export class Avatars extends Service {
             payload['quality'] = quality;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'arraybuffer'
+        );
     }
     /**
      * Get credit card icon
@@ -78,14 +88,14 @@ export class Avatars extends Service {
      * of image returned is 100x100px.
      * 
      *
-     * @param {string} code
+     * @param {CreditCard} code
      * @param {number} width
      * @param {number} height
      * @param {number} quality
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getCreditCard(code: string, width?: number, height?: number, quality?: number): Promise<Response> {
+    async getCreditCard(code: CreditCard, width?: number, height?: number, quality?: number): Promise<ArrayBuffer> {
         if (typeof code === 'undefined') {
             throw new AppwriteException('Missing required parameter: "code"');
         }
@@ -105,9 +115,15 @@ export class Avatars extends Service {
             payload['quality'] = quality;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'arraybuffer'
+        );
     }
     /**
      * Get favicon
@@ -120,7 +136,7 @@ export class Avatars extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFavicon(url: string): Promise<Response> {
+    async getFavicon(url: string): Promise<ArrayBuffer> {
         if (typeof url === 'undefined') {
             throw new AppwriteException('Missing required parameter: "url"');
         }
@@ -132,9 +148,15 @@ export class Avatars extends Service {
             payload['url'] = url;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'arraybuffer'
+        );
     }
     /**
      * Get country flag
@@ -150,14 +172,14 @@ export class Avatars extends Service {
      * of image returned is 100x100px.
      * 
      *
-     * @param {string} code
+     * @param {Flag} code
      * @param {number} width
      * @param {number} height
      * @param {number} quality
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFlag(code: string, width?: number, height?: number, quality?: number): Promise<Response> {
+    async getFlag(code: Flag, width?: number, height?: number, quality?: number): Promise<ArrayBuffer> {
         if (typeof code === 'undefined') {
             throw new AppwriteException('Missing required parameter: "code"');
         }
@@ -177,9 +199,15 @@ export class Avatars extends Service {
             payload['quality'] = quality;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'arraybuffer'
+        );
     }
     /**
      * Get image from URL
@@ -201,7 +229,7 @@ export class Avatars extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getImage(url: string, width?: number, height?: number): Promise<Response> {
+    async getImage(url: string, width?: number, height?: number): Promise<ArrayBuffer> {
         if (typeof url === 'undefined') {
             throw new AppwriteException('Missing required parameter: "url"');
         }
@@ -221,9 +249,15 @@ export class Avatars extends Service {
             payload['height'] = height;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'arraybuffer'
+        );
     }
     /**
      * Get user initials
@@ -252,7 +286,7 @@ export class Avatars extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getInitials(name?: string, width?: number, height?: number, background?: string): Promise<Response> {
+    async getInitials(name?: string, width?: number, height?: number, background?: string): Promise<ArrayBuffer> {
         const apiPath = '/avatars/initials';
         const payload: Payload = {};
 
@@ -272,9 +306,15 @@ export class Avatars extends Service {
             payload['background'] = background;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'arraybuffer'
+        );
     }
     /**
      * Get QR code
@@ -290,7 +330,7 @@ export class Avatars extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getQR(text: string, size?: number, margin?: number, download?: boolean): Promise<Response> {
+    async getQR(text: string, size?: number, margin?: number, download?: boolean): Promise<ArrayBuffer> {
         if (typeof text === 'undefined') {
             throw new AppwriteException('Missing required parameter: "text"');
         }
@@ -314,8 +354,14 @@ export class Avatars extends Service {
             payload['download'] = download;
         }
 
-        return await this.client.call('get', apiPath, {
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'arraybuffer'
+        );
     }
 }

@@ -8,15 +8,15 @@ export class Client {
     static CHUNK_SIZE = 5*1024*1024; // 5MB
     static DENO_READ_CHUNK_SIZE = 16384; // 16kb; refference: https://github.com/denoland/deno/discussions/9906
     
-    endpoint: string = 'https://HOSTNAME/v1';
+    endpoint: string = 'https://cloud.appwrite.io/v1';
     headers: Payload = {
         'content-type': '',
-        'user-agent' : `AppwriteDenoSDK/9.1.0 (${Deno.build.os}; ${Deno.build.arch})`,
+        'user-agent' : `AppwriteDenoSDK/10.0.0 (${Deno.build.os}; ${Deno.build.arch})`,
         'x-sdk-name': 'Deno',
         'x-sdk-platform': 'server',
         'x-sdk-language': 'deno',
-        'x-sdk-version': '9.1.0',
-        'X-Appwrite-Response-Format':'1.4.0',
+        'x-sdk-version': '10.0.0',
+        'X-Appwrite-Response-Format':'1.5.0',
     };
 
     /**
@@ -77,6 +77,36 @@ export class Client {
         return this;
     }
 
+    /**
+     * Set Session
+     *
+     * The user session to authenticate with
+     *
+     * @param string value
+     *
+     * @return self
+     */
+    setSession(value: string): this {
+        this.addHeader('X-Appwrite-Session', value);
+
+        return this;
+    }
+
+    /**
+     * Set ForwardedUserAgent
+     *
+     * The user agent string of the client that made the request
+     *
+     * @param string value
+     *
+     * @return self
+     */
+    setForwardedUserAgent(value: string): this {
+        this.addHeader('X-Forwarded-User-Agent', value);
+
+        return this;
+    }
+
 
     /***
      * @param endpoint
@@ -98,80 +128,83 @@ export class Client {
         return this;
     }
 
-    withoutHeader(key: string, headers: Payload): Payload {
-        return Object.keys(headers).reduce((acc: Payload, cv: string) => {
-            if (cv === 'content-type') return acc;
-            acc[cv] = headers[cv];
-            return acc;
-        }, {})
-    }
-
-    async call(method: string, path: string = '', headers: Payload = {}, params: Payload = {}) {
-        headers = Object.assign({}, this.headers, headers);
-
-        let body;
+    async call(method: string, path: string = "", headers: Payload = {}, params: Payload = {}, responseType: string = "json") {
+        headers = {...this.headers, ...headers};
         const url = new URL(this.endpoint + path);
-        if (method.toUpperCase() === 'GET') {
-            url.search = new URLSearchParams(this.flatten(params)).toString();
-            body = null;
-        } else if (headers['content-type'].toLowerCase().startsWith('multipart/form-data')) {
-            headers = this.withoutHeader('content-type', headers);
-            const formData = new FormData();
-            const flatParams = this.flatten(params);
-            for (const key in flatParams) {
-                const value = flatParams[key];
 
-                if(value && value.type && value.type === 'file') {
+        let body: string | FormData | undefined = undefined;
+
+        if (method.toUpperCase() === "GET") {
+            url.search = new URLSearchParams(Client.flatten(params)).toString();
+        } else if (headers["content-type"]?.toLowerCase().startsWith("multipart/form-data")) {
+            delete headers["content-type"];
+            const formData = new FormData();
+
+            const flatParams = Client.flatten(params);
+
+            for (const [key, value] of Object.entries(flatParams)) {
+                if (value && value.type && value.type === "file") {
                     formData.append(key, value.file, value.filename);
                 } else {
-                    formData.append(key, flatParams[key]);
+                    formData.append(key, value);
                 }
             }
+
             body = formData;
         } else {
             body = JSON.stringify(params);
         }
 
-        const options = {
-            method: method.toUpperCase(),
-            headers: headers,
-            body: body,
-        };
-
+        let response = undefined;
         try {
-            let response = await fetch(url.toString(), options);
-            const contentType = response.headers.get('content-type');
-
-            if (contentType && contentType.includes('application/json')) {
-                if (response.status >= 400) {
-                    let res = await response.json();
-                    throw new AppwriteException(res.message, res.status, res.type ?? "", res);
-                }
-
-                return response.json();
-            } else {
-                if (response.status >= 400) {
-                    let res = await response.text();
-                    throw new AppwriteException(res, response.status, "", null);
-                }
-                return response;
-            }
-        } catch(error) {
-            throw new AppwriteException(error?.response?.message || error.message, error?.response?.code, error?.response?.type, error.response);
+            response = await fetch(url.toString(), {
+                redirect: responseType === "location" ? "manual" : "follow",
+                method: method.toUpperCase(),
+                headers,
+                body
+            });
+        } catch (error) {
+            throw new AppwriteException(error.message);
         }
+
+        if (response.status >= 400) {
+            const text = await response.text();
+            let json = undefined;
+            try {
+                json = JSON.parse(text);
+            } catch (error) {
+                throw new AppwriteException(text, response.status, "", text);
+            }
+            throw new AppwriteException(json.message, json.code, json.type, json);
+        }
+
+        if (responseType === "arraybuffer") {
+            const data = await response.arrayBuffer();
+            return data;
+        }
+
+        if (responseType === "location") {
+            return response.headers.get("location");
+        }
+
+        const text = await response.text();
+        let json = undefined;
+        try {
+            json = JSON.parse(text);
+        } catch (error) {
+            return text;
+        }
+        return json;
     }
 
-    flatten(data: Payload, prefix = '') {
+    static flatten(data: Payload, prefix = ''): Payload {
         let output: Payload = {};
 
-        for (const key in data) {
-            let value = data[key];
+        for (const [key, value] of Object.entries(data)) {
             let finalKey = prefix ? prefix + '[' + key +']' : key;
-
             if (Array.isArray(value)) {
-                output = { ...output, ...this.flatten(value, finalKey) }; // @todo: handle name collision here if needed
-            }
-            else {
+                output = { ...output, ...Client.flatten(value, finalKey) };
+            } else {
                 output[finalKey] = value;
             }
         }

@@ -4,6 +4,7 @@ import { Payload, Client } from '../client.ts';
 import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
+import { Query } from '../query.ts';
 
 export type UploadProgress = {
     $id: string;
@@ -40,10 +41,16 @@ export class Graphql extends Service {
         if (typeof query !== 'undefined') {
             payload['query'] = query;
         }
-        return await this.client.call('post', apiPath, {
-            'x-sdk-graphql': 'true',
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'x-sdk-graphql': 'true',
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * GraphQL endpoint
@@ -65,9 +72,15 @@ export class Graphql extends Service {
         if (typeof query !== 'undefined') {
             payload['query'] = query;
         }
-        return await this.client.call('post', apiPath, {
-            'x-sdk-graphql': 'true',
-            'content-type': 'application/json',
-        }, payload);
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'x-sdk-graphql': 'true',
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
 }
