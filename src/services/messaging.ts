@@ -994,14 +994,14 @@ export class Messaging extends Service {
      *
      * @param {string} providerId
      * @param {string} name
-     * @param {string} from
+     * @param {string} templateId
      * @param {string} senderId
      * @param {string} authKey
      * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createMsg91Provider(providerId: string, name: string, from?: string, senderId?: string, authKey?: string, enabled?: boolean): Promise<Models.Provider> {
+    async createMsg91Provider(providerId: string, name: string, templateId?: string, senderId?: string, authKey?: string, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -1019,8 +1019,8 @@ export class Messaging extends Service {
         if (typeof name !== 'undefined') {
             payload['name'] = name;
         }
-        if (typeof from !== 'undefined') {
-            payload['from'] = from;
+        if (typeof templateId !== 'undefined') {
+            payload['templateId'] = templateId;
         }
         if (typeof senderId !== 'undefined') {
             payload['senderId'] = senderId;
@@ -1049,13 +1049,13 @@ export class Messaging extends Service {
      * @param {string} providerId
      * @param {string} name
      * @param {boolean} enabled
+     * @param {string} templateId
      * @param {string} senderId
      * @param {string} authKey
-     * @param {string} from
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateMsg91Provider(providerId: string, name?: string, enabled?: boolean, senderId?: string, authKey?: string, from?: string): Promise<Models.Provider> {
+    async updateMsg91Provider(providerId: string, name?: string, enabled?: boolean, templateId?: string, senderId?: string, authKey?: string): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -1069,14 +1069,14 @@ export class Messaging extends Service {
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
         }
+        if (typeof templateId !== 'undefined') {
+            payload['templateId'] = templateId;
+        }
         if (typeof senderId !== 'undefined') {
             payload['senderId'] = senderId;
         }
         if (typeof authKey !== 'undefined') {
             payload['authKey'] = authKey;
-        }
-        if (typeof from !== 'undefined') {
-            payload['from'] = from;
         }
         return await this.client.call(
             'patch',
