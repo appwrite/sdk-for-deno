@@ -524,7 +524,8 @@ describe('Users service', () => {
         const data = {
             'totp': true,
             'phone': true,
-            'email': true,};
+            'email': true,
+            'recoveryCode': true,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -724,6 +725,7 @@ describe('Users service', () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'userId': '5e5bb8c16897e',
             'expire': '2020-10-15T06:38:00.000+00:00',
             'provider': 'email',

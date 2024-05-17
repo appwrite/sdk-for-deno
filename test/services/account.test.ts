@@ -241,32 +241,17 @@ describe('Account service', () => {
 
     
     test('test method deleteMfaAuthenticator()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'name': 'John Doe',
-            'registration': '2020-10-15T06:38:00.000+00:00',
-            'status': true,
-            'labels': [],
-            'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
-            'email': 'john@appwrite.io',
-            'phone': '+4930901820',
-            'emailVerification': true,
-            'phoneVerification': true,
-            'mfa': true,
-            'prefs': {},
-            'targets': [],
-            'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+        const data = '';
 
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await account.deleteMfaAuthenticator(
             'totp',
             '<OTP>',
         );
 
-        assertEquals(response, data);
+        const text = await response.text();
+        assertEquals(text, data);
         stubbedFetch.restore();
     });
 
@@ -309,7 +294,8 @@ describe('Account service', () => {
         const data = {
             'totp': true,
             'phone': true,
-            'email': true,};
+            'email': true,
+            'recoveryCode': true,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -573,6 +559,7 @@ describe('Account service', () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'userId': '5e5bb8c16897e',
             'expire': '2020-10-15T06:38:00.000+00:00',
             'provider': 'email',
@@ -614,6 +601,7 @@ describe('Account service', () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'userId': '5e5bb8c16897e',
             'expire': '2020-10-15T06:38:00.000+00:00',
             'provider': 'email',
@@ -657,6 +645,7 @@ describe('Account service', () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'userId': '5e5bb8c16897e',
             'expire': '2020-10-15T06:38:00.000+00:00',
             'provider': 'email',
@@ -700,6 +689,7 @@ describe('Account service', () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'userId': '5e5bb8c16897e',
             'expire': '2020-10-15T06:38:00.000+00:00',
             'provider': 'email',
@@ -743,6 +733,7 @@ describe('Account service', () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'userId': '5e5bb8c16897e',
             'expire': '2020-10-15T06:38:00.000+00:00',
             'provider': 'email',
@@ -786,6 +777,7 @@ describe('Account service', () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'userId': '5e5bb8c16897e',
             'expire': '2020-10-15T06:38:00.000+00:00',
             'provider': 'email',
@@ -828,6 +820,7 @@ describe('Account service', () => {
         const data = {
             '\$id': '5e5ea5c16897e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'userId': '5e5bb8c16897e',
             'expire': '2020-10-15T06:38:00.000+00:00',
             'provider': 'email',
