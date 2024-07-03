@@ -163,6 +163,11 @@ export class Client {
                 headers,
                 body
             });
+
+            const warnings = response.headers.get('x-appwrite-warning');
+            if (warnings) {
+                warnings.split(';').forEach((warning: string) => console.warn('Warning: ' + warning));
+            }
         } catch (error) {
             throw new AppwriteException(error.message);
         }

@@ -39,6 +39,7 @@ describe('Functions service', () => {
             'logging': true,
             'runtime': 'python-3.8',
             'deployment': '5e5ea5c16897e',
+            'scopes': [],
             'vars': [],
             'events': [],
             'schedule': '5 4 * * *',
@@ -92,6 +93,7 @@ describe('Functions service', () => {
             'logging': true,
             'runtime': 'python-3.8',
             'deployment': '5e5ea5c16897e',
+            'scopes': [],
             'vars': [],
             'events': [],
             'schedule': '5 4 * * *',
@@ -128,6 +130,7 @@ describe('Functions service', () => {
             'logging': true,
             'runtime': 'python-3.8',
             'deployment': '5e5ea5c16897e',
+            'scopes': [],
             'vars': [],
             'events': [],
             'schedule': '5 4 * * *',
@@ -273,6 +276,7 @@ describe('Functions service', () => {
             'logging': true,
             'runtime': 'python-3.8',
             'deployment': '5e5ea5c16897e',
+            'scopes': [],
             'vars': [],
             'events': [],
             'schedule': '5 4 * * *',
@@ -322,11 +326,34 @@ describe('Functions service', () => {
         const response = await functions.createBuild(
             '<FUNCTION_ID>',
             '<DEPLOYMENT_ID>',
-            '<BUILD_ID>',
         );
 
         const text = await response.text();
         assertEquals(text, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateDeploymentBuild()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            'deploymentId': '5e5ea5c16897e',
+            'status': 'ready',
+            'stdout': '',
+            'stderr': '',
+            'startTime': '2020-10-15T06:38:00.000+00:00',
+            'endTime': '2020-10-15T06:38:00.000+00:00',
+            'duration': 0,
+            'size': 128,};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await functions.updateDeploymentBuild(
+            '<FUNCTION_ID>',
+            '<DEPLOYMENT_ID>',
+        );
+
+        assertEquals(response, data);
         stubbedFetch.restore();
     });
 
@@ -420,6 +447,22 @@ describe('Functions service', () => {
         );
 
         assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method deleteExecution()', async () => {
+        const data = '';
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
+
+        const response = await functions.deleteExecution(
+            '<FUNCTION_ID>',
+            '<EXECUTION_ID>',
+        );
+
+        const text = await response.text();
+        assertEquals(text, data);
         stubbedFetch.restore();
     });
 

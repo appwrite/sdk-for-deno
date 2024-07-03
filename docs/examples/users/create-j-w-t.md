@@ -7,7 +7,8 @@ const client = new Client()
 
 const users = new Users(client);
 
-const response = await users.updateEmailVerification(
+const response = await users.createJWT(
     '<USER_ID>', // userId
-    false // emailVerification
+    '<SESSION_ID>', // sessionId (optional)
+    0 // duration (optional)
 );

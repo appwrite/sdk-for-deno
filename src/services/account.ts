@@ -214,7 +214,7 @@ export class Account extends Service {
      * @returns {Promise}
      */
     async createJWT(): Promise<Models.Jwt> {
-        const apiPath = '/account/jwt';
+        const apiPath = '/account/jwts';
         const payload: Payload = {};
 
         return await this.client.call(
@@ -320,7 +320,7 @@ export class Account extends Service {
      *
      * Verify an authenticator app after adding it using the [add
      * authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
-     * method. add 
+     * method.
      *
      * @param {AuthenticatorType} type
      * @param {string} otp

@@ -697,6 +697,43 @@ export class Users extends Service {
         );
     }
     /**
+     * Create user JWT
+     *
+     * Use this endpoint to create a JSON Web Token for user by its unique ID. You
+     * can use the resulting JWT to authenticate on behalf of the user. The JWT
+     * secret will become invalid if the session it uses gets deleted.
+     *
+     * @param {string} userId
+     * @param {string} sessionId
+     * @param {number} duration
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createJWT(userId: string, sessionId?: string, duration?: number): Promise<Models.Jwt> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/jwts'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        if (typeof sessionId !== 'undefined') {
+            payload['sessionId'] = sessionId;
+        }
+        if (typeof duration !== 'undefined') {
+            payload['duration'] = duration;
+        }
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
      * Update user labels
      *
      * Update the user labels by its unique ID. 

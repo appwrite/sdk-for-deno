@@ -75,6 +75,7 @@ export class Functions extends Service {
      * @param {boolean} logging
      * @param {string} entrypoint
      * @param {string} commands
+     * @param {string[]} scopes
      * @param {string} installationId
      * @param {string} providerRepositoryId
      * @param {string} providerBranch
@@ -87,7 +88,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create(functionId: string, name: string, runtime: Runtime, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string, templateRepository?: string, templateOwner?: string, templateRootDirectory?: string, templateBranch?: string): Promise<Models.Function> {
+    async create(functionId: string, name: string, runtime: Runtime, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, scopes?: string[], installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string, templateRepository?: string, templateOwner?: string, templateRootDirectory?: string, templateBranch?: string): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -135,6 +136,9 @@ export class Functions extends Service {
         }
         if (typeof commands !== 'undefined') {
             payload['commands'] = commands;
+        }
+        if (typeof scopes !== 'undefined') {
+            payload['scopes'] = scopes;
         }
         if (typeof installationId !== 'undefined') {
             payload['installationId'] = installationId;
@@ -238,6 +242,7 @@ export class Functions extends Service {
      * @param {boolean} logging
      * @param {string} entrypoint
      * @param {string} commands
+     * @param {string[]} scopes
      * @param {string} installationId
      * @param {string} providerRepositoryId
      * @param {string} providerBranch
@@ -246,7 +251,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async update(functionId: string, name: string, runtime?: Runtime, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string): Promise<Models.Function> {
+    async update(functionId: string, name: string, runtime?: Runtime, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, scopes?: string[], installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -287,6 +292,9 @@ export class Functions extends Service {
         }
         if (typeof commands !== 'undefined') {
             payload['commands'] = commands;
+        }
+        if (typeof scopes !== 'undefined') {
+            payload['scopes'] = scopes;
         }
         if (typeof installationId !== 'undefined') {
             payload['installationId'] = installationId;
@@ -617,10 +625,7 @@ export class Functions extends Service {
         );
     }
     /**
-     * Create build
-     *
-     * Create a new build for an Appwrite Function deployment. This endpoint can
-     * be used to retry a failed build.
+     * Rebuild deployment
      *
      * @param {string} functionId
      * @param {string} deploymentId
@@ -628,7 +633,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createBuild(functionId: string, deploymentId: string, buildId: string): Promise<Response> {
+    async createBuild(functionId: string, deploymentId: string, buildId?: string): Promise<Response> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -637,15 +642,44 @@ export class Functions extends Service {
             throw new AppwriteException('Missing required parameter: "deploymentId"');
         }
 
-        if (typeof buildId === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "buildId"');
+        const apiPath = '/functions/{functionId}/deployments/{deploymentId}/build'.replace('{functionId}', functionId).replace('{deploymentId}', deploymentId);
+        const payload: Payload = {};
+
+        if (typeof buildId !== 'undefined') {
+            payload['buildId'] = buildId;
+        }
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Cancel deployment
+     *
+     * @param {string} functionId
+     * @param {string} deploymentId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateDeploymentBuild(functionId: string, deploymentId: string): Promise<Models.Build> {
+        if (typeof functionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
-        const apiPath = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'.replace('{functionId}', functionId).replace('{deploymentId}', deploymentId).replace('{buildId}', buildId);
+        if (typeof deploymentId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "deploymentId"');
+        }
+
+        const apiPath = '/functions/{functionId}/deployments/{deploymentId}/build'.replace('{functionId}', functionId).replace('{deploymentId}', deploymentId);
         const payload: Payload = {};
 
         return await this.client.call(
-            'post',
+            'patch',
             apiPath,
             {
                 'content-type': 'application/json',
@@ -739,10 +773,11 @@ export class Functions extends Service {
      * @param {string} xpath
      * @param {ExecutionMethod} method
      * @param {object} headers
+     * @param {string} scheduledAt
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createExecution(functionId: string, body?: string, async?: boolean, xpath?: string, method?: ExecutionMethod, headers?: object): Promise<Models.Execution> {
+    async createExecution(functionId: string, body?: string, async?: boolean, xpath?: string, method?: ExecutionMethod, headers?: object, scheduledAt?: string): Promise<Models.Execution> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -764,6 +799,9 @@ export class Functions extends Service {
         }
         if (typeof headers !== 'undefined') {
             payload['headers'] = headers;
+        }
+        if (typeof scheduledAt !== 'undefined') {
+            payload['scheduledAt'] = scheduledAt;
         }
         return await this.client.call(
             'post',
@@ -799,6 +837,39 @@ export class Functions extends Service {
 
         return await this.client.call(
             'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Delete execution
+     *
+     * Delete a function execution by its unique ID.
+     * 
+     *
+     * @param {string} functionId
+     * @param {string} executionId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async deleteExecution(functionId: string, executionId: string): Promise<Response> {
+        if (typeof functionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
+        if (typeof executionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "executionId"');
+        }
+
+        const apiPath = '/functions/{functionId}/executions/{executionId}'.replace('{functionId}', functionId).replace('{executionId}', executionId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'delete',
             apiPath,
             {
                 'content-type': 'application/json',
