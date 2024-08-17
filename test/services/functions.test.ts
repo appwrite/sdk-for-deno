@@ -81,6 +81,52 @@ describe('Functions service', () => {
     });
 
     
+    test('test method listTemplates()', async () => {
+        const data = {
+            'total': 5,
+            'templates': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await functions.listTemplates(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method getTemplate()', async () => {
+        const data = {
+            'icon': 'icon-lightning-bolt',
+            'id': 'starter',
+            'name': 'Starter function',
+            'tagline': 'A simple function to get started.',
+            'permissions': [],
+            'events': [],
+            'cron': '0 0 * * *',
+            'timeout': 300,
+            'useCases': [],
+            'runtimes': [],
+            'instructions': 'For documentation and instructions check out <link>.',
+            'vcsProvider': 'github',
+            'providerRepositoryId': 'templates',
+            'providerOwner': 'appwrite',
+            'providerVersion': 'main',
+            'variables': [],
+            'scopes': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await functions.getTemplate(
+            '<TEMPLATE_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method get()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
@@ -358,12 +404,12 @@ describe('Functions service', () => {
     });
 
     
-    test('test method downloadDeployment()', async () => {
+    test('test method getDeploymentDownload()', async () => {
         const data = new Uint8Array(0);
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data.buffer)));
 
-        const response = await functions.downloadDeployment(
+        const response = await functions.getDeploymentDownload(
             '<FUNCTION_ID>',
             '<DEPLOYMENT_ID>',
         );
