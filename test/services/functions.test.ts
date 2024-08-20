@@ -51,7 +51,8 @@ describe('Functions service', () => {
             'providerRepositoryId': 'appwrite',
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
-            'providerSilentMode': true,};
+            'providerSilentMode': true,
+            'specification': 's-0.5vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -74,6 +75,21 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.listRuntimes(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method listSpecifications()', async () => {
+        const data = {
+            'total': 5,
+            'specifications': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await functions.listSpecifications(
         );
 
         assertEquals(response, data);
@@ -151,7 +167,8 @@ describe('Functions service', () => {
             'providerRepositoryId': 'appwrite',
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
-            'providerSilentMode': true,};
+            'providerSilentMode': true,
+            'specification': 's-0.5vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -188,7 +205,8 @@ describe('Functions service', () => {
             'providerRepositoryId': 'appwrite',
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
-            'providerSilentMode': true,};
+            'providerSilentMode': true,
+            'specification': 's-0.5vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -334,7 +352,8 @@ describe('Functions service', () => {
             'providerRepositoryId': 'appwrite',
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
-            'providerSilentMode': true,};
+            'providerSilentMode': true,
+            'specification': 's-0.5vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 

@@ -85,10 +85,11 @@ export class Functions extends Service {
      * @param {string} templateOwner
      * @param {string} templateRootDirectory
      * @param {string} templateVersion
+     * @param {string} specification
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create(functionId: string, name: string, runtime: Runtime, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, scopes?: string[], installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string, templateRepository?: string, templateOwner?: string, templateRootDirectory?: string, templateVersion?: string): Promise<Models.Function> {
+    async create(functionId: string, name: string, runtime: Runtime, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, scopes?: string[], installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string, templateRepository?: string, templateOwner?: string, templateRootDirectory?: string, templateVersion?: string, specification?: string): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -167,6 +168,9 @@ export class Functions extends Service {
         if (typeof templateVersion !== 'undefined') {
             payload['templateVersion'] = templateVersion;
         }
+        if (typeof specification !== 'undefined') {
+            payload['specification'] = specification;
+        }
         return await this.client.call(
             'post',
             apiPath,
@@ -187,6 +191,29 @@ export class Functions extends Service {
      */
     async listRuntimes(): Promise<Models.RuntimeList> {
         const apiPath = '/functions/runtimes';
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * List available function runtime specifications
+     *
+     * List allowed function specifications for this instance.
+     * 
+     *
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async listSpecifications(): Promise<Models.SpecificationList> {
+        const apiPath = '/functions/specifications';
         const payload: Payload = {};
 
         return await this.client.call(
@@ -321,10 +348,11 @@ export class Functions extends Service {
      * @param {string} providerBranch
      * @param {boolean} providerSilentMode
      * @param {string} providerRootDirectory
+     * @param {string} specification
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async update(functionId: string, name: string, runtime?: Runtime, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, scopes?: string[], installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string): Promise<Models.Function> {
+    async update(functionId: string, name: string, runtime?: Runtime, execute?: string[], events?: string[], schedule?: string, timeout?: number, enabled?: boolean, logging?: boolean, entrypoint?: string, commands?: string, scopes?: string[], installationId?: string, providerRepositoryId?: string, providerBranch?: string, providerSilentMode?: boolean, providerRootDirectory?: string, specification?: string): Promise<Models.Function> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -383,6 +411,9 @@ export class Functions extends Service {
         }
         if (typeof providerRootDirectory !== 'undefined') {
             payload['providerRootDirectory'] = providerRootDirectory;
+        }
+        if (typeof specification !== 'undefined') {
+            payload['specification'] = specification;
         }
         return await this.client.call(
             'put',
@@ -850,7 +881,7 @@ export class Functions extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createExecution(functionId: string, body?: string, async?: boolean, xpath?: string, method?: ExecutionMethod, headers?: object, scheduledAt?: string, onProgress = (progress: UploadProgress) => {}): Promise<Models.Execution> {
+    async createExecution(functionId: string, body?: string, async?: boolean, xpath?: string, method?: ExecutionMethod, headers?: object, scheduledAt?: string): Promise<Models.Execution> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -862,7 +893,7 @@ export class Functions extends Service {
             payload['body'] = body;
         }
         if (typeof async !== 'undefined') {
-            payload['async'] = async.toString();
+            payload['async'] = async;
         }
         if (typeof xpath !== 'undefined') {
             payload['path'] = xpath;
@@ -871,11 +902,20 @@ export class Functions extends Service {
             payload['method'] = method;
         }
         if (typeof headers !== 'undefined') {
-            payload['headers'] = headers.toString();
+            payload['headers'] = headers;
         }
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
         }
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
     }
     /**
      * Get execution
