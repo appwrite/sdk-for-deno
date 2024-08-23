@@ -1938,6 +1938,10 @@ export namespace Models {
          */
         size: number;
         /**
+         * The build output size in bytes.
+         */
+        buildSize: number;
+        /**
          * The current build ID.
          */
         buildId: string;
