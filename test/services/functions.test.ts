@@ -97,37 +97,6 @@ describe('Functions service', () => {
     });
 
     
-    test('test method getTemplate()', async () => {
-        const data = {
-            'icon': 'icon-lightning-bolt',
-            'id': 'starter',
-            'name': 'Starter function',
-            'tagline': 'A simple function to get started.',
-            'permissions': [],
-            'events': [],
-            'cron': '0 0 * * *',
-            'timeout': 300,
-            'useCases': [],
-            'runtimes': [],
-            'instructions': 'For documentation and instructions check out <link>.',
-            'vcsProvider': 'github',
-            'providerRepositoryId': 'templates',
-            'providerOwner': 'appwrite',
-            'providerVersion': 'main',
-            'variables': [],
-            'scopes': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await functions.getTemplate(
-            '<TEMPLATE_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
     test('test method get()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',

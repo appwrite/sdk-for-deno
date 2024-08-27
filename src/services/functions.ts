@@ -227,35 +227,6 @@ export class Functions extends Service {
         );
     }
     /**
-     * Get function template
-     *
-     * Get a function template using ID. You can use template details in
-     * [createFunction](/docs/references/cloud/server-nodejs/functions#create)
-     * method.
-     *
-     * @param {string} templateId
-     * @throws {AppwriteException}
-     * @returns {Promise}
-     */
-    async getTemplate(templateId: string): Promise<Models.TemplateFunction> {
-        if (typeof templateId === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "templateId"');
-        }
-
-        const apiPath = '/functions/templates/{templateId}'.replace('{templateId}', templateId);
-        const payload: Payload = {};
-
-        return await this.client.call(
-            'get',
-            apiPath,
-            {
-                'content-type': 'application/json',
-            },
-            payload,
-            'json'
-        );
-    }
-    /**
      * Get function
      *
      * Get a function by its unique ID.
