@@ -97,21 +97,6 @@ describe('Functions service', () => {
     });
 
     
-    test('test method listTemplates()', async () => {
-        const data = {
-            'total': 5,
-            'templates': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await functions.listTemplates(
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
     test('test method getTemplate()', async () => {
         const data = {
             'icon': 'icon-lightning-bolt',
