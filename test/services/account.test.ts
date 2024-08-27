@@ -247,7 +247,6 @@ describe('Account service', () => {
 
         const response = await account.deleteMfaAuthenticator(
             'totp',
-            '<OTP>',
         );
 
         const text = await response.text();
