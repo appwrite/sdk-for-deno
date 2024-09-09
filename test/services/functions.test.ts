@@ -39,6 +39,7 @@ describe('Functions service', () => {
             'logging': true,
             'runtime': 'python-3.8',
             'deployment': '5e5ea5c16897e',
+            'scopes': [],
             'vars': [],
             'events': [],
             'schedule': '5 4 * * *',
@@ -50,7 +51,8 @@ describe('Functions service', () => {
             'providerRepositoryId': 'appwrite',
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
-            'providerSilentMode': true,};
+            'providerSilentMode': true,
+            'specification': 's-0.5vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -80,6 +82,21 @@ describe('Functions service', () => {
     });
 
     
+    test('test method listSpecifications()', async () => {
+        const data = {
+            'total': 5,
+            'specifications': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await functions.listSpecifications(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method get()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
@@ -92,6 +109,7 @@ describe('Functions service', () => {
             'logging': true,
             'runtime': 'python-3.8',
             'deployment': '5e5ea5c16897e',
+            'scopes': [],
             'vars': [],
             'events': [],
             'schedule': '5 4 * * *',
@@ -103,7 +121,8 @@ describe('Functions service', () => {
             'providerRepositoryId': 'appwrite',
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
-            'providerSilentMode': true,};
+            'providerSilentMode': true,
+            'specification': 's-0.5vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -128,6 +147,7 @@ describe('Functions service', () => {
             'logging': true,
             'runtime': 'python-3.8',
             'deployment': '5e5ea5c16897e',
+            'scopes': [],
             'vars': [],
             'events': [],
             'schedule': '5 4 * * *',
@@ -139,7 +159,8 @@ describe('Functions service', () => {
             'providerRepositoryId': 'appwrite',
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
-            'providerSilentMode': true,};
+            'providerSilentMode': true,
+            'specification': 's-0.5vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -194,6 +215,7 @@ describe('Functions service', () => {
             'resourceType': 'functions',
             'entrypoint': 'index.js',
             'size': 128,
+            'buildSize': 128,
             'buildId': '5e5ea5c16897e',
             'activate': true,
             'status': 'ready',
@@ -233,6 +255,7 @@ describe('Functions service', () => {
             'resourceType': 'functions',
             'entrypoint': 'index.js',
             'size': 128,
+            'buildSize': 128,
             'buildId': '5e5ea5c16897e',
             'activate': true,
             'status': 'ready',
@@ -273,6 +296,7 @@ describe('Functions service', () => {
             'logging': true,
             'runtime': 'python-3.8',
             'deployment': '5e5ea5c16897e',
+            'scopes': [],
             'vars': [],
             'events': [],
             'schedule': '5 4 * * *',
@@ -284,7 +308,8 @@ describe('Functions service', () => {
             'providerRepositoryId': 'appwrite',
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
-            'providerSilentMode': true,};
+            'providerSilentMode': true,
+            'specification': 's-0.5vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -322,7 +347,6 @@ describe('Functions service', () => {
         const response = await functions.createBuild(
             '<FUNCTION_ID>',
             '<DEPLOYMENT_ID>',
-            '<BUILD_ID>',
         );
 
         const text = await response.text();
@@ -331,12 +355,36 @@ describe('Functions service', () => {
     });
 
     
-    test('test method downloadDeployment()', async () => {
+    test('test method updateDeploymentBuild()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            'deploymentId': '5e5ea5c16897e',
+            'status': 'ready',
+            'stdout': '',
+            'stderr': '',
+            'startTime': '2020-10-15T06:38:00.000+00:00',
+            'endTime': '2020-10-15T06:38:00.000+00:00',
+            'duration': 0,
+            'size': 128,};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await functions.updateDeploymentBuild(
+            '<FUNCTION_ID>',
+            '<DEPLOYMENT_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method getDeploymentDownload()', async () => {
         const data = new Uint8Array(0);
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data.buffer)));
 
-        const response = await functions.downloadDeployment(
+        const response = await functions.getDeploymentDownload(
             '<FUNCTION_ID>',
             '<DEPLOYMENT_ID>',
         );
@@ -420,6 +468,22 @@ describe('Functions service', () => {
         );
 
         assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method deleteExecution()', async () => {
+        const data = '';
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
+
+        const response = await functions.deleteExecution(
+            '<FUNCTION_ID>',
+            '<EXECUTION_ID>',
+        );
+
+        const text = await response.text();
+        assertEquals(text, data);
         stubbedFetch.restore();
     });
 

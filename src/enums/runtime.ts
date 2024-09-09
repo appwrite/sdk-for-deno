@@ -19,9 +19,6 @@ export enum Runtime {
     Python311 = 'python-3.11',
     Python312 = 'python-3.12',
     PythonMl311 = 'python-ml-3.11',
-    Deno121 = 'deno-1.21',
-    Deno124 = 'deno-1.24',
-    Deno135 = 'deno-1.35',
     Deno140 = 'deno-1.40',
     Dart215 = 'dart-2.15',
     Dart216 = 'dart-2.16',
@@ -47,4 +44,5 @@ export enum Runtime {
     Cpp17 = 'cpp-17',
     Cpp20 = 'cpp-20',
     Bun10 = 'bun-1.0',
+    Go123 = 'go-1.23',
 }
