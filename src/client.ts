@@ -11,11 +11,11 @@ export class Client {
     endpoint: string = 'https://cloud.appwrite.io/v1';
     headers: Payload = {
         'content-type': '',
-        'user-agent' : `AppwriteDenoSDK/12.0.0 (${Deno.build.os}; ${Deno.build.arch})`,
+        'user-agent' : `AppwriteDenoSDK/12.1.0 (${Deno.build.os}; ${Deno.build.arch})`,
         'x-sdk-name': 'Deno',
         'x-sdk-platform': 'server',
         'x-sdk-language': 'deno',
-        'x-sdk-version': '12.0.0',
+        'x-sdk-version': '12.1.0',
         'X-Appwrite-Response-Format':'1.6.0',
     };
 
