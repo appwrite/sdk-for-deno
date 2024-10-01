@@ -1,7 +1,6 @@
-import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
-import { Payload, Client } from '../client.ts';
-import { InputFile } from '../inputFile.ts';
+import { Params, Client } from '../client.ts';
+import { Payload } from '../payload.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
@@ -27,8 +26,7 @@ export class Databases extends Service {
     /**
      * List databases
      *
-     * Get a list of all databases from the current Appwrite project. You can use
-     * the search parameter to filter your results.
+     * Get a list of all databases from the current Appwrite project. You can use the search parameter to filter your results.
      *
      * @param {string[]} queries
      * @param {string} search
@@ -37,7 +35,7 @@ export class Databases extends Service {
      */
     async list(queries?: string[], search?: string): Promise<Models.DatabaseList> {
         const apiPath = '/databases';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -57,11 +55,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create database
      *
      * Create a new Database.
-     * 
+
      *
      * @param {string} databaseId
      * @param {string} name
@@ -79,7 +78,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof databaseId !== 'undefined') {
             payload['databaseId'] = databaseId;
@@ -100,11 +99,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Get database
      *
-     * Get a database by its unique ID. This endpoint response returns a JSON
-     * object with the database metadata.
+     * Get a database by its unique ID. This endpoint response returns a JSON object with the database metadata.
      *
      * @param {string} databaseId
      * @throws {AppwriteException}
@@ -116,7 +115,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}'.replace('{databaseId}', databaseId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'get',
@@ -128,6 +127,7 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update database
      *
@@ -149,7 +149,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}'.replace('{databaseId}', databaseId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -167,11 +167,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Delete database
      *
-     * Delete a database by its unique ID. Only API keys with with databases.write
-     * scope can delete a database.
+     * Delete a database by its unique ID. Only API keys with with databases.write scope can delete a database.
      *
      * @param {string} databaseId
      * @throws {AppwriteException}
@@ -183,7 +183,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}'.replace('{databaseId}', databaseId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'delete',
@@ -195,11 +195,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * List collections
      *
-     * Get a list of all collections that belong to the provided databaseId. You
-     * can use the search parameter to filter your results.
+     * Get a list of all collections that belong to the provided databaseId. You can use the search parameter to filter your results.
      *
      * @param {string} databaseId
      * @param {string[]} queries
@@ -213,7 +213,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections'.replace('{databaseId}', databaseId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -233,13 +233,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create collection
      *
-     * Create a new Collection. Before using this route, you should create a new
-     * database resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
-     * API or directly from your database console.
+     * Create a new Collection. Before using this route, you should create a new database resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -264,7 +262,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections'.replace('{databaseId}', databaseId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof collectionId !== 'undefined') {
             payload['collectionId'] = collectionId;
@@ -291,11 +289,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Get collection
      *
-     * Get a collection by its unique ID. This endpoint response returns a JSON
-     * object with the collection metadata.
+     * Get a collection by its unique ID. This endpoint response returns a JSON object with the collection metadata.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -312,7 +310,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'get',
@@ -324,6 +322,7 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update collection
      *
@@ -352,7 +351,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -376,11 +375,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Delete collection
      *
-     * Delete a collection by its unique ID. Only users with write permissions
-     * have access to delete this resource.
+     * Delete a collection by its unique ID. Only users with write permissions have access to delete this resource.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -397,7 +396,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'delete',
@@ -409,6 +408,7 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * List attributes
      *
@@ -430,7 +430,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -446,11 +446,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create boolean attribute
      *
      * Create a boolean attribute.
-     * 
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -479,7 +480,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -503,11 +504,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update boolean attribute
      *
-     * Update a boolean attribute. Changing the `default` value will not update
-     * already existing documents.
+     * Update a boolean attribute. Changing the `default` value will not update already existing documents.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -540,7 +541,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof required !== 'undefined') {
             payload['required'] = required;
@@ -561,6 +562,7 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create datetime attribute
      *
@@ -593,7 +595,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -617,11 +619,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update dateTime attribute
      *
-     * Update a date time attribute. Changing the `default` value will not update
-     * already existing documents.
+     * Update a date time attribute. Changing the `default` value will not update already existing documents.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -654,7 +656,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof required !== 'undefined') {
             payload['required'] = required;
@@ -675,11 +677,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create email attribute
      *
      * Create an email attribute.
-     * 
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -708,7 +711,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/email'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -732,12 +735,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update email attribute
      *
-     * Update an email attribute. Changing the `default` value will not update
-     * already existing documents.
-     * 
+     * Update an email attribute. Changing the `default` value will not update already existing documents.
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -770,7 +773,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof required !== 'undefined') {
             payload['required'] = required;
@@ -791,12 +794,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create enum attribute
      *
-     * Create an enumeration attribute. The `elements` param acts as a white-list
-     * of accepted values for this attribute. 
-     * 
+     * Create an enumeration attribute. The `elements` param acts as a white-list of accepted values for this attribute. 
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -830,7 +833,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/enum'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -857,12 +860,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update enum attribute
      *
-     * Update an enum attribute. Changing the `default` value will not update
-     * already existing documents.
-     * 
+     * Update an enum attribute. Changing the `default` value will not update already existing documents.
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -900,7 +903,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof elements !== 'undefined') {
             payload['elements'] = elements;
@@ -924,12 +927,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create float attribute
      *
-     * Create a float attribute. Optionally, minimum and maximum values can be
-     * provided.
-     * 
+     * Create a float attribute. Optionally, minimum and maximum values can be provided.
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -960,7 +963,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/float'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -990,12 +993,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update float attribute
      *
-     * Update a float attribute. Changing the `default` value will not update
-     * already existing documents.
-     * 
+     * Update a float attribute. Changing the `default` value will not update already existing documents.
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1038,7 +1041,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof required !== 'undefined') {
             payload['required'] = required;
@@ -1065,12 +1068,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create integer attribute
      *
-     * Create an integer attribute. Optionally, minimum and maximum values can be
-     * provided.
-     * 
+     * Create an integer attribute. Optionally, minimum and maximum values can be provided.
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1101,7 +1104,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/integer'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -1131,12 +1134,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update integer attribute
      *
-     * Update an integer attribute. Changing the `default` value will not update
-     * already existing documents.
-     * 
+     * Update an integer attribute. Changing the `default` value will not update already existing documents.
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1179,7 +1182,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof required !== 'undefined') {
             payload['required'] = required;
@@ -1206,11 +1209,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create IP address attribute
      *
      * Create IP address attribute.
-     * 
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1239,7 +1243,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/ip'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -1263,12 +1267,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update IP address attribute
      *
-     * Update an ip attribute. Changing the `default` value will not update
-     * already existing documents.
-     * 
+     * Update an ip attribute. Changing the `default` value will not update already existing documents.
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1301,7 +1305,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof required !== 'undefined') {
             payload['required'] = required;
@@ -1322,12 +1326,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create relationship attribute
      *
-     * Create relationship attribute. [Learn more about relationship
-     * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
-     * 
+     * Create relationship attribute. [Learn more about relationship attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1358,7 +1362,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/relationship'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof relatedCollectionId !== 'undefined') {
             payload['relatedCollectionId'] = relatedCollectionId;
@@ -1388,11 +1392,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create string attribute
      *
      * Create a string attribute.
-     * 
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1427,7 +1432,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/string'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -1457,12 +1462,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update string attribute
      *
-     * Update a string attribute. Changing the `default` value will not update
-     * already existing documents.
-     * 
+     * Update a string attribute. Changing the `default` value will not update already existing documents.
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1496,7 +1501,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof required !== 'undefined') {
             payload['required'] = required;
@@ -1520,11 +1525,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create URL attribute
      *
      * Create a URL attribute.
-     * 
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1553,7 +1559,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/url'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -1577,12 +1583,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update URL attribute
      *
-     * Update an url attribute. Changing the `default` value will not update
-     * already existing documents.
-     * 
+     * Update an url attribute. Changing the `default` value will not update already existing documents.
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1615,7 +1621,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof required !== 'undefined') {
             payload['required'] = required;
@@ -1636,6 +1642,7 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Get attribute
      *
@@ -1661,7 +1668,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'get',
@@ -1673,6 +1680,7 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Delete attribute
      *
@@ -1698,7 +1706,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'delete',
@@ -1710,12 +1718,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update relationship attribute
      *
-     * Update relationship attribute. [Learn more about relationship
-     * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
-     * 
+     * Update relationship attribute. [Learn more about relationship attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
+
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1739,7 +1747,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof onDelete !== 'undefined') {
             payload['onDelete'] = onDelete;
@@ -1757,11 +1765,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * List documents
      *
-     * Get a list of all the user's documents in a given collection. You can use
-     * the query params to filter your results.
+     * Get a list of all the user&#039;s documents in a given collection. You can use the query params to filter your results.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1779,7 +1787,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -1795,13 +1803,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create document
      *
-     * Create a new Document. Before using this route, you should create a new
-     * collection resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
-     * API or directly from your database console.
+     * Create a new Document. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1829,7 +1835,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof documentId !== 'undefined') {
             payload['documentId'] = documentId;
@@ -1850,11 +1856,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Get document
      *
-     * Get a document by its unique ID. This endpoint response returns a JSON
-     * object with the document data.
+     * Get a document by its unique ID. This endpoint response returns a JSON object with the document data.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1877,7 +1883,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{documentId}', documentId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -1893,11 +1899,11 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Update document
      *
-     * Update a document by its unique ID. Using the patch method you can pass
-     * only specific fields that will get updated.
+     * Update a document by its unique ID. Using the patch method you can pass only specific fields that will get updated.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1921,7 +1927,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{documentId}', documentId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof data !== 'undefined') {
             payload['data'] = data;
@@ -1939,6 +1945,7 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Delete document
      *
@@ -1964,7 +1971,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{documentId}', documentId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'delete',
@@ -1976,6 +1983,7 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * List indexes
      *
@@ -1997,7 +2005,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -2013,12 +2021,12 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Create index
      *
-     * Creates an index on the attributes listed. Your index should include all
-     * the attributes you will query in a single request.
-     * Attributes can be `key`, `fulltext`, and `unique`.
+     * Creates an index on the attributes listed. Your index should include all the attributes you will query in a single request.
+Attributes can be `key`, `fulltext`, and `unique`.
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -2051,7 +2059,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -2075,6 +2083,7 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Get index
      *
@@ -2100,7 +2109,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'get',
@@ -2112,6 +2121,7 @@ export class Databases extends Service {
             'json'
         );
     }
+
     /**
      * Delete index
      *
@@ -2137,7 +2147,7 @@ export class Databases extends Service {
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{key}', key);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'delete',
