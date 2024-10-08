@@ -1,7 +1,6 @@
-import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
-import { Payload, Client } from '../client.ts';
-import { InputFile } from '../inputFile.ts';
+import { Params, Client } from '../client.ts';
+import { Payload } from '../payload.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
@@ -36,7 +35,7 @@ export class Graphql extends Service {
         }
 
         const apiPath = '/graphql';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof query !== 'undefined') {
             payload['query'] = query;
@@ -52,6 +51,7 @@ export class Graphql extends Service {
             'json'
         );
     }
+
     /**
      * GraphQL endpoint
      *
@@ -67,7 +67,7 @@ export class Graphql extends Service {
         }
 
         const apiPath = '/graphql/mutation';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof query !== 'undefined') {
             payload['query'] = query;

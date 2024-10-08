@@ -1,7 +1,6 @@
-import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
-import { Payload, Client } from '../client.ts';
-import { InputFile } from '../inputFile.ts';
+import { Params, Client } from '../client.ts';
+import { Payload } from '../payload.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
@@ -27,16 +26,9 @@ export class Avatars extends Service {
     /**
      * Get browser icon
      *
-     * You can use this endpoint to show different browser icons to your users.
-     * The code argument receives the browser code as it appears in your user [GET
-     * /account/sessions](https://appwrite.io/docs/references/cloud/client-web/account#getSessions)
-     * endpoint. Use width, height and quality arguments to change the output
-     * settings.
-     * 
-     * When one dimension is specified and the other is 0, the image is scaled
-     * with preserved aspect ratio. If both dimensions are 0, the API provides an
-     * image at source quality. If dimensions are not specified, the default size
-     * of image returned is 100x100px.
+     * You can use this endpoint to show different browser icons to your users. The code argument receives the browser code as it appears in your user [GET /account/sessions](https://appwrite.io/docs/references/cloud/client-web/account#getSessions) endpoint. Use width, height and quality arguments to change the output settings.
+
+When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 100x100px.
      *
      * @param {Browser} code
      * @param {number} width
@@ -51,7 +43,7 @@ export class Avatars extends Service {
         }
 
         const apiPath = '/avatars/browsers/{code}'.replace('{code}', code);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof width !== 'undefined') {
             payload['width'] = width;
@@ -75,18 +67,14 @@ export class Avatars extends Service {
             'arraybuffer'
         );
     }
+
     /**
      * Get credit card icon
      *
-     * The credit card endpoint will return you the icon of the credit card
-     * provider you need. Use width, height and quality arguments to change the
-     * output settings.
-     * 
-     * When one dimension is specified and the other is 0, the image is scaled
-     * with preserved aspect ratio. If both dimensions are 0, the API provides an
-     * image at source quality. If dimensions are not specified, the default size
-     * of image returned is 100x100px.
-     * 
+     * The credit card endpoint will return you the icon of the credit card provider you need. Use width, height and quality arguments to change the output settings.
+
+When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 100x100px.
+
      *
      * @param {CreditCard} code
      * @param {number} width
@@ -101,7 +89,7 @@ export class Avatars extends Service {
         }
 
         const apiPath = '/avatars/credit-cards/{code}'.replace('{code}', code);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof width !== 'undefined') {
             payload['width'] = width;
@@ -125,13 +113,13 @@ export class Avatars extends Service {
             'arraybuffer'
         );
     }
+
     /**
      * Get favicon
      *
-     * Use this endpoint to fetch the favorite icon (AKA favicon) of any remote
-     * website URL.
-     * 
-     * This endpoint does not follow HTTP redirects.
+     * Use this endpoint to fetch the favorite icon (AKA favicon) of any remote website URL.
+
+This endpoint does not follow HTTP redirects.
      *
      * @param {string} url
      * @throws {AppwriteException}
@@ -143,7 +131,7 @@ export class Avatars extends Service {
         }
 
         const apiPath = '/avatars/favicon';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof url !== 'undefined') {
             payload['url'] = url;
@@ -159,19 +147,14 @@ export class Avatars extends Service {
             'arraybuffer'
         );
     }
+
     /**
      * Get country flag
      *
-     * You can use this endpoint to show different country flags icons to your
-     * users. The code argument receives the 2 letter country code. Use width,
-     * height and quality arguments to change the output settings. Country codes
-     * follow the [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) standard.
-     * 
-     * When one dimension is specified and the other is 0, the image is scaled
-     * with preserved aspect ratio. If both dimensions are 0, the API provides an
-     * image at source quality. If dimensions are not specified, the default size
-     * of image returned is 100x100px.
-     * 
+     * You can use this endpoint to show different country flags icons to your users. The code argument receives the 2 letter country code. Use width, height and quality arguments to change the output settings. Country codes follow the [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) standard.
+
+When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 100x100px.
+
      *
      * @param {Flag} code
      * @param {number} width
@@ -186,7 +169,7 @@ export class Avatars extends Service {
         }
 
         const apiPath = '/avatars/flags/{code}'.replace('{code}', code);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof width !== 'undefined') {
             payload['width'] = width;
@@ -210,20 +193,15 @@ export class Avatars extends Service {
             'arraybuffer'
         );
     }
+
     /**
      * Get image from URL
      *
-     * Use this endpoint to fetch a remote image URL and crop it to any image size
-     * you want. This endpoint is very useful if you need to crop and display
-     * remote images in your app or in case you want to make sure a 3rd party
-     * image is properly served using a TLS protocol.
-     * 
-     * When one dimension is specified and the other is 0, the image is scaled
-     * with preserved aspect ratio. If both dimensions are 0, the API provides an
-     * image at source quality. If dimensions are not specified, the default size
-     * of image returned is 400x400px.
-     * 
-     * This endpoint does not follow HTTP redirects.
+     * Use this endpoint to fetch a remote image URL and crop it to any image size you want. This endpoint is very useful if you need to crop and display remote images in your app or in case you want to make sure a 3rd party image is properly served using a TLS protocol.
+
+When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 400x400px.
+
+This endpoint does not follow HTTP redirects.
      *
      * @param {string} url
      * @param {number} width
@@ -237,7 +215,7 @@ export class Avatars extends Service {
         }
 
         const apiPath = '/avatars/image';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof url !== 'undefined') {
             payload['url'] = url;
@@ -261,25 +239,16 @@ export class Avatars extends Service {
             'arraybuffer'
         );
     }
+
     /**
      * Get user initials
      *
-     * Use this endpoint to show your user initials avatar icon on your website or
-     * app. By default, this route will try to print your logged-in user name or
-     * email initials. You can also overwrite the user name if you pass the 'name'
-     * parameter. If no name is given and no user is logged, an empty avatar will
-     * be returned.
-     * 
-     * You can use the color and background params to change the avatar colors. By
-     * default, a random theme will be selected. The random theme will persist for
-     * the user's initials when reloading the same theme will always return for
-     * the same initials.
-     * 
-     * When one dimension is specified and the other is 0, the image is scaled
-     * with preserved aspect ratio. If both dimensions are 0, the API provides an
-     * image at source quality. If dimensions are not specified, the default size
-     * of image returned is 100x100px.
-     * 
+     * Use this endpoint to show your user initials avatar icon on your website or app. By default, this route will try to print your logged-in user name or email initials. You can also overwrite the user name if you pass the &#039;name&#039; parameter. If no name is given and no user is logged, an empty avatar will be returned.
+
+You can use the color and background params to change the avatar colors. By default, a random theme will be selected. The random theme will persist for the user&#039;s initials when reloading the same theme will always return for the same initials.
+
+When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 100x100px.
+
      *
      * @param {string} name
      * @param {number} width
@@ -290,7 +259,7 @@ export class Avatars extends Service {
      */
     async getInitials(name?: string, width?: number, height?: number, background?: string): Promise<ArrayBuffer> {
         const apiPath = '/avatars/initials';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -318,12 +287,12 @@ export class Avatars extends Service {
             'arraybuffer'
         );
     }
+
     /**
      * Get QR code
      *
-     * Converts a given plain text to a QR code image. You can use the query
-     * parameters to change the size and style of the resulting image.
-     * 
+     * Converts a given plain text to a QR code image. You can use the query parameters to change the size and style of the resulting image.
+
      *
      * @param {string} text
      * @param {number} size
@@ -338,7 +307,7 @@ export class Avatars extends Service {
         }
 
         const apiPath = '/avatars/qr';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof text !== 'undefined') {
             payload['text'] = text;

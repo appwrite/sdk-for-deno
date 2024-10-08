@@ -3,7 +3,7 @@ import { Query } from "./src/query.ts";
 import { Permission } from "./src/permission.ts";
 import { Role } from "./src/role.ts";
 import { ID } from "./src/id.ts";
-import { InputFile } from "./src/inputFile.ts";
+import { Payload } from "./src/payload.ts";
 import { AppwriteException } from "./src/exception.ts";
 import { Account } from "./src/services/account.ts";
 import { Avatars } from "./src/services/avatars.ts";
@@ -41,7 +41,7 @@ export {
     Permission,
     Role,
     ID,
-    InputFile,
+    Payload,
     AppwriteException,
     Account,
     Avatars,

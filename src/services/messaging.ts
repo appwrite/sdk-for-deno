@@ -1,7 +1,6 @@
-import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
-import { Payload, Client } from '../client.ts';
-import { InputFile } from '../inputFile.ts';
+import { Params, Client } from '../client.ts';
+import { Payload } from '../payload.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
@@ -34,7 +33,7 @@ export class Messaging extends Service {
      */
     async listMessages(queries?: string[], search?: string): Promise<Models.MessageList> {
         const apiPath = '/messaging/messages';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -54,6 +53,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create email
      *
@@ -88,7 +88,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/messages/email';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof messageId !== 'undefined') {
             payload['messageId'] = messageId;
@@ -136,11 +136,12 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update email
      *
      * Update an email message by its unique ID.
-     * 
+
      *
      * @param {string} messageId
      * @param {string[]} topics
@@ -163,7 +164,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/messages/email/{messageId}'.replace('{messageId}', messageId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof topics !== 'undefined') {
             payload['topics'] = topics;
@@ -208,6 +209,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create push notification
      *
@@ -246,7 +248,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/messages/push';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof messageId !== 'undefined') {
             payload['messageId'] = messageId;
@@ -306,11 +308,12 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update push notification
      *
      * Update a push notification by its unique ID.
-     * 
+
      *
      * @param {string} messageId
      * @param {string[]} topics
@@ -337,7 +340,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/messages/push/{messageId}'.replace('{messageId}', messageId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof topics !== 'undefined') {
             payload['topics'] = topics;
@@ -394,6 +397,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create SMS
      *
@@ -419,7 +423,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/messages/sms';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof messageId !== 'undefined') {
             payload['messageId'] = messageId;
@@ -452,11 +456,12 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update SMS
      *
      * Update an email message by its unique ID.
-     * 
+
      *
      * @param {string} messageId
      * @param {string[]} topics
@@ -474,7 +479,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/messages/sms/{messageId}'.replace('{messageId}', messageId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof topics !== 'undefined') {
             payload['topics'] = topics;
@@ -504,11 +509,12 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Get message
      *
      * Get a message by its unique ID.
-     * 
+
      *
      * @param {string} messageId
      * @throws {AppwriteException}
@@ -520,7 +526,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/messages/{messageId}'.replace('{messageId}', messageId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'get',
@@ -532,11 +538,11 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Delete message
      *
-     * Delete a message. If the message is not a draft or scheduled, but has been
-     * sent, this will not recall the message.
+     * Delete a message. If the message is not a draft or scheduled, but has been sent, this will not recall the message.
      *
      * @param {string} messageId
      * @throws {AppwriteException}
@@ -548,7 +554,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/messages/{messageId}'.replace('{messageId}', messageId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'delete',
@@ -560,6 +566,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * List message logs
      *
@@ -576,7 +583,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/messages/{messageId}/logs'.replace('{messageId}', messageId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -592,6 +599,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * List message targets
      *
@@ -608,7 +616,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/messages/{messageId}/targets'.replace('{messageId}', messageId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -624,6 +632,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * List providers
      *
@@ -636,7 +645,7 @@ export class Messaging extends Service {
      */
     async listProviders(queries?: string[], search?: string): Promise<Models.ProviderList> {
         const apiPath = '/messaging/providers';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -656,6 +665,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create APNS provider
      *
@@ -682,7 +692,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/apns';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof providerId !== 'undefined') {
             payload['providerId'] = providerId;
@@ -718,6 +728,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update APNS provider
      *
@@ -740,7 +751,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/apns/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -773,6 +784,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create FCM provider
      *
@@ -795,7 +807,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/fcm';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof providerId !== 'undefined') {
             payload['providerId'] = providerId;
@@ -819,6 +831,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update FCM provider
      *
@@ -837,7 +850,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/fcm/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -858,6 +871,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create Mailgun provider
      *
@@ -886,7 +900,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/mailgun';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof providerId !== 'undefined') {
             payload['providerId'] = providerId;
@@ -928,6 +942,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update Mailgun provider
      *
@@ -952,7 +967,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/mailgun/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -991,6 +1006,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create Msg91 provider
      *
@@ -1015,7 +1031,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/msg91';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof providerId !== 'undefined') {
             payload['providerId'] = providerId;
@@ -1045,6 +1061,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update Msg91 provider
      *
@@ -1065,7 +1082,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/msg91/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -1092,6 +1109,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create Sendgrid provider
      *
@@ -1118,7 +1136,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/sendgrid';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof providerId !== 'undefined') {
             payload['providerId'] = providerId;
@@ -1154,6 +1172,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update Sendgrid provider
      *
@@ -1176,7 +1195,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/sendgrid/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -1209,6 +1228,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create SMTP provider
      *
@@ -1245,7 +1265,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/smtp';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof providerId !== 'undefined') {
             payload['providerId'] = providerId;
@@ -1299,6 +1319,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update SMTP provider
      *
@@ -1327,7 +1348,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/smtp/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -1378,6 +1399,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create Telesign provider
      *
@@ -1402,7 +1424,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/telesign';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof providerId !== 'undefined') {
             payload['providerId'] = providerId;
@@ -1432,6 +1454,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update Telesign provider
      *
@@ -1452,7 +1475,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/telesign/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -1479,6 +1502,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create Textmagic provider
      *
@@ -1503,7 +1527,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/textmagic';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof providerId !== 'undefined') {
             payload['providerId'] = providerId;
@@ -1533,6 +1557,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update Textmagic provider
      *
@@ -1553,7 +1578,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/textmagic/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -1580,6 +1605,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create Twilio provider
      *
@@ -1604,7 +1630,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/twilio';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof providerId !== 'undefined') {
             payload['providerId'] = providerId;
@@ -1634,6 +1660,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update Twilio provider
      *
@@ -1654,7 +1681,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/twilio/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -1681,6 +1708,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create Vonage provider
      *
@@ -1705,7 +1733,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/vonage';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof providerId !== 'undefined') {
             payload['providerId'] = providerId;
@@ -1735,6 +1763,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update Vonage provider
      *
@@ -1755,7 +1784,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/vonage/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -1782,11 +1811,12 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Get provider
      *
      * Get a provider by its unique ID.
-     * 
+
      *
      * @param {string} providerId
      * @throws {AppwriteException}
@@ -1798,7 +1828,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'get',
@@ -1810,6 +1840,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Delete provider
      *
@@ -1825,7 +1856,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/{providerId}'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'delete',
@@ -1837,6 +1868,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * List provider logs
      *
@@ -1853,7 +1885,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/providers/{providerId}/logs'.replace('{providerId}', providerId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -1869,6 +1901,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * List subscriber logs
      *
@@ -1885,7 +1918,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/subscribers/{subscriberId}/logs'.replace('{subscriberId}', subscriberId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -1901,6 +1934,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * List topics
      *
@@ -1913,7 +1947,7 @@ export class Messaging extends Service {
      */
     async listTopics(queries?: string[], search?: string): Promise<Models.TopicList> {
         const apiPath = '/messaging/topics';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -1933,6 +1967,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create topic
      *
@@ -1954,7 +1989,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/topics';
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof topicId !== 'undefined') {
             payload['topicId'] = topicId;
@@ -1975,11 +2010,12 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Get topic
      *
      * Get a topic by its unique ID.
-     * 
+
      *
      * @param {string} topicId
      * @throws {AppwriteException}
@@ -1991,7 +2027,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/topics/{topicId}'.replace('{topicId}', topicId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'get',
@@ -2003,11 +2039,12 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Update topic
      *
      * Update a topic by its unique ID.
-     * 
+
      *
      * @param {string} topicId
      * @param {string} name
@@ -2021,7 +2058,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/topics/{topicId}'.replace('{topicId}', topicId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -2039,6 +2076,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Delete topic
      *
@@ -2054,7 +2092,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/topics/{topicId}'.replace('{topicId}', topicId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'delete',
@@ -2066,6 +2104,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * List topic logs
      *
@@ -2082,7 +2121,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/topics/{topicId}/logs'.replace('{topicId}', topicId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -2098,6 +2137,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * List subscribers
      *
@@ -2115,7 +2155,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/topics/{topicId}/subscribers'.replace('{topicId}', topicId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -2135,6 +2175,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Create subscriber
      *
@@ -2160,7 +2201,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/topics/{topicId}/subscribers'.replace('{topicId}', topicId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         if (typeof subscriberId !== 'undefined') {
             payload['subscriberId'] = subscriberId;
@@ -2178,11 +2219,12 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Get subscriber
      *
      * Get a subscriber by its unique ID.
-     * 
+
      *
      * @param {string} topicId
      * @param {string} subscriberId
@@ -2199,7 +2241,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/topics/{topicId}/subscribers/{subscriberId}'.replace('{topicId}', topicId).replace('{subscriberId}', subscriberId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'get',
@@ -2211,6 +2253,7 @@ export class Messaging extends Service {
             'json'
         );
     }
+
     /**
      * Delete subscriber
      *
@@ -2231,7 +2274,7 @@ export class Messaging extends Service {
         }
 
         const apiPath = '/messaging/topics/{topicId}/subscribers/{subscriberId}'.replace('{topicId}', topicId).replace('{subscriberId}', subscriberId);
-        const payload: Payload = {};
+        const payload: Params = {};
 
         return await this.client.call(
             'delete',
