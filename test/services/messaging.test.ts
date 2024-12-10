@@ -94,8 +94,6 @@ describe('Messaging service', () => {
 
         const response = await messaging.createPush(
             '<MESSAGE_ID>',
-            '<TITLE>',
-            '<BODY>',
         );
 
         assertEquals(response, data);

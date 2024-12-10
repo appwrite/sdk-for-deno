@@ -52,7 +52,7 @@ describe('Functions service', () => {
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
             'providerSilentMode': true,
-            'specification': 's-0.5vcpu-512mb',};
+            'specification': 's-1vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -122,7 +122,7 @@ describe('Functions service', () => {
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
             'providerSilentMode': true,
-            'specification': 's-0.5vcpu-512mb',};
+            'specification': 's-1vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -160,7 +160,7 @@ describe('Functions service', () => {
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
             'providerSilentMode': true,
-            'specification': 's-0.5vcpu-512mb',};
+            'specification': 's-1vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -309,7 +309,7 @@ describe('Functions service', () => {
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
             'providerSilentMode': true,
-            'specification': 's-0.5vcpu-512mb',};
+            'specification': 's-1vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -424,7 +424,7 @@ describe('Functions service', () => {
             'requestPath': '/articles?id=5',
             'requestHeaders': [],
             'responseStatusCode': 200,
-            'responseBody': 'Developers are awesome.',
+            'responseBody': '',
             'responseHeaders': [],
             'logs': '',
             'errors': '',
@@ -454,7 +454,7 @@ describe('Functions service', () => {
             'requestPath': '/articles?id=5',
             'requestHeaders': [],
             'responseStatusCode': 200,
-            'responseBody': 'Developers are awesome.',
+            'responseBody': '',
             'responseHeaders': [],
             'logs': '',
             'errors': '',

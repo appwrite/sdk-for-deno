@@ -210,7 +210,7 @@ export class Users extends Service {
         );
     }
     /**
-     * List Identities
+     * List identities
      *
      * Get identities for all users.
      *
@@ -868,7 +868,7 @@ export class Users extends Service {
         );
     }
     /**
-     * Delete Authenticator
+     * Delete authenticator
      *
      * Delete an authenticator app.
      *
@@ -900,7 +900,7 @@ export class Users extends Service {
         );
     }
     /**
-     * List Factors
+     * List factors
      *
      * List the factors available on the account to be used as a MFA challange.
      *
@@ -927,7 +927,7 @@ export class Users extends Service {
         );
     }
     /**
-     * Get MFA Recovery Codes
+     * Get MFA recovery codes
      *
      * Get recovery codes that can be used as backup for MFA flow by User ID.
      * Before getting codes, they must be generated using
@@ -957,7 +957,7 @@ export class Users extends Service {
         );
     }
     /**
-     * Regenerate MFA Recovery Codes
+     * Regenerate MFA recovery codes
      *
      * Regenerate recovery codes that can be used as backup for MFA flow by User
      * ID. Before regenerating codes, they must be first generated using
@@ -987,7 +987,7 @@ export class Users extends Service {
         );
     }
     /**
-     * Create MFA Recovery Codes
+     * Create MFA recovery codes
      *
      * Generate recovery codes used as backup for MFA flow for User ID. Recovery
      * codes can be used as a MFA verification type in
@@ -1340,7 +1340,7 @@ export class Users extends Service {
         );
     }
     /**
-     * List User Targets
+     * List user targets
      *
      * List the messaging targets that are associated with a user.
      *
@@ -1372,7 +1372,7 @@ export class Users extends Service {
         );
     }
     /**
-     * Create User Target
+     * Create user target
      *
      * Create a messaging target.
      *
@@ -1431,7 +1431,7 @@ export class Users extends Service {
         );
     }
     /**
-     * Get User Target
+     * Get user target
      *
      * Get a user's push notification target by ID.
      *
@@ -1463,7 +1463,7 @@ export class Users extends Service {
         );
     }
     /**
-     * Update User target
+     * Update user target
      *
      * Update a messaging target.
      *
