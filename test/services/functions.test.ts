@@ -3,7 +3,7 @@ import {restore, stub} from "https://deno.land/std@0.204.0/testing/mock.ts";
 import {assertEquals} from "https://deno.land/std@0.204.0/assert/assert_equals.ts";
 import { Functions } from "../../src/services/functions.ts";
 import {Client} from "../../src/client.ts";
-import {Payload} from "../../src/payload.ts"
+import {InputFile} from "../../src/inputFile.ts"
 
 describe('Functions service', () => {
     const client = new Client();
@@ -52,7 +52,7 @@ describe('Functions service', () => {
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
             'providerSilentMode': true,
-            'specification': 's-0.5vcpu-512mb',};
+            'specification': 's-1vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -122,7 +122,7 @@ describe('Functions service', () => {
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
             'providerSilentMode': true,
-            'specification': 's-0.5vcpu-512mb',};
+            'specification': 's-1vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -160,7 +160,7 @@ describe('Functions service', () => {
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
             'providerSilentMode': true,
-            'specification': 's-0.5vcpu-512mb',};
+            'specification': 's-1vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -236,7 +236,7 @@ describe('Functions service', () => {
 
         const response = await functions.createDeployment(
             '<FUNCTION_ID>',
-            Payload.fromBinary(new Uint8Array(0), 'image.png'),
+            InputFile.fromBuffer(new Uint8Array(0), 'image.png'),
             true,
         );
 
@@ -309,7 +309,7 @@ describe('Functions service', () => {
             'providerBranch': 'main',
             'providerRootDirectory': 'functions/helloWorld',
             'providerSilentMode': true,
-            'specification': 's-0.5vcpu-512mb',};
+            'specification': 's-1vcpu-512mb',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -424,7 +424,7 @@ describe('Functions service', () => {
             'requestPath': '/articles?id=5',
             'requestHeaders': [],
             'responseStatusCode': 200,
-            'responseBody': ,
+            'responseBody': '',
             'responseHeaders': [],
             'logs': '',
             'errors': '',
@@ -454,7 +454,7 @@ describe('Functions service', () => {
             'requestPath': '/articles?id=5',
             'requestHeaders': [],
             'responseStatusCode': 200,
-            'responseBody': ,
+            'responseBody': '',
             'responseHeaders': [],
             'logs': '',
             'errors': '',

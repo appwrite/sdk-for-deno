@@ -3,7 +3,7 @@ import {restore, stub} from "https://deno.land/std@0.204.0/testing/mock.ts";
 import {assertEquals} from "https://deno.land/std@0.204.0/assert/assert_equals.ts";
 import { Users } from "../../src/services/users.ts";
 import {Client} from "../../src/client.ts";
-import {Payload} from "../../src/payload.ts"
+import {InputFile} from "../../src/inputFile.ts"
 
 describe('Users service', () => {
     const client = new Client();
@@ -862,10 +862,11 @@ describe('Users service', () => {
             '\$id': '259125845563242502',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'name': 'Aegon apple token',
+            'name': 'Apple iPhone 12',
             'userId': '259125845563242502',
             'providerType': 'email',
-            'identifier': 'token',};
+            'identifier': 'token',
+            'expired': true,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -886,10 +887,11 @@ describe('Users service', () => {
             '\$id': '259125845563242502',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'name': 'Aegon apple token',
+            'name': 'Apple iPhone 12',
             'userId': '259125845563242502',
             'providerType': 'email',
-            'identifier': 'token',};
+            'identifier': 'token',
+            'expired': true,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -908,10 +910,11 @@ describe('Users service', () => {
             '\$id': '259125845563242502',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'name': 'Aegon apple token',
+            'name': 'Apple iPhone 12',
             'userId': '259125845563242502',
             'providerType': 'email',
-            'identifier': 'token',};
+            'identifier': 'token',
+            'expired': true,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 

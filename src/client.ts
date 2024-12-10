@@ -1,8 +1,6 @@
 import { AppwriteException } from './exception.ts';
-import { Payload } from './payload.ts';
-import { getBoundary, parse as parseMultipart } from './multipart.ts';
 
-export interface Params {
+export interface Payload {
     [key: string]: any;
 }
 
@@ -11,13 +9,13 @@ export class Client {
     static DENO_READ_CHUNK_SIZE = 16384; // 16kb; refference: https://github.com/denoland/deno/discussions/9906
     
     endpoint: string = 'https://cloud.appwrite.io/v1';
-    headers: Params = {
+    headers: Payload = {
         'content-type': '',
-        'user-agent' : `AppwriteDenoSDK/13.0.0 (${Deno.build.os}; ${Deno.build.arch})`,
+        'user-agent' : `AppwriteDenoSDK/12.2.0 (${Deno.build.os}; ${Deno.build.arch})`,
         'x-sdk-name': 'Deno',
         'x-sdk-platform': 'server',
         'x-sdk-language': 'deno',
-        'x-sdk-version': '13.0.0',
+        'x-sdk-version': '12.2.0',
         'X-Appwrite-Response-Format':'1.6.0',
     };
 
@@ -130,7 +128,7 @@ export class Client {
         return this;
     }
 
-    async call(method: string, path: string = "", headers: Params = {}, params: Params = {}, responseType: string = "json") {
+    async call(method: string, path: string = "", headers: Payload = {}, params: Payload = {}, responseType: string = "json") {
         headers = {...this.headers, ...headers};
         const url = new URL(this.endpoint + path);
 
@@ -194,40 +192,6 @@ export class Client {
             return response.headers.get("location");
         }
 
-        if (response.headers.get('content-type')?.includes('multipart/form-data')) {
-            const boundary = getBoundary(
-                response.headers.get("content-type") || ""
-            );
-            
-            const body = new Uint8Array(await response.arrayBuffer());
-            const parts = parseMultipart(body, boundary);
-            const partsObject: { [key: string]: any } = {};
-
-            for (const part of parts) {
-                if (!part.name) {
-                    continue;
-                }
-                if (part.name === "responseBody") {
-                    partsObject[part.name] = Payload.fromBinary(part.data, part.filename);
-                } else if (part.name === "responseStatusCode") {
-                    partsObject[part.name] = parseInt(part.data.toString());
-                } else if (part.name === "duration") {
-                    partsObject[part.name] = parseFloat(part.data.toString());
-                } else if (part.type === 'application/json') {
-                    try {
-                        partsObject[part.name] = JSON.parse(part.data.toString());
-                    } catch (e) {
-                        throw new Error(`Error parsing JSON for part ${part.name}: ${e instanceof Error ? e.message : 'Unknown error'}`);
-                    }
-                } else {
-                    partsObject[part.name] = new TextDecoder().decode(part.data);
-                }
-            }
-
-            const data = partsObject;
-            return data;
-        }
-
         const text = await response.text();
         let json = undefined;
         try {
@@ -238,8 +202,8 @@ export class Client {
         return json;
     }
 
-    static flatten(data: Params, prefix = ''): Params {
-        let output: Params = {};
+    static flatten(data: Payload, prefix = ''): Payload {
+        let output: Payload = {};
 
         for (const [key, value] of Object.entries(data)) {
             let finalKey = prefix ? prefix + '[' + key +']' : key;

@@ -9,7 +9,7 @@ const functions = new Functions(client);
 
 const response = await functions.createDeployment(
     '<FUNCTION_ID>', // functionId
-    Payload.fromFile('/path/to/file.png'), // code
+    InputFile.fromPath('/path/to/file.png', 'file.png'), // code
     false, // activate
     '<ENTRYPOINT>', // entrypoint (optional)
     '<COMMANDS>' // commands (optional)

@@ -3,7 +3,7 @@ import {restore, stub} from "https://deno.land/std@0.204.0/testing/mock.ts";
 import {assertEquals} from "https://deno.land/std@0.204.0/assert/assert_equals.ts";
 import { Databases } from "../../src/services/databases.ts";
 import {Client} from "../../src/client.ts";
-import {Payload} from "../../src/payload.ts"
+import {InputFile} from "../../src/inputFile.ts"
 
 describe('Databases service', () => {
     const client = new Client();

@@ -3,7 +3,7 @@ import { Query } from "./src/query.ts";
 import { Permission } from "./src/permission.ts";
 import { Role } from "./src/role.ts";
 import { ID } from "./src/id.ts";
-import { Payload } from "./src/payload.ts";
+import { InputFile } from "./src/inputFile.ts";
 import { AppwriteException } from "./src/exception.ts";
 import { Account } from "./src/services/account.ts";
 import { Avatars } from "./src/services/avatars.ts";
@@ -28,6 +28,7 @@ import { IndexType } from "./src/enums/index-type.ts";
 import { Runtime } from "./src/enums/runtime.ts";
 import { ExecutionMethod } from "./src/enums/execution-method.ts";
 import { Name } from "./src/enums/name.ts";
+import { MessagePriority } from "./src/enums/message-priority.ts";
 import { SmtpEncryption } from "./src/enums/smtp-encryption.ts";
 import { Compression } from "./src/enums/compression.ts";
 import { ImageGravity } from "./src/enums/image-gravity.ts";
@@ -41,7 +42,7 @@ export {
     Permission,
     Role,
     ID,
-    Payload,
+    InputFile,
     AppwriteException,
     Account,
     Avatars,
@@ -66,6 +67,7 @@ export {
     Runtime,
     ExecutionMethod,
     Name,
+    MessagePriority,
     SmtpEncryption,
     Compression,
     ImageGravity,

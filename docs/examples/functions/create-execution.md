@@ -9,7 +9,7 @@ const functions = new Functions(client);
 
 const response = await functions.createExecution(
     '<FUNCTION_ID>', // functionId
-    Payload.fromJson({ x: "y" }), // body (optional)
+    '<BODY>', // body (optional)
     false, // async (optional)
     '<PATH>', // path (optional)
     ExecutionMethod.GET, // method (optional)

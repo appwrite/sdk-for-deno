@@ -1,6 +1,7 @@
+import { basename } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { Service } from '../service.ts';
-import { Params, Client } from '../client.ts';
-import { Payload } from '../payload.ts';
+import { Payload, Client } from '../client.ts';
+import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
@@ -25,7 +26,8 @@ export class Functions extends Service {
     /**
      * List functions
      *
-     * Get a list of all the project&#039;s functions. You can use the query params to filter your results.
+     * Get a list of all the project's functions. You can use the query params to
+     * filter your results.
      *
      * @param {string[]} queries
      * @param {string} search
@@ -34,7 +36,7 @@ export class Functions extends Service {
      */
     async list(queries?: string[], search?: string): Promise<Models.FunctionList> {
         const apiPath = '/functions';
-        const payload: Params = {};
+        const payload: Payload = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -54,11 +56,13 @@ export class Functions extends Service {
             'json'
         );
     }
-
     /**
      * Create function
      *
-     * Create a new function. You can pass a list of [permissions](https://appwrite.io/docs/permissions) to allow different project users or team with access to execute the function using the client API.
+     * Create a new function. You can pass a list of
+     * [permissions](https://appwrite.io/docs/permissions) to allow different
+     * project users or team with access to execute the function using the client
+     * API.
      *
      * @param {string} functionId
      * @param {string} name
@@ -99,7 +103,7 @@ export class Functions extends Service {
         }
 
         const apiPath = '/functions';
-        const payload: Params = {};
+        const payload: Payload = {};
 
         if (typeof functionId !== 'undefined') {
             payload['functionId'] = functionId;
@@ -177,7 +181,6 @@ export class Functions extends Service {
             'json'
         );
     }
-
     /**
      * List runtimes
      *
@@ -188,7 +191,7 @@ export class Functions extends Service {
      */
     async listRuntimes(): Promise<Models.RuntimeList> {
         const apiPath = '/functions/runtimes';
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'get',
@@ -200,19 +203,18 @@ export class Functions extends Service {
             'json'
         );
     }
-
     /**
      * List available function runtime specifications
      *
      * List allowed function specifications for this instance.
-
+     * 
      *
      * @throws {AppwriteException}
      * @returns {Promise}
      */
     async listSpecifications(): Promise<Models.SpecificationList> {
         const apiPath = '/functions/specifications';
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'get',
@@ -224,7 +226,6 @@ export class Functions extends Service {
             'json'
         );
     }
-
     /**
      * Get function
      *
@@ -240,7 +241,7 @@ export class Functions extends Service {
         }
 
         const apiPath = '/functions/{functionId}'.replace('{functionId}', functionId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'get',
@@ -252,7 +253,6 @@ export class Functions extends Service {
             'json'
         );
     }
-
     /**
      * Update function
      *
@@ -289,7 +289,7 @@ export class Functions extends Service {
         }
 
         const apiPath = '/functions/{functionId}'.replace('{functionId}', functionId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         if (typeof name !== 'undefined') {
             payload['name'] = name;
@@ -352,7 +352,6 @@ export class Functions extends Service {
             'json'
         );
     }
-
     /**
      * Delete function
      *
@@ -368,7 +367,7 @@ export class Functions extends Service {
         }
 
         const apiPath = '/functions/{functionId}'.replace('{functionId}', functionId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'delete',
@@ -380,11 +379,11 @@ export class Functions extends Service {
             'json'
         );
     }
-
     /**
      * List deployments
      *
-     * Get a list of all the project&#039;s code deployments. You can use the query params to filter your results.
+     * Get a list of all the project's code deployments. You can use the query
+     * params to filter your results.
      *
      * @param {string} functionId
      * @param {string[]} queries
@@ -398,7 +397,7 @@ export class Functions extends Service {
         }
 
         const apiPath = '/functions/{functionId}/deployments'.replace('{functionId}', functionId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -418,25 +417,29 @@ export class Functions extends Service {
             'json'
         );
     }
-
     /**
      * Create deployment
      *
-     * Create a new function code deployment. Use this endpoint to upload a new version of your code function. To execute your newly uploaded code, you&#039;ll need to update the function&#039;s deployment to use your new deployment UID.
-
-This endpoint accepts a tar.gz file compressed with your code. Make sure to include any dependencies your code has within the compressed file. You can learn more about code packaging in the [Appwrite Cloud Functions tutorial](https://appwrite.io/docs/functions).
-
-Use the &quot;command&quot; param to set the entrypoint used to execute your code.
+     * Create a new function code deployment. Use this endpoint to upload a new
+     * version of your code function. To execute your newly uploaded code, you'll
+     * need to update the function's deployment to use your new deployment UID.
+     * 
+     * This endpoint accepts a tar.gz file compressed with your code. Make sure to
+     * include any dependencies your code has within the compressed file. You can
+     * learn more about code packaging in the [Appwrite Cloud Functions
+     * tutorial](https://appwrite.io/docs/functions).
+     * 
+     * Use the "command" param to set the entrypoint used to execute your code.
      *
      * @param {string} functionId
-     * @param {Payload} code
+     * @param {InputFile} code
      * @param {boolean} activate
      * @param {string} entrypoint
      * @param {string} commands
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createDeployment(functionId: string, code: Payload, activate: boolean, entrypoint?: string, commands?: string, onProgress = (progress: UploadProgress) => {}): Promise<Models.Deployment> {
+    async createDeployment(functionId: string, code: InputFile, activate: boolean, entrypoint?: string, commands?: string, onProgress = (progress: UploadProgress) => {}): Promise<Models.Deployment> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -450,7 +453,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/deployments'.replace('{functionId}', functionId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         if (typeof entrypoint !== 'undefined') {
             payload['entrypoint'] = entrypoint;
@@ -468,7 +471,8 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         const size = code.size;
         
         const apiHeaders: { [header: string]: string } = {
-            'content-type': 'multipart/form-data',        };
+            'content-type': 'multipart/form-data',
+        };
 
         let id: string | undefined = undefined;
         let response: any = undefined;
@@ -511,7 +515,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
                 apiHeaders['x-appwrite-id'] = id;
             }
 
-            payload['code'] = { type: 'file', file: new File([uploadableChunkTrimmed], code.filename ?? ''), filename: code.filename ?? '' };
+            payload['code'] = { type: 'file', file: new File([uploadableChunkTrimmed], code.filename), filename: code.filename };
 
             response = await this.client.call('post', apiPath, apiHeaders, payload);
 
@@ -534,24 +538,25 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             currentChunk++;
         }
 
-        const chunk = code.toBinary();
-        let i = 0;
-        for(const _ of chunk) {
-            uploadableChunk[currentPosition] = chunk[i];
+        for await (const chunk of code.stream) {
+            let i = 0;
+            for(const b of chunk) {
+                uploadableChunk[currentPosition] = chunk[i];
 
-            if(currentPosition + 1 >= Client.CHUNK_SIZE) {
-                await uploadChunk();
-                currentPosition--;
+                if(currentPosition + 1 >= Client.CHUNK_SIZE) {
+                    await uploadChunk();
+                    currentPosition--;
+                }
+
+                i++;
+                currentPosition++;
             }
-
-            i++;
-            currentPosition++;
         }
 
         await uploadChunk(true);
 
-        return response;    }
-
+        return response;
+    }
     /**
      * Get deployment
      *
@@ -572,7 +577,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/deployments/{deploymentId}'.replace('{functionId}', functionId).replace('{deploymentId}', deploymentId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'get',
@@ -584,11 +589,12 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * Update deployment
      *
-     * Update the function code deployment ID using the unique function ID. Use this endpoint to switch the code deployment that should be executed by the execution endpoint.
+     * Update the function code deployment ID using the unique function ID. Use
+     * this endpoint to switch the code deployment that should be executed by the
+     * execution endpoint.
      *
      * @param {string} functionId
      * @param {string} deploymentId
@@ -605,7 +611,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/deployments/{deploymentId}'.replace('{functionId}', functionId).replace('{deploymentId}', deploymentId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'patch',
@@ -617,7 +623,6 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * Delete deployment
      *
@@ -638,7 +643,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/deployments/{deploymentId}'.replace('{functionId}', functionId).replace('{deploymentId}', deploymentId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'delete',
@@ -650,7 +655,6 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * Rebuild deployment
      *
@@ -670,7 +674,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/deployments/{deploymentId}/build'.replace('{functionId}', functionId).replace('{deploymentId}', deploymentId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         if (typeof buildId !== 'undefined') {
             payload['buildId'] = buildId;
@@ -685,7 +689,6 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * Cancel deployment
      *
@@ -704,7 +707,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/deployments/{deploymentId}/build'.replace('{functionId}', functionId).replace('{deploymentId}', deploymentId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'patch',
@@ -716,11 +719,11 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * Download deployment
      *
-     * Get a Deployment&#039;s contents by its unique ID. This endpoint supports range requests for partial or streaming file download.
+     * Get a Deployment's contents by its unique ID. This endpoint supports range
+     * requests for partial or streaming file download.
      *
      * @param {string} functionId
      * @param {string} deploymentId
@@ -737,7 +740,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/deployments/{deploymentId}/download'.replace('{functionId}', functionId).replace('{deploymentId}', deploymentId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'get',
@@ -749,11 +752,11 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'arraybuffer'
         );
     }
-
     /**
      * List executions
      *
-     * Get a list of all the current user function execution logs. You can use the query params to filter your results.
+     * Get a list of all the current user function execution logs. You can use the
+     * query params to filter your results.
      *
      * @param {string} functionId
      * @param {string[]} queries
@@ -767,7 +770,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/executions'.replace('{functionId}', functionId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         if (typeof queries !== 'undefined') {
             payload['queries'] = queries;
@@ -787,14 +790,16 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * Create execution
      *
-     * Trigger a function execution. The returned object will return you the current execution status. You can ping the `Get Execution` endpoint to get updates on the current execution status. Once this endpoint is called, your function execution process will start asynchronously.
+     * Trigger a function execution. The returned object will return you the
+     * current execution status. You can ping the `Get Execution` endpoint to get
+     * updates on the current execution status. Once this endpoint is called, your
+     * function execution process will start asynchronously.
      *
      * @param {string} functionId
-     * @param {Payload} body
+     * @param {string} body
      * @param {boolean} async
      * @param {string} xpath
      * @param {ExecutionMethod} method
@@ -803,19 +808,19 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createExecution(functionId: string, body?: Payload, async?: boolean, xpath?: string, method?: ExecutionMethod, headers?: object, scheduledAt?: string, onProgress = (progress: UploadProgress) => {}): Promise<Models.Execution> {
+    async createExecution(functionId: string, body?: string, async?: boolean, xpath?: string, method?: ExecutionMethod, headers?: object, scheduledAt?: string): Promise<Models.Execution> {
         if (typeof functionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
         const apiPath = '/functions/{functionId}/executions'.replace('{functionId}', functionId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         if (typeof body !== 'undefined') {
-            payload['body'] = body.toString();
+            payload['body'] = body;
         }
         if (typeof async !== 'undefined') {
-            payload['async'] = async.toString();
+            payload['async'] = async;
         }
         if (typeof xpath !== 'undefined') {
             payload['path'] = xpath;
@@ -824,7 +829,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             payload['method'] = method;
         }
         if (typeof headers !== 'undefined') {
-            payload['headers'] = headers.toString();
+            payload['headers'] = headers;
         }
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
@@ -833,13 +838,12 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'post',
             apiPath,
             {
-                'content-type': 'multipart/form-data',
+                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
-
     /**
      * Get execution
      *
@@ -860,7 +864,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/executions/{executionId}'.replace('{functionId}', functionId).replace('{executionId}', executionId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'get',
@@ -872,12 +876,11 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * Delete execution
      *
      * Delete a function execution by its unique ID.
-
+     * 
      *
      * @param {string} functionId
      * @param {string} executionId
@@ -894,7 +897,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/executions/{executionId}'.replace('{functionId}', functionId).replace('{executionId}', executionId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'delete',
@@ -906,7 +909,6 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * List variables
      *
@@ -922,7 +924,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/variables'.replace('{functionId}', functionId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'get',
@@ -934,11 +936,11 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * Create variable
      *
-     * Create a new function environment variable. These variables can be accessed in the function at runtime as environment variables.
+     * Create a new function environment variable. These variables can be accessed
+     * in the function at runtime as environment variables.
      *
      * @param {string} functionId
      * @param {string} key
@@ -960,7 +962,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/variables'.replace('{functionId}', functionId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -978,7 +980,6 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * Get variable
      *
@@ -999,7 +1000,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/variables/{variableId}'.replace('{functionId}', functionId).replace('{variableId}', variableId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'get',
@@ -1011,7 +1012,6 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * Update variable
      *
@@ -1038,7 +1038,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/variables/{variableId}'.replace('{functionId}', functionId).replace('{variableId}', variableId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         if (typeof key !== 'undefined') {
             payload['key'] = key;
@@ -1056,7 +1056,6 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
             'json'
         );
     }
-
     /**
      * Delete variable
      *
@@ -1077,7 +1076,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
         }
 
         const apiPath = '/functions/{functionId}/variables/{variableId}'.replace('{functionId}', functionId).replace('{variableId}', variableId);
-        const payload: Params = {};
+        const payload: Payload = {};
 
         return await this.client.call(
             'delete',
