@@ -5,6 +5,7 @@ import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
+import { MessagePriority } from '../enums/message-priority.ts';
 import { SmtpEncryption } from '../enums/smtp-encryption.ts';
 
 export type UploadProgress = {
@@ -226,23 +227,18 @@ export class Messaging extends Service {
      * @param {string} sound
      * @param {string} color
      * @param {string} tag
-     * @param {string} badge
+     * @param {number} badge
      * @param {boolean} draft
      * @param {string} scheduledAt
+     * @param {boolean} contentAvailable
+     * @param {boolean} critical
+     * @param {MessagePriority} priority
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createPush(messageId: string, title: string, body: string, topics?: string[], users?: string[], targets?: string[], data?: object, action?: string, image?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: string, draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
+    async createPush(messageId: string, title?: string, body?: string, topics?: string[], users?: string[], targets?: string[], data?: object, action?: string, image?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: number, draft?: boolean, scheduledAt?: string, contentAvailable?: boolean, critical?: boolean, priority?: MessagePriority): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
-        }
-
-        if (typeof title === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "title"');
-        }
-
-        if (typeof body === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "body"');
         }
 
         const apiPath = '/messaging/messages/push';
@@ -296,6 +292,15 @@ export class Messaging extends Service {
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
         }
+        if (typeof contentAvailable !== 'undefined') {
+            payload['contentAvailable'] = contentAvailable;
+        }
+        if (typeof critical !== 'undefined') {
+            payload['critical'] = critical;
+        }
+        if (typeof priority !== 'undefined') {
+            payload['priority'] = priority;
+        }
         return await this.client.call(
             'post',
             apiPath,
@@ -328,10 +333,13 @@ export class Messaging extends Service {
      * @param {number} badge
      * @param {boolean} draft
      * @param {string} scheduledAt
+     * @param {boolean} contentAvailable
+     * @param {boolean} critical
+     * @param {MessagePriority} priority
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updatePush(messageId: string, topics?: string[], users?: string[], targets?: string[], title?: string, body?: string, data?: object, action?: string, image?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: number, draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
+    async updatePush(messageId: string, topics?: string[], users?: string[], targets?: string[], title?: string, body?: string, data?: object, action?: string, image?: string, icon?: string, sound?: string, color?: string, tag?: string, badge?: number, draft?: boolean, scheduledAt?: string, contentAvailable?: boolean, critical?: boolean, priority?: MessagePriority): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -383,6 +391,15 @@ export class Messaging extends Service {
         }
         if (typeof scheduledAt !== 'undefined') {
             payload['scheduledAt'] = scheduledAt;
+        }
+        if (typeof contentAvailable !== 'undefined') {
+            payload['contentAvailable'] = contentAvailable;
+        }
+        if (typeof critical !== 'undefined') {
+            payload['critical'] = critical;
+        }
+        if (typeof priority !== 'undefined') {
+            payload['priority'] = priority;
         }
         return await this.client.call(
             'patch',

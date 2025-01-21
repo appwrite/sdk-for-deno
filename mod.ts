@@ -28,6 +28,7 @@ import { IndexType } from "./src/enums/index-type.ts";
 import { Runtime } from "./src/enums/runtime.ts";
 import { ExecutionMethod } from "./src/enums/execution-method.ts";
 import { Name } from "./src/enums/name.ts";
+import { MessagePriority } from "./src/enums/message-priority.ts";
 import { SmtpEncryption } from "./src/enums/smtp-encryption.ts";
 import { Compression } from "./src/enums/compression.ts";
 import { ImageGravity } from "./src/enums/image-gravity.ts";
@@ -66,6 +67,7 @@ export {
     Runtime,
     ExecutionMethod,
     Name,
+    MessagePriority,
     SmtpEncryption,
     Compression,
     ImageGravity,
