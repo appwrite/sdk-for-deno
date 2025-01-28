@@ -425,7 +425,7 @@ export class Account extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateMfaChallenge(challengeId: string, otp: string): Promise<Response> {
+    async updateMfaChallenge(challengeId: string, otp: string): Promise<Models.Session> {
         if (typeof challengeId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "challengeId"');
         }

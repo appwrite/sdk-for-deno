@@ -877,7 +877,7 @@ export class Users extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async deleteMfaAuthenticator<Preferences extends Models.Preferences>(userId: string, type: AuthenticatorType): Promise<Models.User<Preferences>> {
+    async deleteMfaAuthenticator(userId: string, type: AuthenticatorType): Promise<Response> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
