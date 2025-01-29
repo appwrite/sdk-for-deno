@@ -343,7 +343,7 @@ export class Storage extends Service {
         }
 
         const size = file.size;
-        
+
         const apiHeaders: { [header: string]: string } = {
             'content-type': 'multipart/form-data',
         };
@@ -353,16 +353,14 @@ export class Storage extends Service {
 
         let chunksUploaded = 0;
 
-        if(fileId != 'unique()') {
-            try {
-                response = await this.client.call(
-                    'get',
-                    apiPath + '/' + fileId,
-                    apiHeaders
-                );
-                chunksUploaded = response.chunksUploaded;
-            } catch(e) {
-            }
+        try {
+            response = await this.client.call(
+                'get',
+                apiPath + '/' + fileId,
+                apiHeaders
+            );
+            chunksUploaded = response.chunksUploaded;
+        } catch(e) {
         }
 
         let currentChunk = 1;
@@ -386,7 +384,7 @@ export class Storage extends Service {
             }
 
             let uploadableChunkTrimmed: Uint8Array;
-            
+
             if(currentPosition + 1 >= Client.CHUNK_SIZE) {
                 uploadableChunkTrimmed = uploadableChunk;
             } else {
