@@ -23,8 +23,6 @@ export class Health extends Service {
      }
 
     /**
-     * Get HTTP
-     *
      * Check the Appwrite HTTP server is up and responsive.
      *
      * @throws {AppwriteException}
@@ -38,15 +36,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get antivirus
-     *
      * Check the Appwrite Antivirus server is up and connection is successful.
      *
      * @throws {AppwriteException}
@@ -60,15 +55,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get cache
-     *
      * Check the Appwrite in-memory cache servers are up and connection is
      * successful.
      *
@@ -83,15 +75,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get the SSL certificate for a domain
-     *
      * Get the SSL certificate for a domain
      *
      * @param {string} domain
@@ -110,15 +99,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get DB
-     *
      * Check the Appwrite database servers are up and connection is successful.
      *
      * @throws {AppwriteException}
@@ -132,15 +118,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get pubsub
-     *
      * Check the Appwrite pub-sub servers are up and connection is successful.
      *
      * @throws {AppwriteException}
@@ -154,38 +137,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get queue
-     *
-     * Check the Appwrite queue messaging servers are up and connection is
-     * successful.
-     *
-     * @throws {AppwriteException}
-     * @returns {Promise}
-     */
-    async getQueue(): Promise<Models.HealthStatus> {
-        const apiPath = '/health/queue';
-        const payload: Payload = {};
-
-        return await this.client.call(
-            'get',
-            apiPath,
-            {
-                'content-type': 'application/json',
-            },
-            payload,
-            'json'
-        );
-    }
-    /**
-     * Get builds queue
-     *
      * Get the number of builds that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -205,15 +162,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get certificates queue
-     *
      * Get the number of certificates that are waiting to be issued against
      * [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
      * server.
@@ -234,15 +188,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get databases queue
-     *
      * Get the number of database changes that are waiting to be processed in the
      * Appwrite internal queue server.
      *
@@ -267,15 +218,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get deletes queue
-     *
      * Get the number of background destructive changes that are waiting to be
      * processed in the Appwrite internal queue server.
      *
@@ -295,15 +243,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get number of failed queue jobs
-     *
      * Returns the amount of failed jobs in a given queue.
      * 
      *
@@ -328,15 +273,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get functions queue
-     *
      * Get the number of function executions that are waiting to be processed in
      * the Appwrite internal queue server.
      *
@@ -356,15 +298,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get logs queue
-     *
      * Get the number of logs that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -384,15 +323,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get mails queue
-     *
      * Get the number of mails that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -412,15 +348,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get messaging queue
-     *
      * Get the number of messages that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -440,15 +373,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get migrations queue
-     *
      * Get the number of migrations that are waiting to be processed in the
      * Appwrite internal queue server.
      *
@@ -468,15 +398,37 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get usage queue
+     * Get the number of metrics that are waiting to be processed in the Appwrite
+     * stats resources queue.
      *
+     * @param {number} threshold
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getQueueStatsResources(threshold?: number): Promise<Models.HealthQueue> {
+        const apiPath = '/health/queue/stats-resources';
+        const payload: Payload = {};
+
+        if (typeof threshold !== 'undefined') {
+            payload['threshold'] = threshold;
+        }
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
      * Get the number of metrics that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -485,7 +437,7 @@ export class Health extends Service {
      * @returns {Promise}
      */
     async getQueueUsage(threshold?: number): Promise<Models.HealthQueue> {
-        const apiPath = '/health/queue/usage';
+        const apiPath = '/health/queue/stats-usage';
         const payload: Payload = {};
 
         if (typeof threshold !== 'undefined') {
@@ -496,43 +448,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get usage dump queue
-     *
-     * Get the number of projects containing metrics that are waiting to be
-     * processed in the Appwrite internal queue server.
-     *
-     * @param {number} threshold
-     * @throws {AppwriteException}
-     * @returns {Promise}
-     */
-    async getQueueUsageDump(threshold?: number): Promise<Models.HealthQueue> {
-        const apiPath = '/health/queue/usage-dump';
-        const payload: Payload = {};
-
-        if (typeof threshold !== 'undefined') {
-            payload['threshold'] = threshold;
-        }
-
-        return await this.client.call(
-            'get',
-            apiPath,
-            {
-                'content-type': 'application/json',
-            },
-            payload,
-            'json'
-        );
-    }
-    /**
-     * Get webhooks queue
-     *
      * Get the number of webhooks that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -552,15 +473,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get storage
-     *
      * Check the Appwrite storage device is up and connection is successful.
      *
      * @throws {AppwriteException}
@@ -574,15 +492,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get local storage
-     *
      * Check the Appwrite local storage device is up and connection is successful.
      *
      * @throws {AppwriteException}
@@ -596,15 +511,12 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Get time
-     *
      * Check the Appwrite server time is synced with Google remote NTP server. We
      * use this technology to smoothly handle leap seconds with no disruptive
      * events. The [Network Time
@@ -624,7 +536,6 @@ export class Health extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'

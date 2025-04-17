@@ -22,8 +22,6 @@ export class Teams extends Service {
      }
 
     /**
-     * List teams
-     *
      * Get a list of all the teams in which the current user is a member. You can
      * use the parameters to filter your results.
      *
@@ -48,15 +46,12 @@ export class Teams extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create team
-     *
      * Create a new team. The user who creates the team will automatically be
      * assigned as the owner of the team. Only the users with the owner role can
      * invite new members, add new owners and delete or update the team.
@@ -99,8 +94,6 @@ export class Teams extends Service {
         );
     }
     /**
-     * Get team
-     *
      * Get a team by its ID. All team members have read access for this resource.
      *
      * @param {string} teamId
@@ -119,15 +112,12 @@ export class Teams extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Update name
-     *
      * Update the team's name by its unique ID.
      *
      * @param {string} teamId
@@ -161,8 +151,6 @@ export class Teams extends Service {
         );
     }
     /**
-     * Delete team
-     *
      * Delete a team using its ID. Only team members with the owner role can
      * delete the team.
      *
@@ -189,10 +177,9 @@ export class Teams extends Service {
         );
     }
     /**
-     * List team memberships
-     *
      * Use this endpoint to list a team's members using the team's ID. All team
-     * members have read access to this endpoint.
+     * members have read access to this endpoint. Hide sensitive attributes from
+     * the response by toggling membership privacy in the Console.
      *
      * @param {string} teamId
      * @param {string[]} queries
@@ -220,15 +207,12 @@ export class Teams extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create team membership
-     *
      * Invite a new member to join your team. Provide an ID for existing users, or
      * invite unregistered users using an email or phone number. If initiated from
      * a Client SDK, Appwrite will send an email or sms with a link to join the
@@ -302,10 +286,9 @@ export class Teams extends Service {
         );
     }
     /**
-     * Get team membership
-     *
      * Get a team member by the membership unique id. All team members have read
-     * access for this resource.
+     * access for this resource. Hide sensitive attributes from the response by
+     * toggling membership privacy in the Console.
      *
      * @param {string} teamId
      * @param {string} membershipId
@@ -328,15 +311,12 @@ export class Teams extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Update membership
-     *
      * Modify the roles of a team member. Only team members with the owner role
      * have access to this endpoint. Learn more about [roles and
      * permissions](https://appwrite.io/docs/permissions).
@@ -378,8 +358,6 @@ export class Teams extends Service {
         );
     }
     /**
-     * Delete team membership
-     *
      * This endpoint allows a user to leave a team or for a team owner to delete
      * the membership of any other team member. You can also use this endpoint to
      * delete a user membership even if it is not accepted.
@@ -412,8 +390,6 @@ export class Teams extends Service {
         );
     }
     /**
-     * Update team membership status
-     *
      * Use this endpoint to allow a user to accept an invitation to join a team
      * after being redirected back to your app from the invitation email received
      * by the user.
@@ -466,8 +442,6 @@ export class Teams extends Service {
         );
     }
     /**
-     * Get team preferences
-     *
      * Get the team's shared preferences by its unique ID. If a preference doesn't
      * need to be shared by all team members, prefer storing them in [user
      * preferences](https://appwrite.io/docs/references/cloud/client-web/account#getPrefs).
@@ -488,15 +462,12 @@ export class Teams extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Update preferences
-     *
      * Update the team's preferences by its unique ID. The object you pass is
      * stored as is and replaces any previous value. The maximum allowed prefs
      * size is 64kB and throws an error if exceeded.

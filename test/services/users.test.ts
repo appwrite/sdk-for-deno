@@ -505,32 +505,17 @@ describe('Users service', () => {
 
     
     test('test method deleteMfaAuthenticator()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'name': 'John Doe',
-            'registration': '2020-10-15T06:38:00.000+00:00',
-            'status': true,
-            'labels': [],
-            'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
-            'email': 'john@appwrite.io',
-            'phone': '+4930901820',
-            'emailVerification': true,
-            'phoneVerification': true,
-            'mfa': true,
-            'prefs': {},
-            'targets': [],
-            'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+        const data = '';
 
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await users.deleteMfaAuthenticator(
             '<USER_ID>',
             'totp',
         );
 
-        assertEquals(response, data);
+        const text = await response.text();
+        assertEquals(text, data);
         stubbedFetch.restore();
     });
 
@@ -862,10 +847,11 @@ describe('Users service', () => {
             '\$id': '259125845563242502',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'name': 'Aegon apple token',
+            'name': 'Apple iPhone 12',
             'userId': '259125845563242502',
             'providerType': 'email',
-            'identifier': 'token',};
+            'identifier': 'token',
+            'expired': true,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -886,10 +872,11 @@ describe('Users service', () => {
             '\$id': '259125845563242502',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'name': 'Aegon apple token',
+            'name': 'Apple iPhone 12',
             'userId': '259125845563242502',
             'providerType': 'email',
-            'identifier': 'token',};
+            'identifier': 'token',
+            'expired': true,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -908,10 +895,11 @@ describe('Users service', () => {
             '\$id': '259125845563242502',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'name': 'Aegon apple token',
+            'name': 'Apple iPhone 12',
             'userId': '259125845563242502',
             'providerType': 'email',
-            'identifier': 'token',};
+            'identifier': 'token',
+            'expired': true,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 

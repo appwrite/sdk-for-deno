@@ -233,7 +233,9 @@ describe('Databases service', () => {
             'type': 'boolean',
             'status': 'available',
             'error': 'string',
-            'required': true,};
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -255,7 +257,9 @@ describe('Databases service', () => {
             'type': 'boolean',
             'status': 'available',
             'error': 'string',
-            'required': true,};
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -279,6 +283,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'format': 'datetime',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -302,6 +308,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'format': 'datetime',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -326,6 +334,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'format': 'email',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -349,6 +359,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'format': 'email',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -373,6 +385,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'elements': [],
             'format': 'enum',};
 
@@ -398,6 +412,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'elements': [],
             'format': 'enum',};
 
@@ -423,7 +439,9 @@ describe('Databases service', () => {
             'type': 'double',
             'status': 'available',
             'error': 'string',
-            'required': true,};
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -445,7 +463,9 @@ describe('Databases service', () => {
             'type': 'double',
             'status': 'available',
             'error': 'string',
-            'required': true,};
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -454,8 +474,6 @@ describe('Databases service', () => {
             '<COLLECTION_ID>',
             '',
             true,
-            1.0,
-            1.0,
             1.0,
         );
 
@@ -470,7 +488,9 @@ describe('Databases service', () => {
             'type': 'integer',
             'status': 'available',
             'error': 'string',
-            'required': true,};
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -492,7 +512,9 @@ describe('Databases service', () => {
             'type': 'integer',
             'status': 'available',
             'error': 'string',
-            'required': true,};
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -501,8 +523,6 @@ describe('Databases service', () => {
             '<COLLECTION_ID>',
             '',
             true,
-            1,
-            1,
             1,
         );
 
@@ -518,6 +538,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'format': 'ip',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -541,6 +563,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'format': 'ip',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -565,6 +589,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'relatedCollection': 'collection',
             'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
             'twoWay': true,
@@ -593,6 +619,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'size': 128,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -617,6 +645,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'size': 128,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -641,6 +671,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'format': 'url',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -664,6 +696,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'format': 'url',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
@@ -722,6 +756,8 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'relatedCollection': 'collection',
             'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
             'twoWay': true,
@@ -866,7 +902,9 @@ describe('Databases service', () => {
             'type': 'primary',
             'status': 'available',
             'error': 'string',
-            'attributes': [],};
+            'attributes': [],
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -889,7 +927,9 @@ describe('Databases service', () => {
             'type': 'primary',
             'status': 'available',
             'error': 'string',
-            'attributes': [],};
+            'attributes': [],
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 

@@ -25,8 +25,6 @@ export class Databases extends Service {
      }
 
     /**
-     * List databases
-     *
      * Get a list of all databases from the current Appwrite project. You can use
      * the search parameter to filter your results.
      *
@@ -51,15 +49,12 @@ export class Databases extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create database
-     *
      * Create a new Database.
      * 
      *
@@ -101,8 +96,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Get database
-     *
      * Get a database by its unique ID. This endpoint response returns a JSON
      * object with the database metadata.
      *
@@ -122,15 +115,12 @@ export class Databases extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Update database
-     *
      * Update a database by its unique ID.
      *
      * @param {string} databaseId
@@ -168,8 +158,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Delete database
-     *
      * Delete a database by its unique ID. Only API keys with with databases.write
      * scope can delete a database.
      *
@@ -196,8 +184,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * List collections
-     *
      * Get a list of all collections that belong to the provided databaseId. You
      * can use the search parameter to filter your results.
      *
@@ -227,15 +213,12 @@ export class Databases extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create collection
-     *
      * Create a new Collection. Before using this route, you should create a new
      * database resource using either a [server
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
@@ -292,8 +275,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Get collection
-     *
      * Get a collection by its unique ID. This endpoint response returns a JSON
      * object with the collection metadata.
      *
@@ -318,15 +299,12 @@ export class Databases extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Update collection
-     *
      * Update a collection by its unique ID.
      *
      * @param {string} databaseId
@@ -377,8 +355,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Delete collection
-     *
      * Delete a collection by its unique ID. Only users with write permissions
      * have access to delete this resource.
      *
@@ -410,8 +386,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * List attributes
-     *
      * List attributes in the collection.
      *
      * @param {string} databaseId
@@ -440,15 +414,12 @@ export class Databases extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create boolean attribute
-     *
      * Create a boolean attribute.
      * 
      *
@@ -504,8 +475,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Update boolean attribute
-     *
      * Update a boolean attribute. Changing the `default` value will not update
      * already existing documents.
      *
@@ -514,10 +483,11 @@ export class Databases extends Service {
      * @param {string} key
      * @param {boolean} required
      * @param {boolean} xdefault
+     * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateBooleanAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: boolean): Promise<Models.AttributeBoolean> {
+    async updateBooleanAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: boolean, newKey?: string): Promise<Models.AttributeBoolean> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -547,6 +517,9 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
+        if (typeof newKey !== 'undefined') {
+            payload['newKey'] = newKey;
+        }
         return await this.client.call(
             'patch',
             apiPath,
@@ -558,8 +531,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Create datetime attribute
-     *
      * Create a date time attribute according to the ISO 8601 standard.
      *
      * @param {string} databaseId
@@ -614,8 +585,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Update dateTime attribute
-     *
      * Update a date time attribute. Changing the `default` value will not update
      * already existing documents.
      *
@@ -624,10 +593,11 @@ export class Databases extends Service {
      * @param {string} key
      * @param {boolean} required
      * @param {string} xdefault
+     * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateDatetimeAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string): Promise<Models.AttributeDatetime> {
+    async updateDatetimeAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string, newKey?: string): Promise<Models.AttributeDatetime> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -657,6 +627,9 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
+        if (typeof newKey !== 'undefined') {
+            payload['newKey'] = newKey;
+        }
         return await this.client.call(
             'patch',
             apiPath,
@@ -668,8 +641,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Create email attribute
-     *
      * Create an email attribute.
      * 
      *
@@ -725,8 +696,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Update email attribute
-     *
      * Update an email attribute. Changing the `default` value will not update
      * already existing documents.
      * 
@@ -736,10 +705,11 @@ export class Databases extends Service {
      * @param {string} key
      * @param {boolean} required
      * @param {string} xdefault
+     * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateEmailAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string): Promise<Models.AttributeEmail> {
+    async updateEmailAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string, newKey?: string): Promise<Models.AttributeEmail> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -769,6 +739,9 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
+        if (typeof newKey !== 'undefined') {
+            payload['newKey'] = newKey;
+        }
         return await this.client.call(
             'patch',
             apiPath,
@@ -780,8 +753,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Create enum attribute
-     *
      * Create an enumeration attribute. The `elements` param acts as a white-list
      * of accepted values for this attribute. 
      * 
@@ -846,8 +817,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Update enum attribute
-     *
      * Update an enum attribute. Changing the `default` value will not update
      * already existing documents.
      * 
@@ -858,10 +827,11 @@ export class Databases extends Service {
      * @param {string[]} elements
      * @param {boolean} required
      * @param {string} xdefault
+     * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateEnumAttribute(databaseId: string, collectionId: string, key: string, elements: string[], required: boolean, xdefault?: string): Promise<Models.AttributeEnum> {
+    async updateEnumAttribute(databaseId: string, collectionId: string, key: string, elements: string[], required: boolean, xdefault?: string, newKey?: string): Promise<Models.AttributeEnum> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -898,6 +868,9 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
+        if (typeof newKey !== 'undefined') {
+            payload['newKey'] = newKey;
+        }
         return await this.client.call(
             'patch',
             apiPath,
@@ -909,8 +882,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Create float attribute
-     *
      * Create a float attribute. Optionally, minimum and maximum values can be
      * provided.
      * 
@@ -975,8 +946,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Update float attribute
-     *
      * Update a float attribute. Changing the `default` value will not update
      * already existing documents.
      * 
@@ -985,13 +954,14 @@ export class Databases extends Service {
      * @param {string} collectionId
      * @param {string} key
      * @param {boolean} required
+     * @param {number} xdefault
      * @param {number} min
      * @param {number} max
-     * @param {number} xdefault
+     * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateFloatAttribute(databaseId: string, collectionId: string, key: string, required: boolean, min: number, max: number, xdefault?: number): Promise<Models.AttributeFloat> {
+    async updateFloatAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: number, min?: number, max?: number, newKey?: string): Promise<Models.AttributeFloat> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1006,14 +976,6 @@ export class Databases extends Service {
 
         if (typeof required === 'undefined') {
             throw new AppwriteException('Missing required parameter: "required"');
-        }
-
-        if (typeof min === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "min"');
-        }
-
-        if (typeof max === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "max"');
         }
 
         if (typeof xdefault === 'undefined') {
@@ -1035,6 +997,9 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
+        if (typeof newKey !== 'undefined') {
+            payload['newKey'] = newKey;
+        }
         return await this.client.call(
             'patch',
             apiPath,
@@ -1046,8 +1011,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Create integer attribute
-     *
      * Create an integer attribute. Optionally, minimum and maximum values can be
      * provided.
      * 
@@ -1112,8 +1075,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Update integer attribute
-     *
      * Update an integer attribute. Changing the `default` value will not update
      * already existing documents.
      * 
@@ -1122,13 +1083,14 @@ export class Databases extends Service {
      * @param {string} collectionId
      * @param {string} key
      * @param {boolean} required
+     * @param {number} xdefault
      * @param {number} min
      * @param {number} max
-     * @param {number} xdefault
+     * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateIntegerAttribute(databaseId: string, collectionId: string, key: string, required: boolean, min: number, max: number, xdefault?: number): Promise<Models.AttributeInteger> {
+    async updateIntegerAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: number, min?: number, max?: number, newKey?: string): Promise<Models.AttributeInteger> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1143,14 +1105,6 @@ export class Databases extends Service {
 
         if (typeof required === 'undefined') {
             throw new AppwriteException('Missing required parameter: "required"');
-        }
-
-        if (typeof min === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "min"');
-        }
-
-        if (typeof max === 'undefined') {
-            throw new AppwriteException('Missing required parameter: "max"');
         }
 
         if (typeof xdefault === 'undefined') {
@@ -1172,6 +1126,9 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
+        if (typeof newKey !== 'undefined') {
+            payload['newKey'] = newKey;
+        }
         return await this.client.call(
             'patch',
             apiPath,
@@ -1183,8 +1140,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Create IP address attribute
-     *
      * Create IP address attribute.
      * 
      *
@@ -1240,8 +1195,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Update IP address attribute
-     *
      * Update an ip attribute. Changing the `default` value will not update
      * already existing documents.
      * 
@@ -1251,10 +1204,11 @@ export class Databases extends Service {
      * @param {string} key
      * @param {boolean} required
      * @param {string} xdefault
+     * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateIpAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string): Promise<Models.AttributeIp> {
+    async updateIpAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string, newKey?: string): Promise<Models.AttributeIp> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1284,6 +1238,9 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
+        if (typeof newKey !== 'undefined') {
+            payload['newKey'] = newKey;
+        }
         return await this.client.call(
             'patch',
             apiPath,
@@ -1295,8 +1252,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Create relationship attribute
-     *
      * Create relationship attribute. [Learn more about relationship
      * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
      * 
@@ -1361,8 +1316,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Create string attribute
-     *
      * Create a string attribute.
      * 
      *
@@ -1430,8 +1383,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Update string attribute
-     *
      * Update a string attribute. Changing the `default` value will not update
      * already existing documents.
      * 
@@ -1441,10 +1392,12 @@ export class Databases extends Service {
      * @param {string} key
      * @param {boolean} required
      * @param {string} xdefault
+     * @param {number} size
+     * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateStringAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string): Promise<Models.AttributeString> {
+    async updateStringAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string, size?: number, newKey?: string): Promise<Models.AttributeString> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1474,6 +1427,12 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
+        if (typeof size !== 'undefined') {
+            payload['size'] = size;
+        }
+        if (typeof newKey !== 'undefined') {
+            payload['newKey'] = newKey;
+        }
         return await this.client.call(
             'patch',
             apiPath,
@@ -1485,8 +1444,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Create URL attribute
-     *
      * Create a URL attribute.
      * 
      *
@@ -1542,8 +1499,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Update URL attribute
-     *
      * Update an url attribute. Changing the `default` value will not update
      * already existing documents.
      * 
@@ -1553,10 +1508,11 @@ export class Databases extends Service {
      * @param {string} key
      * @param {boolean} required
      * @param {string} xdefault
+     * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateUrlAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string): Promise<Models.AttributeUrl> {
+    async updateUrlAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string, newKey?: string): Promise<Models.AttributeUrl> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1586,6 +1542,9 @@ export class Databases extends Service {
         if (typeof xdefault !== 'undefined') {
             payload['default'] = xdefault;
         }
+        if (typeof newKey !== 'undefined') {
+            payload['newKey'] = newKey;
+        }
         return await this.client.call(
             'patch',
             apiPath,
@@ -1597,8 +1556,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Get attribute
-     *
      * Get attribute by ID.
      *
      * @param {string} databaseId
@@ -1627,15 +1584,12 @@ export class Databases extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Delete attribute
-     *
      * Deletes an attribute.
      *
      * @param {string} databaseId
@@ -1671,8 +1625,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Update relationship attribute
-     *
      * Update relationship attribute. [Learn more about relationship
      * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
      * 
@@ -1681,10 +1633,11 @@ export class Databases extends Service {
      * @param {string} collectionId
      * @param {string} key
      * @param {RelationMutate} onDelete
+     * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateRelationshipAttribute(databaseId: string, collectionId: string, key: string, onDelete?: RelationMutate): Promise<Models.AttributeRelationship> {
+    async updateRelationshipAttribute(databaseId: string, collectionId: string, key: string, onDelete?: RelationMutate, newKey?: string): Promise<Models.AttributeRelationship> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1703,6 +1656,9 @@ export class Databases extends Service {
         if (typeof onDelete !== 'undefined') {
             payload['onDelete'] = onDelete;
         }
+        if (typeof newKey !== 'undefined') {
+            payload['newKey'] = newKey;
+        }
         return await this.client.call(
             'patch',
             apiPath,
@@ -1714,8 +1670,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * List documents
-     *
      * Get a list of all the user's documents in a given collection. You can use
      * the query params to filter your results.
      *
@@ -1745,19 +1699,17 @@ export class Databases extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create document
-     *
      * Create a new Document. Before using this route, you should create a new
      * collection resource using either a [server
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
+     * 
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1807,8 +1759,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Get document
-     *
      * Get a document by its unique ID. This endpoint response returns a JSON
      * object with the document data.
      *
@@ -1843,15 +1793,12 @@ export class Databases extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Update document
-     *
      * Update a document by its unique ID. Using the patch method you can pass
      * only specific fields that will get updated.
      *
@@ -1896,8 +1843,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Delete document
-     *
      * Delete a document by its unique ID.
      *
      * @param {string} databaseId
@@ -1933,8 +1878,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * List indexes
-     *
      * List indexes in the collection.
      *
      * @param {string} databaseId
@@ -1963,15 +1906,12 @@ export class Databases extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create index
-     *
      * Creates an index on the attributes listed. Your index should include all
      * the attributes you will query in a single request.
      * Attributes can be `key`, `fulltext`, and `unique`.
@@ -2032,8 +1972,6 @@ export class Databases extends Service {
         );
     }
     /**
-     * Get index
-     *
      * Get index by ID.
      *
      * @param {string} databaseId
@@ -2062,15 +2000,12 @@ export class Databases extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Delete index
-     *
      * Delete an index.
      *
      * @param {string} databaseId

@@ -22,8 +22,6 @@ export class Locale extends Service {
      }
 
     /**
-     * Get user locale
-     *
      * Get the current user location based on IP. Returns an object with user
      * country code, country name, continent name, continent code, ip address and
      * suggested currency. You can use the locale header to get the data in a
@@ -42,15 +40,12 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List Locale Codes
-     *
      * List of all locale codes in [ISO
      * 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
      *
@@ -65,15 +60,12 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List continents
-     *
      * List of all continents. You can use the locale header to get the data in a
      * supported language.
      *
@@ -88,15 +80,12 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List countries
-     *
      * List of all countries. You can use the locale header to get the data in a
      * supported language.
      *
@@ -111,15 +100,12 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List EU countries
-     *
      * List of all countries that are currently members of the EU. You can use the
      * locale header to get the data in a supported language.
      *
@@ -134,15 +120,12 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List countries phone codes
-     *
      * List of all countries phone codes. You can use the locale header to get the
      * data in a supported language.
      *
@@ -157,15 +140,12 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List currencies
-     *
      * List of all currencies, including currency symbol, name, plural, and
      * decimal digits for all major and minor currencies. You can use the locale
      * header to get the data in a supported language.
@@ -181,15 +161,12 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List languages
-     *
      * List of all languages classified by ISO 639-1 including 2-letter code, name
      * in English, and name in the respective language.
      *
@@ -204,7 +181,6 @@ export class Locale extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
