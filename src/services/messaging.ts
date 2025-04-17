@@ -24,8 +24,6 @@ export class Messaging extends Service {
      }
 
     /**
-     * List messages
-     *
      * Get a list of all messages from the current Appwrite project.
      *
      * @param {string[]} queries
@@ -49,15 +47,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create email
-     *
      * Create a new email message.
      *
      * @param {string} messageId
@@ -138,9 +133,9 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update email
-     *
-     * Update an email message by its unique ID.
+     * Update an email message by its unique ID. This endpoint only works on
+     * messages that are in draft status. Messages that are already processing,
+     * sent, or failed cannot be updated.
      * 
      *
      * @param {string} messageId
@@ -210,8 +205,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Create push notification
-     *
      * Create a new push notification.
      *
      * @param {string} messageId
@@ -312,9 +305,9 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update push notification
-     *
-     * Update a push notification by its unique ID.
+     * Update a push notification by its unique ID. This endpoint only works on
+     * messages that are in draft status. Messages that are already processing,
+     * sent, or failed cannot be updated.
      * 
      *
      * @param {string} messageId
@@ -412,8 +405,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Create SMS
-     *
      * Create a new SMS message.
      *
      * @param {string} messageId
@@ -470,9 +461,9 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update SMS
-     *
-     * Update an SMS message by its unique ID.
+     * Update an SMS message by its unique ID. This endpoint only works on
+     * messages that are in draft status. Messages that are already processing,
+     * sent, or failed cannot be updated.
      * 
      *
      * @param {string} messageId
@@ -522,8 +513,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Get message
-     *
      * Get a message by its unique ID.
      * 
      *
@@ -543,15 +532,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Delete message
-     *
      * Delete a message. If the message is not a draft or scheduled, but has been
      * sent, this will not recall the message.
      *
@@ -578,8 +564,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * List message logs
-     *
      * Get the message activity logs listed by its unique ID.
      *
      * @param {string} messageId
@@ -603,15 +587,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List message targets
-     *
      * Get a list of the targets associated with a message.
      *
      * @param {string} messageId
@@ -635,15 +616,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List providers
-     *
      * Get a list of all providers from the current Appwrite project.
      *
      * @param {string[]} queries
@@ -667,15 +645,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create APNS provider
-     *
      * Create a new Apple Push Notification service provider.
      *
      * @param {string} providerId
@@ -736,8 +711,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update APNS provider
-     *
      * Update a Apple Push Notification service provider by its unique ID.
      *
      * @param {string} providerId
@@ -791,8 +764,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Create FCM provider
-     *
      * Create a new Firebase Cloud Messaging provider.
      *
      * @param {string} providerId
@@ -837,8 +808,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update FCM provider
-     *
      * Update a Firebase Cloud Messaging provider by its unique ID.
      *
      * @param {string} providerId
@@ -876,8 +845,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Create Mailgun provider
-     *
      * Create a new Mailgun provider.
      *
      * @param {string} providerId
@@ -946,8 +913,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update Mailgun provider
-     *
      * Update a Mailgun provider by its unique ID.
      *
      * @param {string} providerId
@@ -1009,8 +974,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Create Msg91 provider
-     *
      * Create a new MSG91 provider.
      *
      * @param {string} providerId
@@ -1063,8 +1026,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update Msg91 provider
-     *
      * Update a MSG91 provider by its unique ID.
      *
      * @param {string} providerId
@@ -1110,8 +1071,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Create Sendgrid provider
-     *
      * Create a new Sendgrid provider.
      *
      * @param {string} providerId
@@ -1172,8 +1131,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update Sendgrid provider
-     *
      * Update a Sendgrid provider by its unique ID.
      *
      * @param {string} providerId
@@ -1227,8 +1184,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Create SMTP provider
-     *
      * Create a new SMTP provider.
      *
      * @param {string} providerId
@@ -1317,8 +1272,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update SMTP provider
-     *
      * Update a SMTP provider by its unique ID.
      *
      * @param {string} providerId
@@ -1396,8 +1349,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Create Telesign provider
-     *
      * Create a new Telesign provider.
      *
      * @param {string} providerId
@@ -1450,8 +1401,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update Telesign provider
-     *
      * Update a Telesign provider by its unique ID.
      *
      * @param {string} providerId
@@ -1497,8 +1446,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Create Textmagic provider
-     *
      * Create a new Textmagic provider.
      *
      * @param {string} providerId
@@ -1551,8 +1498,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update Textmagic provider
-     *
      * Update a Textmagic provider by its unique ID.
      *
      * @param {string} providerId
@@ -1598,8 +1543,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Create Twilio provider
-     *
      * Create a new Twilio provider.
      *
      * @param {string} providerId
@@ -1652,8 +1595,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update Twilio provider
-     *
      * Update a Twilio provider by its unique ID.
      *
      * @param {string} providerId
@@ -1699,8 +1640,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Create Vonage provider
-     *
      * Create a new Vonage provider.
      *
      * @param {string} providerId
@@ -1753,8 +1692,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Update Vonage provider
-     *
      * Update a Vonage provider by its unique ID.
      *
      * @param {string} providerId
@@ -1800,8 +1737,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Get provider
-     *
      * Get a provider by its unique ID.
      * 
      *
@@ -1821,15 +1756,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Delete provider
-     *
      * Delete a provider by its unique ID.
      *
      * @param {string} providerId
@@ -1855,8 +1787,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * List provider logs
-     *
      * Get the provider activity logs listed by its unique ID.
      *
      * @param {string} providerId
@@ -1880,15 +1810,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List subscriber logs
-     *
      * Get the subscriber activity logs listed by its unique ID.
      *
      * @param {string} subscriberId
@@ -1912,15 +1839,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List topics
-     *
      * Get a list of all topics from the current Appwrite project.
      *
      * @param {string[]} queries
@@ -1944,15 +1868,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create topic
-     *
      * Create a new topic.
      *
      * @param {string} topicId
@@ -1993,8 +1914,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Get topic
-     *
      * Get a topic by its unique ID.
      * 
      *
@@ -2014,15 +1933,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Update topic
-     *
      * Update a topic by its unique ID.
      * 
      *
@@ -2057,8 +1973,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Delete topic
-     *
      * Delete a topic by its unique ID.
      *
      * @param {string} topicId
@@ -2084,8 +1998,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * List topic logs
-     *
      * Get the topic activity logs listed by its unique ID.
      *
      * @param {string} topicId
@@ -2109,15 +2021,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * List subscribers
-     *
      * Get a list of all subscribers from the current Appwrite project.
      *
      * @param {string} topicId
@@ -2146,15 +2055,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create subscriber
-     *
      * Create a new subscriber.
      *
      * @param {string} topicId
@@ -2196,8 +2102,6 @@ export class Messaging extends Service {
         );
     }
     /**
-     * Get subscriber
-     *
      * Get a subscriber by its unique ID.
      * 
      *
@@ -2222,15 +2126,12 @@ export class Messaging extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Delete subscriber
-     *
      * Delete a subscriber by its unique ID.
      *
      * @param {string} topicId

@@ -25,8 +25,6 @@ export class Storage extends Service {
      }
 
     /**
-     * List buckets
-     *
      * Get a list of all the storage buckets. You can use the query params to
      * filter your results.
      *
@@ -51,15 +49,12 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create bucket
-     *
      * Create a new storage bucket.
      *
      * @param {string} bucketId
@@ -128,8 +123,6 @@ export class Storage extends Service {
         );
     }
     /**
-     * Get bucket
-     *
      * Get a storage bucket by its unique ID. This endpoint response returns a
      * JSON object with the storage bucket metadata.
      *
@@ -149,15 +142,12 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Update bucket
-     *
      * Update a storage bucket by its unique ID.
      *
      * @param {string} bucketId
@@ -223,8 +213,6 @@ export class Storage extends Service {
         );
     }
     /**
-     * Delete bucket
-     *
      * Delete a storage bucket by its unique ID.
      *
      * @param {string} bucketId
@@ -250,8 +238,6 @@ export class Storage extends Service {
         );
     }
     /**
-     * List files
-     *
      * Get a list of all the user files. You can use the query params to filter
      * your results.
      *
@@ -281,15 +267,12 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Create file
-     *
      * Create a new file. Before using this route, you should create a new bucket
      * resource using either a [server
      * integration](https://appwrite.io/docs/server/storage#storageCreateBucket)
@@ -441,8 +424,6 @@ export class Storage extends Service {
         return response;
     }
     /**
-     * Get file
-     *
      * Get a file by its unique ID. This endpoint response returns a JSON object
      * with the file metadata.
      *
@@ -467,15 +448,12 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'json'
         );
     }
     /**
-     * Update file
-     *
      * Update a file by its unique ID. Only users with write permissions have
      * access to update this resource.
      *
@@ -515,8 +493,6 @@ export class Storage extends Service {
         );
     }
     /**
-     * Delete file
-     *
      * Delete a file by its unique ID. Only users with write permissions have
      * access to delete this resource.
      *
@@ -548,8 +524,6 @@ export class Storage extends Service {
         );
     }
     /**
-     * Get file for download
-     *
      * Get a file content by its unique ID. The endpoint response return with a
      * 'Content-Disposition: attachment' header that tells the browser to start
      * downloading the file to user downloads directory.
@@ -575,15 +549,12 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'arraybuffer'
         );
     }
     /**
-     * Get file preview
-     *
      * Get a file preview image. Currently, this method supports preview for image
      * files (jpg, png, and gif), other supported formats, like pdf, docs, slides,
      * and spreadsheets, will return the file icon image. You can also pass query
@@ -666,15 +637,12 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'arraybuffer'
         );
     }
     /**
-     * Get file for view
-     *
      * Get a file content by its unique ID. This endpoint is similar to the
      * download method but returns with no  'Content-Disposition: attachment'
      * header.
@@ -700,7 +668,6 @@ export class Storage extends Service {
             'get',
             apiPath,
             {
-                'content-type': 'application/json',
             },
             payload,
             'arraybuffer'

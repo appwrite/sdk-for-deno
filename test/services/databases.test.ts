@@ -475,8 +475,6 @@ describe('Databases service', () => {
             '',
             true,
             1.0,
-            1.0,
-            1.0,
         );
 
         assertEquals(response, data);
@@ -525,8 +523,6 @@ describe('Databases service', () => {
             '<COLLECTION_ID>',
             '',
             true,
-            1,
-            1,
             1,
         );
 

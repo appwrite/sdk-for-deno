@@ -110,22 +110,6 @@ describe('Health service', () => {
     });
 
     
-    test('test method getQueue()', async () => {
-        const data = {
-            'name': 'database',
-            'ping': 128,
-            'status': 'pass',};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await health.getQueue(
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
     test('test method getQueueBuilds()', async () => {
         const data = {
             'size': 8,};
@@ -267,13 +251,13 @@ describe('Health service', () => {
     });
 
     
-    test('test method getQueueUsage()', async () => {
+    test('test method getQueueStatsResources()', async () => {
         const data = {
             'size': 8,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await health.getQueueUsage(
+        const response = await health.getQueueStatsResources(
         );
 
         assertEquals(response, data);
@@ -281,13 +265,13 @@ describe('Health service', () => {
     });
 
     
-    test('test method getQueueUsageDump()', async () => {
+    test('test method getQueueUsage()', async () => {
         const data = {
             'size': 8,};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await health.getQueueUsageDump(
+        const response = await health.getQueueUsage(
         );
 
         assertEquals(response, data);
