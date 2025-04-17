@@ -11,11 +11,11 @@ export class Client {
     endpoint: string = 'https://cloud.appwrite.io/v1';
     headers: Payload = {
         'content-type': '',
-        'user-agent' : `AppwriteDenoSDK/13.0.0 (${Deno.build.os}; ${Deno.build.arch})`,
+        'user-agent' : `AppwriteDenoSDK/13.0.1 (${Deno.build.os}; ${Deno.build.arch})`,
         'x-sdk-name': 'Deno',
         'x-sdk-platform': 'server',
         'x-sdk-language': 'deno',
-        'x-sdk-version': '13.0.0',
+        'x-sdk-version': '13.0.1',
         'X-Appwrite-Response-Format':'1.6.0',
     };
 
@@ -113,8 +113,11 @@ export class Client {
      * @return this
      */
     setEndpoint(endpoint: string): this {
-        this.endpoint = endpoint;
+        if (!endpoint.startsWith('http://') && !endpoint.startsWith('https://')) {
+            throw new AppwriteException('Invalid endpoint URL: ' + endpoint);
+        }
 
+        this.endpoint = endpoint;
         return this;
     }
 
@@ -180,7 +183,7 @@ export class Client {
             } catch (error) {
                 throw new AppwriteException(text, response.status, "", text);
             }
-            throw new AppwriteException(json.message, json.code, json.type, json);
+            throw new AppwriteException(json.message, json.code, json.type, text);
         }
 
         if (responseType === "arraybuffer") {

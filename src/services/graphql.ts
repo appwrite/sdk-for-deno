@@ -22,8 +22,6 @@ export class Graphql extends Service {
      }
 
     /**
-     * GraphQL endpoint
-     *
      * Execute a GraphQL mutation.
      *
      * @param {object} query
@@ -53,8 +51,6 @@ export class Graphql extends Service {
         );
     }
     /**
-     * GraphQL endpoint
-     *
      * Execute a GraphQL mutation.
      *
      * @param {object} query
