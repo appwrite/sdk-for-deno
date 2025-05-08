@@ -1709,7 +1709,6 @@ export class Databases extends Service {
      * collection resource using either a [server
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
-     * 
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1750,6 +1749,161 @@ export class Databases extends Service {
         }
         return await this.client.call(
             'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Create new Documents. Before using this route, you should create a new
+     * collection resource using either a [server
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+     * API or directly from your database console.
+     * 
+     *
+     * @param {string} databaseId
+     * @param {string} collectionId
+     * @param {object[]} documents
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createDocuments<Document extends Models.Document>(databaseId: string, collectionId: string, documents: object[]): Promise<Models.DocumentList<Document>> {
+        if (typeof databaseId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if (typeof collectionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if (typeof documents === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "documents"');
+        }
+
+        const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
+        const payload: Payload = {};
+
+        if (typeof documents !== 'undefined') {
+            payload['documents'] = documents;
+        }
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Create or update Documents. Before using this route, you should create a
+     * new collection resource using either a [server
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+     * API or directly from your database console.
+     * 
+     *
+     * @param {string} databaseId
+     * @param {string} collectionId
+     * @param {object[]} documents
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async upsertDocuments<Document extends Models.Document>(databaseId: string, collectionId: string, documents?: object[]): Promise<Models.DocumentList<Document>> {
+        if (typeof databaseId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if (typeof collectionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
+        const payload: Payload = {};
+
+        if (typeof documents !== 'undefined') {
+            payload['documents'] = documents;
+        }
+        return await this.client.call(
+            'put',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Update all documents that match your queries, if no queries are submitted
+     * then all documents are updated. You can pass only specific fields to be
+     * updated.
+     *
+     * @param {string} databaseId
+     * @param {string} collectionId
+     * @param {object} data
+     * @param {string[]} queries
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateDocuments<Document extends Models.Document>(databaseId: string, collectionId: string, data?: object, queries?: string[]): Promise<Models.DocumentList<Document>> {
+        if (typeof databaseId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if (typeof collectionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
+        const payload: Payload = {};
+
+        if (typeof data !== 'undefined') {
+            payload['data'] = data;
+        }
+        if (typeof queries !== 'undefined') {
+            payload['queries'] = queries;
+        }
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Bulk delete documents using queries, if no queries are passed then all
+     * documents are deleted.
+     *
+     * @param {string} databaseId
+     * @param {string} collectionId
+     * @param {string[]} queries
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async deleteDocuments<Document extends Models.Document>(databaseId: string, collectionId: string, queries?: string[]): Promise<Models.DocumentList<Document>> {
+        if (typeof databaseId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if (typeof collectionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
+        const payload: Payload = {};
+
+        if (typeof queries !== 'undefined') {
+            payload['queries'] = queries;
+        }
+        return await this.client.call(
+            'delete',
             apiPath,
             {
                 'content-type': 'application/json',
