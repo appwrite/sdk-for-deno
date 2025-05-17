@@ -1,0 +1,16 @@
+export enum Framework {
+    Analog = 'analog',
+    Angular = 'angular',
+    Nextjs = 'nextjs',
+    React = 'react',
+    Nuxt = 'nuxt',
+    Vue = 'vue',
+    Sveltekit = 'sveltekit',
+    Astro = 'astro',
+    Remix = 'remix',
+    Lynx = 'lynx',
+    Flutter = 'flutter',
+    ReactNative = 'react-native',
+    Vite = 'vite',
+    Other = 'other',
+}

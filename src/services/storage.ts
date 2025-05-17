@@ -530,10 +530,11 @@ export class Storage extends Service {
      *
      * @param {string} bucketId
      * @param {string} fileId
+     * @param {string} token
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFileDownload(bucketId: string, fileId: string): Promise<ArrayBuffer> {
+    async getFileDownload(bucketId: string, fileId: string, token?: string): Promise<ArrayBuffer> {
         if (typeof bucketId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -544,6 +545,10 @@ export class Storage extends Service {
 
         const apiPath = '/storage/buckets/{bucketId}/files/{fileId}/download'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
         const payload: Payload = {};
+
+        if (typeof token !== 'undefined') {
+            payload['token'] = token;
+        }
 
         return await this.client.call(
             'get',
@@ -574,10 +579,11 @@ export class Storage extends Service {
      * @param {number} rotation
      * @param {string} background
      * @param {ImageFormat} output
+     * @param {string} token
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFilePreview(bucketId: string, fileId: string, width?: number, height?: number, gravity?: ImageGravity, quality?: number, borderWidth?: number, borderColor?: string, borderRadius?: number, opacity?: number, rotation?: number, background?: string, output?: ImageFormat): Promise<ArrayBuffer> {
+    async getFilePreview(bucketId: string, fileId: string, width?: number, height?: number, gravity?: ImageGravity, quality?: number, borderWidth?: number, borderColor?: string, borderRadius?: number, opacity?: number, rotation?: number, background?: string, output?: ImageFormat, token?: string): Promise<ArrayBuffer> {
         if (typeof bucketId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -633,6 +639,10 @@ export class Storage extends Service {
             payload['output'] = output;
         }
 
+        if (typeof token !== 'undefined') {
+            payload['token'] = token;
+        }
+
         return await this.client.call(
             'get',
             apiPath,
@@ -649,10 +659,11 @@ export class Storage extends Service {
      *
      * @param {string} bucketId
      * @param {string} fileId
+     * @param {string} token
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async getFileView(bucketId: string, fileId: string): Promise<ArrayBuffer> {
+    async getFileView(bucketId: string, fileId: string, token?: string): Promise<ArrayBuffer> {
         if (typeof bucketId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -663,6 +674,10 @@ export class Storage extends Service {
 
         const apiPath = '/storage/buckets/{bucketId}/files/{fileId}/view'.replace('{bucketId}', bucketId).replace('{fileId}', fileId);
         const payload: Payload = {};
+
+        if (typeof token !== 'undefined') {
+            payload['token'] = token;
+        }
 
         return await this.client.call(
             'get',
