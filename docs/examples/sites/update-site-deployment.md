@@ -1,13 +1,13 @@
-import { Client, Functions } from "https://deno.land/x/appwrite/mod.ts";
+import { Client, Sites } from "https://deno.land/x/appwrite/mod.ts";
 
 const client = new Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-const functions = new Functions(client);
+const sites = new Sites(client);
 
-const response = await functions.updateDeploymentBuild(
-    '<FUNCTION_ID>', // functionId
+const response = await sites.updateSiteDeployment(
+    '<SITE_ID>', // siteId
     '<DEPLOYMENT_ID>' // deploymentId
 );

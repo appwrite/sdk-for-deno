@@ -8,5 +8,7 @@ const client = new Client()
 const users = new Users(client);
 
 const response = await users.listMemberships(
-    '<USER_ID>' // userId
+    '<USER_ID>', // userId
+    [], // queries (optional)
+    '<SEARCH>' // search (optional)
 );

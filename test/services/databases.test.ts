@@ -972,6 +972,7 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'attributes': [],
+            'lengths': [],
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
@@ -997,6 +998,7 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'attributes': [],
+            'lengths': [],
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 

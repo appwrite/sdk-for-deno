@@ -1762,7 +1762,6 @@ export class Databases extends Service {
      * collection resource using either a [server
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
-     * 
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -2076,10 +2075,11 @@ export class Databases extends Service {
      * @param {IndexType} type
      * @param {string[]} attributes
      * @param {string[]} orders
+     * @param {number[]} lengths
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createIndex(databaseId: string, collectionId: string, key: string, type: IndexType, attributes: string[], orders?: string[]): Promise<Models.Index> {
+    async createIndex(databaseId: string, collectionId: string, key: string, type: IndexType, attributes: string[], orders?: string[], lengths?: number[]): Promise<Models.Index> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -2114,6 +2114,9 @@ export class Databases extends Service {
         }
         if (typeof orders !== 'undefined') {
             payload['orders'] = orders;
+        }
+        if (typeof lengths !== 'undefined') {
+            payload['lengths'] = lengths;
         }
         return await this.client.call(
             'post',

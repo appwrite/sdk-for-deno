@@ -38,7 +38,11 @@ describe('Functions service', () => {
             'live': true,
             'logging': true,
             'runtime': 'python-3.8',
-            'deployment': '5e5ea5c16897e',
+            'deploymentId': '5e5ea5c16897e',
+            'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+            'latestDeploymentId': '5e5ea5c16897e',
+            'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+            'latestDeploymentStatus': 'ready',
             'scopes': [],
             'vars': [],
             'events': [],
@@ -108,7 +112,11 @@ describe('Functions service', () => {
             'live': true,
             'logging': true,
             'runtime': 'python-3.8',
-            'deployment': '5e5ea5c16897e',
+            'deploymentId': '5e5ea5c16897e',
+            'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+            'latestDeploymentId': '5e5ea5c16897e',
+            'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+            'latestDeploymentStatus': 'ready',
             'scopes': [],
             'vars': [],
             'events': [],
@@ -146,7 +154,11 @@ describe('Functions service', () => {
             'live': true,
             'logging': true,
             'runtime': 'python-3.8',
-            'deployment': '5e5ea5c16897e',
+            'deploymentId': '5e5ea5c16897e',
+            'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+            'latestDeploymentId': '5e5ea5c16897e',
+            'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+            'latestDeploymentStatus': 'ready',
             'scopes': [],
             'vars': [],
             'events': [],
@@ -189,6 +201,49 @@ describe('Functions service', () => {
     });
 
     
+    test('test method updateFunctionDeployment()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'execute': [],
+            'name': 'My Function',
+            'enabled': true,
+            'live': true,
+            'logging': true,
+            'runtime': 'python-3.8',
+            'deploymentId': '5e5ea5c16897e',
+            'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+            'latestDeploymentId': '5e5ea5c16897e',
+            'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+            'latestDeploymentStatus': 'ready',
+            'scopes': [],
+            'vars': [],
+            'events': [],
+            'schedule': '5 4 * * *',
+            'timeout': 300,
+            'entrypoint': 'index.js',
+            'commands': 'npm install',
+            'version': 'v2',
+            'installationId': '6m40at4ejk5h2u9s1hboo',
+            'providerRepositoryId': 'appwrite',
+            'providerBranch': 'main',
+            'providerRootDirectory': 'functions/helloWorld',
+            'providerSilentMode': true,
+            'specification': 's-1vcpu-512mb',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await functions.updateFunctionDeployment(
+            '<FUNCTION_ID>',
+            '<DEPLOYMENT_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method listDeployments()', async () => {
         const data = {
             'total': 5,
@@ -214,13 +269,16 @@ describe('Functions service', () => {
             'resourceId': '5e5ea6g16897e',
             'resourceType': 'functions',
             'entrypoint': 'index.js',
-            'size': 128,
+            'sourceSize': 128,
             'buildSize': 128,
+            'totalSize': 128,
             'buildId': '5e5ea5c16897e',
             'activate': true,
+            'screenshotLight': '5e5ea5c16897e',
+            'screenshotDark': '5e5ea5c16897e',
             'status': 'ready',
             'buildLogs': 'Compiling source files...',
-            'buildTime': 128,
+            'buildDuration': 128,
             'providerRepositoryName': 'database',
             'providerRepositoryOwner': 'utopia',
             'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
@@ -245,6 +303,136 @@ describe('Functions service', () => {
     });
 
     
+    test('test method createDuplicateDeployment()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'type': 'vcs',
+            'resourceId': '5e5ea6g16897e',
+            'resourceType': 'functions',
+            'entrypoint': 'index.js',
+            'sourceSize': 128,
+            'buildSize': 128,
+            'totalSize': 128,
+            'buildId': '5e5ea5c16897e',
+            'activate': true,
+            'screenshotLight': '5e5ea5c16897e',
+            'screenshotDark': '5e5ea5c16897e',
+            'status': 'ready',
+            'buildLogs': 'Compiling source files...',
+            'buildDuration': 128,
+            'providerRepositoryName': 'database',
+            'providerRepositoryOwner': 'utopia',
+            'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
+            'providerBranch': '0.7.x',
+            'providerCommitHash': '7c3f25d',
+            'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
+            'providerCommitAuthor': 'Khushboo Verma',
+            'providerCommitMessage': 'Update index.js',
+            'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+            'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await functions.createDuplicateDeployment(
+            '<FUNCTION_ID>',
+            '<DEPLOYMENT_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createTemplateDeployment()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'type': 'vcs',
+            'resourceId': '5e5ea6g16897e',
+            'resourceType': 'functions',
+            'entrypoint': 'index.js',
+            'sourceSize': 128,
+            'buildSize': 128,
+            'totalSize': 128,
+            'buildId': '5e5ea5c16897e',
+            'activate': true,
+            'screenshotLight': '5e5ea5c16897e',
+            'screenshotDark': '5e5ea5c16897e',
+            'status': 'ready',
+            'buildLogs': 'Compiling source files...',
+            'buildDuration': 128,
+            'providerRepositoryName': 'database',
+            'providerRepositoryOwner': 'utopia',
+            'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
+            'providerBranch': '0.7.x',
+            'providerCommitHash': '7c3f25d',
+            'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
+            'providerCommitAuthor': 'Khushboo Verma',
+            'providerCommitMessage': 'Update index.js',
+            'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+            'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await functions.createTemplateDeployment(
+            '<FUNCTION_ID>',
+            '<REPOSITORY>',
+            '<OWNER>',
+            '<ROOT_DIRECTORY>',
+            '<VERSION>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createVcsDeployment()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'type': 'vcs',
+            'resourceId': '5e5ea6g16897e',
+            'resourceType': 'functions',
+            'entrypoint': 'index.js',
+            'sourceSize': 128,
+            'buildSize': 128,
+            'totalSize': 128,
+            'buildId': '5e5ea5c16897e',
+            'activate': true,
+            'screenshotLight': '5e5ea5c16897e',
+            'screenshotDark': '5e5ea5c16897e',
+            'status': 'ready',
+            'buildLogs': 'Compiling source files...',
+            'buildDuration': 128,
+            'providerRepositoryName': 'database',
+            'providerRepositoryOwner': 'utopia',
+            'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
+            'providerBranch': '0.7.x',
+            'providerCommitHash': '7c3f25d',
+            'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
+            'providerCommitAuthor': 'Khushboo Verma',
+            'providerCommitMessage': 'Update index.js',
+            'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+            'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await functions.createVcsDeployment(
+            '<FUNCTION_ID>',
+            'branch',
+            '<REFERENCE>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method getDeployment()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
@@ -254,13 +442,16 @@ describe('Functions service', () => {
             'resourceId': '5e5ea6g16897e',
             'resourceType': 'functions',
             'entrypoint': 'index.js',
-            'size': 128,
+            'sourceSize': 128,
             'buildSize': 128,
+            'totalSize': 128,
             'buildId': '5e5ea5c16897e',
             'activate': true,
+            'screenshotLight': '5e5ea5c16897e',
+            'screenshotDark': '5e5ea5c16897e',
             'status': 'ready',
             'buildLogs': 'Compiling source files...',
-            'buildTime': 128,
+            'buildDuration': 128,
             'providerRepositoryName': 'database',
             'providerRepositoryOwner': 'utopia',
             'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
@@ -275,45 +466,6 @@ describe('Functions service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await functions.getDeployment(
-            '<FUNCTION_ID>',
-            '<DEPLOYMENT_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method updateDeployment()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'execute': [],
-            'name': 'My Function',
-            'enabled': true,
-            'live': true,
-            'logging': true,
-            'runtime': 'python-3.8',
-            'deployment': '5e5ea5c16897e',
-            'scopes': [],
-            'vars': [],
-            'events': [],
-            'schedule': '5 4 * * *',
-            'timeout': 300,
-            'entrypoint': 'index.js',
-            'commands': 'npm install',
-            'version': 'v2',
-            'installationId': '6m40at4ejk5h2u9s1hboo',
-            'providerRepositoryId': 'appwrite',
-            'providerBranch': 'main',
-            'providerRootDirectory': 'functions/helloWorld',
-            'providerSilentMode': true,
-            'specification': 's-1vcpu-512mb',};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await functions.updateDeployment(
             '<FUNCTION_ID>',
             '<DEPLOYMENT_ID>',
         );
@@ -339,46 +491,6 @@ describe('Functions service', () => {
     });
 
     
-    test('test method createBuild()', async () => {
-        const data = '';
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
-
-        const response = await functions.createBuild(
-            '<FUNCTION_ID>',
-            '<DEPLOYMENT_ID>',
-        );
-
-        const text = await response.text();
-        assertEquals(text, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method updateDeploymentBuild()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            'deploymentId': '5e5ea5c16897e',
-            'status': 'ready',
-            'stdout': '',
-            'stderr': '',
-            'startTime': '2020-10-15T06:38:00.000+00:00',
-            'endTime': '2020-10-15T06:38:00.000+00:00',
-            'duration': 0,
-            'size': 128,};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await functions.updateDeploymentBuild(
-            '<FUNCTION_ID>',
-            '<DEPLOYMENT_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
     test('test method getDeploymentDownload()', async () => {
         const data = new Uint8Array(0);
 
@@ -391,6 +503,48 @@ describe('Functions service', () => {
 
         const buffer = await response.arrayBuffer();
         assertEquals(buffer.byteLength, 0);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateDeploymentStatus()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'type': 'vcs',
+            'resourceId': '5e5ea6g16897e',
+            'resourceType': 'functions',
+            'entrypoint': 'index.js',
+            'sourceSize': 128,
+            'buildSize': 128,
+            'totalSize': 128,
+            'buildId': '5e5ea5c16897e',
+            'activate': true,
+            'screenshotLight': '5e5ea5c16897e',
+            'screenshotDark': '5e5ea5c16897e',
+            'status': 'ready',
+            'buildLogs': 'Compiling source files...',
+            'buildDuration': 128,
+            'providerRepositoryName': 'database',
+            'providerRepositoryOwner': 'utopia',
+            'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
+            'providerBranch': '0.7.x',
+            'providerCommitHash': '7c3f25d',
+            'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
+            'providerCommitAuthor': 'Khushboo Verma',
+            'providerCommitMessage': 'Update index.js',
+            'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+            'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await functions.updateDeploymentStatus(
+            '<FUNCTION_ID>',
+            '<DEPLOYMENT_ID>',
+        );
+
+        assertEquals(response, data);
         stubbedFetch.restore();
     });
 
@@ -511,6 +665,7 @@ describe('Functions service', () => {
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'key': 'API_KEY',
             'value': 'myPa\$\$word1',
+            'secret': true,
             'resourceType': 'function',
             'resourceId': 'myAwesomeFunction',};
 
@@ -534,6 +689,7 @@ describe('Functions service', () => {
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'key': 'API_KEY',
             'value': 'myPa\$\$word1',
+            'secret': true,
             'resourceType': 'function',
             'resourceId': 'myAwesomeFunction',};
 
@@ -556,6 +712,7 @@ describe('Functions service', () => {
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'key': 'API_KEY',
             'value': 'myPa\$\$word1',
+            'secret': true,
             'resourceType': 'function',
             'resourceId': 'myAwesomeFunction',};
 
