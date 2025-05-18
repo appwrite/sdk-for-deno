@@ -771,16 +771,26 @@ export class Users extends Service {
      * Get the user membership list by its unique ID.
      *
      * @param {string} userId
+     * @param {string[]} queries
+     * @param {string} search
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async listMemberships(userId: string): Promise<Models.MembershipList> {
+    async listMemberships(userId: string, queries?: string[], search?: string): Promise<Models.MembershipList> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
         const apiPath = '/users/{userId}/memberships'.replace('{userId}', userId);
         const payload: Payload = {};
+
+        if (typeof queries !== 'undefined') {
+            payload['queries'] = queries;
+        }
+
+        if (typeof search !== 'undefined') {
+            payload['search'] = search;
+        }
 
         return await this.client.call(
             'get',

@@ -13,8 +13,10 @@ import { Graphql } from "./src/services/graphql.ts";
 import { Health } from "./src/services/health.ts";
 import { Locale } from "./src/services/locale.ts";
 import { Messaging } from "./src/services/messaging.ts";
+import { Sites } from "./src/services/sites.ts";
 import { Storage } from "./src/services/storage.ts";
 import { Teams } from "./src/services/teams.ts";
+import { Tokens } from "./src/services/tokens.ts";
 import { Users } from "./src/services/users.ts";
 import { AuthenticatorType } from "./src/enums/authenticator-type.ts";
 import { AuthenticationFactor } from "./src/enums/authentication-factor.ts";
@@ -26,10 +28,15 @@ import { RelationshipType } from "./src/enums/relationship-type.ts";
 import { RelationMutate } from "./src/enums/relation-mutate.ts";
 import { IndexType } from "./src/enums/index-type.ts";
 import { Runtime } from "./src/enums/runtime.ts";
+import { VCSDeploymentType } from "./src/enums/v-c-s-deployment-type.ts";
+import { DeploymentDownloadType } from "./src/enums/deployment-download-type.ts";
 import { ExecutionMethod } from "./src/enums/execution-method.ts";
 import { Name } from "./src/enums/name.ts";
 import { MessagePriority } from "./src/enums/message-priority.ts";
 import { SmtpEncryption } from "./src/enums/smtp-encryption.ts";
+import { Framework } from "./src/enums/framework.ts";
+import { BuildRuntime } from "./src/enums/build-runtime.ts";
+import { Adapter } from "./src/enums/adapter.ts";
 import { Compression } from "./src/enums/compression.ts";
 import { ImageGravity } from "./src/enums/image-gravity.ts";
 import { ImageFormat } from "./src/enums/image-format.ts";
@@ -52,8 +59,10 @@ export {
     Health,
     Locale,
     Messaging,
+    Sites,
     Storage,
     Teams,
+    Tokens,
     Users,
     AuthenticatorType,
     AuthenticationFactor,
@@ -65,10 +74,15 @@ export {
     RelationMutate,
     IndexType,
     Runtime,
+    VCSDeploymentType,
+    DeploymentDownloadType,
     ExecutionMethod,
     Name,
     MessagePriority,
     SmtpEncryption,
+    Framework,
+    BuildRuntime,
+    Adapter,
     Compression,
     ImageGravity,
     ImageFormat,

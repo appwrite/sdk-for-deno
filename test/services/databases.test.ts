@@ -818,6 +818,75 @@ describe('Databases service', () => {
     });
 
     
+    test('test method createDocuments()', async () => {
+        const data = {
+            'total': 5,
+            'documents': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.createDocuments(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            [],
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method upsertDocuments()', async () => {
+        const data = {
+            'total': 5,
+            'documents': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.upsertDocuments(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateDocuments()', async () => {
+        const data = {
+            'total': 5,
+            'documents': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.updateDocuments(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method deleteDocuments()', async () => {
+        const data = {
+            'total': 5,
+            'documents': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.deleteDocuments(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method getDocument()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
@@ -903,6 +972,7 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'attributes': [],
+            'lengths': [],
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
@@ -928,6 +998,7 @@ describe('Databases service', () => {
             'status': 'available',
             'error': 'string',
             'attributes': [],
+            'lengths': [],
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
