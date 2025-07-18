@@ -1758,6 +1758,10 @@ export class Databases extends Service {
         );
     }
     /**
+     * **WARNING: Experimental Feature** - This endpoint is experimental and not
+     * yet officially supported. It may be subject to breaking changes or removal
+     * in future versions.
+     * 
      * Create new Documents. Before using this route, you should create a new
      * collection resource using either a [server
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
@@ -1799,11 +1803,14 @@ export class Databases extends Service {
         );
     }
     /**
+     * **WARNING: Experimental Feature** - This endpoint is experimental and not
+     * yet officially supported. It may be subject to breaking changes or removal
+     * in future versions.
+     * 
      * Create or update Documents. Before using this route, you should create a
      * new collection resource using either a [server
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
-     * 
      *
      * @param {string} databaseId
      * @param {string} collectionId
@@ -1811,13 +1818,17 @@ export class Databases extends Service {
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async upsertDocuments<Document extends Models.Document>(databaseId: string, collectionId: string, documents?: object[]): Promise<Models.DocumentList<Document>> {
+    async upsertDocuments<Document extends Models.Document>(databaseId: string, collectionId: string, documents: object[]): Promise<Models.DocumentList<Document>> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
 
         if (typeof collectionId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if (typeof documents === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "documents"');
         }
 
         const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId);
@@ -1837,6 +1848,10 @@ export class Databases extends Service {
         );
     }
     /**
+     * **WARNING: Experimental Feature** - This endpoint is experimental and not
+     * yet officially supported. It may be subject to breaking changes or removal
+     * in future versions.
+     * 
      * Update all documents that match your queries, if no queries are submitted
      * then all documents are updated. You can pass only specific fields to be
      * updated.
@@ -1877,6 +1892,10 @@ export class Databases extends Service {
         );
     }
     /**
+     * **WARNING: Experimental Feature** - This endpoint is experimental and not
+     * yet officially supported. It may be subject to breaking changes or removal
+     * in future versions.
+     * 
      * Bulk delete documents using queries, if no queries are passed then all
      * documents are deleted.
      *
@@ -1946,6 +1965,60 @@ export class Databases extends Service {
             'get',
             apiPath,
             {
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * **WARNING: Experimental Feature** - This endpoint is experimental and not
+     * yet officially supported. It may be subject to breaking changes or removal
+     * in future versions.
+     * 
+     * Create or update a Document. Before using this route, you should create a
+     * new collection resource using either a [server
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+     * API or directly from your database console.
+     *
+     * @param {string} databaseId
+     * @param {string} collectionId
+     * @param {string} documentId
+     * @param {object} data
+     * @param {string[]} permissions
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async upsertDocument<Document extends Models.Document>(databaseId: string, collectionId: string, documentId: string, data: object, permissions?: string[]): Promise<Document> {
+        if (typeof databaseId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if (typeof collectionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if (typeof documentId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "documentId"');
+        }
+
+        if (typeof data === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "data"');
+        }
+
+        const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{documentId}', documentId);
+        const payload: Payload = {};
+
+        if (typeof data !== 'undefined') {
+            payload['data'] = data;
+        }
+        if (typeof permissions !== 'undefined') {
+            payload['permissions'] = permissions;
+        }
+        return await this.client.call(
+            'put',
+            apiPath,
+            {
+                'content-type': 'application/json',
             },
             payload,
             'json'
@@ -2022,6 +2095,102 @@ export class Databases extends Service {
 
         return await this.client.call(
             'delete',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Decrement a specific attribute of a document by a given value.
+     *
+     * @param {string} databaseId
+     * @param {string} collectionId
+     * @param {string} documentId
+     * @param {string} attribute
+     * @param {number} value
+     * @param {number} min
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async decrementDocumentAttribute<Document extends Models.Document>(databaseId: string, collectionId: string, documentId: string, attribute: string, value?: number, min?: number): Promise<Document> {
+        if (typeof databaseId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if (typeof collectionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if (typeof documentId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "documentId"');
+        }
+
+        if (typeof attribute === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "attribute"');
+        }
+
+        const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{documentId}', documentId).replace('{attribute}', attribute);
+        const payload: Payload = {};
+
+        if (typeof value !== 'undefined') {
+            payload['value'] = value;
+        }
+        if (typeof min !== 'undefined') {
+            payload['min'] = min;
+        }
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Increment a specific attribute of a document by a given value.
+     *
+     * @param {string} databaseId
+     * @param {string} collectionId
+     * @param {string} documentId
+     * @param {string} attribute
+     * @param {number} value
+     * @param {number} max
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async incrementDocumentAttribute<Document extends Models.Document>(databaseId: string, collectionId: string, documentId: string, attribute: string, value?: number, max?: number): Promise<Document> {
+        if (typeof databaseId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if (typeof collectionId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if (typeof documentId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "documentId"');
+        }
+
+        if (typeof attribute === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "attribute"');
+        }
+
+        const apiPath = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment'.replace('{databaseId}', databaseId).replace('{collectionId}', collectionId).replace('{documentId}', documentId).replace('{attribute}', attribute);
+        const payload: Payload = {};
+
+        if (typeof value !== 'undefined') {
+            payload['value'] = value;
+        }
+        if (typeof max !== 'undefined') {
+            payload['max'] = max;
+        }
+        return await this.client.call(
+            'patch',
             apiPath,
             {
                 'content-type': 'application/json',

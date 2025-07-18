@@ -542,6 +542,10 @@ export namespace Models {
          * Default value for attribute when not provided. Cannot be set when attribute is required.
          */
         xdefault?: string;
+        /**
+         * Defines whether this attribute is encrypted or not.
+         */
+        encrypt?: boolean;
     }
     /**
      * AttributeInteger
@@ -1021,6 +1025,10 @@ export namespace Models {
          * Document ID.
          */
         $id: string;
+        /**
+         * Document automatically incrementing ID.
+         */
+        $sequence: number;
         /**
          * Collection ID.
          */

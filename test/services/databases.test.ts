@@ -798,6 +798,7 @@ describe('Databases service', () => {
     test('test method createDocument()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
             '\$collectionId': '5e5ea5c15117e',
             '\$databaseId': '5e5ea5c15117e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -846,6 +847,7 @@ describe('Databases service', () => {
         const response = await databases.upsertDocuments(
             '<DATABASE_ID>',
             '<COLLECTION_ID>',
+            [],
         );
 
         assertEquals(response, data);
@@ -890,6 +892,7 @@ describe('Databases service', () => {
     test('test method getDocument()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
             '\$collectionId': '5e5ea5c15117e',
             '\$databaseId': '5e5ea5c15117e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -909,9 +912,34 @@ describe('Databases service', () => {
     });
 
     
+    test('test method upsertDocument()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
+            '\$collectionId': '5e5ea5c15117e',
+            '\$databaseId': '5e5ea5c15117e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            '\$permissions': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.upsertDocument(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '<DOCUMENT_ID>',
+            {},
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method updateDocument()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
             '\$collectionId': '5e5ea5c15117e',
             '\$databaseId': '5e5ea5c15117e',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -944,6 +972,54 @@ describe('Databases service', () => {
 
         const text = await response.text();
         assertEquals(text, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method decrementDocumentAttribute()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
+            '\$collectionId': '5e5ea5c15117e',
+            '\$databaseId': '5e5ea5c15117e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            '\$permissions': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.decrementDocumentAttribute(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '<DOCUMENT_ID>',
+            '',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method incrementDocumentAttribute()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
+            '\$collectionId': '5e5ea5c15117e',
+            '\$databaseId': '5e5ea5c15117e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            '\$permissions': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.incrementDocumentAttribute(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '<DOCUMENT_ID>',
+            '',
+        );
+
+        assertEquals(response, data);
         stubbedFetch.restore();
     });
 
