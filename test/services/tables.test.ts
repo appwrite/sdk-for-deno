@@ -1,13 +1,13 @@
 import {afterEach, describe, it as test} from "https://deno.land/std@0.204.0/testing/bdd.ts";
 import {restore, stub} from "https://deno.land/std@0.204.0/testing/mock.ts";
 import {assertEquals} from "https://deno.land/std@0.204.0/assert/assert_equals.ts";
-import { Databases } from "../../src/services/databases.ts";
+import { Tables } from "../../src/services/tables.ts";
 import {Client} from "../../src/client.ts";
 import {InputFile} from "../../src/inputFile.ts"
 
-describe('Databases service', () => {
+describe('Tables service', () => {
     const client = new Client();
-    const databases = new Databases(client);
+    const tables = new Tables(client);
 
     afterEach(() => restore())
 
@@ -15,11 +15,12 @@ describe('Databases service', () => {
     test('test method list()', async () => {
         const data = {
             'total': 5,
-            'databases': [],};
+            'tables': [],};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.list(
+        const response = await tables.list(
+            '<DATABASE_ID>',
         );
 
         assertEquals(response, data);
@@ -30,15 +31,21 @@ describe('Databases service', () => {
     test('test method create()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
-            'name': 'My Database',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'enabled': true,};
+            '\$permissions': [],
+            'databaseId': '5e5ea5c16897e',
+            'name': 'My Table',
+            'enabled': true,
+            'rowSecurity': true,
+            'columns': [],
+            'indexes': [],};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.create(
+        const response = await tables.create(
             '<DATABASE_ID>',
+            '<TABLE_ID>',
             '<NAME>',
         );
 
@@ -50,15 +57,21 @@ describe('Databases service', () => {
     test('test method get()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
-            'name': 'My Database',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'enabled': true,};
+            '\$permissions': [],
+            'databaseId': '5e5ea5c16897e',
+            'name': 'My Table',
+            'enabled': true,
+            'rowSecurity': true,
+            'columns': [],
+            'indexes': [],};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.get(
+        const response = await tables.get(
             '<DATABASE_ID>',
+            '<TABLE_ID>',
         );
 
         assertEquals(response, data);
@@ -69,15 +82,21 @@ describe('Databases service', () => {
     test('test method update()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
-            'name': 'My Database',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'enabled': true,};
+            '\$permissions': [],
+            'databaseId': '5e5ea5c16897e',
+            'name': 'My Table',
+            'enabled': true,
+            'rowSecurity': true,
+            'columns': [],
+            'indexes': [],};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.update(
+        const response = await tables.update(
             '<DATABASE_ID>',
+            '<TABLE_ID>',
             '<NAME>',
         );
 
@@ -91,8 +110,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
-        const response = await databases.delete(
+        const response = await tables.delete(
             '<DATABASE_ID>',
+            '<TABLE_ID>',
         );
 
         const text = await response.text();
@@ -101,15 +121,16 @@ describe('Databases service', () => {
     });
 
     
-    test('test method listCollections()', async () => {
+    test('test method listColumns()', async () => {
         const data = {
             'total': 5,
-            'collections': [],};
+            'columns': [],};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.listCollections(
+        const response = await tables.listColumns(
             '<DATABASE_ID>',
+            '<TABLE_ID>',
         );
 
         assertEquals(response, data);
@@ -117,117 +138,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method createCollection()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            '\$permissions': [],
-            'databaseId': '5e5ea5c16897e',
-            'name': 'My Collection',
-            'enabled': true,
-            'documentSecurity': true,
-            'attributes': [],
-            'indexes': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.createCollection(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            '<NAME>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method getCollection()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            '\$permissions': [],
-            'databaseId': '5e5ea5c16897e',
-            'name': 'My Collection',
-            'enabled': true,
-            'documentSecurity': true,
-            'attributes': [],
-            'indexes': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.getCollection(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method updateCollection()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            '\$permissions': [],
-            'databaseId': '5e5ea5c16897e',
-            'name': 'My Collection',
-            'enabled': true,
-            'documentSecurity': true,
-            'attributes': [],
-            'indexes': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.updateCollection(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            '<NAME>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method deleteCollection()', async () => {
-        const data = '';
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
-
-        const response = await databases.deleteCollection(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-        );
-
-        const text = await response.text();
-        assertEquals(text, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method listAttributes()', async () => {
-        const data = {
-            'total': 5,
-            'attributes': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.listAttributes(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method createBooleanAttribute()', async () => {
+    test('test method createBooleanColumn()', async () => {
         const data = {
             'key': 'isEnabled',
             'type': 'boolean',
@@ -239,9 +150,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.createBooleanAttribute(
+        const response = await tables.createBooleanColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
         );
@@ -251,7 +162,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method updateBooleanAttribute()', async () => {
+    test('test method updateBooleanColumn()', async () => {
         const data = {
             'key': 'isEnabled',
             'type': 'boolean',
@@ -263,9 +174,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.updateBooleanAttribute(
+        const response = await tables.updateBooleanColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
             true,
@@ -276,7 +187,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method createDatetimeAttribute()', async () => {
+    test('test method createDatetimeColumn()', async () => {
         const data = {
             'key': 'birthDay',
             'type': 'datetime',
@@ -289,9 +200,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.createDatetimeAttribute(
+        const response = await tables.createDatetimeColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
         );
@@ -301,7 +212,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method updateDatetimeAttribute()', async () => {
+    test('test method updateDatetimeColumn()', async () => {
         const data = {
             'key': 'birthDay',
             'type': 'datetime',
@@ -314,9 +225,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.updateDatetimeAttribute(
+        const response = await tables.updateDatetimeColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
             '',
@@ -327,7 +238,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method createEmailAttribute()', async () => {
+    test('test method createEmailColumn()', async () => {
         const data = {
             'key': 'userEmail',
             'type': 'string',
@@ -340,9 +251,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.createEmailAttribute(
+        const response = await tables.createEmailColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
         );
@@ -352,7 +263,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method updateEmailAttribute()', async () => {
+    test('test method updateEmailColumn()', async () => {
         const data = {
             'key': 'userEmail',
             'type': 'string',
@@ -365,9 +276,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.updateEmailAttribute(
+        const response = await tables.updateEmailColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
             'email@example.com',
@@ -378,7 +289,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method createEnumAttribute()', async () => {
+    test('test method createEnumColumn()', async () => {
         const data = {
             'key': 'status',
             'type': 'string',
@@ -392,9 +303,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.createEnumAttribute(
+        const response = await tables.createEnumColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             [],
             true,
@@ -405,7 +316,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method updateEnumAttribute()', async () => {
+    test('test method updateEnumColumn()', async () => {
         const data = {
             'key': 'status',
             'type': 'string',
@@ -419,9 +330,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.updateEnumAttribute(
+        const response = await tables.updateEnumColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             [],
             true,
@@ -433,7 +344,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method createFloatAttribute()', async () => {
+    test('test method createFloatColumn()', async () => {
         const data = {
             'key': 'percentageCompleted',
             'type': 'double',
@@ -445,9 +356,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.createFloatAttribute(
+        const response = await tables.createFloatColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
         );
@@ -457,7 +368,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method updateFloatAttribute()', async () => {
+    test('test method updateFloatColumn()', async () => {
         const data = {
             'key': 'percentageCompleted',
             'type': 'double',
@@ -469,9 +380,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.updateFloatAttribute(
+        const response = await tables.updateFloatColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
             1.0,
@@ -482,7 +393,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method createIntegerAttribute()', async () => {
+    test('test method createIntegerColumn()', async () => {
         const data = {
             'key': 'count',
             'type': 'integer',
@@ -494,9 +405,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.createIntegerAttribute(
+        const response = await tables.createIntegerColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
         );
@@ -506,7 +417,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method updateIntegerAttribute()', async () => {
+    test('test method updateIntegerColumn()', async () => {
         const data = {
             'key': 'count',
             'type': 'integer',
@@ -518,9 +429,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.updateIntegerAttribute(
+        const response = await tables.updateIntegerColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
             1,
@@ -531,7 +442,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method createIpAttribute()', async () => {
+    test('test method createIpColumn()', async () => {
         const data = {
             'key': 'ipAddress',
             'type': 'string',
@@ -544,9 +455,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.createIpAttribute(
+        const response = await tables.createIpColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
         );
@@ -556,7 +467,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method updateIpAttribute()', async () => {
+    test('test method updateIpColumn()', async () => {
         const data = {
             'key': 'ipAddress',
             'type': 'string',
@@ -569,9 +480,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.updateIpAttribute(
+        const response = await tables.updateIpColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
             '',
@@ -582,7 +493,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method createRelationshipAttribute()', async () => {
+    test('test method createRelationshipColumn()', async () => {
         const data = {
             'key': 'fullName',
             'type': 'string',
@@ -591,7 +502,7 @@ describe('Databases service', () => {
             'required': true,
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'relatedCollection': 'collection',
+            'relatedTable': 'table',
             'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
             'twoWay': true,
             'twoWayKey': 'string',
@@ -600,10 +511,10 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.createRelationshipAttribute(
+        const response = await tables.createRelationshipColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            '<RELATED_COLLECTION_ID>',
+            '<TABLE_ID>',
+            '<RELATED_TABLE_ID>',
             'oneToOne',
         );
 
@@ -612,7 +523,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method createStringAttribute()', async () => {
+    test('test method createStringColumn()', async () => {
         const data = {
             'key': 'fullName',
             'type': 'string',
@@ -625,9 +536,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.createStringAttribute(
+        const response = await tables.createStringColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             1,
             true,
@@ -638,7 +549,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method updateStringAttribute()', async () => {
+    test('test method updateStringColumn()', async () => {
         const data = {
             'key': 'fullName',
             'type': 'string',
@@ -651,9 +562,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.updateStringAttribute(
+        const response = await tables.updateStringColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
             '<DEFAULT>',
@@ -664,7 +575,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method createUrlAttribute()', async () => {
+    test('test method createUrlColumn()', async () => {
         const data = {
             'key': 'githubUrl',
             'type': 'string',
@@ -677,9 +588,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.createUrlAttribute(
+        const response = await tables.createUrlColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
         );
@@ -689,7 +600,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method updateUrlAttribute()', async () => {
+    test('test method updateUrlColumn()', async () => {
         const data = {
             'key': 'githubUrl',
             'type': 'string',
@@ -702,9 +613,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.updateUrlAttribute(
+        const response = await tables.updateUrlColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             true,
             'https://example.com',
@@ -715,14 +626,14 @@ describe('Databases service', () => {
     });
 
     
-    test('test method getAttribute()', async () => {
+    test('test method getColumn()', async () => {
         const data = '';
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
-        const response = await databases.getAttribute(
+        const response = await tables.getColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
         );
 
@@ -732,14 +643,14 @@ describe('Databases service', () => {
     });
 
     
-    test('test method deleteAttribute()', async () => {
+    test('test method deleteColumn()', async () => {
         const data = '';
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
-        const response = await databases.deleteAttribute(
+        const response = await tables.deleteColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
         );
 
@@ -749,7 +660,7 @@ describe('Databases service', () => {
     });
 
     
-    test('test method updateRelationshipAttribute()', async () => {
+    test('test method updateRelationshipColumn()', async () => {
         const data = {
             'key': 'fullName',
             'type': 'string',
@@ -758,7 +669,7 @@ describe('Databases service', () => {
             'required': true,
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'relatedCollection': 'collection',
+            'relatedTable': 'table',
             'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
             'twoWay': true,
             'twoWayKey': 'string',
@@ -767,253 +678,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.updateRelationshipAttribute(
+        const response = await tables.updateRelationshipColumn(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            '',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method listDocuments()', async () => {
-        const data = {
-            'total': 5,
-            'documents': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.listDocuments(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method createDocument()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$sequence': 1,
-            '\$collectionId': '5e5ea5c15117e',
-            '\$databaseId': '5e5ea5c15117e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            '\$permissions': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.createDocument(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            '<DOCUMENT_ID>',
-            {},
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method createDocuments()', async () => {
-        const data = {
-            'total': 5,
-            'documents': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.createDocuments(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            [],
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method upsertDocuments()', async () => {
-        const data = {
-            'total': 5,
-            'documents': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.upsertDocuments(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method updateDocuments()', async () => {
-        const data = {
-            'total': 5,
-            'documents': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.updateDocuments(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method deleteDocuments()', async () => {
-        const data = {
-            'total': 5,
-            'documents': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.deleteDocuments(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method getDocument()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$sequence': 1,
-            '\$collectionId': '5e5ea5c15117e',
-            '\$databaseId': '5e5ea5c15117e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            '\$permissions': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.getDocument(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            '<DOCUMENT_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method upsertDocument()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$sequence': 1,
-            '\$collectionId': '5e5ea5c15117e',
-            '\$databaseId': '5e5ea5c15117e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            '\$permissions': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.upsertDocument(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            '<DOCUMENT_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method updateDocument()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$sequence': 1,
-            '\$collectionId': '5e5ea5c15117e',
-            '\$databaseId': '5e5ea5c15117e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            '\$permissions': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.updateDocument(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            '<DOCUMENT_ID>',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method deleteDocument()', async () => {
-        const data = '';
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
-
-        const response = await databases.deleteDocument(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            '<DOCUMENT_ID>',
-        );
-
-        const text = await response.text();
-        assertEquals(text, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method decrementDocumentAttribute()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$sequence': 1,
-            '\$collectionId': '5e5ea5c15117e',
-            '\$databaseId': '5e5ea5c15117e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            '\$permissions': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.decrementDocumentAttribute(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            '<DOCUMENT_ID>',
-            '',
-        );
-
-        assertEquals(response, data);
-        stubbedFetch.restore();
-    });
-
-    
-    test('test method incrementDocumentAttribute()', async () => {
-        const data = {
-            '\$id': '5e5ea5c16897e',
-            '\$sequence': 1,
-            '\$collectionId': '5e5ea5c15117e',
-            '\$databaseId': '5e5ea5c15117e',
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            '\$permissions': [],};
-
-        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
-
-        const response = await databases.incrementDocumentAttribute(
-            '<DATABASE_ID>',
-            '<COLLECTION_ID>',
-            '<DOCUMENT_ID>',
+            '<TABLE_ID>',
             '',
         );
 
@@ -1029,9 +696,9 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.listIndexes(
+        const response = await tables.listIndexes(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
         );
 
         assertEquals(response, data);
@@ -1045,16 +712,16 @@ describe('Databases service', () => {
             'type': 'primary',
             'status': 'available',
             'error': 'string',
-            'attributes': [],
+            'columns': [],
             'lengths': [],
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.createIndex(
+        const response = await tables.createIndex(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
             'key',
             [],
@@ -1071,16 +738,16 @@ describe('Databases service', () => {
             'type': 'primary',
             'status': 'available',
             'error': 'string',
-            'attributes': [],
+            'columns': [],
             'lengths': [],
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await databases.getIndex(
+        const response = await tables.getIndex(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
         );
 
@@ -1094,14 +761,258 @@ describe('Databases service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
-        const response = await databases.deleteIndex(
+        const response = await tables.deleteIndex(
             '<DATABASE_ID>',
-            '<COLLECTION_ID>',
+            '<TABLE_ID>',
             '',
         );
 
         const text = await response.text();
         assertEquals(text, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method listRows()', async () => {
+        const data = {
+            'total': 5,
+            'rows': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tables.listRows(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createRow()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
+            '\$tableId': '5e5ea5c15117e',
+            '\$databaseId': '5e5ea5c15117e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            '\$permissions': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tables.createRow(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '<ROW_ID>',
+            {},
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createRows()', async () => {
+        const data = {
+            'total': 5,
+            'rows': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tables.createRows(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            [],
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method upsertRows()', async () => {
+        const data = {
+            'total': 5,
+            'rows': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tables.upsertRows(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateRows()', async () => {
+        const data = {
+            'total': 5,
+            'rows': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tables.updateRows(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method deleteRows()', async () => {
+        const data = {
+            'total': 5,
+            'rows': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tables.deleteRows(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method getRow()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
+            '\$tableId': '5e5ea5c15117e',
+            '\$databaseId': '5e5ea5c15117e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            '\$permissions': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tables.getRow(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '<ROW_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method upsertRow()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
+            '\$tableId': '5e5ea5c15117e',
+            '\$databaseId': '5e5ea5c15117e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            '\$permissions': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tables.upsertRow(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '<ROW_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateRow()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
+            '\$tableId': '5e5ea5c15117e',
+            '\$databaseId': '5e5ea5c15117e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            '\$permissions': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tables.updateRow(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '<ROW_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method deleteRow()', async () => {
+        const data = '';
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
+
+        const response = await tables.deleteRow(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '<ROW_ID>',
+        );
+
+        const text = await response.text();
+        assertEquals(text, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method decrementRowColumn()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
+            '\$tableId': '5e5ea5c15117e',
+            '\$databaseId': '5e5ea5c15117e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            '\$permissions': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tables.decrementRowColumn(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '<ROW_ID>',
+            '',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method incrementRowColumn()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$sequence': 1,
+            '\$tableId': '5e5ea5c15117e',
+            '\$databaseId': '5e5ea5c15117e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            '\$permissions': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tables.incrementRowColumn(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '<ROW_ID>',
+            '',
+        );
+
+        assertEquals(response, data);
         stubbedFetch.restore();
     });
 

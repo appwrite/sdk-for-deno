@@ -1,4 +1,4 @@
-import { Client, Databases } from "https://deno.land/x/appwrite/mod.ts";
+import { Client, Tables } from "https://deno.land/x/appwrite/mod.ts";
 
 const client = new Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -6,10 +6,10 @@ const client = new Client()
     .setKey('<YOUR_API_KEY>') // Your secret API key
     .setJWT('<YOUR_JWT>'); // Your secret JSON Web Token
 
-const databases = new Databases(client);
+const tables = new Tables(client);
 
-const response = await databases.upsertDocument(
+const response = await tables.upsertRow(
     '<DATABASE_ID>', // databaseId
-    '<COLLECTION_ID>', // collectionId
-    '<DOCUMENT_ID>' // documentId
+    '<TABLE_ID>', // tableId
+    '<ROW_ID>' // rowId
 );
