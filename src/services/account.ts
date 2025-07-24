@@ -876,7 +876,6 @@ export class Account extends Service {
      * @param {string} secret
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated.
      */
     async updateMagicURLSession(userId: string, secret: string): Promise<Models.Session> {
         if (typeof userId === 'undefined') {
@@ -915,7 +914,6 @@ export class Account extends Service {
      * @param {string} secret
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated.
      */
     async updatePhoneSession(userId: string, secret: string): Promise<Models.Session> {
         if (typeof userId === 'undefined') {

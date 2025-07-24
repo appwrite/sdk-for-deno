@@ -847,6 +847,7 @@ describe('Databases service', () => {
         const response = await databases.upsertDocuments(
             '<DATABASE_ID>',
             '<COLLECTION_ID>',
+            [],
         );
 
         assertEquals(response, data);
@@ -927,6 +928,7 @@ describe('Databases service', () => {
             '<DATABASE_ID>',
             '<COLLECTION_ID>',
             '<DOCUMENT_ID>',
+            {},
         );
 
         assertEquals(response, data);

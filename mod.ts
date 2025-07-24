@@ -8,7 +8,6 @@ import { AppwriteException } from "./src/exception.ts";
 import { Account } from "./src/services/account.ts";
 import { Avatars } from "./src/services/avatars.ts";
 import { Databases } from "./src/services/databases.ts";
-import { Tables } from "./src/services/tables.ts";
 import { Functions } from "./src/services/functions.ts";
 import { Graphql } from "./src/services/graphql.ts";
 import { Health } from "./src/services/health.ts";
@@ -55,7 +54,6 @@ export {
     Account,
     Avatars,
     Databases,
-    Tables,
     Functions,
     Graphql,
     Health,
