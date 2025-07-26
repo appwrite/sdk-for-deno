@@ -7,8 +7,11 @@ const client = new Client()
 
 const databases = new Databases(client);
 
-const response = await databases.upsertDocuments(
+const response = await databases.incrementDocumentAttribute(
     '<DATABASE_ID>', // databaseId
     '<COLLECTION_ID>', // collectionId
-    [] // documents
+    '<DOCUMENT_ID>', // documentId
+    '', // attribute
+    null, // value (optional)
+    null // max (optional)
 );
