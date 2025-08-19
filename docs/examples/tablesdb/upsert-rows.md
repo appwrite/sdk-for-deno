@@ -1,15 +1,14 @@
-import { Client, Databases,  } from "https://deno.land/x/appwrite/mod.ts";
+import { Client, TablesDb } from "https://deno.land/x/appwrite/mod.ts";
 
 const client = new Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-const databases = new Databases(client);
+const tablesDb = new TablesDb(client);
 
-const response = await databases.create(
+const response = await tablesDb.upsertRows(
     '<DATABASE_ID>', // databaseId
-    '<NAME>', // name
-    false, // enabled (optional)
-    .Tablesdb // type (optional)
+    '<TABLE_ID>', // tableId
+    [] // rows
 );

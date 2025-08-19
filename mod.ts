@@ -15,6 +15,7 @@ import { Locale } from "./src/services/locale.ts";
 import { Messaging } from "./src/services/messaging.ts";
 import { Sites } from "./src/services/sites.ts";
 import { Storage } from "./src/services/storage.ts";
+import { TablesDb } from "./src/services/tables-db.ts";
 import { Teams } from "./src/services/teams.ts";
 import { Tokens } from "./src/services/tokens.ts";
 import { Users } from "./src/services/users.ts";
@@ -24,6 +25,7 @@ import { OAuthProvider } from "./src/enums/o-auth-provider.ts";
 import { Browser } from "./src/enums/browser.ts";
 import { CreditCard } from "./src/enums/credit-card.ts";
 import { Flag } from "./src/enums/flag.ts";
+import { Type } from "./src/enums/type.ts";
 import { RelationshipType } from "./src/enums/relationship-type.ts";
 import { RelationMutate } from "./src/enums/relation-mutate.ts";
 import { IndexType } from "./src/enums/index-type.ts";
@@ -61,6 +63,7 @@ export {
     Messaging,
     Sites,
     Storage,
+    TablesDb,
     Teams,
     Tokens,
     Users,
@@ -70,6 +73,7 @@ export {
     Browser,
     CreditCard,
     Flag,
+    Type,
     RelationshipType,
     RelationMutate,
     IndexType,
