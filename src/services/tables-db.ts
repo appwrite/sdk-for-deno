@@ -5,7 +5,6 @@ import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
-import { Type } from '../enums/type.ts';
 import { RelationshipType } from '../enums/relationship-type.ts';
 import { RelationMutate } from '../enums/relation-mutate.ts';
 import { IndexType } from '../enums/index-type.ts';
@@ -62,11 +61,10 @@ export class TablesDb extends Service {
      * @param {string} databaseId
      * @param {string} name
      * @param {boolean} enabled
-     * @param {Type} type
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async create(databaseId: string, name: string, enabled?: boolean, type?: Type): Promise<Models.Database> {
+    async create(databaseId: string, name: string, enabled?: boolean): Promise<Models.Database> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -86,9 +84,6 @@ export class TablesDb extends Service {
         }
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
-        }
-        if (typeof type !== 'undefined') {
-            payload['type'] = type;
         }
         return await this.client.call(
             'post',
@@ -1674,7 +1669,7 @@ export class TablesDb extends Service {
         );
     }
     /**
-     * List indexes in the collection.
+     * List indexes on the table.
      *
      * @param {string} databaseId
      * @param {string} tableId
@@ -1710,7 +1705,7 @@ export class TablesDb extends Service {
     /**
      * Creates an index on the columns listed. Your index should include all the
      * columns you will query in a single request.
-     * Attributes can be `key`, `fulltext`, and `unique`.
+     * Type can be `key`, `fulltext`, or `unique`.
      *
      * @param {string} databaseId
      * @param {string} tableId

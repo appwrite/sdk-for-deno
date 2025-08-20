@@ -5,7 +5,6 @@ import { InputFile } from '../inputFile.ts';
 import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
-import { Type } from '../enums/type.ts';
 import { RelationshipType } from '../enums/relationship-type.ts';
 import { RelationMutate } from '../enums/relation-mutate.ts';
 import { IndexType } from '../enums/index-type.ts';
@@ -63,12 +62,11 @@ export class Databases extends Service {
      * @param {string} databaseId
      * @param {string} name
      * @param {boolean} enabled
-     * @param {Type} type
      * @throws {AppwriteException}
      * @returns {Promise}
      * @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createDatabase` instead.
      */
-    async create(databaseId: string, name: string, enabled?: boolean, type?: Type): Promise<Models.Database> {
+    async create(databaseId: string, name: string, enabled?: boolean): Promise<Models.Database> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -88,9 +86,6 @@ export class Databases extends Service {
         }
         if (typeof enabled !== 'undefined') {
             payload['enabled'] = enabled;
-        }
-        if (typeof type !== 'undefined') {
-            payload['type'] = type;
         }
         return await this.client.call(
             'post',

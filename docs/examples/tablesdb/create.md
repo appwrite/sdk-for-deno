@@ -1,4 +1,4 @@
-import { Client, TablesDb,  } from "https://deno.land/x/appwrite/mod.ts";
+import { Client, TablesDb } from "https://deno.land/x/appwrite/mod.ts";
 
 const client = new Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -10,6 +10,5 @@ const tablesDb = new TablesDb(client);
 const response = await tablesDb.create(
     '<DATABASE_ID>', // databaseId
     '<NAME>', // name
-    false, // enabled (optional)
-    .Tablesdb // type (optional)
+    false // enabled (optional)
 );

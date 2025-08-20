@@ -25,7 +25,6 @@ import { OAuthProvider } from "./src/enums/o-auth-provider.ts";
 import { Browser } from "./src/enums/browser.ts";
 import { CreditCard } from "./src/enums/credit-card.ts";
 import { Flag } from "./src/enums/flag.ts";
-import { Type } from "./src/enums/type.ts";
 import { RelationshipType } from "./src/enums/relationship-type.ts";
 import { RelationMutate } from "./src/enums/relation-mutate.ts";
 import { IndexType } from "./src/enums/index-type.ts";
@@ -73,7 +72,6 @@ export {
     Browser,
     CreditCard,
     Flag,
-    Type,
     RelationshipType,
     RelationMutate,
     IndexType,
