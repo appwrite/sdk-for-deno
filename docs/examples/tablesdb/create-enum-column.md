@@ -7,12 +7,12 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.createEnumColumn(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    '', // key
-    [], // elements
-    false, // required
-    '<DEFAULT>', // default (optional)
-    false // array (optional)
-);
+const response = await tablesDb.createEnumColumn({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    key: '',
+    elements: [],
+    required: false,
+    default: '<DEFAULT>',
+    array: false
+});

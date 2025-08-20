@@ -7,9 +7,9 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.getRow(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    '<ROW_ID>', // rowId
-    [] // queries (optional)
-);
+const response = await tablesDb.getRow({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    rowId: '<ROW_ID>',
+    queries: []
+});

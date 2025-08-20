@@ -7,11 +7,11 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.createIpColumn(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    '', // key
-    false, // required
-    '', // default (optional)
-    false // array (optional)
-);
+const response = await tablesDb.createIpColumn({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    key: '',
+    required: false,
+    default: '',
+    array: false
+});

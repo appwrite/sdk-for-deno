@@ -7,8 +7,8 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.create(
-    '<DATABASE_ID>', // databaseId
-    '<NAME>', // name
-    false // enabled (optional)
-);
+const response = await tablesDb.create({
+    databaseId: '<DATABASE_ID>',
+    name: '<NAME>',
+    enabled: false
+});

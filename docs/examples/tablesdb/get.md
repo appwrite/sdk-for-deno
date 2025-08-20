@@ -7,6 +7,6 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.get(
-    '<DATABASE_ID>' // databaseId
-);
+const response = await tablesDb.get({
+    databaseId: '<DATABASE_ID>'
+});

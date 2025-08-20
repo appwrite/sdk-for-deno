@@ -7,10 +7,10 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.upsertRow(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    '<ROW_ID>', // rowId
-    {}, // data (optional)
-    ["read("any")"] // permissions (optional)
-);
+const response = await tablesDb.upsertRow({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    rowId: '<ROW_ID>',
+    data: {},
+    permissions: ["read("any")"]
+});

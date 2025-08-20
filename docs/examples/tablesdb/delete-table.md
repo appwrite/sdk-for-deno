@@ -7,7 +7,7 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.deleteTable(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>' // tableId
-);
+const response = await tablesDb.deleteTable({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>'
+});

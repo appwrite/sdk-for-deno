@@ -7,8 +7,8 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.listIndexes(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    [] // queries (optional)
-);
+const response = await tablesDb.listIndexes({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    queries: []
+});

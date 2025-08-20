@@ -7,13 +7,13 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.createRelationshipColumn(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    '<RELATED_TABLE_ID>', // relatedTableId
-    RelationshipType.OneToOne, // type
-    false, // twoWay (optional)
-    '', // key (optional)
-    '', // twoWayKey (optional)
-    RelationMutate.Cascade // onDelete (optional)
-);
+const response = await tablesDb.createRelationshipColumn({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    relatedTableId: '<RELATED_TABLE_ID>',
+    type: RelationshipType.OneToOne,
+    twoWay: false,
+    key: '',
+    twoWayKey: '',
+    onDelete: RelationMutate.Cascade
+});

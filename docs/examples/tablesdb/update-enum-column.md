@@ -7,12 +7,12 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.updateEnumColumn(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    '', // key
-    [], // elements
-    false, // required
-    '<DEFAULT>', // default
-    '' // newKey (optional)
-);
+const response = await tablesDb.updateEnumColumn({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    key: '',
+    elements: [],
+    required: false,
+    default: '<DEFAULT>',
+    newKey: ''
+});

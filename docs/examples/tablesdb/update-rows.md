@@ -7,9 +7,9 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.updateRows(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    {}, // data (optional)
-    [] // queries (optional)
-);
+const response = await tablesDb.updateRows({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    data: {},
+    queries: []
+});

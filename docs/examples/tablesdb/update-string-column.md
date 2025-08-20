@@ -7,12 +7,12 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.updateStringColumn(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    '', // key
-    false, // required
-    '<DEFAULT>', // default
-    1, // size (optional)
-    '' // newKey (optional)
-);
+const response = await tablesDb.updateStringColumn({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    key: '',
+    required: false,
+    default: '<DEFAULT>',
+    size: 1,
+    newKey: ''
+});

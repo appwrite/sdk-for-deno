@@ -7,8 +7,8 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.createRows(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    [] // rows
-);
+const response = await tablesDb.createRows({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    rows: []
+});

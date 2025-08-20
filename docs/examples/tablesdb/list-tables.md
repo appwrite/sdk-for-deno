@@ -7,8 +7,8 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.listTables(
-    '<DATABASE_ID>', // databaseId
-    [], // queries (optional)
-    '<SEARCH>' // search (optional)
-);
+const response = await tablesDb.listTables({
+    databaseId: '<DATABASE_ID>',
+    queries: [],
+    search: '<SEARCH>'
+});

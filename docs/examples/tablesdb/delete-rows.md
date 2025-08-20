@@ -7,8 +7,8 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.deleteRows(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    [] // queries (optional)
-);
+const response = await tablesDb.deleteRows({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    queries: []
+});

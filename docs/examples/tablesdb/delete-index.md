@@ -7,8 +7,8 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.deleteIndex(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    '' // key
-);
+const response = await tablesDb.deleteIndex({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    key: ''
+});

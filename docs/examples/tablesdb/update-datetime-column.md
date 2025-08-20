@@ -7,11 +7,11 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.updateDatetimeColumn(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    '', // key
-    false, // required
-    '', // default
-    '' // newKey (optional)
-);
+const response = await tablesDb.updateDatetimeColumn({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    key: '',
+    required: false,
+    default: '',
+    newKey: ''
+});

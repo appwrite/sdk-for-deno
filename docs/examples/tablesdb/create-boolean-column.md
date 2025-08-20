@@ -7,11 +7,11 @@ const client = new Client()
 
 const tablesDb = new TablesDb(client);
 
-const response = await tablesDb.createBooleanColumn(
-    '<DATABASE_ID>', // databaseId
-    '<TABLE_ID>', // tableId
-    '', // key
-    false, // required
-    false, // default (optional)
-    false // array (optional)
-);
+const response = await tablesDb.createBooleanColumn({
+    databaseId: '<DATABASE_ID>',
+    tableId: '<TABLE_ID>',
+    key: '',
+    required: false,
+    default: false,
+    array: false
+});
