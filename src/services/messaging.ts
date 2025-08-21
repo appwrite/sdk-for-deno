@@ -416,8 +416,65 @@ export class Messaging extends Service {
      * @param {string} scheduledAt
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateSMS` instead.
      */
     async createSms(messageId: string, content: string, topics?: string[], users?: string[], targets?: string[], draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
+        if (typeof messageId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "messageId"');
+        }
+
+        if (typeof content === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "content"');
+        }
+
+        const apiPath = '/messaging/messages/sms';
+        const payload: Payload = {};
+
+        if (typeof messageId !== 'undefined') {
+            payload['messageId'] = messageId;
+        }
+        if (typeof content !== 'undefined') {
+            payload['content'] = content;
+        }
+        if (typeof topics !== 'undefined') {
+            payload['topics'] = topics;
+        }
+        if (typeof users !== 'undefined') {
+            payload['users'] = users;
+        }
+        if (typeof targets !== 'undefined') {
+            payload['targets'] = targets;
+        }
+        if (typeof draft !== 'undefined') {
+            payload['draft'] = draft;
+        }
+        if (typeof scheduledAt !== 'undefined') {
+            payload['scheduledAt'] = scheduledAt;
+        }
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Create a new SMS message.
+     *
+     * @param {string} messageId
+     * @param {string} content
+     * @param {string[]} topics
+     * @param {string[]} users
+     * @param {string[]} targets
+     * @param {boolean} draft
+     * @param {string} scheduledAt
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createSMS(messageId: string, content: string, topics?: string[], users?: string[], targets?: string[], draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -475,8 +532,61 @@ export class Messaging extends Service {
      * @param {string} scheduledAt
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateSMS` instead.
      */
     async updateSms(messageId: string, topics?: string[], users?: string[], targets?: string[], content?: string, draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
+        if (typeof messageId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "messageId"');
+        }
+
+        const apiPath = '/messaging/messages/sms/{messageId}'.replace('{messageId}', messageId);
+        const payload: Payload = {};
+
+        if (typeof topics !== 'undefined') {
+            payload['topics'] = topics;
+        }
+        if (typeof users !== 'undefined') {
+            payload['users'] = users;
+        }
+        if (typeof targets !== 'undefined') {
+            payload['targets'] = targets;
+        }
+        if (typeof content !== 'undefined') {
+            payload['content'] = content;
+        }
+        if (typeof draft !== 'undefined') {
+            payload['draft'] = draft;
+        }
+        if (typeof scheduledAt !== 'undefined') {
+            payload['scheduledAt'] = scheduledAt;
+        }
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Update an SMS message by its unique ID. This endpoint only works on
+     * messages that are in draft status. Messages that are already processing,
+     * sent, or failed cannot be updated.
+     * 
+     *
+     * @param {string} messageId
+     * @param {string[]} topics
+     * @param {string[]} users
+     * @param {string[]} targets
+     * @param {string} content
+     * @param {boolean} draft
+     * @param {string} scheduledAt
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateSMS(messageId: string, topics?: string[], users?: string[], targets?: string[], content?: string, draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
@@ -663,8 +773,69 @@ export class Messaging extends Service {
      * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateAPNSProvider` instead.
      */
     async createApnsProvider(providerId: string, name: string, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string, sandbox?: boolean, enabled?: boolean): Promise<Models.Provider> {
+        if (typeof providerId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
+        if (typeof name === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
+
+        const apiPath = '/messaging/providers/apns';
+        const payload: Payload = {};
+
+        if (typeof providerId !== 'undefined') {
+            payload['providerId'] = providerId;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        if (typeof authKey !== 'undefined') {
+            payload['authKey'] = authKey;
+        }
+        if (typeof authKeyId !== 'undefined') {
+            payload['authKeyId'] = authKeyId;
+        }
+        if (typeof teamId !== 'undefined') {
+            payload['teamId'] = teamId;
+        }
+        if (typeof bundleId !== 'undefined') {
+            payload['bundleId'] = bundleId;
+        }
+        if (typeof sandbox !== 'undefined') {
+            payload['sandbox'] = sandbox;
+        }
+        if (typeof enabled !== 'undefined') {
+            payload['enabled'] = enabled;
+        }
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Create a new Apple Push Notification service provider.
+     *
+     * @param {string} providerId
+     * @param {string} name
+     * @param {string} authKey
+     * @param {string} authKeyId
+     * @param {string} teamId
+     * @param {string} bundleId
+     * @param {boolean} sandbox
+     * @param {boolean} enabled
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createAPNSProvider(providerId: string, name: string, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string, sandbox?: boolean, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -723,8 +894,62 @@ export class Messaging extends Service {
      * @param {boolean} sandbox
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateAPNSProvider` instead.
      */
     async updateApnsProvider(providerId: string, name?: string, enabled?: boolean, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string, sandbox?: boolean): Promise<Models.Provider> {
+        if (typeof providerId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
+        const apiPath = '/messaging/providers/apns/{providerId}'.replace('{providerId}', providerId);
+        const payload: Payload = {};
+
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        if (typeof enabled !== 'undefined') {
+            payload['enabled'] = enabled;
+        }
+        if (typeof authKey !== 'undefined') {
+            payload['authKey'] = authKey;
+        }
+        if (typeof authKeyId !== 'undefined') {
+            payload['authKeyId'] = authKeyId;
+        }
+        if (typeof teamId !== 'undefined') {
+            payload['teamId'] = teamId;
+        }
+        if (typeof bundleId !== 'undefined') {
+            payload['bundleId'] = bundleId;
+        }
+        if (typeof sandbox !== 'undefined') {
+            payload['sandbox'] = sandbox;
+        }
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Update a Apple Push Notification service provider by its unique ID.
+     *
+     * @param {string} providerId
+     * @param {string} name
+     * @param {boolean} enabled
+     * @param {string} authKey
+     * @param {string} authKeyId
+     * @param {string} teamId
+     * @param {string} bundleId
+     * @param {boolean} sandbox
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateAPNSProvider(providerId: string, name?: string, enabled?: boolean, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string, sandbox?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -772,8 +997,53 @@ export class Messaging extends Service {
      * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateFCMProvider` instead.
      */
     async createFcmProvider(providerId: string, name: string, serviceAccountJSON?: object, enabled?: boolean): Promise<Models.Provider> {
+        if (typeof providerId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
+        if (typeof name === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
+
+        const apiPath = '/messaging/providers/fcm';
+        const payload: Payload = {};
+
+        if (typeof providerId !== 'undefined') {
+            payload['providerId'] = providerId;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        if (typeof serviceAccountJSON !== 'undefined') {
+            payload['serviceAccountJSON'] = serviceAccountJSON;
+        }
+        if (typeof enabled !== 'undefined') {
+            payload['enabled'] = enabled;
+        }
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Create a new Firebase Cloud Messaging provider.
+     *
+     * @param {string} providerId
+     * @param {string} name
+     * @param {object} serviceAccountJSON
+     * @param {boolean} enabled
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createFCMProvider(providerId: string, name: string, serviceAccountJSON?: object, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -816,8 +1086,46 @@ export class Messaging extends Service {
      * @param {object} serviceAccountJSON
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateFCMProvider` instead.
      */
     async updateFcmProvider(providerId: string, name?: string, enabled?: boolean, serviceAccountJSON?: object): Promise<Models.Provider> {
+        if (typeof providerId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
+        const apiPath = '/messaging/providers/fcm/{providerId}'.replace('{providerId}', providerId);
+        const payload: Payload = {};
+
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        if (typeof enabled !== 'undefined') {
+            payload['enabled'] = enabled;
+        }
+        if (typeof serviceAccountJSON !== 'undefined') {
+            payload['serviceAccountJSON'] = serviceAccountJSON;
+        }
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Update a Firebase Cloud Messaging provider by its unique ID.
+     *
+     * @param {string} providerId
+     * @param {string} name
+     * @param {boolean} enabled
+     * @param {object} serviceAccountJSON
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateFCMProvider(providerId: string, name?: string, enabled?: boolean, serviceAccountJSON?: object): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -1202,8 +1510,97 @@ export class Messaging extends Service {
      * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateSMTPProvider` instead.
      */
     async createSmtpProvider(providerId: string, name: string, host: string, port?: number, username?: string, password?: string, encryption?: SmtpEncryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
+        if (typeof providerId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
+        if (typeof name === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
+
+        if (typeof host === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "host"');
+        }
+
+        const apiPath = '/messaging/providers/smtp';
+        const payload: Payload = {};
+
+        if (typeof providerId !== 'undefined') {
+            payload['providerId'] = providerId;
+        }
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        if (typeof host !== 'undefined') {
+            payload['host'] = host;
+        }
+        if (typeof port !== 'undefined') {
+            payload['port'] = port;
+        }
+        if (typeof username !== 'undefined') {
+            payload['username'] = username;
+        }
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+        if (typeof encryption !== 'undefined') {
+            payload['encryption'] = encryption;
+        }
+        if (typeof autoTLS !== 'undefined') {
+            payload['autoTLS'] = autoTLS;
+        }
+        if (typeof mailer !== 'undefined') {
+            payload['mailer'] = mailer;
+        }
+        if (typeof fromName !== 'undefined') {
+            payload['fromName'] = fromName;
+        }
+        if (typeof fromEmail !== 'undefined') {
+            payload['fromEmail'] = fromEmail;
+        }
+        if (typeof replyToName !== 'undefined') {
+            payload['replyToName'] = replyToName;
+        }
+        if (typeof replyToEmail !== 'undefined') {
+            payload['replyToEmail'] = replyToEmail;
+        }
+        if (typeof enabled !== 'undefined') {
+            payload['enabled'] = enabled;
+        }
+        return await this.client.call(
+            'post',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Create a new SMTP provider.
+     *
+     * @param {string} providerId
+     * @param {string} name
+     * @param {string} host
+     * @param {number} port
+     * @param {string} username
+     * @param {string} password
+     * @param {SmtpEncryption} encryption
+     * @param {boolean} autoTLS
+     * @param {string} mailer
+     * @param {string} fromName
+     * @param {string} fromEmail
+     * @param {string} replyToName
+     * @param {string} replyToEmail
+     * @param {boolean} enabled
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createSMTPProvider(providerId: string, name: string, host: string, port?: number, username?: string, password?: string, encryption?: SmtpEncryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
@@ -1290,8 +1687,86 @@ export class Messaging extends Service {
      * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateSMTPProvider` instead.
      */
     async updateSmtpProvider(providerId: string, name?: string, host?: string, port?: number, username?: string, password?: string, encryption?: SmtpEncryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
+        if (typeof providerId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
+        const apiPath = '/messaging/providers/smtp/{providerId}'.replace('{providerId}', providerId);
+        const payload: Payload = {};
+
+        if (typeof name !== 'undefined') {
+            payload['name'] = name;
+        }
+        if (typeof host !== 'undefined') {
+            payload['host'] = host;
+        }
+        if (typeof port !== 'undefined') {
+            payload['port'] = port;
+        }
+        if (typeof username !== 'undefined') {
+            payload['username'] = username;
+        }
+        if (typeof password !== 'undefined') {
+            payload['password'] = password;
+        }
+        if (typeof encryption !== 'undefined') {
+            payload['encryption'] = encryption;
+        }
+        if (typeof autoTLS !== 'undefined') {
+            payload['autoTLS'] = autoTLS;
+        }
+        if (typeof mailer !== 'undefined') {
+            payload['mailer'] = mailer;
+        }
+        if (typeof fromName !== 'undefined') {
+            payload['fromName'] = fromName;
+        }
+        if (typeof fromEmail !== 'undefined') {
+            payload['fromEmail'] = fromEmail;
+        }
+        if (typeof replyToName !== 'undefined') {
+            payload['replyToName'] = replyToName;
+        }
+        if (typeof replyToEmail !== 'undefined') {
+            payload['replyToEmail'] = replyToEmail;
+        }
+        if (typeof enabled !== 'undefined') {
+            payload['enabled'] = enabled;
+        }
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Update a SMTP provider by its unique ID.
+     *
+     * @param {string} providerId
+     * @param {string} name
+     * @param {string} host
+     * @param {number} port
+     * @param {string} username
+     * @param {string} password
+     * @param {SmtpEncryption} encryption
+     * @param {boolean} autoTLS
+     * @param {string} mailer
+     * @param {string} fromName
+     * @param {string} fromEmail
+     * @param {string} replyToName
+     * @param {string} replyToEmail
+     * @param {boolean} enabled
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateSMTPProvider(providerId: string, name?: string, host?: string, port?: number, username?: string, password?: string, encryption?: SmtpEncryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }

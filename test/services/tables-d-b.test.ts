@@ -1,13 +1,13 @@
 import {afterEach, describe, it as test} from "https://deno.land/std@0.204.0/testing/bdd.ts";
 import {restore, stub} from "https://deno.land/std@0.204.0/testing/mock.ts";
 import {assertEquals} from "https://deno.land/std@0.204.0/assert/assert_equals.ts";
-import { TablesDb } from "../../src/services/tablesDb.ts";
+import { TablesDB } from "../../src/services/tablesDB.ts";
 import {Client} from "../../src/client.ts";
 import {InputFile} from "../../src/inputFile.ts"
 
-describe('TablesDb service', () => {
+describe('TablesDB service', () => {
     const client = new Client();
-    const tablesDb = new TablesDb(client);
+    const tablesDB = new TablesDB(client);
 
     afterEach(() => restore())
 
@@ -19,7 +19,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.list(
+        const response = await tablesDB.list(
         );
 
         assertEquals(response, data);
@@ -38,7 +38,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.create(
+        const response = await tablesDB.create(
             '<DATABASE_ID>',
             '<NAME>',
         );
@@ -59,7 +59,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.get(
+        const response = await tablesDB.get(
             '<DATABASE_ID>',
         );
 
@@ -79,7 +79,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.update(
+        const response = await tablesDB.update(
             '<DATABASE_ID>',
             '<NAME>',
         );
@@ -94,7 +94,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
-        const response = await tablesDb.delete(
+        const response = await tablesDB.delete(
             '<DATABASE_ID>',
         );
 
@@ -111,7 +111,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.listTables(
+        const response = await tablesDB.listTables(
             '<DATABASE_ID>',
         );
 
@@ -135,7 +135,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createTable(
+        const response = await tablesDB.createTable(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '<NAME>',
@@ -161,7 +161,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.getTable(
+        const response = await tablesDB.getTable(
             '<DATABASE_ID>',
             '<TABLE_ID>',
         );
@@ -186,7 +186,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateTable(
+        const response = await tablesDB.updateTable(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '<NAME>',
@@ -202,7 +202,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
-        const response = await tablesDb.deleteTable(
+        const response = await tablesDB.deleteTable(
             '<DATABASE_ID>',
             '<TABLE_ID>',
         );
@@ -220,7 +220,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.listColumns(
+        const response = await tablesDB.listColumns(
             '<DATABASE_ID>',
             '<TABLE_ID>',
         );
@@ -242,7 +242,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createBooleanColumn(
+        const response = await tablesDB.createBooleanColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -266,7 +266,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateBooleanColumn(
+        const response = await tablesDB.updateBooleanColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -292,7 +292,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createDatetimeColumn(
+        const response = await tablesDB.createDatetimeColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -317,7 +317,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateDatetimeColumn(
+        const response = await tablesDB.updateDatetimeColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -343,7 +343,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createEmailColumn(
+        const response = await tablesDB.createEmailColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -368,7 +368,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateEmailColumn(
+        const response = await tablesDB.updateEmailColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -395,7 +395,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createEnumColumn(
+        const response = await tablesDB.createEnumColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -422,7 +422,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateEnumColumn(
+        const response = await tablesDB.updateEnumColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -448,7 +448,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createFloatColumn(
+        const response = await tablesDB.createFloatColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -472,7 +472,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateFloatColumn(
+        const response = await tablesDB.updateFloatColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -497,7 +497,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createIntegerColumn(
+        const response = await tablesDB.createIntegerColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -521,7 +521,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateIntegerColumn(
+        const response = await tablesDB.updateIntegerColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -547,7 +547,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createIpColumn(
+        const response = await tablesDB.createIpColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -572,7 +572,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateIpColumn(
+        const response = await tablesDB.updateIpColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -603,7 +603,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createRelationshipColumn(
+        const response = await tablesDB.createRelationshipColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '<RELATED_TABLE_ID>',
@@ -628,7 +628,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createStringColumn(
+        const response = await tablesDB.createStringColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -654,7 +654,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateStringColumn(
+        const response = await tablesDB.updateStringColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -680,7 +680,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createUrlColumn(
+        const response = await tablesDB.createUrlColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -705,7 +705,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateUrlColumn(
+        const response = await tablesDB.updateUrlColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -723,7 +723,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
-        const response = await tablesDb.getColumn(
+        const response = await tablesDB.getColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -740,7 +740,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
-        const response = await tablesDb.deleteColumn(
+        const response = await tablesDB.deleteColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -770,7 +770,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateRelationshipColumn(
+        const response = await tablesDB.updateRelationshipColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -788,7 +788,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.listIndexes(
+        const response = await tablesDB.listIndexes(
             '<DATABASE_ID>',
             '<TABLE_ID>',
         );
@@ -812,7 +812,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createIndex(
+        const response = await tablesDB.createIndex(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -839,7 +839,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.getIndex(
+        const response = await tablesDB.getIndex(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -855,7 +855,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
-        const response = await tablesDb.deleteIndex(
+        const response = await tablesDB.deleteIndex(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '',
@@ -874,7 +874,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.listRows(
+        const response = await tablesDB.listRows(
             '<DATABASE_ID>',
             '<TABLE_ID>',
         );
@@ -896,7 +896,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createRow(
+        const response = await tablesDB.createRow(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '<ROW_ID>',
@@ -915,7 +915,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.createRows(
+        const response = await tablesDB.createRows(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             [],
@@ -933,7 +933,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.upsertRows(
+        const response = await tablesDB.upsertRows(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             [],
@@ -951,7 +951,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateRows(
+        const response = await tablesDB.updateRows(
             '<DATABASE_ID>',
             '<TABLE_ID>',
         );
@@ -968,7 +968,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.deleteRows(
+        const response = await tablesDB.deleteRows(
             '<DATABASE_ID>',
             '<TABLE_ID>',
         );
@@ -990,7 +990,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.getRow(
+        const response = await tablesDB.getRow(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '<ROW_ID>',
@@ -1013,7 +1013,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.upsertRow(
+        const response = await tablesDB.upsertRow(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '<ROW_ID>',
@@ -1036,7 +1036,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.updateRow(
+        const response = await tablesDB.updateRow(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '<ROW_ID>',
@@ -1052,7 +1052,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
-        const response = await tablesDb.deleteRow(
+        const response = await tablesDB.deleteRow(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '<ROW_ID>',
@@ -1076,7 +1076,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.decrementRowColumn(
+        const response = await tablesDB.decrementRowColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '<ROW_ID>',
@@ -1100,7 +1100,7 @@ describe('TablesDb service', () => {
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
-        const response = await tablesDb.incrementRowColumn(
+        const response = await tablesDB.incrementRowColumn(
             '<DATABASE_ID>',
             '<TABLE_ID>',
             '<ROW_ID>',

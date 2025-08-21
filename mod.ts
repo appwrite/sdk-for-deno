@@ -15,7 +15,7 @@ import { Locale } from "./src/services/locale.ts";
 import { Messaging } from "./src/services/messaging.ts";
 import { Sites } from "./src/services/sites.ts";
 import { Storage } from "./src/services/storage.ts";
-import { TablesDb } from "./src/services/tables-db.ts";
+import { TablesDB } from "./src/services/tables-d-b.ts";
 import { Teams } from "./src/services/teams.ts";
 import { Tokens } from "./src/services/tokens.ts";
 import { Users } from "./src/services/users.ts";
@@ -62,7 +62,7 @@ export {
     Messaging,
     Sites,
     Storage,
-    TablesDb,
+    TablesDB,
     Teams,
     Tokens,
     Users,

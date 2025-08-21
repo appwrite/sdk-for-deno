@@ -504,12 +504,59 @@ describe('Users service', () => {
     });
 
     
+    test('test method updateMFA()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'name': 'John Doe',
+            'registration': '2020-10-15T06:38:00.000+00:00',
+            'status': true,
+            'labels': [],
+            'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
+            'email': 'john@appwrite.io',
+            'phone': '+4930901820',
+            'emailVerification': true,
+            'phoneVerification': true,
+            'mfa': true,
+            'prefs': {},
+            'targets': [],
+            'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await users.updateMFA(
+            '<USER_ID>',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method deleteMfaAuthenticator()', async () => {
         const data = '';
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await users.deleteMfaAuthenticator(
+            '<USER_ID>',
+            'totp',
+        );
+
+        const text = await response.text();
+        assertEquals(text, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method deleteMFAAuthenticator()', async () => {
+        const data = '';
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
+
+        const response = await users.deleteMFAAuthenticator(
             '<USER_ID>',
             'totp',
         );
@@ -538,6 +585,24 @@ describe('Users service', () => {
     });
 
     
+    test('test method listMFAFactors()', async () => {
+        const data = {
+            'totp': true,
+            'phone': true,
+            'email': true,
+            'recoveryCode': true,};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await users.listMFAFactors(
+            '<USER_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method getMfaRecoveryCodes()', async () => {
         const data = {
             'recoveryCodes': [],};
@@ -545,6 +610,21 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.getMfaRecoveryCodes(
+            '<USER_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method getMFARecoveryCodes()', async () => {
+        const data = {
+            'recoveryCodes': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await users.getMFARecoveryCodes(
             '<USER_ID>',
         );
 
@@ -568,6 +648,21 @@ describe('Users service', () => {
     });
 
     
+    test('test method updateMFARecoveryCodes()', async () => {
+        const data = {
+            'recoveryCodes': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await users.updateMFARecoveryCodes(
+            '<USER_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method createMfaRecoveryCodes()', async () => {
         const data = {
             'recoveryCodes': [],};
@@ -575,6 +670,21 @@ describe('Users service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await users.createMfaRecoveryCodes(
+            '<USER_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createMFARecoveryCodes()', async () => {
+        const data = {
+            'recoveryCodes': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await users.createMFARecoveryCodes(
             '<USER_ID>',
         );
 

@@ -209,6 +209,22 @@ describe('Account service', () => {
     });
 
     
+    test('test method createMFAAuthenticator()', async () => {
+        const data = {
+            'secret': '1',
+            'uri': '1',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await account.createMFAAuthenticator(
+            'totp',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method updateMfaAuthenticator()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
@@ -240,12 +256,58 @@ describe('Account service', () => {
     });
 
     
+    test('test method updateMFAAuthenticator()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'name': 'John Doe',
+            'registration': '2020-10-15T06:38:00.000+00:00',
+            'status': true,
+            'labels': [],
+            'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
+            'email': 'john@appwrite.io',
+            'phone': '+4930901820',
+            'emailVerification': true,
+            'phoneVerification': true,
+            'mfa': true,
+            'prefs': {},
+            'targets': [],
+            'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await account.updateMFAAuthenticator(
+            'totp',
+            '<OTP>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method deleteMfaAuthenticator()', async () => {
         const data = '';
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
 
         const response = await account.deleteMfaAuthenticator(
+            'totp',
+        );
+
+        const text = await response.text();
+        assertEquals(text, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method deleteMFAAuthenticator()', async () => {
+        const data = '';
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(new Response(data)))
+
+        const response = await account.deleteMFAAuthenticator(
             'totp',
         );
 
@@ -265,6 +327,24 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.createMfaChallenge(
+            'email',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createMFAChallenge()', async () => {
+        const data = {
+            '\$id': 'bb8ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            'userId': '5e5ea5c168bb8',
+            'expire': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await account.createMFAChallenge(
             'email',
         );
 
@@ -317,6 +397,50 @@ describe('Account service', () => {
     });
 
     
+    test('test method updateMFAChallenge()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'userId': '5e5bb8c16897e',
+            'expire': '2020-10-15T06:38:00.000+00:00',
+            'provider': 'email',
+            'providerUid': 'user@example.com',
+            'providerAccessToken': 'MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3',
+            'providerAccessTokenExpiry': '2020-10-15T06:38:00.000+00:00',
+            'providerRefreshToken': 'MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3',
+            'ip': '127.0.0.1',
+            'osCode': 'Mac',
+            'osName': 'Mac',
+            'osVersion': 'Mac',
+            'clientType': 'browser',
+            'clientCode': 'CM',
+            'clientName': 'Chrome Mobile iOS',
+            'clientVersion': '84.0',
+            'clientEngine': 'WebKit',
+            'clientEngineVersion': '605.1.15',
+            'deviceName': 'smartphone',
+            'deviceBrand': 'Google',
+            'deviceModel': 'Nexus 5',
+            'countryCode': 'US',
+            'countryName': 'United States',
+            'current': true,
+            'factors': [],
+            'secret': '5e5bb8c16897e',
+            'mfaUpdatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await account.updateMFAChallenge(
+            '<CHALLENGE_ID>',
+            '<OTP>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method listMfaFactors()', async () => {
         const data = {
             'totp': true,
@@ -327,6 +451,23 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.listMfaFactors(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method listMFAFactors()', async () => {
+        const data = {
+            'totp': true,
+            'phone': true,
+            'email': true,
+            'recoveryCode': true,};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await account.listMFAFactors(
         );
 
         assertEquals(response, data);
@@ -348,6 +489,20 @@ describe('Account service', () => {
     });
 
     
+    test('test method getMFARecoveryCodes()', async () => {
+        const data = {
+            'recoveryCodes': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await account.getMFARecoveryCodes(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method createMfaRecoveryCodes()', async () => {
         const data = {
             'recoveryCodes': [],};
@@ -362,6 +517,20 @@ describe('Account service', () => {
     });
 
     
+    test('test method createMFARecoveryCodes()', async () => {
+        const data = {
+            'recoveryCodes': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await account.createMFARecoveryCodes(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method updateMfaRecoveryCodes()', async () => {
         const data = {
             'recoveryCodes': [],};
@@ -369,6 +538,20 @@ describe('Account service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await account.updateMfaRecoveryCodes(
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateMFARecoveryCodes()', async () => {
+        const data = {
+            'recoveryCodes': [],};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await account.updateMFARecoveryCodes(
         );
 
         assertEquals(response, data);
