@@ -1171,7 +1171,7 @@ export namespace Models {
          */
         max?: number;
         /**
-         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         * Default value for column when not provided. Cannot be set when column is required.
          */
         xdefault?: number;
     }
@@ -1220,7 +1220,7 @@ export namespace Models {
          */
         max?: number;
         /**
-         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         * Default value for column when not provided. Cannot be set when column is required.
          */
         xdefault?: number;
     }
@@ -1261,7 +1261,7 @@ export namespace Models {
          */
         $updatedAt: string;
         /**
-         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         * Default value for column when not provided. Cannot be set when column is required.
          */
         xdefault?: boolean;
     }
@@ -1306,7 +1306,7 @@ export namespace Models {
          */
         format: string;
         /**
-         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         * Default value for column when not provided. Cannot be set when column is required.
          */
         xdefault?: string;
     }
@@ -1355,7 +1355,7 @@ export namespace Models {
          */
         format: string;
         /**
-         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         * Default value for column when not provided. Cannot be set when column is required.
          */
         xdefault?: string;
     }
@@ -1400,7 +1400,7 @@ export namespace Models {
          */
         format: string;
         /**
-         * Default value for attribute when not provided. Cannot be set when attribute is required.
+         * Default value for column when not provided. Cannot be set when column is required.
          */
         xdefault?: string;
     }
@@ -1490,7 +1490,7 @@ export namespace Models {
          */
         format: string;
         /**
-         * Default value for attribute when not provided. Only null is optional
+         * Default value for column when not provided. Only null is optional
          */
         xdefault?: string;
     }
@@ -2911,7 +2911,7 @@ export namespace Models {
          */
         $createdAt: string;
         /**
-         * Execution upate date in ISO 8601 format.
+         * Execution update date in ISO 8601 format.
          */
         $updatedAt: string;
         /**

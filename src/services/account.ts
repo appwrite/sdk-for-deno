@@ -275,7 +275,7 @@ export class Account extends Service {
      * @param {AuthenticatorType} type
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFAAuthenticator` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Account.createMFAAuthenticator` instead.
      */
     async createMfaAuthenticator(type: AuthenticatorType): Promise<Models.MfaType> {
         if (typeof type === 'undefined') {
@@ -332,7 +332,7 @@ export class Account extends Service {
      * @param {string} otp
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFAAuthenticator` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Account.updateMFAAuthenticator` instead.
      */
     async updateMfaAuthenticator<Preferences extends Models.Preferences>(type: AuthenticatorType, otp: string): Promise<Models.User<Preferences>> {
         if (typeof type === 'undefined') {
@@ -400,7 +400,7 @@ export class Account extends Service {
      * @param {AuthenticatorType} type
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `DeleteMFAAuthenticator` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Account.deleteMFAAuthenticator` instead.
      */
     async deleteMfaAuthenticator(type: AuthenticatorType): Promise<Response> {
         if (typeof type === 'undefined') {
@@ -453,7 +453,7 @@ export class Account extends Service {
      * @param {AuthenticationFactor} factor
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFAChallenge` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Account.createMFAChallenge` instead.
      */
     async createMfaChallenge(factor: AuthenticationFactor): Promise<Models.MfaChallenge> {
         if (typeof factor === 'undefined') {
@@ -517,7 +517,7 @@ export class Account extends Service {
      * @param {string} otp
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFAChallenge` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Account.updateMFAChallenge` instead.
      */
     async updateMfaChallenge(challengeId: string, otp: string): Promise<Models.Session> {
         if (typeof challengeId === 'undefined') {
@@ -592,7 +592,7 @@ export class Account extends Service {
      *
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `ListMFAFactors` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Account.listMFAFactors` instead.
      */
     async listMfaFactors(): Promise<Models.MfaFactors> {
         const apiPath = '/account/mfa/factors';
@@ -634,7 +634,7 @@ export class Account extends Service {
      *
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `GetMFARecoveryCodes` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Account.getMFARecoveryCodes` instead.
      */
     async getMfaRecoveryCodes(): Promise<Models.MfaRecoveryCodes> {
         const apiPath = '/account/mfa/recovery-codes';
@@ -680,7 +680,7 @@ export class Account extends Service {
      *
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFARecoveryCodes` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Account.createMFARecoveryCodes` instead.
      */
     async createMfaRecoveryCodes(): Promise<Models.MfaRecoveryCodes> {
         const apiPath = '/account/mfa/recovery-codes';
@@ -728,7 +728,7 @@ export class Account extends Service {
      *
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFARecoveryCodes` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Account.updateMFARecoveryCodes` instead.
      */
     async updateMfaRecoveryCodes(): Promise<Models.MfaRecoveryCodes> {
         const apiPath = '/account/mfa/recovery-codes';

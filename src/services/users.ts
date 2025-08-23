@@ -808,7 +808,7 @@ export class Users extends Service {
      * @param {boolean} mfa
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFA` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.updateMFA` instead.
      */
     async updateMfa<Preferences extends Models.Preferences>(userId: string, mfa: boolean): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
@@ -875,7 +875,7 @@ export class Users extends Service {
      * @param {AuthenticatorType} type
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `DeleteMFAAuthenticator` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.deleteMFAAuthenticator` instead.
      */
     async deleteMfaAuthenticator(userId: string, type: AuthenticatorType): Promise<Response> {
         if (typeof userId === 'undefined') {
@@ -935,7 +935,7 @@ export class Users extends Service {
      * @param {string} userId
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `ListMFAFactors` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.listMFAFactors` instead.
      */
     async listMfaFactors(userId: string): Promise<Models.MfaFactors> {
         if (typeof userId === 'undefined') {
@@ -987,7 +987,7 @@ export class Users extends Service {
      * @param {string} userId
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `GetMFARecoveryCodes` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.getMFARecoveryCodes` instead.
      */
     async getMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
         if (typeof userId === 'undefined') {
@@ -1042,7 +1042,7 @@ export class Users extends Service {
      * @param {string} userId
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFARecoveryCodes` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.updateMFARecoveryCodes` instead.
      */
     async updateMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
         if (typeof userId === 'undefined') {
@@ -1099,7 +1099,7 @@ export class Users extends Service {
      * @param {string} userId
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFARecoveryCodes` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.createMFARecoveryCodes` instead.
      */
     async createMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
         if (typeof userId === 'undefined') {

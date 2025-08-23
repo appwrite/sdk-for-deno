@@ -416,7 +416,7 @@ export class Messaging extends Service {
      * @param {string} scheduledAt
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateSMS` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.createSMS` instead.
      */
     async createSms(messageId: string, content: string, topics?: string[], users?: string[], targets?: string[], draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
@@ -532,7 +532,7 @@ export class Messaging extends Service {
      * @param {string} scheduledAt
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateSMS` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.updateSMS` instead.
      */
     async updateSms(messageId: string, topics?: string[], users?: string[], targets?: string[], content?: string, draft?: boolean, scheduledAt?: string): Promise<Models.Message> {
         if (typeof messageId === 'undefined') {
@@ -773,7 +773,7 @@ export class Messaging extends Service {
      * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateAPNSProvider` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.createAPNSProvider` instead.
      */
     async createApnsProvider(providerId: string, name: string, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string, sandbox?: boolean, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
@@ -894,7 +894,7 @@ export class Messaging extends Service {
      * @param {boolean} sandbox
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateAPNSProvider` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.updateAPNSProvider` instead.
      */
     async updateApnsProvider(providerId: string, name?: string, enabled?: boolean, authKey?: string, authKeyId?: string, teamId?: string, bundleId?: string, sandbox?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
@@ -997,7 +997,7 @@ export class Messaging extends Service {
      * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateFCMProvider` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.createFCMProvider` instead.
      */
     async createFcmProvider(providerId: string, name: string, serviceAccountJSON?: object, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
@@ -1086,7 +1086,7 @@ export class Messaging extends Service {
      * @param {object} serviceAccountJSON
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateFCMProvider` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.updateFCMProvider` instead.
      */
     async updateFcmProvider(providerId: string, name?: string, enabled?: boolean, serviceAccountJSON?: object): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
@@ -1510,7 +1510,7 @@ export class Messaging extends Service {
      * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `CreateSMTPProvider` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.createSMTPProvider` instead.
      */
     async createSmtpProvider(providerId: string, name: string, host: string, port?: number, username?: string, password?: string, encryption?: SmtpEncryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
@@ -1687,7 +1687,7 @@ export class Messaging extends Service {
      * @param {boolean} enabled
      * @throws {AppwriteException}
      * @returns {Promise}
-     * @deprecated This API has been deprecated since 1.8.0. Please use `UpdateSMTPProvider` instead.
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.updateSMTPProvider` instead.
      */
     async updateSmtpProvider(providerId: string, name?: string, host?: string, port?: number, username?: string, password?: string, encryption?: SmtpEncryption, autoTLS?: boolean, mailer?: string, fromName?: string, fromEmail?: string, replyToName?: string, replyToEmail?: string, enabled?: boolean): Promise<Models.Provider> {
         if (typeof providerId === 'undefined') {
