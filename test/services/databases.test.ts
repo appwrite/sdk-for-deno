@@ -33,7 +33,8 @@ describe('Databases service', () => {
             'name': 'My Database',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'enabled': true,};
+            'enabled': true,
+            'type': 'legacy',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -53,7 +54,8 @@ describe('Databases service', () => {
             'name': 'My Database',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'enabled': true,};
+            'enabled': true,
+            'type': 'legacy',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -72,7 +74,8 @@ describe('Databases service', () => {
             'name': 'My Database',
             '\$createdAt': '2020-10-15T06:38:00.000+00:00',
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-            'enabled': true,};
+            'enabled': true,
+            'type': 'legacy',};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -1043,14 +1046,15 @@ describe('Databases service', () => {
     
     test('test method createIndex()', async () => {
         const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'key': 'index1',
             'type': 'primary',
             'status': 'available',
             'error': 'string',
             'attributes': [],
-            'lengths': [],
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+            'lengths': [],};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
@@ -1069,14 +1073,15 @@ describe('Databases service', () => {
     
     test('test method getIndex()', async () => {
         const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             'key': 'index1',
             'type': 'primary',
             'status': 'available',
             'error': 'string',
             'attributes': [],
-            'lengths': [],
-            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+            'lengths': [],};
 
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 

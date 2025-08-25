@@ -8,7 +8,7 @@ import { Query } from '../query.ts';
 import { Framework } from '../enums/framework.ts';
 import { BuildRuntime } from '../enums/build-runtime.ts';
 import { Adapter } from '../enums/adapter.ts';
-import { VCSDeploymentType } from '../enums/v-c-s-deployment-type.ts';
+import { VCSDeploymentType } from '../enums/vcs-deployment-type.ts';
 import { DeploymentDownloadType } from '../enums/deployment-download-type.ts';
 
 export type UploadProgress = {

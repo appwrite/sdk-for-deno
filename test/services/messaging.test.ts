@@ -150,6 +150,31 @@ describe('Messaging service', () => {
     });
 
     
+    test('test method createSMS()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'providerType': 'email',
+            'topics': [],
+            'users': [],
+            'targets': [],
+            'deliveredTotal': 1,
+            'data': {},
+            'status': 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await messaging.createSMS(
+            '<MESSAGE_ID>',
+            '<CONTENT>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method updateSms()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
@@ -166,6 +191,30 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateSms(
+            '<MESSAGE_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateSMS()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'providerType': 'email',
+            'topics': [],
+            'users': [],
+            'targets': [],
+            'deliveredTotal': 1,
+            'data': {},
+            'status': 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await messaging.updateSMS(
             '<MESSAGE_ID>',
         );
 
@@ -283,6 +332,29 @@ describe('Messaging service', () => {
     });
 
     
+    test('test method createAPNSProvider()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'name': 'Mailgun',
+            'provider': 'mailgun',
+            'enabled': true,
+            'type': 'sms',
+            'credentials': {},};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await messaging.createAPNSProvider(
+            '<PROVIDER_ID>',
+            '<NAME>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method updateApnsProvider()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
@@ -297,6 +369,28 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateApnsProvider(
+            '<PROVIDER_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateAPNSProvider()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'name': 'Mailgun',
+            'provider': 'mailgun',
+            'enabled': true,
+            'type': 'sms',
+            'credentials': {},};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await messaging.updateAPNSProvider(
             '<PROVIDER_ID>',
         );
 
@@ -328,6 +422,29 @@ describe('Messaging service', () => {
     });
 
     
+    test('test method createFCMProvider()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'name': 'Mailgun',
+            'provider': 'mailgun',
+            'enabled': true,
+            'type': 'sms',
+            'credentials': {},};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await messaging.createFCMProvider(
+            '<PROVIDER_ID>',
+            '<NAME>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method updateFcmProvider()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
@@ -342,6 +459,28 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateFcmProvider(
+            '<PROVIDER_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateFCMProvider()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'name': 'Mailgun',
+            'provider': 'mailgun',
+            'enabled': true,
+            'type': 'sms',
+            'credentials': {},};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await messaging.updateFCMProvider(
             '<PROVIDER_ID>',
         );
 
@@ -509,6 +648,30 @@ describe('Messaging service', () => {
     });
 
     
+    test('test method createSMTPProvider()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'name': 'Mailgun',
+            'provider': 'mailgun',
+            'enabled': true,
+            'type': 'sms',
+            'credentials': {},};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await messaging.createSMTPProvider(
+            '<PROVIDER_ID>',
+            '<NAME>',
+            '<HOST>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method updateSmtpProvider()', async () => {
         const data = {
             '\$id': '5e5ea5c16897e',
@@ -523,6 +686,28 @@ describe('Messaging service', () => {
         const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
 
         const response = await messaging.updateSmtpProvider(
+            '<PROVIDER_ID>',
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateSMTPProvider()', async () => {
+        const data = {
+            '\$id': '5e5ea5c16897e',
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+            'name': 'Mailgun',
+            'provider': 'mailgun',
+            'enabled': true,
+            'type': 'sms',
+            'credentials': {},};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await messaging.updateSMTPProvider(
             '<PROVIDER_ID>',
         );
 

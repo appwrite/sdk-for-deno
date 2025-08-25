@@ -7,8 +7,9 @@ const client = new Client()
 
 const users = new Users(client);
 
-const response = await users.createJWT(
-    '<USER_ID>', // userId
-    '<SESSION_ID>', // sessionId (optional)
-    0 // duration (optional)
-);
+const response = await users.createMD5User({
+    userId: '<USER_ID>',
+    email: 'email@example.com',
+    password: 'password',
+    name: '<NAME>' // optional
+});

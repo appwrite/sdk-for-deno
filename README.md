@@ -1,12 +1,12 @@
 # Appwrite Deno SDK
 
 ![License](https://img.shields.io/github/license/appwrite/sdk-for-deno.svg?style=flat-square)
-![Version](https://img.shields.io/badge/api%20version-1.7.4-blue.svg?style=flat-square)
+![Version](https://img.shields.io/badge/api%20version-1.8.0-blue.svg?style=flat-square)
 [![Build Status](https://img.shields.io/travis/com/appwrite/sdk-generator?style=flat-square)](https://travis-ci.com/appwrite/sdk-generator)
 [![Twitter Account](https://img.shields.io/twitter/follow/appwrite?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite)
 [![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
 
-**This SDK is compatible with Appwrite server version 1.7.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-deno/releases).**
+**This SDK is compatible with Appwrite server version 1.8.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-deno/releases).**
 
 Appwrite is an open-source backend as a service server that abstract and simplify complex and repetitive development tasks behind a very simple to use REST API. Appwrite aims to help you develop your apps faster and in a more secure way. Use the Deno SDK to integrate your app with the Appwrite server to easily start interacting with all of Appwrite backend APIs and tools. For full API documentation and tutorials go to [https://appwrite.io/docs](https://appwrite.io/docs)
 
@@ -23,6 +23,7 @@ import * as sdk from "https://deno.land/x/appwrite/mod.ts";
 ## Getting Started
 
 ### Init your SDK
+
 Initialize your SDK with your Appwrite server API endpoint and project ID which can be found in your project settings page and your new API secret Key from project's API keys section.
 
 ```typescript
@@ -48,6 +49,7 @@ console.log(user);
 ```
 
 ### Full Example
+
 ```typescript
 import * as sdk from "https://deno.land/x/appwrite/mod.ts";
 
@@ -66,6 +68,7 @@ console.log(user);
 ```
 
 ### Error Handling
+
 The Appwrite Deno SDK raises `AppwriteException` object with `message`, `code` and `response` properties. You can handle any errors by catching `AppwriteException` and present the `message` to the user or handle it yourself based on the provided error information. Below is an example.
 
 ```typescript
@@ -79,6 +82,7 @@ try {
 ```
 
 ### Learn more
+
 You can use the following resources to learn more and get help
 - 🚀 [Getting Started Tutorial](https://appwrite.io/docs/getting-started-for-server)
 - 📜 [Appwrite Docs](https://appwrite.io/docs)
