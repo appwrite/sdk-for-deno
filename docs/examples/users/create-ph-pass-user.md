@@ -7,9 +7,9 @@ const client = new Client()
 
 const users = new Users(client);
 
-const response = await users.createArgon2User({
+const response = await users.createPHPassUser({
     userId: '<USER_ID>',
     email: 'email@example.com',
     password: 'password',
-    name: '<NAME>'
+    name: '<NAME>' // optional
 });

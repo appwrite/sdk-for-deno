@@ -7,12 +7,11 @@ const client = new Client()
 
 const messaging = new Messaging(client);
 
-const response = await messaging.createSMS({
-    messageId: '<MESSAGE_ID>',
-    content: '<CONTENT>',
-    topics: [],
-    users: [],
-    targets: [],
-    draft: false,
-    scheduledAt: ''
+const response = await messaging.createMsg91Provider({
+    providerId: '<PROVIDER_ID>',
+    name: '<NAME>',
+    templateId: '<TEMPLATE_ID>', // optional
+    senderId: '<SENDER_ID>', // optional
+    authKey: '<AUTH_KEY>', // optional
+    enabled: false // optional
 });

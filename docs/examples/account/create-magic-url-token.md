@@ -9,6 +9,6 @@ const account = new Account(client);
 const response = await account.createMagicURLToken({
     userId: '<USER_ID>',
     email: 'email@example.com',
-    url: 'https://example.com',
-    phrase: false
+    url: 'https://example.com', // optional
+    phrase: false // optional
 });

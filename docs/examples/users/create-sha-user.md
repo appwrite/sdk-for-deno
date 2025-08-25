@@ -1,4 +1,4 @@
-import { Client, Users } from "https://deno.land/x/appwrite/mod.ts";
+import { Client, Users, PasswordHash } from "https://deno.land/x/appwrite/mod.ts";
 
 const client = new Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -7,7 +7,10 @@ const client = new Client()
 
 const users = new Users(client);
 
-const response = await users.updateMFA({
+const response = await users.createSHAUser({
     userId: '<USER_ID>',
-    mfa: false
+    email: 'email@example.com',
+    password: 'password',
+    passwordVersion: PasswordHash.Sha1, // optional
+    name: '<NAME>' // optional
 });

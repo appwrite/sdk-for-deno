@@ -7,9 +7,11 @@ const client = new Client()
 
 const messaging = new Messaging(client);
 
-const response = await messaging.createFCMProvider({
+const response = await messaging.updateMsg91Provider({
     providerId: '<PROVIDER_ID>',
-    name: '<NAME>',
-    serviceAccountJSON: {},
-    enabled: false
+    name: '<NAME>', // optional
+    enabled: false, // optional
+    templateId: '<TEMPLATE_ID>', // optional
+    senderId: '<SENDER_ID>', // optional
+    authKey: '<AUTH_KEY>' // optional
 });

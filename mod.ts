@@ -29,7 +29,7 @@ import { RelationshipType } from "./src/enums/relationship-type.ts";
 import { RelationMutate } from "./src/enums/relation-mutate.ts";
 import { IndexType } from "./src/enums/index-type.ts";
 import { Runtime } from "./src/enums/runtime.ts";
-import { VCSDeploymentType } from "./src/enums/v-c-s-deployment-type.ts";
+import { VCSDeploymentType } from "./src/enums/vcs-deployment-type.ts";
 import { DeploymentDownloadType } from "./src/enums/deployment-download-type.ts";
 import { ExecutionMethod } from "./src/enums/execution-method.ts";
 import { Name } from "./src/enums/name.ts";

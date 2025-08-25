@@ -1,4 +1,4 @@
-import { Client, Users, AuthenticatorType } from "https://deno.land/x/appwrite/mod.ts";
+import { Client, Users } from "https://deno.land/x/appwrite/mod.ts";
 
 const client = new Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -7,7 +7,9 @@ const client = new Client()
 
 const users = new Users(client);
 
-const response = await users.deleteMFAAuthenticator({
+const response = await users.createArgon2User({
     userId: '<USER_ID>',
-    type: AuthenticatorType.Totp
+    email: 'email@example.com',
+    password: 'password',
+    name: '<NAME>' // optional
 });
