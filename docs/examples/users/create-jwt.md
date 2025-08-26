@@ -7,9 +7,8 @@ const client = new Client()
 
 const users = new Users(client);
 
-const response = await users.createPHPassUser(
-    '<USER_ID>', // userId
-    'email@example.com', // email
-    'password', // password
-    '<NAME>' // name (optional)
-);
+const response = await users.createJWT({
+    userId: '<USER_ID>',
+    sessionId: '<SESSION_ID>', // optional
+    duration: 0 // optional
+});

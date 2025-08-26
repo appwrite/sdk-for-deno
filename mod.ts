@@ -15,6 +15,7 @@ import { Locale } from "./src/services/locale.ts";
 import { Messaging } from "./src/services/messaging.ts";
 import { Sites } from "./src/services/sites.ts";
 import { Storage } from "./src/services/storage.ts";
+import { TablesDB } from "./src/services/tables-db.ts";
 import { Teams } from "./src/services/teams.ts";
 import { Tokens } from "./src/services/tokens.ts";
 import { Users } from "./src/services/users.ts";
@@ -28,7 +29,7 @@ import { RelationshipType } from "./src/enums/relationship-type.ts";
 import { RelationMutate } from "./src/enums/relation-mutate.ts";
 import { IndexType } from "./src/enums/index-type.ts";
 import { Runtime } from "./src/enums/runtime.ts";
-import { VCSDeploymentType } from "./src/enums/v-c-s-deployment-type.ts";
+import { VCSDeploymentType } from "./src/enums/vcs-deployment-type.ts";
 import { DeploymentDownloadType } from "./src/enums/deployment-download-type.ts";
 import { ExecutionMethod } from "./src/enums/execution-method.ts";
 import { Name } from "./src/enums/name.ts";
@@ -61,6 +62,7 @@ export {
     Messaging,
     Sites,
     Storage,
+    TablesDB,
     Teams,
     Tokens,
     Users,

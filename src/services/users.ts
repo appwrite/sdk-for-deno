@@ -808,8 +808,42 @@ export class Users extends Service {
      * @param {boolean} mfa
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.updateMFA` instead.
      */
     async updateMfa<Preferences extends Models.Preferences>(userId: string, mfa: boolean): Promise<Models.User<Preferences>> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof mfa === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "mfa"');
+        }
+
+        const apiPath = '/users/{userId}/mfa'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        if (typeof mfa !== 'undefined') {
+            payload['mfa'] = mfa;
+        }
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Enable or disable MFA on a user account.
+     *
+     * @param {string} userId
+     * @param {boolean} mfa
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateMFA<Preferences extends Models.Preferences>(userId: string, mfa: boolean): Promise<Models.User<Preferences>> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -841,8 +875,39 @@ export class Users extends Service {
      * @param {AuthenticatorType} type
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.deleteMFAAuthenticator` instead.
      */
     async deleteMfaAuthenticator(userId: string, type: AuthenticatorType): Promise<Response> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (typeof type === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/authenticators/{type}'.replace('{userId}', userId).replace('{type}', type);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'delete',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Delete an authenticator app.
+     *
+     * @param {string} userId
+     * @param {AuthenticatorType} type
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async deleteMFAAuthenticator(userId: string, type: AuthenticatorType): Promise<Response> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -870,8 +935,33 @@ export class Users extends Service {
      * @param {string} userId
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.listMFAFactors` instead.
      */
     async listMfaFactors(userId: string): Promise<Models.MfaFactors> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/factors'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * List the factors available on the account to be used as a MFA challange.
+     *
+     * @param {string} userId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async listMFAFactors(userId: string): Promise<Models.MfaFactors> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -897,8 +987,36 @@ export class Users extends Service {
      * @param {string} userId
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.getMFARecoveryCodes` instead.
      */
     async getMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/recovery-codes'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'get',
+            apiPath,
+            {
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Get recovery codes that can be used as backup for MFA flow by User ID.
+     * Before getting codes, they must be generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method.
+     *
+     * @param {string} userId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async getMFARecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -924,8 +1042,37 @@ export class Users extends Service {
      * @param {string} userId
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.updateMFARecoveryCodes` instead.
      */
     async updateMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/recovery-codes'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'put',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Regenerate recovery codes that can be used as backup for MFA flow by User
+     * ID. Before regenerating codes, they must be first generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method.
+     *
+     * @param {string} userId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async updateMFARecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -952,8 +1099,37 @@ export class Users extends Service {
      * @param {string} userId
      * @throws {AppwriteException}
      * @returns {Promise}
+     * @deprecated This API has been deprecated since 1.8.0. Please use `Users.createMFARecoveryCodes` instead.
      */
     async createMfaRecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
+        if (typeof userId === 'undefined') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        const apiPath = '/users/{userId}/mfa/recovery-codes'.replace('{userId}', userId);
+        const payload: Payload = {};
+
+        return await this.client.call(
+            'patch',
+            apiPath,
+            {
+                'content-type': 'application/json',
+            },
+            payload,
+            'json'
+        );
+    }
+    /**
+     * Generate recovery codes used as backup for MFA flow for User ID. Recovery
+     * codes can be used as a MFA verification type in
+     * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+     * method by client SDK.
+     *
+     * @param {string} userId
+     * @throws {AppwriteException}
+     * @returns {Promise}
+     */
+    async createMFARecoveryCodes(userId: string): Promise<Models.MfaRecoveryCodes> {
         if (typeof userId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "userId"');
         }

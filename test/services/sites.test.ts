@@ -578,6 +578,7 @@ describe('Sites service', () => {
             '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
             '\$permissions': [],
             'functionId': '5e5ea6g16897e',
+            'deploymentId': '5e5ea5c16897e',
             'trigger': 'http',
             'status': 'processing',
             'requestMethod': 'GET',

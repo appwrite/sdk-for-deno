@@ -6,7 +6,7 @@ import { AppwriteException } from '../exception.ts';
 import type { Models } from '../models.d.ts';
 import { Query } from '../query.ts';
 import { Runtime } from '../enums/runtime.ts';
-import { VCSDeploymentType } from '../enums/v-c-s-deployment-type.ts';
+import { VCSDeploymentType } from '../enums/vcs-deployment-type.ts';
 import { DeploymentDownloadType } from '../enums/deployment-download-type.ts';
 import { ExecutionMethod } from '../enums/execution-method.ts';
 
