@@ -585,6 +585,150 @@ describe('TablesDB service', () => {
     });
 
     
+    test('test method createLineColumn()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tablesDB.createLineColumn(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateLineColumn()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tablesDB.updateLineColumn(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createPointColumn()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tablesDB.createPointColumn(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updatePointColumn()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tablesDB.updatePointColumn(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createPolygonColumn()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tablesDB.createPolygonColumn(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updatePolygonColumn()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await tablesDB.updatePolygonColumn(
+            '<DATABASE_ID>',
+            '<TABLE_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method createRelationshipColumn()', async () => {
         const data = {
             'key': 'fullName',
