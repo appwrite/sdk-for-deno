@@ -1058,7 +1058,7 @@ export namespace Models {
         /**
          * Default value for attribute when not provided. Cannot be set when attribute is required.
          */
-        xdefault?: object;
+        xdefault?: any[];
     }
     /**
      * AttributeLine
@@ -1099,7 +1099,7 @@ export namespace Models {
         /**
          * Default value for attribute when not provided. Cannot be set when attribute is required.
          */
-        xdefault?: object;
+        xdefault?: any[];
     }
     /**
      * AttributePolygon
@@ -1140,7 +1140,7 @@ export namespace Models {
         /**
          * Default value for attribute when not provided. Cannot be set when attribute is required.
          */
-        xdefault?: object;
+        xdefault?: any[];
     }
     /**
      * Table
@@ -1717,7 +1717,7 @@ export namespace Models {
         /**
          * Default value for column when not provided. Cannot be set when column is required.
          */
-        xdefault?: object;
+        xdefault?: any[];
     }
     /**
      * ColumnLine
@@ -1758,7 +1758,7 @@ export namespace Models {
         /**
          * Default value for column when not provided. Cannot be set when column is required.
          */
-        xdefault?: object;
+        xdefault?: any[];
     }
     /**
      * ColumnPolygon
@@ -1799,7 +1799,7 @@ export namespace Models {
         /**
          * Default value for column when not provided. Cannot be set when column is required.
          */
-        xdefault?: object;
+        xdefault?: any[];
     }
     /**
      * Index

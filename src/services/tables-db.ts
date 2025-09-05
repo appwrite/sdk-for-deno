@@ -1257,11 +1257,11 @@ export class TablesDB extends Service {
      * @param {string} tableId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createLineColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: string): Promise<Models.ColumnLine> {
+    async createLineColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: any[]): Promise<Models.ColumnLine> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1308,12 +1308,12 @@ export class TablesDB extends Service {
      * @param {string} tableId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updateLineColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: string, newKey?: string): Promise<Models.ColumnLine> {
+    async updateLineColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: any[], newKey?: string): Promise<Models.ColumnLine> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1359,11 +1359,11 @@ export class TablesDB extends Service {
      * @param {string} tableId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createPointColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: string): Promise<Models.ColumnPoint> {
+    async createPointColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: any[]): Promise<Models.ColumnPoint> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1410,12 +1410,12 @@ export class TablesDB extends Service {
      * @param {string} tableId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updatePointColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: string, newKey?: string): Promise<Models.ColumnPoint> {
+    async updatePointColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: any[], newKey?: string): Promise<Models.ColumnPoint> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1461,11 +1461,11 @@ export class TablesDB extends Service {
      * @param {string} tableId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async createPolygonColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: string): Promise<Models.ColumnPolygon> {
+    async createPolygonColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: any[]): Promise<Models.ColumnPolygon> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1512,12 +1512,12 @@ export class TablesDB extends Service {
      * @param {string} tableId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      */
-    async updatePolygonColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: string, newKey?: string): Promise<Models.ColumnPolygon> {
+    async updatePolygonColumn(databaseId: string, tableId: string, key: string, required: boolean, xdefault?: any[], newKey?: string): Promise<Models.ColumnPolygon> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }

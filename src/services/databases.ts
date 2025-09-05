@@ -1283,12 +1283,12 @@ export class Databases extends Service {
      * @param {string} collectionId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @throws {AppwriteException}
      * @returns {Promise}
      * @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createLineColumn` instead.
      */
-    async createLineAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string): Promise<Models.AttributeLine> {
+    async createLineAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: any[]): Promise<Models.AttributeLine> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1335,13 +1335,13 @@ export class Databases extends Service {
      * @param {string} collectionId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      * @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateLineColumn` instead.
      */
-    async updateLineAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string, newKey?: string): Promise<Models.AttributeLine> {
+    async updateLineAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: any[], newKey?: string): Promise<Models.AttributeLine> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1387,12 +1387,12 @@ export class Databases extends Service {
      * @param {string} collectionId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @throws {AppwriteException}
      * @returns {Promise}
      * @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createPointColumn` instead.
      */
-    async createPointAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string): Promise<Models.AttributePoint> {
+    async createPointAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: any[]): Promise<Models.AttributePoint> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1439,13 +1439,13 @@ export class Databases extends Service {
      * @param {string} collectionId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      * @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updatePointColumn` instead.
      */
-    async updatePointAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string, newKey?: string): Promise<Models.AttributePoint> {
+    async updatePointAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: any[], newKey?: string): Promise<Models.AttributePoint> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1491,12 +1491,12 @@ export class Databases extends Service {
      * @param {string} collectionId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @throws {AppwriteException}
      * @returns {Promise}
      * @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createPolygonColumn` instead.
      */
-    async createPolygonAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string): Promise<Models.AttributePolygon> {
+    async createPolygonAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: any[]): Promise<Models.AttributePolygon> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
@@ -1543,13 +1543,13 @@ export class Databases extends Service {
      * @param {string} collectionId
      * @param {string} key
      * @param {boolean} required
-     * @param {string} xdefault
+     * @param {any[]} xdefault
      * @param {string} newKey
      * @throws {AppwriteException}
      * @returns {Promise}
      * @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updatePolygonColumn` instead.
      */
-    async updatePolygonAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: string, newKey?: string): Promise<Models.AttributePolygon> {
+    async updatePolygonAttribute(databaseId: string, collectionId: string, key: string, required: boolean, xdefault?: any[], newKey?: string): Promise<Models.AttributePolygon> {
         if (typeof databaseId === 'undefined') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
