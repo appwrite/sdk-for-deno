@@ -1,20 +1,51 @@
 # Appwrite Deno SDK
 
+> ⚠️ **DEPRECATED**: This SDK is deprecated. Please use the [Appwrite Node.js SDK](https://github.com/appwrite/sdk-for-node/) with Deno instead.
+
 ![License](https://img.shields.io/github/license/appwrite/sdk-for-deno.svg?style=flat-square)
 ![Version](https://img.shields.io/badge/api%20version-1.8.0-blue.svg?style=flat-square)
 [![Build Status](https://img.shields.io/travis/com/appwrite/sdk-generator?style=flat-square)](https://travis-ci.com/appwrite/sdk-generator)
 [![Twitter Account](https://img.shields.io/twitter/follow/appwrite?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite)
 [![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
 
-**This SDK is compatible with Appwrite server version 1.8.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-deno/releases).**
+## 🚨 Migration Notice
 
-Appwrite is an open-source backend as a service server that abstract and simplify complex and repetitive development tasks behind a very simple to use REST API. Appwrite aims to help you develop your apps faster and in a more secure way. Use the Deno SDK to integrate your app with the Appwrite server to easily start interacting with all of Appwrite backend APIs and tools. For full API documentation and tutorials go to [https://appwrite.io/docs](https://appwrite.io/docs)
+This Deno-specific SDK is now deprecated. Thanks to Deno's excellent Node.js compatibility, you can now use the official Appwrite Node.js SDK directly in your Deno applications.
+
+### Why migrate?
+
+- **Better maintenance**: The Node.js SDK is actively maintained and receives updates faster
+- **Feature parity**: Access to all the latest Appwrite features
+- **Simplified ecosystem**: One less SDK to maintain
+- **Native compatibility**: Deno's built-in Node.js compatibility makes this seamless
+
+### How to migrate
+
+Instead of using this deprecated SDK, install and use the Appwrite Node.js SDK:
+
+```typescript
+import * as sdk from "npm:node-appwrite";
+```
+
+That's it! The API is identical, so your existing code will work with minimal changes.
+
+### Learn more about Deno + Node.js compatibility
+
+- 📖 [Deno Node.js Compatibility Guide](https://docs.deno.com/runtime/fundamentals/node/)
+- 📦 [Appwrite Node.js SDK](https://github.com/appwrite/sdk-for-node/)
+
+---
+
+**The information below is kept for historical reference but should not be used for new projects.**
 
 
 ![Appwrite](https://github.com/appwrite/appwrite/raw/main/public/images/github.png)
 
 ## Installation
 
+> ⚠️ **Use the Node.js SDK instead**: `import * as sdk from "npm:node-appwrite";`
+
+**Deprecated installation (do not use):**
 ```javascript
 import * as sdk from "https://deno.land/x/appwrite/mod.ts";
 ```
