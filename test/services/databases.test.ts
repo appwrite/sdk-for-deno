@@ -585,6 +585,150 @@ describe('Databases service', () => {
     });
 
     
+    test('test method createLineAttribute()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.createLineAttribute(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updateLineAttribute()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.updateLineAttribute(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createPointAttribute()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.createPointAttribute(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updatePointAttribute()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.updatePointAttribute(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method createPolygonAttribute()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.createPolygonAttribute(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
+    test('test method updatePolygonAttribute()', async () => {
+        const data = {
+            'key': 'fullName',
+            'type': 'string',
+            'status': 'available',
+            'error': 'string',
+            'required': true,
+            '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+            '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+        const stubbedFetch = stub(globalThis, 'fetch', () => Promise.resolve(Response.json(data)));
+
+        const response = await databases.updatePolygonAttribute(
+            '<DATABASE_ID>',
+            '<COLLECTION_ID>',
+            '',
+            true,
+        );
+
+        assertEquals(response, data);
+        stubbedFetch.restore();
+    });
+
+    
     test('test method createRelationshipAttribute()', async () => {
         const data = {
             'key': 'fullName',
